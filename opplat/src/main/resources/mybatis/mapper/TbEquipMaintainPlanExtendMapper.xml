@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipMaintainPlanExtendMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipMaintainPlanExtend">
+    <id column="detail_no" jdbcType="VARCHAR" property="detailNo" />
+    <result column="extend_content" jdbcType="VARCHAR" property="extendContent" />
+    <result column="extend_addon" jdbcType="VARCHAR" property="extendAddon" />
+    <result column="extend_detail" jdbcType="VARCHAR" property="extendDetail" />
+    <result column="extend_update_time" jdbcType="TIMESTAMP" property="extendUpdateTime" />
+    <result column="extend_no" jdbcType="VARCHAR" property="extendNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    detail_no, extend_content, extend_addon, extend_detail, extend_update_time, extend_no
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_maintain_plan_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_maintain_plan_extend
+    where detail_no = #{detailNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_equip_maintain_plan_extend
+    where detail_no = #{detailNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtendExample">
+    delete from tb_equip_maintain_plan_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtend">
+    insert into tb_equip_maintain_plan_extend (detail_no, extend_content, extend_addon, 
+      extend_detail, extend_update_time, extend_no
+      )
+    values (#{detailNo,jdbcType=VARCHAR}, #{extendContent,jdbcType=VARCHAR}, #{extendAddon,jdbcType=VARCHAR}, 
+      #{extendDetail,jdbcType=VARCHAR}, #{extendUpdateTime,jdbcType=TIMESTAMP}, #{extendNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtend">
+    insert into tb_equip_maintain_plan_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detailNo != null">
+        detail_no,
+      </if>
+      <if test="extendContent != null">
+        extend_content,
+      </if>
+      <if test="extendAddon != null">
+        extend_addon,
+      </if>
+      <if test="extendDetail != null">
+        extend_detail,
+      </if>
+      <if test="extendUpdateTime != null">
+        extend_update_time,
+      </if>
+      <if test="extendNo != null">
+        extend_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="detailNo != null">
+        #{detailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendContent != null">
+        #{extendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="extendAddon != null">
+        #{extendAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="extendDetail != null">
+        #{extendDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="extendUpdateTime != null">
+        #{extendUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extendNo != null">
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtendExample" resultType="java.lang.Integer">
+    select count(*) from tb_equip_maintain_plan_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_equip_maintain_plan_extend
+    <set>
+      <if test="record.detailNo != null">
+        detail_no = #{record.detailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendContent != null">
+        extend_content = #{record.extendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendAddon != null">
+        extend_addon = #{record.extendAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendDetail != null">
+        extend_detail = #{record.extendDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendUpdateTime != null">
+        extend_update_time = #{record.extendUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.extendNo != null">
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_equip_maintain_plan_extend
+    set detail_no = #{record.detailNo,jdbcType=VARCHAR},
+      extend_content = #{record.extendContent,jdbcType=VARCHAR},
+      extend_addon = #{record.extendAddon,jdbcType=VARCHAR},
+      extend_detail = #{record.extendDetail,jdbcType=VARCHAR},
+      extend_update_time = #{record.extendUpdateTime,jdbcType=TIMESTAMP},
+      extend_no = #{record.extendNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtend">
+    update tb_equip_maintain_plan_extend
+    <set>
+      <if test="extendContent != null">
+        extend_content = #{extendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="extendAddon != null">
+        extend_addon = #{extendAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="extendDetail != null">
+        extend_detail = #{extendDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="extendUpdateTime != null">
+        extend_update_time = #{extendUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extendNo != null">
+        extend_no = #{extendNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where detail_no = #{detailNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExtend">
+    update tb_equip_maintain_plan_extend
+    set extend_content = #{extendContent,jdbcType=VARCHAR},
+      extend_addon = #{extendAddon,jdbcType=VARCHAR},
+      extend_detail = #{extendDetail,jdbcType=VARCHAR},
+      extend_update_time = #{extendUpdateTime,jdbcType=TIMESTAMP},
+      extend_no = #{extendNo,jdbcType=VARCHAR}
+    where detail_no = #{detailNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

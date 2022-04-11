@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkFlowInfoExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkFlowInfoExtend" >
+    <id column="extend_no" property="extendNo" jdbcType="VARCHAR" />
+    <result column="flow_no" property="flowNo" jdbcType="VARCHAR" />
+    <result column="org_no" property="orgNo" jdbcType="VARCHAR" />
+    <result column="status_code" property="statusCode" jdbcType="VARCHAR" />
+    <result column="extend_type" property="extendType" jdbcType="INTEGER" />
+    <result column="role_list" property="roleList" jdbcType="VARCHAR" />
+    <result column="extend_org_no" property="extendOrgNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    extend_no, flow_no, org_no, status_code, extend_type, role_list, extend_org_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_flow_info_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_flow_info_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_work_flow_info_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtendExample" >
+    delete from tb_work_flow_info_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtend" >
+    insert into tb_work_flow_info_extend (extend_no, flow_no, org_no, 
+      status_code, extend_type, role_list, 
+      extend_org_no)
+    values (#{extendNo,jdbcType=VARCHAR}, #{flowNo,jdbcType=VARCHAR}, #{orgNo,jdbcType=VARCHAR}, 
+      #{statusCode,jdbcType=VARCHAR}, #{extendType,jdbcType=INTEGER}, #{roleList,jdbcType=VARCHAR}, 
+      #{extendOrgNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtend" >
+    insert into tb_work_flow_info_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="extendNo != null" >
+        extend_no,
+      </if>
+      <if test="flowNo != null" >
+        flow_no,
+      </if>
+      <if test="orgNo != null" >
+        org_no,
+      </if>
+      <if test="statusCode != null" >
+        status_code,
+      </if>
+      <if test="extendType != null" >
+        extend_type,
+      </if>
+      <if test="roleList != null" >
+        role_list,
+      </if>
+      <if test="extendOrgNo != null" >
+        extend_org_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="extendNo != null" >
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNo != null" >
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null" >
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extendType != null" >
+        #{extendType,jdbcType=INTEGER},
+      </if>
+      <if test="roleList != null" >
+        #{roleList,jdbcType=VARCHAR},
+      </if>
+      <if test="extendOrgNo != null" >
+        #{extendOrgNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_work_flow_info_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_work_flow_info_extend
+    <set >
+      <if test="record.extendNo != null" >
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowNo != null" >
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgNo != null" >
+        org_no = #{record.orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCode != null" >
+        status_code = #{record.statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendType != null" >
+        extend_type = #{record.extendType,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleList != null" >
+        role_list = #{record.roleList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendOrgNo != null" >
+        extend_org_no = #{record.extendOrgNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_work_flow_info_extend
+    set extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      org_no = #{record.orgNo,jdbcType=VARCHAR},
+      status_code = #{record.statusCode,jdbcType=VARCHAR},
+      extend_type = #{record.extendType,jdbcType=INTEGER},
+      role_list = #{record.roleList,jdbcType=VARCHAR},
+      extend_org_no = #{record.extendOrgNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtend" >
+    update tb_work_flow_info_extend
+    <set >
+      <if test="flowNo != null" >
+        flow_no = #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null" >
+        org_no = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        status_code = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extendType != null" >
+        extend_type = #{extendType,jdbcType=INTEGER},
+      </if>
+      <if test="roleList != null" >
+        role_list = #{roleList,jdbcType=VARCHAR},
+      </if>
+      <if test="extendOrgNo != null" >
+        extend_org_no = #{extendOrgNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowInfoExtend" >
+    update tb_work_flow_info_extend
+    set flow_no = #{flowNo,jdbcType=VARCHAR},
+      org_no = #{orgNo,jdbcType=VARCHAR},
+      status_code = #{statusCode,jdbcType=VARCHAR},
+      extend_type = #{extendType,jdbcType=INTEGER},
+      role_list = #{roleList,jdbcType=VARCHAR},
+      extend_org_no = #{extendOrgNo,jdbcType=VARCHAR}
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCondition"  parameterType="com.ejobim.opplat.domain.condition.ChooseUserConditon" resultType="java.lang.String">
+    select b.role_list roles from tb_work_flow_info a
+    left join tb_work_flow_info_extend b on a.flow_no = b.flow_no
+    where a.flow_type = #{flowType} and b.status_code =#{statusCode} and a.org_no=#{factoryNo} and b.extend_type=#{extendType}
+  </select>
+
+  <select id="selectByConditions"  parameterType="com.ejobim.opplat.domain.condition.ChooseUserConditon" resultType="com.ejobim.opplat.domain.TbWorkFlowInfoExtend">
+    select *  from tb_work_flow_info_extend
+    where  1=1
+    <if test="factoryNo != null" >
+      and org_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="statusCode != null" >
+      and status_code = #{statusCode,jdbcType=VARCHAR}
+    </if>
+    <if test="extendType != null" >
+      and extend_type = #{extendType,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>

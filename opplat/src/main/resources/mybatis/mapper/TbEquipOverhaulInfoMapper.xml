@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipOverhaulInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipOverhaulInfo" >
+    <id column="overhaul_detail_no" property="overhaulDetailNo" jdbcType="VARCHAR" />
+    <result column="extend_no" property="extendNo" jdbcType="VARCHAR" />
+    <result column="suggest_sparepart_lists" property="suggestSparepartLists" jdbcType="VARCHAR" />
+    <result column="sparepart_lists" property="sparepartLists" jdbcType="VARCHAR" />
+    <result column="suggest_info" property="suggestInfo" jdbcType="VARCHAR" />
+    <result column="overhaul_pictures" property="overhaulPictures" jdbcType="VARCHAR" />
+    <result column="overhaul_video" property="overhaulVideo" jdbcType="VARCHAR" />
+    <result column="overhaul_sanitation_ok" property="overhaulSanitationOk" jdbcType="INTEGER" />
+    <result column="overhaul_appearance_ok" property="overhaulAppearanceOk" jdbcType="INTEGER" />
+    <result column="overhaul_conversion_ok" property="overhaulConversionOk" jdbcType="INTEGER" />
+    <result column="overhaul_sound_ok" property="overhaulSoundOk" jdbcType="INTEGER" />
+    <result column="overhaul_temp_ok" property="overhaulTempOk" jdbcType="INTEGER" />
+    <result column="overhaul_electric_current" property="overhaulElectricCurrent" jdbcType="INTEGER" />
+    <result column="detail_party" property="detailParty" jdbcType="VARCHAR" />
+    <result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
+    <result column="overhaul_content" property="overhaulContent" jdbcType="VARCHAR" />
+    <result column="equip_status" property="equipStatus" jdbcType="INTEGER" />
+    <result column="plan_cost" property="planCost" jdbcType="DOUBLE" />
+    <result column="real_cost" property="realCost" jdbcType="DOUBLE" />
+    <result column="tax_rate" property="taxRate" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    overhaul_detail_no, extend_no, suggest_sparepart_lists, sparepart_lists, suggest_info, 
+    overhaul_pictures, overhaul_video, overhaul_sanitation_ok, overhaul_appearance_ok, 
+    overhaul_conversion_ok, overhaul_sound_ok, overhaul_temp_ok, overhaul_electric_current, 
+    detail_party, contract_no, overhaul_content, equip_status, plan_cost, real_cost, tax_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_overhaul_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_overhaul_info
+    where overhaul_detail_no = #{overhaulDetailNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_overhaul_info
+    where overhaul_detail_no = #{overhaulDetailNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfoExample" >
+    delete from tb_equip_overhaul_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfo" >
+    insert into tb_equip_overhaul_info (overhaul_detail_no, extend_no, suggest_sparepart_lists, 
+      sparepart_lists, suggest_info, overhaul_pictures, 
+      overhaul_video, overhaul_sanitation_ok, overhaul_appearance_ok, 
+      overhaul_conversion_ok, overhaul_sound_ok, 
+      overhaul_temp_ok, overhaul_electric_current, 
+      detail_party, contract_no, overhaul_content, 
+      equip_status, plan_cost, real_cost, tax_rate
+      )
+    values (#{overhaulDetailNo,jdbcType=VARCHAR}, #{extendNo,jdbcType=VARCHAR}, #{suggestSparepartLists,jdbcType=VARCHAR}, 
+      #{sparepartLists,jdbcType=VARCHAR}, #{suggestInfo,jdbcType=VARCHAR}, #{overhaulPictures,jdbcType=VARCHAR}, 
+      #{overhaulVideo,jdbcType=VARCHAR}, #{overhaulSanitationOk,jdbcType=INTEGER}, #{overhaulAppearanceOk,jdbcType=INTEGER}, 
+      #{overhaulConversionOk,jdbcType=INTEGER}, #{overhaulSoundOk,jdbcType=INTEGER}, 
+      #{overhaulTempOk,jdbcType=INTEGER}, #{overhaulElectricCurrent,jdbcType=INTEGER}, 
+      #{detailParty,jdbcType=VARCHAR}, #{contractNo,jdbcType=VARCHAR}, #{overhaulContent,jdbcType=VARCHAR}, 
+      #{equipStatus,jdbcType=INTEGER}, #{planCost,jdbcType=DOUBLE}, #{realCost,jdbcType=DOUBLE}, #{taxRate,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfo" >
+    insert into tb_equip_overhaul_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="overhaulDetailNo != null" >
+        overhaul_detail_no,
+      </if>
+      <if test="extendNo != null" >
+        extend_no,
+      </if>
+      <if test="suggestSparepartLists != null" >
+        suggest_sparepart_lists,
+      </if>
+      <if test="sparepartLists != null" >
+        sparepart_lists,
+      </if>
+      <if test="suggestInfo != null" >
+        suggest_info,
+      </if>
+      <if test="overhaulPictures != null" >
+        overhaul_pictures,
+      </if>
+      <if test="overhaulVideo != null" >
+        overhaul_video,
+      </if>
+      <if test="overhaulSanitationOk != null" >
+        overhaul_sanitation_ok,
+      </if>
+      <if test="overhaulAppearanceOk != null" >
+        overhaul_appearance_ok,
+      </if>
+      <if test="overhaulConversionOk != null" >
+        overhaul_conversion_ok,
+      </if>
+      <if test="overhaulSoundOk != null" >
+        overhaul_sound_ok,
+      </if>
+      <if test="overhaulTempOk != null" >
+        overhaul_temp_ok,
+      </if>
+      <if test="overhaulElectricCurrent != null" >
+        overhaul_electric_current,
+      </if>
+      <if test="detailParty != null" >
+        detail_party,
+      </if>
+      <if test="contractNo != null" >
+        contract_no,
+      </if>
+      <if test="overhaulContent != null" >
+        overhaul_content,
+      </if>
+      <if test="equipStatus != null" >
+        equip_status,
+      </if>
+      <if test="planCost != null" >
+        plan_cost,
+      </if>
+      <if test="realCost != null" >
+        real_cost,
+      </if>
+      <if test="taxRate != null" >
+        tax_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="overhaulDetailNo != null" >
+        #{overhaulDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendNo != null" >
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestSparepartLists != null" >
+        #{suggestSparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="sparepartLists != null" >
+        #{sparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestInfo != null" >
+        #{suggestInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulPictures != null" >
+        #{overhaulPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulVideo != null" >
+        #{overhaulVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulSanitationOk != null" >
+        #{overhaulSanitationOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulAppearanceOk != null" >
+        #{overhaulAppearanceOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulConversionOk != null" >
+        #{overhaulConversionOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulSoundOk != null" >
+        #{overhaulSoundOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulTempOk != null" >
+        #{overhaulTempOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulElectricCurrent != null" >
+        #{overhaulElectricCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="detailParty != null" >
+        #{detailParty,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null" >
+        #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulContent != null" >
+        #{overhaulContent,jdbcType=VARCHAR},
+      </if>
+      <if test="equipStatus != null" >
+        #{equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planCost != null" >
+        #{planCost,jdbcType=DOUBLE},
+      </if>
+      <if test="realCost != null" >
+        #{realCost,jdbcType=DOUBLE},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_overhaul_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_overhaul_info
+    <set >
+      <if test="record.overhaulDetailNo != null" >
+        overhaul_detail_no = #{record.overhaulDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendNo != null" >
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suggestSparepartLists != null" >
+        suggest_sparepart_lists = #{record.suggestSparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparepartLists != null" >
+        sparepart_lists = #{record.sparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suggestInfo != null" >
+        suggest_info = #{record.suggestInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overhaulPictures != null" >
+        overhaul_pictures = #{record.overhaulPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overhaulVideo != null" >
+        overhaul_video = #{record.overhaulVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overhaulSanitationOk != null" >
+        overhaul_sanitation_ok = #{record.overhaulSanitationOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.overhaulAppearanceOk != null" >
+        overhaul_appearance_ok = #{record.overhaulAppearanceOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.overhaulConversionOk != null" >
+        overhaul_conversion_ok = #{record.overhaulConversionOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.overhaulSoundOk != null" >
+        overhaul_sound_ok = #{record.overhaulSoundOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.overhaulTempOk != null" >
+        overhaul_temp_ok = #{record.overhaulTempOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.overhaulElectricCurrent != null" >
+        overhaul_electric_current = #{record.overhaulElectricCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailParty != null" >
+        detail_party = #{record.detailParty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractNo != null" >
+        contract_no = #{record.contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overhaulContent != null" >
+        overhaul_content = #{record.overhaulContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipStatus != null" >
+        equip_status = #{record.equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.planCost != null" >
+        plan_cost = #{record.planCost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.realCost != null" >
+        real_cost = #{record.realCost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxRate != null" >
+        tax_rate = #{record.taxRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_overhaul_info
+    set overhaul_detail_no = #{record.overhaulDetailNo,jdbcType=VARCHAR},
+      extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      suggest_sparepart_lists = #{record.suggestSparepartLists,jdbcType=VARCHAR},
+      sparepart_lists = #{record.sparepartLists,jdbcType=VARCHAR},
+      suggest_info = #{record.suggestInfo,jdbcType=VARCHAR},
+      overhaul_pictures = #{record.overhaulPictures,jdbcType=VARCHAR},
+      overhaul_video = #{record.overhaulVideo,jdbcType=VARCHAR},
+      overhaul_sanitation_ok = #{record.overhaulSanitationOk,jdbcType=INTEGER},
+      overhaul_appearance_ok = #{record.overhaulAppearanceOk,jdbcType=INTEGER},
+      overhaul_conversion_ok = #{record.overhaulConversionOk,jdbcType=INTEGER},
+      overhaul_sound_ok = #{record.overhaulSoundOk,jdbcType=INTEGER},
+      overhaul_temp_ok = #{record.overhaulTempOk,jdbcType=INTEGER},
+      overhaul_electric_current = #{record.overhaulElectricCurrent,jdbcType=INTEGER},
+      detail_party = #{record.detailParty,jdbcType=VARCHAR},
+      contract_no = #{record.contractNo,jdbcType=VARCHAR},
+      overhaul_content = #{record.overhaulContent,jdbcType=VARCHAR},
+      equip_status = #{record.equipStatus,jdbcType=INTEGER},
+      plan_cost = #{record.planCost,jdbcType=DOUBLE},
+      real_cost = #{record.realCost,jdbcType=DOUBLE},
+      tax_rate = #{record.taxRate,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfo" >
+    update tb_equip_overhaul_info
+    <set >
+      <if test="extendNo != null" >
+        extend_no = #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestSparepartLists != null" >
+        suggest_sparepart_lists = #{suggestSparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="sparepartLists != null" >
+        sparepart_lists = #{sparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestInfo != null" >
+        suggest_info = #{suggestInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulPictures != null" >
+        overhaul_pictures = #{overhaulPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulVideo != null" >
+        overhaul_video = #{overhaulVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulSanitationOk != null" >
+        overhaul_sanitation_ok = #{overhaulSanitationOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulAppearanceOk != null" >
+        overhaul_appearance_ok = #{overhaulAppearanceOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulConversionOk != null" >
+        overhaul_conversion_ok = #{overhaulConversionOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulSoundOk != null" >
+        overhaul_sound_ok = #{overhaulSoundOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulTempOk != null" >
+        overhaul_temp_ok = #{overhaulTempOk,jdbcType=INTEGER},
+      </if>
+      <if test="overhaulElectricCurrent != null" >
+        overhaul_electric_current = #{overhaulElectricCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="detailParty != null" >
+        detail_party = #{detailParty,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null" >
+        contract_no = #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulContent != null" >
+        overhaul_content = #{overhaulContent,jdbcType=VARCHAR},
+      </if>
+      <if test="equipStatus != null" >
+        equip_status = #{equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planCost != null" >
+        plan_cost = #{planCost,jdbcType=DOUBLE},
+      </if>
+      <if test="realCost != null" >
+        real_cost = #{realCost,jdbcType=DOUBLE},
+      </if>
+       <if test="taxRate != null" >
+         tax_rate = #{taxRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where overhaul_detail_no = #{overhaulDetailNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipOverhaulInfo" >
+    update tb_equip_overhaul_info
+    set extend_no = #{extendNo,jdbcType=VARCHAR},
+      suggest_sparepart_lists = #{suggestSparepartLists,jdbcType=VARCHAR},
+      sparepart_lists = #{sparepartLists,jdbcType=VARCHAR},
+      suggest_info = #{suggestInfo,jdbcType=VARCHAR},
+      overhaul_pictures = #{overhaulPictures,jdbcType=VARCHAR},
+      overhaul_video = #{overhaulVideo,jdbcType=VARCHAR},
+      overhaul_sanitation_ok = #{overhaulSanitationOk,jdbcType=INTEGER},
+      overhaul_appearance_ok = #{overhaulAppearanceOk,jdbcType=INTEGER},
+      overhaul_conversion_ok = #{overhaulConversionOk,jdbcType=INTEGER},
+      overhaul_sound_ok = #{overhaulSoundOk,jdbcType=INTEGER},
+      overhaul_temp_ok = #{overhaulTempOk,jdbcType=INTEGER},
+      overhaul_electric_current = #{overhaulElectricCurrent,jdbcType=INTEGER},
+      detail_party = #{detailParty,jdbcType=VARCHAR},
+      contract_no = #{contractNo,jdbcType=VARCHAR},
+      overhaul_content = #{overhaulContent,jdbcType=VARCHAR},
+      equip_status = #{equipStatus,jdbcType=INTEGER},
+      plan_cost = #{planCost,jdbcType=DOUBLE},
+      real_cost = #{realCost,jdbcType=DOUBLE},
+      tax_rate = #{taxRate,jdbcType=DOUBLE}
+    where overhaul_detail_no = #{overhaulDetailNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

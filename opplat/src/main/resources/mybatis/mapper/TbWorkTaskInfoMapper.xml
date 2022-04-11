@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkTaskInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkTaskInfo" >
+    <id column="task_no" property="taskNo" jdbcType="VARCHAR" />
+    <result column="work_flow_config_no" property="workFlowConfigNo" jdbcType="VARCHAR" />
+    <result column="task_name" property="taskName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="next_role" property="nextRole" jdbcType="VARCHAR" />
+    <result column="next_role_name" property="nextRoleName" jdbcType="VARCHAR" />
+    <result column="status_code" property="statusCode" jdbcType="VARCHAR" />
+    <result column="status_code_name" property="statusCodeName" jdbcType="VARCHAR" />
+    <result column="next_status_code" property="nextStatusCode" jdbcType="VARCHAR" />
+    <result column="next_status_code_name" property="nextStatusCodeName" jdbcType="VARCHAR" />
+    <result column="next_plat" property="nextPlat" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="org_no" property="orgNo" jdbcType="VARCHAR" />
+    <result column="status_index" property="statusIndex" jdbcType="INTEGER" />
+    <result column="next_status_index" property="nextStatusIndex" jdbcType="INTEGER" />
+    <result column="task_type" property="taskType" jdbcType="INTEGER" />
+    <result column="is_entrust" property="isEntrust" jdbcType="INTEGER" />
+    <result column="urgency_degree" property="urgencyDegree" jdbcType="INTEGER" />
+    <result column="is_temp" property="isTemp" jdbcType="INTEGER" />
+    <result column="plan_start_time" property="planStartTime" jdbcType="TIMESTAMP" />
+    <result column="real_start_time" property="realStartTime" jdbcType="TIMESTAMP" />
+    <result column="real_finish_time" property="realFinishTime" jdbcType="TIMESTAMP" />
+    <result column="plan_code" property="planCode" jdbcType="VARCHAR" />
+    <result column="task_code" property="taskCode" jdbcType="VARCHAR" />
+    <result column="task_from" property="taskFrom" jdbcType="VARCHAR" />
+    <result column="plan_finish_time" property="planFinishTime" jdbcType="TIMESTAMP" />
+    <result column="plan_use_time" property="planUseTime" jdbcType="DOUBLE" />
+    <result column="equip_no" property="equipNo" jdbcType="VARCHAR" />
+    <result column="task_content" property="taskContent" jdbcType="VARCHAR" />
+    <result column="duty_user" property="dutyUser" jdbcType="VARCHAR" />
+    <result column="task_status" property="taskStatus" jdbcType="INTEGER" />
+    <result column="related_user" property="relatedUser" jdbcType="VARCHAR" />
+    <result column="next_user" property="nextUser" jdbcType="VARCHAR" />
+    <result column="assist_user" property="assistUser" jdbcType="VARCHAR" />
+    <result column="is_repeat" property="isRepeat" jdbcType="INTEGER" />
+    <result column="check_user" property="checkUser" jdbcType="VARCHAR" />
+    <result column="equip_list" property="equipList" jdbcType="VARCHAR" />
+    <result column="working_hours" property="workingHours" jdbcType="DOUBLE" />
+    <result column="extend_info" property="extendInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    task_no, work_flow_config_no, a.create_time, a.create_user, a.create_user_name, next_role,
+    next_role_name, status_code, status_code_name, next_status_code, next_status_code_name,
+    next_plat, a.update_time, delete_flag, org_no, status_index, next_status_index, task_type,
+    is_entrust, urgency_degree, is_temp, plan_start_time, real_start_time, plan_code,
+    task_code, task_from, plan_finish_time, plan_use_time, a.equip_no, a.task_content,a.working_hours,
+     duty_user, task_status, related_user, next_user, assist_user, is_repeat, check_user,
+     task_name, equip_list, extend_info, a.real_finish_time,
+     b.equip_name, b.installation_site equip_location, c.fati_name
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_task_info a
+    left join tb_equip_info b on a.equip_no = b.equip_no
+    left join tb_facility_info c on a.equip_no = c.fati_no
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_work_task_info a
+    left join tb_equip_info b on a.equip_no = b.equip_no
+    left join tb_facility_info c on a.equip_no = c.fati_no
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_work_task_info
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfoExample" >
+    delete from tb_work_task_info a
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfo">
+    insert into tb_work_task_info (task_no, work_flow_config_no, create_time,
+      create_user, create_user_name, next_role,
+      next_role_name, status_code, status_code_name,
+      next_status_code, next_status_code_name, next_plat,
+      update_time, delete_flag, org_no,
+      status_index, next_status_index, task_type,
+      is_entrust, urgency_degree, is_temp,
+      plan_start_time, real_start_time, plan_code,
+      task_code, task_from, plan_finish_time,
+      plan_use_time, equip_no,task_content,
+      duty_user, task_status, related_user, next_user,
+      assist_user, is_repeat, check_user, task_name, equip_list,
+      working_hours, extend_info, real_finish_time   )
+    values (#{taskNo,jdbcType=VARCHAR}, #{workFlowConfigNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{nextRole,jdbcType=VARCHAR},
+      #{nextRoleName,jdbcType=VARCHAR}, #{statusCode,jdbcType=VARCHAR}, #{statusCodeName,jdbcType=VARCHAR},
+      #{nextStatusCode,jdbcType=VARCHAR}, #{nextStatusCodeName,jdbcType=VARCHAR}, #{nextPlat,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{orgNo,jdbcType=VARCHAR},
+      #{statusIndex,jdbcType=INTEGER}, #{nextStatusIndex,jdbcType=INTEGER}, #{taskType,jdbcType=INTEGER},
+      #{isEntrust,jdbcType=INTEGER}, #{urgencyDegree,jdbcType=INTEGER}, #{isTemp,jdbcType=INTEGER},
+      #{planStartTime,jdbcType=TIMESTAMP}, #{realStartTime,jdbcType=TIMESTAMP}, #{planCode,jdbcType=VARCHAR},
+      #{taskCode,jdbcType=VARCHAR}, #{taskFrom,jdbcType=VARCHAR}, #{planFinishTime,jdbcType=TIMESTAMP},
+      #{planUseTime,jdbcType=DOUBLE}, #{equipNo,jdbcType=VARCHAR}, #{taskContent,jdbcType=VARCHAR},
+      #{dutyUser,jdbcType=VARCHAR}, #{taskStatus,jdbcType=INTEGER}, #{relatedUser,jdbcType=VARCHAR},
+      #{nextUser,jdbcType=VARCHAR}, #{assistUser,jdbcType=VARCHAR}, #{isRepeat,jdbcType=INTEGER},
+      #{checkUser,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, #{equipList,jdbcType=VARCHAR},
+      #{workingHours,jdbcType=DOUBLE}, #{extendInfo,jdbcType=VARCHAR}, #{realFinishTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfo" >
+    insert into tb_work_task_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskNo != null" >
+        task_no,
+      </if>
+      <if test="workFlowConfigNo != null" >
+        work_flow_config_no,
+      </if>
+      <if test="taskName != null" >
+        task_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="nextRole != null" >
+        next_role,
+      </if>
+      <if test="nextRoleName != null" >
+        next_role_name,
+      </if>
+      <if test="statusCode != null" >
+        status_code,
+      </if>
+      <if test="statusCodeName != null" >
+        status_code_name,
+      </if>
+      <if test="nextStatusCode != null" >
+        next_status_code,
+      </if>
+      <if test="nextStatusCodeName != null" >
+        next_status_code_name,
+      </if>
+      <if test="nextPlat != null" >
+        next_plat,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="orgNo != null" >
+        org_no,
+      </if>
+      <if test="statusIndex != null" >
+        status_index,
+      </if>
+      <if test="nextStatusIndex != null" >
+        next_status_index,
+      </if>
+      <if test="taskType != null" >
+        task_type,
+      </if>
+      <if test="isEntrust != null" >
+        is_entrust,
+      </if>
+      <if test="urgencyDegree != null" >
+        urgency_degree,
+      </if>
+      <if test="isTemp != null" >
+        is_temp,
+      </if>
+      <if test="planStartTime != null" >
+        plan_start_time,
+      </if>
+      <if test="realStartTime != null" >
+        real_start_time,
+      </if>
+      <if test="planCode != null" >
+        plan_code,
+      </if>
+      <if test="taskCode != null" >
+        task_code,
+      </if>
+      <if test="taskFrom != null" >
+        task_from,
+      </if>
+      <if test="planFinishTime != null" >
+        plan_finish_time,
+      </if>
+      <if test="planUseTime != null" >
+        plan_use_time,
+      </if>
+      <if test="equipNo != null" >
+        equip_no,
+      </if>
+      <if test="taskContent != null" >
+        task_content,
+      </if>
+      <if test="dutyUser != null" >
+        duty_user,
+      </if>
+      <if test="taskStatus != null" >
+        task_status,
+      </if>
+      <if test="relatedUser != null" >
+        related_user,
+      </if>
+      <if test="nextUser != null" >
+        next_user,
+      </if>
+      <if test="assistUser != null" >
+        assist_user,
+      </if>
+      <if test="isRepeat != null" >
+        is_repeat,
+      </if>
+      <if test="checkUser != null" >
+        check_user,
+      </if>
+      <if test="equipList != null" >
+        equip_list,
+      </if>
+      <if test="workingHours != null" >
+        working_hours,
+      </if>
+      <if test="extendInfo != null" >
+        extend_info,
+      </if>
+      <if test="realFinishTime != null" >
+        real_finish_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskNo != null" >
+        #{taskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workFlowConfigNo != null" >
+        #{workFlowConfigNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextRole != null" >
+        #{nextRole,jdbcType=VARCHAR},
+      </if>
+      <if test="nextRoleName != null" >
+        #{nextRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCodeName != null" >
+        #{statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStatusCode != null" >
+        #{nextStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStatusCodeName != null" >
+        #{nextStatusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextPlat != null" >
+        #{nextPlat,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orgNo != null" >
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statusIndex != null" >
+        #{statusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nextStatusIndex != null" >
+        #{nextStatusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="isEntrust != null" >
+        #{isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="urgencyDegree != null" >
+        #{urgencyDegree,jdbcType=INTEGER},
+      </if>
+      <if test="isTemp != null" >
+        #{isTemp,jdbcType=INTEGER},
+      </if>
+      <if test="planStartTime != null" >
+        #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realStartTime != null" >
+        #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planCode != null" >
+        #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCode != null" >
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskFrom != null" >
+        #{taskFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="planFinishTime != null" >
+        #{planFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planUseTime != null" >
+        #{planUseTime,jdbcType=DOUBLE},
+      </if>
+      <if test="equipNo != null" >
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskContent != null" >
+        #{taskContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyUser != null" >
+        #{dutyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null" >
+        #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="relatedUser != null" >
+        #{relatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUser != null" >
+        #{nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="assistUser != null" >
+        #{assistUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepeat != null" >
+        #{isRepeat,jdbcType=INTEGER},
+      </if>
+      <if test="checkUser != null" >
+        #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipList != null" >
+        #{equipList,jdbcType=VARCHAR},
+      </if>
+      <if test="workingHours != null" >
+        #{workingHours,jdbcType=DOUBLE},
+      </if>
+      <if test="extendInfo != null" >
+        #{extendInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="realFinishTime != null" >
+        #{realFinishTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_work_task_info a
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_work_task_info a
+    <set >
+      <if test="record.taskNo != null" >
+        task_no = #{record.taskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workFlowConfigNo != null" >
+        work_flow_config_no = #{record.workFlowConfigNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskName != null" >
+        task_name = #{record.taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextRole != null" >
+        next_role = #{record.nextRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextRoleName != null" >
+        next_role_name = #{record.nextRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCode != null" >
+        status_code = #{record.statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCodeName != null" >
+        status_code_name = #{record.statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextStatusCode != null" >
+        next_status_code = #{record.nextStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextStatusCodeName != null" >
+        next_status_code_name = #{record.nextStatusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextPlat != null" >
+        next_plat = #{record.nextPlat,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgNo != null" >
+        org_no = #{record.orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusIndex != null" >
+        status_index = #{record.statusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextStatusIndex != null" >
+        next_status_index = #{record.nextStatusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskType != null" >
+        task_type = #{record.taskType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isEntrust != null" >
+        is_entrust = #{record.isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="record.urgencyDegree != null" >
+        urgency_degree = #{record.urgencyDegree,jdbcType=INTEGER},
+      </if>
+      <if test="record.isTemp != null" >
+        is_temp = #{record.isTemp,jdbcType=INTEGER},
+      </if>
+      <if test="record.planStartTime != null" >
+        plan_start_time = #{record.planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.realStartTime != null" >
+        real_start_time = #{record.realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.planCode != null" >
+        plan_code = #{record.planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskCode != null" >
+        task_code = #{record.taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskFrom != null" >
+        task_from = #{record.taskFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planFinishTime != null" >
+        plan_finish_time = #{record.planFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.planUseTime != null" >
+        plan_use_time = #{record.planUseTime,jdbcType=DOUBLE},
+      </if>
+      <if test="record.equipNo != null" >
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskContent != null" >
+        task_content = #{record.taskContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyUser != null" >
+        duty_user = #{record.dutyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskStatus != null" >
+        task_status = #{record.taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.relatedUser != null" >
+        related_user = #{record.relatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextUser != null" >
+        next_user = #{record.nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assistUser != null" >
+        assist_user = #{record.assistUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRepeat != null" >
+        is_repeat = #{record.isRepeat,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkUser != null" >
+        check_user = #{record.checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipList != null" >
+        equip_list = #{record.equipList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workingHours != null" >
+        working_hours = #{record.workingHours,jdbcType=DOUBLE},
+      </if>
+      <if test="record.extendInfo != null" >
+        extend_info = #{record.extendInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realFinishTime != null" >
+        real_finish_time = #{record.realFinishTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_work_task_info a
+    set task_no = #{record.taskNo,jdbcType=VARCHAR},
+    work_flow_config_no = #{record.workFlowConfigNo,jdbcType=VARCHAR},
+    task_name = #{record.taskName,jdbcType=VARCHAR},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    create_user = #{record.createUser,jdbcType=VARCHAR},
+    create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+    next_role = #{record.nextRole,jdbcType=VARCHAR},
+    next_role_name = #{record.nextRoleName,jdbcType=VARCHAR},
+    status_code = #{record.statusCode,jdbcType=VARCHAR},
+    status_code_name = #{record.statusCodeName,jdbcType=VARCHAR},
+    next_status_code = #{record.nextStatusCode,jdbcType=VARCHAR},
+    next_status_code_name = #{record.nextStatusCodeName,jdbcType=VARCHAR},
+    next_plat = #{record.nextPlat,jdbcType=INTEGER},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+    org_no = #{record.orgNo,jdbcType=VARCHAR},
+    status_index = #{record.statusIndex,jdbcType=INTEGER},
+    next_status_index = #{record.nextStatusIndex,jdbcType=INTEGER},
+    task_type = #{record.taskType,jdbcType=INTEGER},
+    is_entrust = #{record.isEntrust,jdbcType=INTEGER},
+    urgency_degree = #{record.urgencyDegree,jdbcType=INTEGER},
+    is_temp = #{record.isTemp,jdbcType=INTEGER},
+    plan_start_time = #{record.planStartTime,jdbcType=TIMESTAMP},
+    real_start_time = #{record.realStartTime,jdbcType=TIMESTAMP},
+    plan_code = #{record.planCode,jdbcType=VARCHAR},
+    task_code = #{record.taskCode,jdbcType=VARCHAR},
+    task_from = #{record.taskFrom,jdbcType=VARCHAR},
+    plan_finish_time = #{record.planFinishTime,jdbcType=TIMESTAMP},
+    plan_use_time = #{record.planUseTime,jdbcType=DOUBLE},
+    equip_no = #{record.equipNo,jdbcType=VARCHAR},
+    task_content = #{record.taskContent,jdbcType=VARCHAR},
+    duty_user = #{record.dutyUser,jdbcType=VARCHAR},
+    task_status = #{record.taskStatus,jdbcType=INTEGER},
+    related_user = #{record.relatedUser,jdbcType=VARCHAR},
+    next_user = #{record.nextUser,jdbcType=VARCHAR},
+    assist_user = #{record.assistUser,jdbcType=VARCHAR},
+    is_repeat = #{record.isRepeat,jdbcType=INTEGER},
+    check_user = #{record.checkUser,jdbcType=VARCHAR},
+    equip_list = #{record.equipList,jdbcType=VARCHAR},
+    working_hours = #{record.workingHours,jdbcType=DOUBLE},
+    extend_info = #{record.extendInfo,jdbcType=VARCHAR},
+    real_finish_time = #{record.realFinishTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfo" >
+    update tb_work_task_info
+    <set >
+      <if test="workFlowConfigNo != null" >
+        work_flow_config_no = #{workFlowConfigNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextRole != null" >
+        next_role = #{nextRole,jdbcType=VARCHAR},
+      </if>
+      <if test="nextRoleName != null" >
+        next_role_name = #{nextRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        status_code = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCodeName != null" >
+        status_code_name = #{statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStatusCode != null" >
+        next_status_code = #{nextStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStatusCodeName != null" >
+        next_status_code_name = #{nextStatusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextPlat != null" >
+        next_plat = #{nextPlat,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orgNo != null" >
+        org_no = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statusIndex != null" >
+        status_index = #{statusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nextStatusIndex != null" >
+        next_status_index = #{nextStatusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="taskType != null" >
+        task_type = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="isEntrust != null" >
+        is_entrust = #{isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="urgencyDegree != null" >
+        urgency_degree = #{urgencyDegree,jdbcType=INTEGER},
+      </if>
+      <if test="isTemp != null" >
+        is_temp = #{isTemp,jdbcType=INTEGER},
+      </if>
+      <if test="planStartTime != null" >
+        plan_start_time = #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realStartTime != null" >
+        real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planCode != null" >
+        plan_code = #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCode != null" >
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskFrom != null" >
+        task_from = #{taskFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="planFinishTime != null" >
+        plan_finish_time = #{planFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planUseTime != null" >
+        plan_use_time = #{planUseTime,jdbcType=DOUBLE},
+      </if>
+      <if test="equipNo != null" >
+        equip_no = #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskContent != null" >
+        task_content = #{taskContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyUser != null" >
+        duty_user = #{dutyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null" >
+        task_status = #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="relatedUser != null" >
+        related_user = #{relatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUser != null" >
+        next_user = #{nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="assistUser != null" >
+        assist_user = #{assistUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepeat != null" >
+        is_repeat = #{isRepeat,jdbcType=INTEGER},
+      </if>
+      <if test="checkUser != null" >
+        check_user = #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipList != null" >
+        equip_list = #{equipList,jdbcType=VARCHAR},
+      </if>
+      <if test="workingHours != null" >
+        working_hours = #{workingHours,jdbcType=DOUBLE},
+      </if>
+      <if test="extendInfo != null" >
+        extend_info = #{extendInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="realFinishTime != null" >
+        real_finish_time = #{realFinishTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkTaskInfo" >
+    update tb_work_task_info
+    set work_flow_config_no = #{workFlowConfigNo,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      next_role = #{nextRole,jdbcType=VARCHAR},
+      next_role_name = #{nextRoleName,jdbcType=VARCHAR},
+      status_code = #{statusCode,jdbcType=VARCHAR},
+      status_code_name = #{statusCodeName,jdbcType=VARCHAR},
+      next_status_code = #{nextStatusCode,jdbcType=VARCHAR},
+      next_status_code_name = #{nextStatusCodeName,jdbcType=VARCHAR},
+      next_plat = #{nextPlat,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      org_no = #{orgNo,jdbcType=VARCHAR},
+      status_index = #{statusIndex,jdbcType=INTEGER},
+      next_status_index = #{nextStatusIndex,jdbcType=INTEGER},
+      task_type = #{taskType,jdbcType=INTEGER},
+      is_entrust = #{isEntrust,jdbcType=INTEGER},
+      urgency_degree = #{urgencyDegree,jdbcType=INTEGER},
+      is_temp = #{isTemp,jdbcType=INTEGER},
+      plan_start_time = #{planStartTime,jdbcType=TIMESTAMP},
+      real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+      plan_code = #{planCode,jdbcType=VARCHAR},
+      task_code = #{taskCode,jdbcType=VARCHAR},
+      task_from = #{taskFrom,jdbcType=VARCHAR},
+      plan_finish_time = #{planFinishTime,jdbcType=TIMESTAMP},
+      plan_use_time = #{planUseTime,jdbcType=DOUBLE},
+      equip_no = #{equipNo,jdbcType=VARCHAR},
+      task_content = #{taskContent,jdbcType=VARCHAR},
+      duty_user = #{dutyUser,jdbcType=VARCHAR},
+      task_status = #{taskStatus,jdbcType=INTEGER},
+      related_user = #{relatedUser,jdbcType=VARCHAR},
+      next_user = #{nextUser,jdbcType=VARCHAR},
+      assist_user = #{assistUser,jdbcType=VARCHAR},
+      is_repeat = #{isRepeat,jdbcType=INTEGER},
+      check_user = #{checkUser,jdbcType=VARCHAR},
+      equip_list = #{equipList,jdbcType=VARCHAR},
+      working_hours = #{workingHours,jdbcType=DOUBLE},
+      extend_info = #{extendInfo,jdbcType=VARCHAR},
+      real_finish_time = #{realFinishTime,jdbcType=TIMESTAMP}
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectTbWorkTaskInfoListByCondition" parameterType="com.ejobim.opplat.domain.condition.TbWorkTaskInfoCondition" resultType="com.ejobim.opplat.domain.TbWorkTaskInfo">
+    select a.task_no taskNo, a.task_type taskType,a.task_name taskName,a.task_content taskContent,a.task_code taskCode ,a.urgency_degree urgencyDegree,a.task_status taskStatus,a.status_code_name statusCodeName ,a.status_code statusCode,b.installation_site equipLocation,b.equip_name equipName,DATE_FORMAT(a.plan_start_time,'%Y-%m-%d') planStartTime,a.duty_user dutyUser,a.org_no orgNo   from tb_work_task_info a left join tb_equip_info b on a.equip_no =b.equip_no
+    where 1=1
+    <if test="factoryNo != null">
+      and   a.org_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime!=null ">
+      and  a.plan_start_time &gt;= #{startTime}
+    </if>
+    <if test="endTime!=null">
+      and a.plan_start_time &lt;= #{endTime}
+    </if>
+    <if test="currentTime != null" >
+      and  DATE_FORMAT(a.plan_start_time,'%Y-%m-%d') &gt;=  #{currentTime,jdbcType=VARCHAR}
+    </if>
+    order by a.create_time desc
+  </select>
+
+  <select id="selectTbWorkTaskInfoByTime" parameterType="com.ejobim.opplat.domain.condition.TbWorkTaskInfoCondition" resultType="com.ejobim.opplat.domain.TbWorkTaskInfo">
+    select a.*,b.installation_site equipLocation,b.equip_name equipName   from tb_work_task_info a left join tb_equip_info b on a.equip_no =b.equip_no
+    where 1=1
+    <if test="factoryNo != null">
+      and   a.org_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="currentTime != null" >
+      and DATE_FORMAT(a.plan_start_time,'%Y-%m-%d')=  #{currentTime,jdbcType=VARCHAR}
+    </if>
+    order by  a.create_time desc
+  </select>
+
+  <select id="getTbWorkTaskInfoVoListByUser" parameterType="com.ejobim.opplat.domain.condition.TaskInfoCondition" resultType="com.ejobim.opplat.domain.vo.TbWorkTaskInfoVo">
+    select a.*,DATE_FORMAT(plan_start_time,'%Y-%m-%d') planStartTime,DATE_FORMAT(plan_finish_time,'%Y-%m-%d') planFinishTime from tb_work_task_info a left join tb_equip_info b on a.equip_no =b.equip_no
+    where 1=1
+    <if test="factoryNo != null" >
+      and a.org_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="dutyUser != null" >
+      and  a.duty_user -> '$.userCode'= #{dutyUser,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime!=null and startTime!='' ">
+      and DATE_FORMAT(a.plan_start_time,'%Y-%m-%d') &gt;= #{startTime}
+    </if>
+    <if test="endTime!=null and endTime!=''">
+      and DATE_FORMAT(a.plan_start_time,'%Y-%m-%d') &lt;= #{endTime}
+    </if>
+    <if test="time!=null and time!='' ">
+      and DATE_FORMAT(a.plan_start_time,'%Y-%m-%d') = #{time}
+    </if>
+    order by a.plan_start_time desc
+  </select>
+
+  <select id="selectTbWorkTaskInfoByJson" parameterType="com.ejobim.opplat.domain.condition.TaskInfoCondition" resultMap="BaseResultMap">
+    select a.* from tb_work_task_info a left join tb_equip_info b on a.equip_no =b.equip_no
+    where 1=1
+    <if test="factoryNo != null" >
+      and factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="dutyUser != null" >
+      and  a.duty_user -> '$.userCode'= #{dutyUser,jdbcType=VARCHAR}
+    </if>
+    <if test="taskType != null">
+      and task_status = #{taskType,jdbcType=INTEGER}
+    </if>
+    order by plan_start_time desc
+  </select>
+
+  <select id="getWorkTaskMapList" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT  installation_site gongyi,count(1)  count,task_type taskType
+          FROM seddb.tb_work_task_info a left join tb_equip_info b on a.equip_no = b.equip_no
+	      where DATE_FORMAT(plan_start_time,'%Y-%m-%d') =  #{date}
+	        and a.org_no = #{factoryNo}
+	        and b.installation_site  is not null
+	        group by  b.installation_site,a.task_type
+    </select>
+
+  <select id="selectUnFinishTaskList" parameterType="java.lang.String"  resultType="java.util.Map">
+      SELECT
+          a.task_no taskNo , DATE_FORMAT(a.plan_start_time,'%Y-%m-%d %H:%i:%s')  taskTime, task_status taskStatus,b.equip_name equipName ,task_type taskType
+      FROM
+          tb_work_task_info a
+              LEFT JOIN
+          tb_equip_info b ON a.equip_no = b.equip_no
+      WHERE
+          a.org_no = #{factoryNo,jdbcType=VARCHAR}
+              AND (a.task_status = 0 OR a.task_status = 1)
+              AND plan_start_time &lt; DATE_SUB(curdate(),INTERVAL -1 DAY)
+      ORDER by a.plan_start_time desc;
+
+  </select>
+
+    <select id="selectTbWorkTaskInfoByJsonNew" parameterType="com.ejobim.opplat.domain.condition.TaskInfoCondition" resultType="com.ejobim.opplat.domain.vo.TaskVo">
+
+    select * from (select task_no taskNo,0 type,'巡检任务' taskName, '巡检内容' taskContent,task_code taskCode,task_status status,DATE_FORMAT(finish_time,'%Y-%m-%d')  finishTime ,factory_no factoryNo ,create_user_name CreateUserName from  tb_routing_task
+    where  task_status=2 and commit_user_code=#{dutyUser,jdbcType=VARCHAR}
+    <if test="factoryNo != null" >
+        and factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    union ALL
+    select task_no taskNo,task_type type ,task_name taskName,task_content taskContent,task_code taskCode ,task_status status,DATE_FORMAT(plan_finish_time,'%Y-%m-%d') finishTime , org_no factoryNo,create_user_name CreateUserName from tb_work_task_info  where
+         task_status >=1
+        <if test="factoryNo != null" >
+            and org_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="dutyUser != null" >
+            and  duty_user -> '$.userCode'= #{dutyUser,jdbcType=VARCHAR}
+        </if>
+        ) t order by t.finishTime desc
+    </select>
+</mapper>

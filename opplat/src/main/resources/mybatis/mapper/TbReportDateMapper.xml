@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbReportDateMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbReportDate">
+    <id column="dr_no" jdbcType="VARCHAR" property="drNo" />
+    <result column="dr_date" jdbcType="DATE" property="drDate" />
+    <result column="dr_value" jdbcType="REAL" property="drValue" />
+    <result column="dr_browse_name" jdbcType="VARCHAR" property="drBrowseName" />
+    <result column="dr_display_name" jdbcType="VARCHAR" property="drDisplayName" />
+    <result column="dr_unit" jdbcType="VARCHAR" property="drUnit" />
+    <result column="dr_create_time" jdbcType="TIMESTAMP" property="drCreateTime" />
+    <result column="dr_factory_no" jdbcType="VARCHAR" property="drFactoryNo" />
+    <result column="dr_equip_no" jdbcType="VARCHAR" property="drEquipNo" />
+    <result column="dr_equip_name" jdbcType="VARCHAR" property="drEquipName" />
+    <result column="dr_data_type" jdbcType="INTEGER" property="drDataType" />
+    <result column="dr_fill_no" jdbcType="VARCHAR" property="drFillNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    dr_no, dr_date, dr_value, dr_browse_name, dr_display_name, dr_unit, dr_create_time, 
+    dr_factory_no, dr_equip_no, dr_equip_name, dr_data_type, dr_fill_no
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbReportDateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_report_date
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_report_date
+    where dr_no = #{drNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_report_date
+    where dr_no = #{drNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbReportDateExample">
+    delete from tb_report_date
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbReportDate">
+    insert into tb_report_date (dr_no, dr_date, dr_value, 
+      dr_browse_name, dr_display_name, dr_unit, 
+      dr_create_time, dr_factory_no, dr_equip_no, 
+      dr_equip_name, dr_data_type, dr_fill_no
+      )
+    values (#{drNo,jdbcType=VARCHAR}, #{drDate,jdbcType=DATE}, #{drValue,jdbcType=REAL}, 
+      #{drBrowseName,jdbcType=VARCHAR}, #{drDisplayName,jdbcType=VARCHAR}, #{drUnit,jdbcType=VARCHAR}, 
+      #{drCreateTime,jdbcType=TIMESTAMP}, #{drFactoryNo,jdbcType=VARCHAR}, #{drEquipNo,jdbcType=VARCHAR}, 
+      #{drEquipName,jdbcType=VARCHAR}, #{drDataType,jdbcType=INTEGER}, #{drFillNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+  insert into tb_report_date (dr_no, dr_date, dr_value,
+  dr_browse_name, dr_display_name, dr_unit,
+  dr_create_time, dr_factory_no, dr_equip_no,
+  dr_equip_name, dr_data_type, dr_fill_no)
+  values
+  <foreach collection="list" index="index" item="item" separator=",">
+    (#{item.drNo,jdbcType=VARCHAR}, #{item.drDate,jdbcType=DATE}, #{item.drValue,jdbcType=REAL},
+    #{item.drBrowseName,jdbcType=VARCHAR}, #{item.drDisplayName,jdbcType=VARCHAR}, #{item.drUnit,jdbcType=VARCHAR},
+    #{item.drCreateTime,jdbcType=TIMESTAMP}, #{item.drFactoryNo,jdbcType=VARCHAR}, #{item.drEquipNo,jdbcType=VARCHAR},
+    #{item.drEquipName,jdbcType=VARCHAR}, #{item.drDataType,jdbcType=INTEGER}, #{item.drFillNo,jdbcType=VARCHAR})
+  </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbReportDate">
+    insert into tb_report_date
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drNo != null">
+        dr_no,
+      </if>
+      <if test="drDate != null">
+        dr_date,
+      </if>
+      <if test="drValue != null">
+        dr_value,
+      </if>
+      <if test="drBrowseName != null">
+        dr_browse_name,
+      </if>
+      <if test="drDisplayName != null">
+        dr_display_name,
+      </if>
+      <if test="drUnit != null">
+        dr_unit,
+      </if>
+      <if test="drCreateTime != null">
+        dr_create_time,
+      </if>
+      <if test="drFactoryNo != null">
+        dr_factory_no,
+      </if>
+      <if test="drEquipNo != null">
+        dr_equip_no,
+      </if>
+      <if test="drEquipName != null">
+        dr_equip_name,
+      </if>
+      <if test="drDataType != null">
+        dr_data_type,
+      </if>
+      <if test="drFillNo != null">
+        dr_fill_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drNo != null">
+        #{drNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drDate != null">
+        #{drDate,jdbcType=DATE},
+      </if>
+      <if test="drValue != null">
+        #{drValue,jdbcType=REAL},
+      </if>
+      <if test="drBrowseName != null">
+        #{drBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="drDisplayName != null">
+        #{drDisplayName,jdbcType=VARCHAR},
+      </if>
+      <if test="drUnit != null">
+        #{drUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="drCreateTime != null">
+        #{drCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drFactoryNo != null">
+        #{drFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drEquipNo != null">
+        #{drEquipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drEquipName != null">
+        #{drEquipName,jdbcType=VARCHAR},
+      </if>
+      <if test="drDataType != null">
+        #{drDataType,jdbcType=INTEGER},
+      </if>
+      <if test="drFillNo != null">
+        #{drFillNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbReportDateExample" resultType="java.lang.Integer">
+    select count(*) from tb_report_date
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_report_date
+    <set>
+      <if test="record.drNo != null">
+        dr_no = #{record.drNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drDate != null">
+        dr_date = #{record.drDate,jdbcType=DATE},
+      </if>
+      <if test="record.drValue != null">
+        dr_value = #{record.drValue,jdbcType=REAL},
+      </if>
+      <if test="record.drBrowseName != null">
+        dr_browse_name = #{record.drBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drDisplayName != null">
+        dr_display_name = #{record.drDisplayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drUnit != null">
+        dr_unit = #{record.drUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drCreateTime != null">
+        dr_create_time = #{record.drCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.drFactoryNo != null">
+        dr_factory_no = #{record.drFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drEquipNo != null">
+        dr_equip_no = #{record.drEquipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drEquipName != null">
+        dr_equip_name = #{record.drEquipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drDataType != null">
+        dr_data_type = #{record.drDataType,jdbcType=INTEGER},
+      </if>
+      <if test="record.drFillNo != null">
+        dr_fill_no = #{record.drFillNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_report_date
+    set dr_no = #{record.drNo,jdbcType=VARCHAR},
+      dr_date = #{record.drDate,jdbcType=DATE},
+      dr_value = #{record.drValue,jdbcType=REAL},
+      dr_browse_name = #{record.drBrowseName,jdbcType=VARCHAR},
+      dr_display_name = #{record.drDisplayName,jdbcType=VARCHAR},
+      dr_unit = #{record.drUnit,jdbcType=VARCHAR},
+      dr_create_time = #{record.drCreateTime,jdbcType=TIMESTAMP},
+      dr_factory_no = #{record.drFactoryNo,jdbcType=VARCHAR},
+      dr_equip_no = #{record.drEquipNo,jdbcType=VARCHAR},
+      dr_equip_name = #{record.drEquipName,jdbcType=VARCHAR},
+      dr_data_type = #{record.drDataType,jdbcType=INTEGER},
+      dr_fill_no = #{record.drFillNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbReportDate">
+    update tb_report_date
+    <set>
+      <if test="drDate != null">
+        dr_date = #{drDate,jdbcType=DATE},
+      </if>
+      <if test="drValue != null">
+        dr_value = #{drValue,jdbcType=REAL},
+      </if>
+      <if test="drBrowseName != null">
+        dr_browse_name = #{drBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="drDisplayName != null">
+        dr_display_name = #{drDisplayName,jdbcType=VARCHAR},
+      </if>
+      <if test="drUnit != null">
+        dr_unit = #{drUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="drCreateTime != null">
+        dr_create_time = #{drCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drFactoryNo != null">
+        dr_factory_no = #{drFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drEquipNo != null">
+        dr_equip_no = #{drEquipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drEquipName != null">
+        dr_equip_name = #{drEquipName,jdbcType=VARCHAR},
+      </if>
+      <if test="drDataType != null">
+        dr_data_type = #{drDataType,jdbcType=INTEGER},
+      </if>
+      <if test="drFillNo != null">
+        dr_fill_no = #{drFillNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dr_no = #{drNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbReportDate">
+    update tb_report_date
+    set dr_date = #{drDate,jdbcType=DATE},
+      dr_value = #{drValue,jdbcType=REAL},
+      dr_browse_name = #{drBrowseName,jdbcType=VARCHAR},
+      dr_display_name = #{drDisplayName,jdbcType=VARCHAR},
+      dr_unit = #{drUnit,jdbcType=VARCHAR},
+      dr_create_time = #{drCreateTime,jdbcType=TIMESTAMP},
+      dr_factory_no = #{drFactoryNo,jdbcType=VARCHAR},
+      dr_equip_no = #{drEquipNo,jdbcType=VARCHAR},
+      dr_equip_name = #{drEquipName,jdbcType=VARCHAR},
+      dr_data_type = #{drDataType,jdbcType=INTEGER},
+      dr_fill_no = #{drFillNo,jdbcType=VARCHAR}
+    where dr_no = #{drNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getLastReportDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_report_date
+    where dr_factory_no = #{factoryNo,jdbcType=VARCHAR}
+    order by  dr_date desc limit 0,1
+  </select>
+</mapper>

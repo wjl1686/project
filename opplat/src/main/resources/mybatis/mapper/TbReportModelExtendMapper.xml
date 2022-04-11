@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbReportModelExtendMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbReportModelExtend">
+    <id column="extend_no" jdbcType="VARCHAR" property="extendNo" />
+    <result column="extend_rm_no" jdbcType="VARCHAR" property="extendRmNo" />
+    <result column="extend_factory_no" jdbcType="VARCHAR" property="extendFactoryNo" />
+    <result column="sub_index" jdbcType="INTEGER" property="subIndex" />
+    <result column="extend_math_type" jdbcType="INTEGER" property="extendMathType" />
+    <result column="extend_browse_name" jdbcType="VARCHAR" property="extendBrowseName" />
+    <result column="extend_field_name" jdbcType="VARCHAR" property="extendFieldName" />
+    <result column="extend_column_name" jdbcType="VARCHAR" property="extendColumnName" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="extend_column_index" jdbcType="INTEGER" property="extendColumnIndex" />
+    <result column="extend_row_index" jdbcType="INTEGER" property="extendRowIndex" />
+    <result column="extend_cell_width" jdbcType="INTEGER" property="extendCellWidth" />
+    <result column="extend_cell_height" jdbcType="INTEGER" property="extendCellHeight" />
+    <result column="extend_math_cmd" jdbcType="VARCHAR" property="extendMathCmd" />
+    <result column="extend_math_ot" jdbcType="VARCHAR" property="extendMathOt" />
+    <result column="extend_code" jdbcType="VARCHAR" property="extendCode" />
+    <result column="extend_static_info" jdbcType="VARCHAR" property="extendStaticInfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    extend_no, extend_rm_no, extend_factory_no, sub_index, extend_math_type, extend_browse_name, 
+    extend_field_name, extend_column_name, uri, extend_column_index, extend_row_index, 
+    extend_cell_width, extend_cell_height, extend_math_cmd, extend_math_ot, extend_code, extend_static_info
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbReportModelExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_report_model_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_report_model_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_report_model_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbReportModelExtendExample">
+    delete from tb_report_model_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbReportModelExtend">
+    insert into tb_report_model_extend (extend_no, extend_rm_no, extend_factory_no, 
+      sub_index, extend_math_type, extend_browse_name, 
+      extend_field_name, extend_column_name, uri, 
+      extend_column_index, extend_row_index, extend_cell_width, 
+      extend_cell_height,extend_math_cmd, extend_math_ot, extend_code,
+      extend_static_info)
+    values (#{extendNo,jdbcType=VARCHAR}, #{extendRmNo,jdbcType=VARCHAR}, #{extendFactoryNo,jdbcType=VARCHAR}, 
+      #{subIndex,jdbcType=INTEGER}, #{extendMathType,jdbcType=INTEGER}, #{extendBrowseName,jdbcType=VARCHAR}, 
+      #{extendFieldName,jdbcType=VARCHAR}, #{extendColumnName,jdbcType=VARCHAR}, #{uri,jdbcType=VARCHAR}, 
+      #{extendColumnIndex,jdbcType=INTEGER}, #{extendRowIndex,jdbcType=INTEGER}, #{extendCellWidth,jdbcType=INTEGER}, 
+      #{extendCellHeight,jdbcType=INTEGER}, #{extendMathCmd,jdbcType=VARCHAR}, #{extendMathOt,jdbcType=VARCHAR},
+      #{extendCode,jdbcType=VARCHAR}, #{extendStaticInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbReportModelExtend">
+    insert into tb_report_model_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="extendNo != null">
+        extend_no,
+      </if>
+      <if test="extendRmNo != null">
+        extend_rm_no,
+      </if>
+      <if test="extendFactoryNo != null">
+        extend_factory_no,
+      </if>
+      <if test="subIndex != null">
+        sub_index,
+      </if>
+      <if test="extendMathType != null">
+        extend_math_type,
+      </if>
+      <if test="extendBrowseName != null">
+        extend_browse_name,
+      </if>
+      <if test="extendFieldName != null">
+        extend_field_name,
+      </if>
+      <if test="extendColumnName != null">
+        extend_column_name,
+      </if>
+      <if test="uri != null">
+        uri,
+      </if>
+      <if test="extendColumnIndex != null">
+        extend_column_index,
+      </if>
+      <if test="extendRowIndex != null">
+        extend_row_index,
+      </if>
+      <if test="extendCellWidth != null">
+        extend_cell_width,
+      </if>
+      <if test="extendCellHeight != null">
+        extend_cell_height,
+      </if>
+      <if test="extendMathCmd != null">
+        extend_math_cmd,
+      </if>
+      <if test="extendMathOt != null">
+        extend_math_ot,
+      </if>
+      <if test="extendCode != null">
+        extend_code,
+      </if>
+      <if test="extendStaticInfo != null">
+        extend_static_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="extendNo != null">
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendRmNo != null">
+        #{extendRmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendFactoryNo != null">
+        #{extendFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndex != null">
+        #{subIndex,jdbcType=INTEGER},
+      </if>
+      <if test="extendMathType != null">
+        #{extendMathType,jdbcType=INTEGER},
+      </if>
+      <if test="extendBrowseName != null">
+        #{extendBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="extendFieldName != null">
+        #{extendFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="extendColumnName != null">
+        #{extendColumnName,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="extendColumnIndex != null">
+        #{extendColumnIndex,jdbcType=INTEGER},
+      </if>
+      <if test="extendRowIndex != null">
+        #{extendRowIndex,jdbcType=INTEGER},
+      </if>
+      <if test="extendCellWidth != null">
+        #{extendCellWidth,jdbcType=INTEGER},
+      </if>
+      <if test="extendCellHeight != null">
+        #{extendCellHeight,jdbcType=INTEGER},
+      </if>
+      <if test="extendMathCmd != null">
+        #{extendMathCmd,jdbcType=VARCHAR}
+      </if>
+      <if test="extendMathOt != null">
+        #{extendMathOt,jdbcType=VARCHAR}
+      </if>
+      <if test="extendCode != null">
+        #{extendCode,jdbcType=VARCHAR}
+      </if>
+      <if test="extendStaticInfo != null">
+        #{extendStaticInfo,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbReportModelExtendExample" resultType="java.lang.Integer">
+    select count(*) from tb_report_model_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="map">
+    update tb_report_model_extend
+    <set>
+      <if test="record.extendRmNo != null">
+        extend_rm_no = #{record.extendRmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendFactoryNo != null">
+        extend_factory_no = #{record.extendFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subIndex != null">
+        sub_index = #{record.subIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendMathType != null">
+        extend_math_type = #{record.extendMathType,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendBrowseName != null">
+        extend_browse_name = #{record.extendBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendFieldName != null">
+        extend_field_name = #{record.extendFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendColumnName != null">
+        extend_column_name = #{record.extendColumnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uri != null">
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendColumnIndex != null">
+        extend_column_index = #{record.extendColumnIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendRowIndex != null">
+        extend_row_index = #{record.extendRowIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendCellWidth != null">
+        extend_cell_width = #{record.extendCellWidth,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendCellHeight != null">
+        extend_cell_height = #{record.extendCellHeight,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendMathCmd != null">
+        extend_math_cmd = #{record.extendMathCmd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendCode != null">
+        extend_code = #{record.extendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendStaticInfo != null">
+        extend_static_info = #{record.extendStaticInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <where>
+      extend_no = #{record.extendNo,jdbcType=VARCHAR}
+    </where>
+  </update>
+
+  <sql id="where_all_condition">
+      <if test="record.extendNo != null">
+        and extendNo = #{record.extendNo,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendRmNo != null">
+        and extend_rm_no = #{record.extendRmNo,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendFactoryNo != null">
+        and extend_factory_no = #{record.extendFactoryNo,jdbcType=VARCHAR}
+      </if>
+      <if test="record.subIndex != null">
+        and sub_index = #{record.subIndex,jdbcType=INTEGER}
+      </if>
+      <if test="record.extendMathType != null">
+        and extend_math_type = #{record.extendMathType,jdbcType=INTEGER}
+      </if>
+      <if test="record.extendBrowseName != null">
+        and extend_browse_name = #{record.extendBrowseName,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendFieldName != null">
+        and extend_field_name = #{record.extendFieldName,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendColumnName != null">
+        and extend_column_name = #{record.extendColumnName,jdbcType=VARCHAR}
+      </if>
+      <if test="record.uri != null">
+        and uri = #{record.uri,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendColumnIndex != null">
+        and extend_column_index = #{record.extendColumnIndex,jdbcType=INTEGER}
+      </if>
+      <if test="record.extendRowIndex != null">
+        and extend_row_index = #{record.extendRowIndex,jdbcType=INTEGER}
+      </if>
+      <if test="record.extendCellWidth != null">
+        and extend_cell_width = #{record.extendCellWidth,jdbcType=INTEGER}
+      </if>
+      <if test="record.extendCellHeight != null">
+        and extend_cell_height = #{record.extendCellHeight,jdbcType=INTEGER}
+      </if>
+      <if test="record.extendMathCmd != null">
+        and extend_math_cmd = #{record.extendMathCmd,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendMathOt != null">
+          and extend_math_ot = #{record.extendMathOt,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendCode != null">
+          and extend_code = #{record.extendCode,jdbcType=VARCHAR}
+      </if>
+      <if test="record.extendStaticInfo != null">
+          and extend_static_info = #{record.extendStaticInfo,jdbcType=VARCHAR}
+      </if>
+  </sql>
+
+  <!--自定义sql start  by Hypo  -->
+  <select id="selectCount" parameterType="com.ejobim.opplat.domain.TbReportModelExtend" resultType="java.lang.Integer">
+    select count(*) from tb_report_model_extend
+    <where>
+      <include refid="where_all_condition"/>
+    </where>
+  </select>
+
+    <update id="updateByEnyity">
+        update tb_report_model_extend
+        <set>
+            <if test="record.extendRmNo != null">
+                extend_rm_no = #{record.extendRmNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.extendFactoryNo != null">
+                extend_factory_no = #{record.extendFactoryNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.subIndex != null">
+                sub_index = #{record.subIndex,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendMathType != null">
+                extend_math_type = #{record.extendMathType,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendBrowseName != null">
+                extend_browse_name = #{record.extendBrowseName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.extendFieldName != null">
+                extend_field_name = #{record.extendFieldName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.extendColumnName != null">
+                extend_column_name = #{record.extendColumnName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uri != null">
+                uri = #{record.uri,jdbcType=VARCHAR},
+            </if>
+            <if test="record.extendColumnIndex != null">
+                extend_column_index = #{record.extendColumnIndex,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendRowIndex != null">
+                extend_row_index = #{record.extendRowIndex,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendCellWidth != null">
+                extend_cell_width = #{record.extendCellWidth,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendCellHeight != null">
+                extend_cell_height = #{record.extendCellHeight,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendMathCmd != null">
+                extend_math_cmd = #{record.extendMathCmd,jdbcType=VARCHAR},
+            </if>
+            <if test="record.extendCode != null">
+                extend_code = #{record.extendCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.extendStaticInfo != null">
+                extend_static_info = #{record.extendStaticInfo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where>
+            <include refid="where_all_condition"/>
+        </where>
+    </update>
+  <!--自定义sql end  by Hypo  -->
+
+</mapper>

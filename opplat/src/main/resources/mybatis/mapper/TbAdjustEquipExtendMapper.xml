@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbAdjustEquipExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbAdjustEquipExtend" >
+    <id column="ad_detail_no" property="adDetailNo" jdbcType="VARCHAR" />
+    <result column="ad_no" property="adNo" jdbcType="VARCHAR" />
+    <result column="step_user" property="stepUser" jdbcType="VARCHAR" />
+    <result column="step_time" property="stepTime" jdbcType="TIMESTAMP" />
+    <result column="step_idea" property="stepIdea" jdbcType="VARCHAR" />
+    <result column="step_remark" property="stepRemark" jdbcType="VARCHAR" />
+    <result column="vaild_status" property="vaildStatus" jdbcType="INTEGER" />
+    <result column="step_index" property="stepIndex" jdbcType="INTEGER" />
+    <result column="flow_index" property="flowIndex" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ad_detail_no, ad_no, step_user, step_time, step_idea, step_remark, vaild_status, flow_index, step_index
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_adjust_equip_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_adjust_equip_extend
+    where ad_detail_no = #{adDetailNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_adjust_equip_extend
+    where ad_detail_no = #{adDetailNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtendExample" >
+    delete from tb_adjust_equip_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtend" >
+    insert into tb_adjust_equip_extend (ad_detail_no, ad_no, step_user, 
+      step_time, step_idea, step_remark, 
+      vaild_status, step_index, flow_index)
+    values (#{adDetailNo,jdbcType=VARCHAR}, #{adNo,jdbcType=VARCHAR}, #{stepUser,jdbcType=VARCHAR}, 
+      #{stepTime,jdbcType=TIMESTAMP}, #{stepIdea,jdbcType=VARCHAR}, #{stepRemark,jdbcType=VARCHAR}, 
+      #{vaildStatus,jdbcType=INTEGER}, #{stepIndex,jdbcType=INTEGER}, #{flowIndex,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtend" >
+    insert into tb_adjust_equip_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adDetailNo != null" >
+        ad_detail_no,
+      </if>
+      <if test="adNo != null" >
+        ad_no,
+      </if>
+      <if test="stepUser != null" >
+        step_user,
+      </if>
+      <if test="stepTime != null" >
+        step_time,
+      </if>
+      <if test="stepIdea != null" >
+        step_idea,
+      </if>
+      <if test="stepRemark != null" >
+        step_remark,
+      </if>
+      <if test="vaildStatus != null" >
+        vaild_status,
+      </if>
+      <if test="stepIndex != null" >
+        step_index,
+      </if>
+      <if test="flowIndex != null" >
+        flow_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adDetailNo != null" >
+        #{adDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="adNo != null" >
+        #{adNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stepUser != null" >
+        #{stepUser,jdbcType=VARCHAR},
+      </if>
+      <if test="stepTime != null" >
+        #{stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stepIdea != null" >
+        #{stepIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="stepRemark != null" >
+        #{stepRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vaildStatus != null" >
+        #{vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stepIndex != null" >
+        #{stepIndex,jdbcType=INTEGER},
+      </if>
+      <if test="flowIndex != null" >
+        #{flowIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_adjust_equip_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_adjust_equip_extend
+    <set >
+      <if test="record.adDetailNo != null" >
+        ad_detail_no = #{record.adDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adNo != null" >
+        ad_no = #{record.adNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepUser != null" >
+        step_user = #{record.stepUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepTime != null" >
+        step_time = #{record.stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stepIdea != null" >
+        step_idea = #{record.stepIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepRemark != null" >
+        step_remark = #{record.stepRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vaildStatus != null" >
+        vaild_status = #{record.vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.stepIndex != null" >
+        step_index = #{record.stepIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowIndex != null" >
+        flow_index = #{record.flowIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_adjust_equip_extend
+    set ad_detail_no = #{record.adDetailNo,jdbcType=VARCHAR},
+      ad_no = #{record.adNo,jdbcType=VARCHAR},
+      step_user = #{record.stepUser,jdbcType=VARCHAR},
+      step_time = #{record.stepTime,jdbcType=TIMESTAMP},
+      step_idea = #{record.stepIdea,jdbcType=VARCHAR},
+      step_remark = #{record.stepRemark,jdbcType=VARCHAR},
+      vaild_status = #{record.vaildStatus,jdbcType=INTEGER},
+      step_index = #{record.stepIndex,jdbcType=INTEGER},
+      flow_index = #{record.flowIndex,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtend" >
+    update tb_adjust_equip_extend
+    <set >
+      <if test="adNo != null" >
+        ad_no = #{adNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stepUser != null" >
+        step_user = #{stepUser,jdbcType=VARCHAR},
+      </if>
+      <if test="stepTime != null" >
+        step_time = #{stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stepIdea != null" >
+        step_idea = #{stepIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="stepRemark != null" >
+        step_remark = #{stepRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vaildStatus != null" >
+        vaild_status = #{vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stepIndex != null" >
+        step_index = #{stepIndex,jdbcType=INTEGER},
+      </if>
+      <if test="flowIndex != null" >
+        flow_index = #{flowIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ad_detail_no = #{adDetailNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbAdjustEquipExtend" >
+    update tb_adjust_equip_extend
+    set ad_no = #{adNo,jdbcType=VARCHAR},
+      step_user = #{stepUser,jdbcType=VARCHAR},
+      step_time = #{stepTime,jdbcType=TIMESTAMP},
+      step_idea = #{stepIdea,jdbcType=VARCHAR},
+      step_remark = #{stepRemark,jdbcType=VARCHAR},
+      vaild_status = #{vaildStatus,jdbcType=INTEGER},
+      step_index = #{stepIndex,jdbcType=INTEGER},
+      flow_index = #{flowIndex,jdbcType=INTEGER}
+    where ad_detail_no = #{adDetailNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

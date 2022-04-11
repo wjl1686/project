@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.czwl</groupId>
+  <artifactId>daizhang-cases-service-beans</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20200426.023138</timestamp>
+      <buildNumber>6</buildNumber>
+    </snapshot>
+    <lastUpdated>20200426023138</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.0.1-20200426.023138-6</value>
+        <updated>20200426023138</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.0.1-20200426.023138-6</value>
+        <updated>20200426023138</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

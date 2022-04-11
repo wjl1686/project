@@ -1,0 +1,59 @@
+
+\
+java:S1192"FDefine a constant instead of duplicating this literal "total" 6 times.(®§ÚÄ
+F
+java:S3740"/Provide the parametrized type for this generic.(ğçˆ¯
+F
+java:S3740"/Provide the parametrized type for this generic.(ğçˆ¯
+F
+java:S3740‡"/Provide the parametrized type for this generic.(×ÑÕÀ
+{
+java:S1149¹"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Şíµ£ÿÿÿÿÿ
+@
+java:S1481a"*Remove this unused "param" local variable.(ªäĞ´
+K
+java:S3740©"/Provide the parametrized type for this generic.(÷îöóûÿÿÿÿ
+{
+java:S1488@"`Immediately return this expression instead of assigning it to the temporary variable "userJson".(üÌ¬Óÿÿÿÿÿ
+x
+java:S1488j"bImmediately return this expression instead of assigning it to the temporary variable "jsonObject".(¼Öúã
+`
+java:S3252P"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(Ò™ë®ıÿÿÿÿ
+F
+java:S3740¬"/Provide the parametrized type for this generic.(ğçˆ¯
+K
+java:S3740©"/Provide the parametrized type for this generic.(÷îöóûÿÿÿÿ
+T
+java:S2130u"9Use "Integer.parseInt" for this string-to-int conversion.(šüï¨ûÿÿÿÿ
+
+java:S1488P"dImmediately return this expression instead of assigning it to the temporary variable "userTreeJson".(Ò™ë®ıÿÿÿÿ
+E
+java:S3740}"/Provide the parametrized type for this generic.(ğçˆ¯
+I
+java:S1874""3Remove this use of "description"; it is deprecated.(ÃÊ‰î
+\
+java:S1192)"FDefine a constant instead of duplicating this literal "token" 3 times.(È¾Æ´
+E
+java:S3740}"/Provide the parametrized type for this generic.(ğçˆ¯
+F
+java:S3740¬"/Provide the parametrized type for this generic.(ğçˆ¯
+`
+java:S3252@"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(üÌ¬Óÿÿÿÿÿ
+v
+java:S1149¸"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(•Ù†ê
+T
+java:S4719c"9Replace charset name argument with StandardCharsets.UTF_8(²Ü¬¸ıÿÿÿÿ
+O
+java:S2130t"9Use "Integer.parseInt" for this string-to-int conversion.(¡ìğ
+j
+java:S3252v"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(òˆ†…şÿÿÿÿ
+`
+java:S3252/"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(üÌ¬Óÿÿÿÿÿ
+F
+java:S3740‡"/Provide the parametrized type for this generic.(×ÑÕÀ
+a
+java:S1858["F"getParameter" returns a string, there's no need to call "toString()".(©Ëäáÿÿÿÿÿ
+[
+java:S3252j"EUse static access with "com.alibaba.fastjson.JSON" for "parseObject".(¼Öúã
+E
+java:S3740z"/Provide the parametrized type for this generic.( ñíí

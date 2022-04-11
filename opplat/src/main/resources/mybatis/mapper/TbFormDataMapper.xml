@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFormDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFormData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="field_code" property="fieldCode" jdbcType="VARCHAR" />
+    <result column="field_name" property="fieldName" jdbcType="VARCHAR" />
+    <result column="field_value" property="fieldValue" jdbcType="DOUBLE" />
+    <result column="field_unit" property="fieldUnit" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="equip_no" property="equipNo" jdbcType="VARCHAR" />
+    <result column="time_point" property="timePoint" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="creat_person" property="creatPerson" jdbcType="VARCHAR" />
+    <result column="form_date" property="formDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, field_code, field_name, field_value, field_unit, factory_no, equip_no, time_point, 
+    creat_time, creat_person, form_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFormDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_form_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_form_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_form_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFormDataExample" >
+    delete from tb_form_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFormData" >
+    insert into tb_form_data (id, field_code, field_name, 
+      field_value, field_unit, factory_no, 
+      equip_no, time_point, creat_time, 
+      creat_person, form_date)
+    values (#{id,jdbcType=INTEGER}, #{fieldCode,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{fieldValue,jdbcType=DOUBLE}, #{fieldUnit,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, 
+      #{equipNo,jdbcType=VARCHAR}, #{timePoint,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{creatPerson,jdbcType=VARCHAR}, #{formDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFormData" >
+    insert into tb_form_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fieldCode != null" >
+        field_code,
+      </if>
+      <if test="fieldName != null" >
+        field_name,
+      </if>
+      <if test="fieldValue != null" >
+        field_value,
+      </if>
+      <if test="fieldUnit != null" >
+        field_unit,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="equipNo != null" >
+        equip_no,
+      </if>
+      <if test="timePoint != null" >
+        time_point,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="creatPerson != null" >
+        creat_person,
+      </if>
+      <if test="formDate != null" >
+        form_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fieldCode != null" >
+        #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldValue != null" >
+        #{fieldValue,jdbcType=DOUBLE},
+      </if>
+      <if test="fieldUnit != null" >
+        #{fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="timePoint != null" >
+        #{timePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatPerson != null" >
+        #{creatPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="formDate != null" >
+        #{formDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFormDataExample" resultType="java.lang.Integer" >
+    select count(*) from tb_form_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_form_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldCode != null" >
+        field_code = #{record.fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldName != null" >
+        field_name = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldValue != null" >
+        field_value = #{record.fieldValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fieldUnit != null" >
+        field_unit = #{record.fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipNo != null" >
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timePoint != null" >
+        time_point = #{record.timePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatPerson != null" >
+        creat_person = #{record.creatPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.formDate != null" >
+        form_date = #{record.formDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_form_data
+    set id = #{record.id,jdbcType=INTEGER},
+      field_code = #{record.fieldCode,jdbcType=VARCHAR},
+      field_name = #{record.fieldName,jdbcType=VARCHAR},
+      field_value = #{record.fieldValue,jdbcType=DOUBLE},
+      field_unit = #{record.fieldUnit,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      time_point = #{record.timePoint,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      creat_person = #{record.creatPerson,jdbcType=VARCHAR},
+      form_date = #{record.formDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFormData" >
+    update tb_form_data
+    <set >
+      <if test="fieldCode != null" >
+        field_code = #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        field_name = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldValue != null" >
+        field_value = #{fieldValue,jdbcType=DOUBLE},
+      </if>
+      <if test="fieldUnit != null" >
+        field_unit = #{fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        equip_no = #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="timePoint != null" >
+        time_point = #{timePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatPerson != null" >
+        creat_person = #{creatPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="formDate != null" >
+        form_date = #{formDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFormData" >
+    update tb_form_data
+    set field_code = #{fieldCode,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_value = #{fieldValue,jdbcType=DOUBLE},
+      field_unit = #{fieldUnit,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      equip_no = #{equipNo,jdbcType=VARCHAR},
+      time_point = #{timePoint,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      creat_person = #{creatPerson,jdbcType=VARCHAR},
+      form_date = #{formDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

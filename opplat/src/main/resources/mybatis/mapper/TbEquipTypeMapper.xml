@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="equip_type_code" property="equipTypeCode" jdbcType="VARCHAR" />
+    <result column="equip_level_type" property="equipLevelType" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="type_no" property="typeNo" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type_uri" property="typeUri" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, parent_id, equip_type_code, equip_level_type, type_name, factory_no, type_no, 
+    unit, level, status, create_time, create_user, create_user_name, description, type_uri
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_equip_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipTypeExample" >
+    delete from tb_equip_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipType" >
+    insert into tb_equip_type (id, parent_id, equip_type_code, 
+      equip_level_type, type_name, factory_no, 
+      type_no, unit, level, 
+      status, create_time, create_user, 
+      create_user_name, description, type_uri
+      )
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{equipTypeCode,jdbcType=VARCHAR}, 
+      #{equipLevelType,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, 
+      #{typeNo,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{typeUri,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipType" >
+    insert into tb_equip_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="equipTypeCode != null" >
+        equip_type_code,
+      </if>
+      <if test="equipLevelType != null" >
+        equip_level_type,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="typeNo != null" >
+        type_no,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="typeUri != null" >
+        type_uri,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="equipTypeCode != null" >
+        #{equipTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipLevelType != null" >
+        #{equipLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeNo != null" >
+        #{typeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="typeUri != null" >
+        #{typeUri,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipTypeExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_type
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipTypeCode != null" >
+        equip_type_code = #{record.equipTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipLevelType != null" >
+        equip_level_type = #{record.equipLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeName != null" >
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeNo != null" >
+        type_no = #{record.typeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeUri != null" >
+        type_uri = #{record.typeUri,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_type
+    set id = #{record.id,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      equip_type_code = #{record.equipTypeCode,jdbcType=VARCHAR},
+      equip_level_type = #{record.equipLevelType,jdbcType=VARCHAR},
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      type_no = #{record.typeNo,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      type_uri = #{record.typeUri,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipType" >
+    update tb_equip_type
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="equipTypeCode != null" >
+        equip_type_code = #{equipTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipLevelType != null" >
+        equip_level_type = #{equipLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeNo != null" >
+        type_no = #{typeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="typeUri != null" >
+        type_uri = #{typeUri,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipType" >
+    update tb_equip_type
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      equip_type_code = #{equipTypeCode,jdbcType=VARCHAR},
+      equip_level_type = #{equipLevelType,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      type_no = #{typeNo,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type_uri = #{typeUri,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getTbEquipTypeInfo"  parameterType="com.ejobim.opplat.domain.TbEquipType" resultMap="BaseResultMap" >
+    select  <include refid="Base_Column_List" />  from  tb_equip_type
+    <where>
+      <if test="equipTypeCode != null" >
+        and  equip_type_code = #{equipTypeCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="selectTbEquipTypetList"  parameterType="com.ejobim.opplat.domain.TbEquipType" resultMap="BaseResultMap" >
+    select  <include refid="Base_Column_List" />  from  tb_equip_type
+    <where>
+      <if test="factoryNo != null" >
+        and factory_no = #{factoryNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId == 0" >
+       and  parent_id =0
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="equipTypeCode != null" >
+        and equip_type_code  like concat('%',#{equipTypeCode,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="typeName != null" >
+        and type_name like concat('%',#{typeName,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+    order by  create_time desc
+  </select>
+
+  <select id="getEquipTypeList" parameterType="com.ejobim.opplat.domain.TbEquipType" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from  tb_equip_type
+    where parent_id is not null
+  </select>
+</mapper>

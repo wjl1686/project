@@ -1,0 +1,12 @@
+
+Z	java:S112s"FDefine and throw a dedicated exception instead of using a generic one.(ËÉá'
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(‹÷¼€
+O
+java:S18548"9Remove this useless assignment to local variable "token".(È¾Æ´
+V	java:S125J"<This block of commented-out lines of code should be removed.(í¸˜¯øÿÿÿÿ
+>	java:S108{")Either remove or fill this block of code.(ï­£Ä
+@
+java:S14818"*Remove this unused "token" local variable.(È¾Æ´
+H
+java:S1144]"2Remove this unused private "responseError" method.(Ë±Ê±

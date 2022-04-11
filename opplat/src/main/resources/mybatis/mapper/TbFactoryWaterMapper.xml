@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFactoryWaterMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFactoryWater" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="total_inwater_cod" property="totalInwaterCod" jdbcType="DOUBLE" />
+    <result column="total_inwater_bod" property="totalInwaterBod" jdbcType="DOUBLE" />
+    <result column="total_inwater_ss" property="totalInwaterSs" jdbcType="DOUBLE" />
+    <result column="total_inwater_nh3_n" property="totalInwaterNh3N" jdbcType="DOUBLE" />
+    <result column="total_inwater_tn" property="totalInwaterTn" jdbcType="DOUBLE" />
+    <result column="total_inwater_tp" property="totalInwaterTp" jdbcType="DOUBLE" />
+    <result column="total_inwater_ph_up" property="totalInwaterPhUp" jdbcType="DOUBLE" />
+    <result column="total_inwater_ph_down" property="totalInwaterPhDown" jdbcType="DOUBLE" />
+    <result column="total_inwater_chroma" property="totalInwaterChroma" jdbcType="INTEGER" />
+    <result column="total_outwater_cod" property="totalOutwaterCod" jdbcType="DOUBLE" />
+    <result column="total_outwater_bod" property="totalOutwaterBod" jdbcType="DOUBLE" />
+    <result column="total_outwater_ss" property="totalOutwaterSs" jdbcType="DOUBLE" />
+    <result column="total_outwater_nh3_n_1" property="totalOutwaterNh3N1" jdbcType="DOUBLE" />
+    <result column="total_outwater_nh3_n_2" property="totalOutwaterNh3N2" jdbcType="DOUBLE" />
+    <result column="total_outwater_tn" property="totalOutwaterTn" jdbcType="DOUBLE" />
+    <result column="total_outwater_tp" property="totalOutwaterTp" jdbcType="DOUBLE" />
+    <result column="total_outwater_ph_up" property="totalOutwaterPhUp" jdbcType="DOUBLE" />
+    <result column="total_outwater_ph_down" property="totalOutwaterPhDown" jdbcType="DOUBLE" />
+    <result column="total_outwater_chroma" property="totalOutwaterChroma" jdbcType="INTEGER" />
+    <result column="total_outwater_coliform" property="totalOutwaterColiform" jdbcType="INTEGER" />
+    <result column="total_outwater_turbidity" property="totalOutwaterTurbidity" jdbcType="INTEGER" />
+    <result column="total_outwater_dissolution" property="totalOutwaterDissolution" jdbcType="DOUBLE" />
+    <result column="total_outwater_hardness" property="totalOutwaterHardness" jdbcType="DOUBLE" />
+    <result column="total_outwater_anion" property="totalOutwaterAnion" jdbcType="DOUBLE" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, factory_no, total_inwater_cod, total_inwater_bod, total_inwater_ss, total_inwater_nh3_n,
+    total_inwater_tn, total_inwater_tp, total_inwater_ph_up, total_inwater_ph_down, total_inwater_chroma, 
+    total_outwater_cod, total_outwater_bod, total_outwater_ss, total_outwater_nh3_n_1,
+    total_outwater_nh3_n_2, total_outwater_tn, total_outwater_tp, total_outwater_ph_up,
+    total_outwater_ph_down, total_outwater_chroma, total_outwater_coliform, total_outwater_turbidity, 
+    total_outwater_dissolution, total_outwater_hardness, total_outwater_anion, creat_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFactoryWaterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_factory_water
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_factory_water
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFactoryWaterExample" >
+    delete from tb_factory_water
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFactoryWater" >
+    insert into tb_factory_water (id, factory_no, total_inwater_cod, 
+      total_inwater_bod, total_inwater_ss, total_inwater_nh3_n,
+      total_inwater_tn, total_inwater_tp, total_inwater_ph_up, 
+      total_inwater_ph_down, total_inwater_chroma, 
+      total_outwater_cod, total_outwater_bod, total_outwater_ss, 
+      total_outwater_nh3_n_1, total_outwater_nh3_n_2, total_outwater_tn,
+      total_outwater_tp, total_outwater_ph_up, total_outwater_ph_down, 
+      total_outwater_chroma, total_outwater_coliform, 
+      total_outwater_turbidity, total_outwater_dissolution, 
+      total_outwater_hardness, total_outwater_anion, 
+      creat_time)
+    values (#{id,jdbcType=INTEGER}, #{factoryNo,jdbcType=VARCHAR}, #{totalInwaterCod,jdbcType=DOUBLE}, 
+      #{totalInwaterBod,jdbcType=DOUBLE}, #{totalInwaterSs,jdbcType=DOUBLE}, #{totalInwaterNh3N,jdbcType=DOUBLE}, 
+      #{totalInwaterTn,jdbcType=DOUBLE}, #{totalInwaterTp,jdbcType=DOUBLE}, #{totalInwaterPhUp,jdbcType=DOUBLE}, 
+      #{totalInwaterPhDown,jdbcType=DOUBLE}, #{totalInwaterChroma,jdbcType=INTEGER}, 
+      #{totalOutwaterCod,jdbcType=DOUBLE}, #{totalOutwaterBod,jdbcType=DOUBLE}, #{totalOutwaterSs,jdbcType=DOUBLE}, 
+      #{totalOutwaterNh3N1,jdbcType=DOUBLE}, #{totalOutwaterNh3N2,jdbcType=DOUBLE}, #{totalOutwaterTn,jdbcType=DOUBLE}, 
+      #{totalOutwaterTp,jdbcType=DOUBLE}, #{totalOutwaterPhUp,jdbcType=DOUBLE}, #{totalOutwaterPhDown,jdbcType=DOUBLE}, 
+      #{totalOutwaterChroma,jdbcType=INTEGER}, #{totalOutwaterColiform,jdbcType=INTEGER}, 
+      #{totalOutwaterTurbidity,jdbcType=INTEGER}, #{totalOutwaterDissolution,jdbcType=DOUBLE}, 
+      #{totalOutwaterHardness,jdbcType=DOUBLE}, #{totalOutwaterAnion,jdbcType=DOUBLE}, 
+      #{creatTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFactoryWater" >
+    insert into tb_factory_water
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="totalInwaterCod != null" >
+        total_inwater_cod,
+      </if>
+      <if test="totalInwaterBod != null" >
+        total_inwater_bod,
+      </if>
+      <if test="totalInwaterSs != null" >
+        total_inwater_ss,
+      </if>
+      <if test="totalInwaterNh3N != null" >
+        total_inwater_nh3_n,
+      </if>
+      <if test="totalInwaterTn != null" >
+        total_inwater_tn,
+      </if>
+      <if test="totalInwaterTp != null" >
+        total_inwater_tp,
+      </if>
+      <if test="totalInwaterPhUp != null" >
+        total_inwater_ph_up,
+      </if>
+      <if test="totalInwaterPhDown != null" >
+        total_inwater_ph_down,
+      </if>
+      <if test="totalInwaterChroma != null" >
+        total_inwater_chroma,
+      </if>
+      <if test="totalOutwaterCod != null" >
+        total_outwater_cod,
+      </if>
+      <if test="totalOutwaterBod != null" >
+        total_outwater_bod,
+      </if>
+      <if test="totalOutwaterSs != null" >
+        total_outwater_ss,
+      </if>
+      <if test="totalOutwaterNh3N1 != null" >
+        total_outwater_nh3_n_1,
+      </if>
+      <if test="totalOutwaterNh3N2 != null" >
+        total_outwater_nh3_n_2,
+      </if>
+      <if test="totalOutwaterTn != null" >
+        total_outwater_tn,
+      </if>
+      <if test="totalOutwaterTp != null" >
+        total_outwater_tp,
+      </if>
+      <if test="totalOutwaterPhUp != null" >
+        total_outwater_ph_up,
+      </if>
+      <if test="totalOutwaterPhDown != null" >
+        total_outwater_ph_down,
+      </if>
+      <if test="totalOutwaterChroma != null" >
+        total_outwater_chroma,
+      </if>
+      <if test="totalOutwaterColiform != null" >
+        total_outwater_coliform,
+      </if>
+      <if test="totalOutwaterTurbidity != null" >
+        total_outwater_turbidity,
+      </if>
+      <if test="totalOutwaterDissolution != null" >
+        total_outwater_dissolution,
+      </if>
+      <if test="totalOutwaterHardness != null" >
+        total_outwater_hardness,
+      </if>
+      <if test="totalOutwaterAnion != null" >
+        total_outwater_anion,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalInwaterCod != null" >
+        #{totalInwaterCod,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterBod != null" >
+        #{totalInwaterBod,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterSs != null" >
+        #{totalInwaterSs,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterNh3N != null" >
+        #{totalInwaterNh3N,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterTn != null" >
+        #{totalInwaterTn,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterTp != null" >
+        #{totalInwaterTp,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterPhUp != null" >
+        #{totalInwaterPhUp,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterPhDown != null" >
+        #{totalInwaterPhDown,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInwaterChroma != null" >
+        #{totalInwaterChroma,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutwaterCod != null" >
+        #{totalOutwaterCod,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterBod != null" >
+        #{totalOutwaterBod,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterSs != null" >
+        #{totalOutwaterSs,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterNh3N1 != null" >
+        #{totalOutwaterNh3N1,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterNh3N2 != null" >
+        #{totalOutwaterNh3N2,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterTn != null" >
+        #{totalOutwaterTn,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterTp != null" >
+        #{totalOutwaterTp,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterPhUp != null" >
+        #{totalOutwaterPhUp,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterPhDown != null" >
+        #{totalOutwaterPhDown,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterChroma != null" >
+        #{totalOutwaterChroma,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutwaterColiform != null" >
+        #{totalOutwaterColiform,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutwaterTurbidity != null" >
+        #{totalOutwaterTurbidity,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutwaterDissolution != null" >
+        #{totalOutwaterDissolution,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterHardness != null" >
+        #{totalOutwaterHardness,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutwaterAnion != null" >
+        #{totalOutwaterAnion,jdbcType=DOUBLE},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFactoryWaterExample" resultType="java.lang.Integer" >
+    select count(*) from tb_factory_water
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_factory_water
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalInwaterCod != null" >
+        total_inwater_cod = #{record.totalInwaterCod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterBod != null" >
+        total_inwater_bod = #{record.totalInwaterBod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterSs != null" >
+        total_inwater_ss = #{record.totalInwaterSs,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterNh3N != null" >
+        total_inwater_nh3_n = #{record.totalInwaterNh3N,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterTn != null" >
+        total_inwater_tn = #{record.totalInwaterTn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterTp != null" >
+        total_inwater_tp = #{record.totalInwaterTp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterPhUp != null" >
+        total_inwater_ph_up = #{record.totalInwaterPhUp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterPhDown != null" >
+        total_inwater_ph_down = #{record.totalInwaterPhDown,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterChroma != null" >
+        total_inwater_chroma = #{record.totalInwaterChroma,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterCod != null" >
+        total_outwater_cod = #{record.totalOutwaterCod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterBod != null" >
+        total_outwater_bod = #{record.totalOutwaterBod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterSs != null" >
+        total_outwater_ss = #{record.totalOutwaterSs,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterNh3N1 != null" >
+        total_outwater_nh3_n_1 = #{record.totalOutwaterNh3N1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterNh3N2 != null" >
+        total_outwater_nh3_n_2 = #{record.totalOutwaterNh3N2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterTn != null" >
+        total_outwater_tn = #{record.totalOutwaterTn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterTp != null" >
+        total_outwater_tp = #{record.totalOutwaterTp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterPhUp != null" >
+        total_outwater_ph_up = #{record.totalOutwaterPhUp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterPhDown != null" >
+        total_outwater_ph_down = #{record.totalOutwaterPhDown,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterChroma != null" >
+        total_outwater_chroma = #{record.totalOutwaterChroma,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterColiform != null" >
+        total_outwater_coliform = #{record.totalOutwaterColiform,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterTurbidity != null" >
+        total_outwater_turbidity = #{record.totalOutwaterTurbidity,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterDissolution != null" >
+        total_outwater_dissolution = #{record.totalOutwaterDissolution,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterHardness != null" >
+        total_outwater_hardness = #{record.totalOutwaterHardness,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterAnion != null" >
+        total_outwater_anion = #{record.totalOutwaterAnion,jdbcType=DOUBLE},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_factory_water
+    set id = #{record.id,jdbcType=INTEGER},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      total_inwater_cod = #{record.totalInwaterCod,jdbcType=DOUBLE},
+      total_inwater_bod = #{record.totalInwaterBod,jdbcType=DOUBLE},
+      total_inwater_ss = #{record.totalInwaterSs,jdbcType=DOUBLE},
+      total_inwater_nh3_n = #{record.totalInwaterNh3N,jdbcType=DOUBLE},
+      total_inwater_tn = #{record.totalInwaterTn,jdbcType=DOUBLE},
+      total_inwater_tp = #{record.totalInwaterTp,jdbcType=DOUBLE},
+      total_inwater_ph_up = #{record.totalInwaterPhUp,jdbcType=DOUBLE},
+      total_inwater_ph_down = #{record.totalInwaterPhDown,jdbcType=DOUBLE},
+      total_inwater_chroma = #{record.totalInwaterChroma,jdbcType=INTEGER},
+      total_outwater_cod = #{record.totalOutwaterCod,jdbcType=DOUBLE},
+      total_outwater_bod = #{record.totalOutwaterBod,jdbcType=DOUBLE},
+      total_outwater_ss = #{record.totalOutwaterSs,jdbcType=DOUBLE},
+      total_outwater_nh3_n_1 = #{record.totalOutwaterNh3N1,jdbcType=DOUBLE},
+      total_outwater_nh3_n_2 = #{record.totalOutwaterNh3N2,jdbcType=DOUBLE},
+      total_outwater_tn = #{record.totalOutwaterTn,jdbcType=DOUBLE},
+      total_outwater_tp = #{record.totalOutwaterTp,jdbcType=DOUBLE},
+      total_outwater_ph_up = #{record.totalOutwaterPhUp,jdbcType=DOUBLE},
+      total_outwater_ph_down = #{record.totalOutwaterPhDown,jdbcType=DOUBLE},
+      total_outwater_chroma = #{record.totalOutwaterChroma,jdbcType=INTEGER},
+      total_outwater_coliform = #{record.totalOutwaterColiform,jdbcType=INTEGER},
+      total_outwater_turbidity = #{record.totalOutwaterTurbidity,jdbcType=INTEGER},
+      total_outwater_dissolution = #{record.totalOutwaterDissolution,jdbcType=DOUBLE},
+      total_outwater_hardness = #{record.totalOutwaterHardness,jdbcType=DOUBLE},
+      total_outwater_anion = #{record.totalOutwaterAnion,jdbcType=DOUBLE},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+<!--自定义 by hypo start-->
+  <sql id="where_all_conds">
+    <if test="id != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="factoryNo != null" >
+      and factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="totalInwaterCod != null" >
+      and total_inwater_cod = #{totalInwaterCod,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterBod != null" >
+      and total_inwater_bod = #{totalInwaterBod,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterSs != null" >
+      and total_inwater_ss = #{totalInwaterSs,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterNh3N != null" >
+      and total_inwater_nh3_n = #{totalInwaterNh3N,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterTn != null" >
+      and total_inwater_tn = #{totalInwaterTn,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterTp != null" >
+      and total_inwater_tp = #{totalInwaterTp,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterPhUp != null" >
+      and total_inwater_ph_up = #{totalInwaterPhUp,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterPhDown != null" >
+      and total_inwater_ph_down = #{totalInwaterPhDown,jdbcType=DOUBLE}
+    </if>
+    <if test="totalInwaterChroma != null" >
+      and total_inwater_chroma = #{totalInwaterChroma,jdbcType=INTEGER}
+    </if>
+    <if test="totalOutwaterCod != null" >
+      and total_outwater_cod = #{totalOutwaterCod,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterBod != null" >
+      and total_outwater_bod = #{totalOutwaterBod,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterSs != null" >
+      and total_outwater_ss = #{totalOutwaterSs,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterNh3N1 != null" >
+      and total_outwater_nh3_n_1 = #{totalOutwaterNh3N1,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterNh3N2 != null" >
+      and total_outwater_nh3_n_2 = #{totalOutwaterNh3N2,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterTn != null" >
+      and total_outwater_tn = #{totalOutwaterTn,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterTp != null" >
+      and total_outwater_tp = #{totalOutwaterTp,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterPhUp != null" >
+      and total_outwater_ph_up = #{totalOutwaterPhUp,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterPhDown != null" >
+      and total_outwater_ph_down = #{totalOutwaterPhDown,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterChroma != null" >
+      and total_outwater_chroma = #{totalOutwaterChroma,jdbcType=INTEGER}
+    </if>
+    <if test="totalOutwaterColiform != null" >
+      and total_outwater_coliform = #{totalOutwaterColiform,jdbcType=INTEGER}
+    </if>
+    <if test="totalOutwaterTurbidity != null" >
+      and total_outwater_turbidity = #{totalOutwaterTurbidity,jdbcType=INTEGER}
+    </if>
+    <if test="totalOutwaterDissolution != null" >
+      and total_outwater_dissolution = #{totalOutwaterDissolution,jdbcType=DOUBLE}
+    </if>
+    <if test="totalOutwaterHardness != null" >
+      and total_outwater_hardness = #{totalOutwaterHardness,jdbcType=4}
+    </if>
+    <if test="totalOutwaterAnion != null" >
+      and total_outwater_anion = #{totalOutwaterAnion,jdbcType=DOUBLE}
+    </if>
+    <if test="creatTime != null" >
+      and creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
+
+  <update id="updateByFactoryNo" parameterType="map" >
+    update tb_factory_water
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalInwaterCod != null" >
+        total_inwater_cod = #{record.totalInwaterCod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterBod != null" >
+        total_inwater_bod = #{record.totalInwaterBod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterSs != null" >
+        total_inwater_ss = #{record.totalInwaterSs,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterNh3N != null" >
+        total_inwater_nh3_n = #{record.totalInwaterNh3N,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterTn != null" >
+        total_inwater_tn = #{record.totalInwaterTn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterTp != null" >
+        total_inwater_tp = #{record.totalInwaterTp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterPhUp != null" >
+        total_inwater_ph_up = #{record.totalInwaterPhUp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterPhDown != null" >
+        total_inwater_ph_down = #{record.totalInwaterPhDown,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalInwaterChroma != null" >
+        total_inwater_chroma = #{record.totalInwaterChroma,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterCod != null" >
+        total_outwater_cod = #{record.totalOutwaterCod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterBod != null" >
+        total_outwater_bod = #{record.totalOutwaterBod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterSs != null" >
+        total_outwater_ss = #{record.totalOutwaterSs,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterNh3N1 != null" >
+        total_outwater_nh3_n_1 = #{record.totalOutwaterNh3N1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterNh3N2 != null" >
+        total_outwater_nh3_n_2 = #{record.totalOutwaterNh3N2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterTn != null" >
+        total_outwater_tn = #{record.totalOutwaterTn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterTp != null" >
+        total_outwater_tp = #{record.totalOutwaterTp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterPhUp != null" >
+        total_outwater_ph_up = #{record.totalOutwaterPhUp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterPhDown != null" >
+        total_outwater_ph_down = #{record.totalOutwaterPhDown,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterChroma != null" >
+        total_outwater_chroma = #{record.totalOutwaterChroma,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterColiform != null" >
+        total_outwater_coliform = #{record.totalOutwaterColiform,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterTurbidity != null" >
+        total_outwater_turbidity = #{record.totalOutwaterTurbidity,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalOutwaterDissolution != null" >
+        total_outwater_dissolution = #{record.totalOutwaterDissolution,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterHardness != null" >
+        total_outwater_hardness = #{record.totalOutwaterHardness,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalOutwaterAnion != null" >
+        total_outwater_anion = #{record.totalOutwaterAnion,jdbcType=DOUBLE},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where  factory_no = #{record.factoryNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectWaterInfoByConds" parameterType="com.ejobim.opplat.domain.TbFactoryWater" resultType="com.ejobim.opplat.domain.TbFactoryWater">
+    select <include refid="Base_Column_List"/> from tb_factory_water
+    <where>
+      <include refid="where_all_conds"/>
+    </where>
+  </select>
+  <!--自定义 by hypo end-->
+</mapper>

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkFlowConfigDetailExtendMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtend">
+    <id column="node_extend_no" jdbcType="VARCHAR" property="nodeExtendNo" />
+    <result column="node_code" jdbcType="VARCHAR" property="nodeCode" />
+    <result column="field_type" jdbcType="INTEGER" property="fieldType" />
+    <result column="field_select_url" jdbcType="VARCHAR" property="fieldSelectUrl" />
+    <result column="field_text_max_length" jdbcType="INTEGER" property="fieldTextMaxLength" />
+    <result column="field_text_min_length" jdbcType="INTEGER" property="fieldTextMinLength" />
+    <result column="field_number_max" jdbcType="DOUBLE" property="fieldNumberMax" />
+    <result column="is_force" jdbcType="INTEGER" property="isForce" />
+    <result column="field_user_info" jdbcType="VARCHAR" property="fieldUserInfo" />
+    <result column="node_no" jdbcType="VARCHAR" property="nodeNo" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="field_code" jdbcType="VARCHAR" property="fieldCode" />
+    <result column="field_index" jdbcType="INTEGER" property="fieldIndex" />
+    <result column="is_route" jdbcType="INTEGER" property="isRoute" />
+    <result column="route_code" jdbcType="VARCHAR" property="routeCode" />
+    <result column="flow_no" jdbcType="VARCHAR" property="flowNo" />
+    <result column="is_show" jdbcType="INTEGER" property="isShow" />
+    <result column="filed_select" jdbcType="VARCHAR" property="filedSelect" />
+    <result column="commit_fields" jdbcType="VARCHAR" property="commitFields" />
+    <result column="show_condition" jdbcType="VARCHAR" property="showCondition" />
+    <result column="is_next_user" jdbcType="VARCHAR" property="isNextUser" />
+    <result column="validate_rules" property="validateRules" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    node_extend_no, node_code, field_type, field_select_url, field_text_max_length, field_text_min_length, 
+    field_number_max, is_force, field_user_info, node_no, field_name, field_code, field_index, 
+    is_route, route_code, flow_no, is_show, filed_select, commit_fields, show_condition,
+    is_next_user, validate_rules
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_flow_config_detail_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_flow_config_detail_extend
+    where node_extend_no = #{nodeExtendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_work_flow_config_detail_extend
+    where node_extend_no = #{nodeExtendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtendExample">
+    delete from tb_work_flow_config_detail_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtend">
+    insert into tb_work_flow_config_detail_extend (node_extend_no, node_code, field_type, 
+      field_select_url, field_text_max_length, field_text_min_length, 
+      field_number_max, is_force, field_user_info, 
+      node_no, field_name, field_code, 
+      field_index, is_route, route_code, 
+      flow_no, is_show, filed_select,
+      commit_fields, show_condition, is_next_user,
+      validate_rules
+      )
+    values (#{nodeExtendNo,jdbcType=VARCHAR}, #{nodeCode,jdbcType=VARCHAR}, #{fieldType,jdbcType=INTEGER}, 
+      #{fieldSelectUrl,jdbcType=VARCHAR}, #{fieldTextMaxLength,jdbcType=INTEGER}, #{fieldTextMinLength,jdbcType=INTEGER}, 
+      #{fieldNumberMax,jdbcType=DOUBLE}, #{isForce,jdbcType=INTEGER}, #{fieldUserInfo,jdbcType=VARCHAR}, 
+      #{nodeNo,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, #{fieldCode,jdbcType=VARCHAR}, 
+      #{fieldIndex,jdbcType=INTEGER}, #{isRoute,jdbcType=INTEGER}, #{routeCode,jdbcType=VARCHAR}, 
+      #{flowNo,jdbcType=VARCHAR}, #{isShow,jdbcType=INTEGER}, #{filedSelect,jdbcType=VARCHAR},
+      #{commitFields,jdbcType=VARCHAR}, #{showCondition,jdbcType=VARCHAR}, #{isNextUser,jdbcType=INTEGER},
+       #{validateRules,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtend">
+    insert into tb_work_flow_config_detail_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nodeExtendNo != null">
+        node_extend_no,
+      </if>
+      <if test="nodeCode != null">
+        node_code,
+      </if>
+      <if test="fieldType != null">
+        field_type,
+      </if>
+      <if test="fieldSelectUrl != null">
+        field_select_url,
+      </if>
+      <if test="fieldTextMaxLength != null">
+        field_text_max_length,
+      </if>
+      <if test="fieldTextMinLength != null">
+        field_text_min_length,
+      </if>
+      <if test="fieldNumberMax != null">
+        field_number_max,
+      </if>
+      <if test="isForce != null">
+        is_force,
+      </if>
+      <if test="fieldUserInfo != null">
+        field_user_info,
+      </if>
+      <if test="nodeNo != null">
+        node_no,
+      </if>
+      <if test="fieldName != null">
+        field_name,
+      </if>
+      <if test="fieldCode != null">
+        field_code,
+      </if>
+      <if test="fieldIndex != null">
+        field_index,
+      </if>
+      <if test="isRoute != null">
+        is_route,
+      </if>
+      <if test="routeCode != null">
+        route_code,
+      </if>
+      <if test="flowNo != null">
+        flow_no,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="filedSelect != null">
+        filed_select,
+      </if>
+      <if test="commitFields != null">
+        commit_fields,
+      </if>
+      <if test="showCondition != null">
+        show_condition,
+      </if>
+      <if test="isNextUser != null">
+        is_next_user,
+      </if>
+       <if test="validateRules != null">
+         validate_rules,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nodeExtendNo != null">
+        #{nodeExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeCode != null">
+        #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null">
+        #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="fieldSelectUrl != null">
+        #{fieldSelectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldTextMaxLength != null">
+        #{fieldTextMaxLength,jdbcType=INTEGER},
+      </if>
+      <if test="fieldTextMinLength != null">
+        #{fieldTextMinLength,jdbcType=INTEGER},
+      </if>
+      <if test="fieldNumberMax != null">
+        #{fieldNumberMax,jdbcType=DOUBLE},
+      </if>
+      <if test="isForce != null">
+        #{isForce,jdbcType=INTEGER},
+      </if>
+      <if test="fieldUserInfo != null">
+        #{fieldUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeNo != null">
+        #{nodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null">
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null">
+        #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIndex != null">
+        #{fieldIndex,jdbcType=INTEGER},
+      </if>
+      <if test="isRoute != null">
+        #{isRoute,jdbcType=INTEGER},
+      </if>
+      <if test="routeCode != null">
+        #{routeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNo != null">
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="filedSelect != null">
+        #{filedSelect,jdbcType=VARCHAR},
+      </if>
+      <if test="commitFields != null">
+        #{commitFields,jdbcType=VARCHAR},
+      </if>
+      <if test="showCondition != null">
+        #{showCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="isNextUser != null">
+        #{isNextUser,jdbcType=INTEGER},
+      </if>
+      <if test="validateRules != null">
+        #{validateRules,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtendExample" resultType="java.lang.Integer">
+    select count(*) from tb_work_flow_config_detail_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_work_flow_config_detail_extend
+    <set>
+      <if test="record.nodeExtendNo != null">
+        node_extend_no = #{record.nodeExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeCode != null">
+        node_code = #{record.nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldType != null">
+        field_type = #{record.fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldSelectUrl != null">
+        field_select_url = #{record.fieldSelectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldTextMaxLength != null">
+        field_text_max_length = #{record.fieldTextMaxLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldTextMinLength != null">
+        field_text_min_length = #{record.fieldTextMinLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldNumberMax != null">
+        field_number_max = #{record.fieldNumberMax,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isForce != null">
+        is_force = #{record.isForce,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldUserInfo != null">
+        field_user_info = #{record.fieldUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeNo != null">
+        node_no = #{record.nodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldName != null">
+        field_name = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldCode != null">
+        field_code = #{record.fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIndex != null">
+        field_index = #{record.fieldIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.isRoute != null">
+        is_route = #{record.isRoute,jdbcType=INTEGER},
+      </if>
+      <if test="record.routeCode != null">
+        route_code = #{record.routeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowNo != null">
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShow != null">
+        is_show = #{record.isShow,jdbcType=INTEGER},
+      </if>
+      <if test="record.filedSelect != null">
+        filed_select = #{record.filedSelect,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commitFields != null">
+        commit_fields = #{record.commitFields,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showCondition != null">
+        show_condition = #{record.showCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isNextUser != null">
+        is_next_user = #{record.isNextUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.validateRules != null">
+        validate_rules = #{record.validateRules,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_work_flow_config_detail_extend
+    set node_extend_no = #{record.nodeExtendNo,jdbcType=VARCHAR},
+      node_code = #{record.nodeCode,jdbcType=VARCHAR},
+      field_type = #{record.fieldType,jdbcType=INTEGER},
+      field_select_url = #{record.fieldSelectUrl,jdbcType=VARCHAR},
+      field_text_max_length = #{record.fieldTextMaxLength,jdbcType=INTEGER},
+      field_text_min_length = #{record.fieldTextMinLength,jdbcType=INTEGER},
+      field_number_max = #{record.fieldNumberMax,jdbcType=DOUBLE},
+      is_force = #{record.isForce,jdbcType=INTEGER},
+      field_user_info = #{record.fieldUserInfo,jdbcType=VARCHAR},
+      node_no = #{record.nodeNo,jdbcType=VARCHAR},
+      field_name = #{record.fieldName,jdbcType=VARCHAR},
+      field_code = #{record.fieldCode,jdbcType=VARCHAR},
+      field_index = #{record.fieldIndex,jdbcType=INTEGER},
+      is_route = #{record.isRoute,jdbcType=INTEGER},
+      route_code = #{record.routeCode,jdbcType=VARCHAR},
+      flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      is_show = #{record.isShow,jdbcType=INTEGER},
+      filed_select = #{record.filedSelect,jdbcType=VARCHAR},
+      validate_rules = #{record.validateRules,jdbcType=VARCHAR},
+      is_next_user = #{record.isNextUser,jdbcType=INTEGER},
+      commit_fields = #{record.commitFields,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtend">
+    update tb_work_flow_config_detail_extend
+    <set>
+      <if test="nodeCode != null">
+        node_code = #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null">
+        field_type = #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="fieldSelectUrl != null">
+        field_select_url = #{fieldSelectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldTextMaxLength != null">
+        field_text_max_length = #{fieldTextMaxLength,jdbcType=INTEGER},
+      </if>
+      <if test="fieldTextMinLength != null">
+        field_text_min_length = #{fieldTextMinLength,jdbcType=INTEGER},
+      </if>
+      <if test="fieldNumberMax != null">
+        field_number_max = #{fieldNumberMax,jdbcType=DOUBLE},
+      </if>
+      <if test="isForce != null">
+        is_force = #{isForce,jdbcType=INTEGER},
+      </if>
+      <if test="fieldUserInfo != null">
+        field_user_info = #{fieldUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeNo != null">
+        node_no = #{nodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null">
+        field_name = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null">
+        field_code = #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIndex != null">
+        field_index = #{fieldIndex,jdbcType=INTEGER},
+      </if>
+      <if test="isRoute != null">
+        is_route = #{isRoute,jdbcType=INTEGER},
+      </if>
+      <if test="routeCode != null">
+        route_code = #{routeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNo != null">
+        flow_no = #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="filedSelect != null">
+        filed_select = #{filedSelect,jdbcType=VARCHAR},
+      </if>
+      <if test="commitFields != null">
+        commit_fields = #{commitFields,jdbcType=VARCHAR},
+      </if>
+      <if test="showCondition != null">
+        show_condition = #{showCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="validateRules != null">
+        validate_rules = #{validateRules,jdbcType=VARCHAR},
+      </if>
+      <if test="isNextUser != null">
+        is_next_user = #{isNextUser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where node_extend_no = #{nodeExtendNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExtend">
+    update tb_work_flow_config_detail_extend
+    set node_code = #{nodeCode,jdbcType=VARCHAR},
+      field_type = #{fieldType,jdbcType=INTEGER},
+      field_select_url = #{fieldSelectUrl,jdbcType=VARCHAR},
+      field_text_max_length = #{fieldTextMaxLength,jdbcType=INTEGER},
+      field_text_min_length = #{fieldTextMinLength,jdbcType=INTEGER},
+      field_number_max = #{fieldNumberMax,jdbcType=DOUBLE},
+      is_force = #{isForce,jdbcType=INTEGER},
+      field_user_info = #{fieldUserInfo,jdbcType=VARCHAR},
+      node_no = #{nodeNo,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_code = #{fieldCode,jdbcType=VARCHAR},
+      field_index = #{fieldIndex,jdbcType=INTEGER},
+      is_route = #{isRoute,jdbcType=INTEGER},
+      route_code = #{routeCode,jdbcType=VARCHAR},
+      flow_no = #{flowNo,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=INTEGER},
+      filed_select = #{filedSelect,jdbcType=VARCHAR},
+      show_condition = #{showCondition,jdbcType=VARCHAR},
+      commit_fields = #{commitFields,jdbcType=VARCHAR},
+      validate_rules = #{validateRules,jdbcType=VARCHAR},
+      is_next_user = #{isNextUser,jdbcType=INTEGER}
+    where node_extend_no = #{nodeExtendNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

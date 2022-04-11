@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/auth-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/base-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/base-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cases-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cases-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cases-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/classes-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/classes-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/classes-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/common-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/common-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/common-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/course-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/course-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/course-service-clients" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/czwl-parent" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-cases-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-cases-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-cases-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-student-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-student-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-student-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-teacher-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-teacher-web-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/daizhang-teacher-web-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/doc-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/doc-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/eureka-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/exam-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/exam-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/exam-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/examine-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/examine-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/examine-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/file-storage" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gateway-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/manager-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/res-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/res-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/res-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/res-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/school-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/school-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/school-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/school-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/score-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/score-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/score-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/statistics-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/statistics-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/statistics-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/team-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/team-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/team-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/uc-web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/user-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/user-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/user-service-client" vcs="Git" />
+  </component>
+</project>

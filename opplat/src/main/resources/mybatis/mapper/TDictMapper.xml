@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TDict" >
+    <id column="DICT_ID" property="dictId" jdbcType="BIGINT" />
+    <result column="KEYY" property="keyy" jdbcType="BIGINT" />
+    <result column="VALUEE" property="valuee" jdbcType="VARCHAR" />
+    <result column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DICT_ID, KEYY, VALUEE, FIELD_NAME, TABLE_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TDictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_dict
+    where DICT_ID = #{dictId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_dict
+    where DICT_ID = #{dictId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TDictExample" >
+    delete from t_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TDict" >
+    insert into t_dict (DICT_ID, KEYY, VALUEE, 
+      FIELD_NAME, TABLE_NAME)
+    values (#{dictId,jdbcType=BIGINT}, #{keyy,jdbcType=BIGINT}, #{valuee,jdbcType=VARCHAR}, 
+      #{fieldName,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TDict" >
+    insert into t_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        DICT_ID,
+      </if>
+      <if test="keyy != null" >
+        KEYY,
+      </if>
+      <if test="valuee != null" >
+        VALUEE,
+      </if>
+      <if test="fieldName != null" >
+        FIELD_NAME,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictId != null" >
+        #{dictId,jdbcType=BIGINT},
+      </if>
+      <if test="keyy != null" >
+        #{keyy,jdbcType=BIGINT},
+      </if>
+      <if test="valuee != null" >
+        #{valuee,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TDictExample" resultType="java.lang.Integer" >
+    select count(*) from t_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_dict
+    <set >
+      <if test="record.dictId != null" >
+        DICT_ID = #{record.dictId,jdbcType=BIGINT},
+      </if>
+      <if test="record.keyy != null" >
+        KEYY = #{record.keyy,jdbcType=BIGINT},
+      </if>
+      <if test="record.valuee != null" >
+        VALUEE = #{record.valuee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldName != null" >
+        FIELD_NAME = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tableName != null" >
+        TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_dict
+    set DICT_ID = #{record.dictId,jdbcType=BIGINT},
+      KEYY = #{record.keyy,jdbcType=BIGINT},
+      VALUEE = #{record.valuee,jdbcType=VARCHAR},
+      FIELD_NAME = #{record.fieldName,jdbcType=VARCHAR},
+      TABLE_NAME = #{record.tableName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TDict" >
+    update t_dict
+    <set >
+      <if test="keyy != null" >
+        KEYY = #{keyy,jdbcType=BIGINT},
+      </if>
+      <if test="valuee != null" >
+        VALUEE = #{valuee,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DICT_ID = #{dictId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TDict" >
+    update t_dict
+    set KEYY = #{keyy,jdbcType=BIGINT},
+      VALUEE = #{valuee,jdbcType=VARCHAR},
+      FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+      TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+    where DICT_ID = #{dictId,jdbcType=BIGINT}
+  </update>
+</mapper>

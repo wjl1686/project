@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipMaintainFactorMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipMaintainFactor" >
+    <id column="mf_no" property="mfNo" jdbcType="VARCHAR" />
+    <result column="equip_no" property="equipNo" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="mf_content" property="mfContent" jdbcType="VARCHAR" />
+    <result column="mf_type" property="mfType" jdbcType="INTEGER" />
+    <result column="cycle" property="cycle" jdbcType="VARCHAR" />
+    <result column="mf_addon" property="mfAddon" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_code" property="createUserCode" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_code" property="updateUserCode" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="mf_time" property="mfTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mf_no, equip_no, factory_no, mf_content, mf_type, cycle, mf_addon, create_time, create_user_code, 
+    create_user_name, update_time, update_user_code, update_user_name, flag, mf_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_maintain_factor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_maintain_factor
+    where mf_no = #{mfNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_maintain_factor
+    where mf_no = #{mfNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactorExample" >
+    delete from tb_equip_maintain_factor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactor" >
+    insert into tb_equip_maintain_factor (mf_no, equip_no, factory_no, 
+      mf_content, mf_type, cycle, 
+      mf_addon, create_time, create_user_code, 
+      create_user_name, update_time, update_user_code, 
+      update_user_name, flag, mf_time
+      )
+    values (#{mfNo,jdbcType=VARCHAR}, #{equipNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, 
+      #{mfContent,jdbcType=VARCHAR}, #{mfType,jdbcType=INTEGER}, #{cycle,jdbcType=VARCHAR}, 
+      #{mfAddon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserCode,jdbcType=VARCHAR}, 
+      #{updateUserName,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, #{mfTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactor" >
+    insert into tb_equip_maintain_factor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mfNo != null" >
+        mf_no,
+      </if>
+      <if test="equipNo != null" >
+        equip_no,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="mfContent != null" >
+        mf_content,
+      </if>
+      <if test="mfType != null" >
+        mf_type,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="mfAddon != null" >
+        mf_addon,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserCode != null" >
+        create_user_code,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserCode != null" >
+        update_user_code,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="mfTime != null" >
+        mf_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mfNo != null" >
+        #{mfNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mfContent != null" >
+        #{mfContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mfType != null" >
+        #{mfType,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="mfAddon != null" >
+        #{mfAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null" >
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null" >
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mfTime != null" >
+        #{mfTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactorExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_maintain_factor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_maintain_factor
+    <set >
+      <if test="record.mfNo != null" >
+        mf_no = #{record.mfNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipNo != null" >
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mfContent != null" >
+        mf_content = #{record.mfContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mfType != null" >
+        mf_type = #{record.mfType,jdbcType=INTEGER},
+      </if>
+      <if test="record.cycle != null" >
+        cycle = #{record.cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mfAddon != null" >
+        mf_addon = #{record.mfAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserCode != null" >
+        create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserCode != null" >
+        update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserName != null" >
+        update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.mfTime != null" >
+        mf_time = #{record.mfTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_maintain_factor
+    set mf_no = #{record.mfNo,jdbcType=VARCHAR},
+      equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      mf_content = #{record.mfContent,jdbcType=VARCHAR},
+      mf_type = #{record.mfType,jdbcType=INTEGER},
+      cycle = #{record.cycle,jdbcType=VARCHAR},
+      mf_addon = #{record.mfAddon,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=INTEGER},
+      mf_time = #{record.mfTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactor" >
+    update tb_equip_maintain_factor
+    <set >
+      <if test="equipNo != null" >
+        equip_no = #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mfContent != null" >
+        mf_content = #{mfContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mfType != null" >
+        mf_type = #{mfType,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="mfAddon != null" >
+        mf_addon = #{mfAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null" >
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null" >
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mfTime != null" >
+        mf_time = #{mfTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mf_no = #{mfNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactor" >
+    update tb_equip_maintain_factor
+    set equip_no = #{equipNo,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      mf_content = #{mfContent,jdbcType=VARCHAR},
+      mf_type = #{mfType,jdbcType=INTEGER},
+      cycle = #{cycle,jdbcType=VARCHAR},
+      mf_addon = #{mfAddon,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mf_time = #{mfTime,jdbcType=TIMESTAMP}
+    where mf_no = #{mfNo,jdbcType=VARCHAR}
+  </update>
+  <select id="selcetTbEquipMaintainFactorList" parameterType="com.ejobim.opplat.domain.TbEquipMaintainFactor" resultType="com.ejobim.opplat.domain.TbEquipMaintainFactor">
+    select a.*,b.equip_name equipName from tb_equip_maintain_factor a left join tb_equip_info b on  a.equip_no= b.equip_no where 1=1
+    <if test="equipName != null" >
+      and b.equip_name  like concat('%',#{equipName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="equipNo != null" >
+      and a.equip_no = #{equipNo,jdbcType=VARCHAR}
+    </if>
+    <if test="factoryNo != null" >
+      and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    order by a.create_time desc
+  </select>
+</mapper>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbSparePartsUseLoggerMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbSparePartsUseLogger" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="work_order_no" property="workOrderNo" jdbcType="VARCHAR" />
+    <result column="work_order_type" property="workOrderType" jdbcType="INTEGER" />
+    <result column="use_count" property="useCount" jdbcType="INTEGER" />
+    <result column="spare_parts_no" property="sparePartsNo" jdbcType="VARCHAR" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, work_order_no, work_order_type, use_count, spare_parts_no, use_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLoggerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_spare_parts_use_logger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_spare_parts_use_logger
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_spare_parts_use_logger
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLoggerExample" >
+    delete from tb_spare_parts_use_logger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLogger" >
+    insert into tb_spare_parts_use_logger (id, work_order_no, work_order_type, 
+      use_count, spare_parts_no, use_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{workOrderNo,jdbcType=VARCHAR}, #{workOrderType,jdbcType=INTEGER}, 
+      #{useCount,jdbcType=INTEGER}, #{sparePartsNo,jdbcType=VARCHAR}, #{useTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLogger" >
+    insert into tb_spare_parts_use_logger
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no,
+      </if>
+      <if test="workOrderType != null" >
+        work_order_type,
+      </if>
+      <if test="useCount != null" >
+        use_count,
+      </if>
+      <if test="sparePartsNo != null" >
+        spare_parts_no,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="workOrderNo != null" >
+        #{workOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderType != null" >
+        #{workOrderType,jdbcType=INTEGER},
+      </if>
+      <if test="useCount != null" >
+        #{useCount,jdbcType=INTEGER},
+      </if>
+      <if test="sparePartsNo != null" >
+        #{sparePartsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLoggerExample" resultType="java.lang.Integer" >
+    select count(*) from tb_spare_parts_use_logger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_spare_parts_use_logger
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.workOrderNo != null" >
+        work_order_no = #{record.workOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workOrderType != null" >
+        work_order_type = #{record.workOrderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.useCount != null" >
+        use_count = #{record.useCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.sparePartsNo != null" >
+        spare_parts_no = #{record.sparePartsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useTime != null" >
+        use_time = #{record.useTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_spare_parts_use_logger
+    set id = #{record.id,jdbcType=INTEGER},
+      work_order_no = #{record.workOrderNo,jdbcType=VARCHAR},
+      work_order_type = #{record.workOrderType,jdbcType=INTEGER},
+      use_count = #{record.useCount,jdbcType=INTEGER},
+      spare_parts_no = #{record.sparePartsNo,jdbcType=VARCHAR},
+      use_time = #{record.useTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLogger" >
+    update tb_spare_parts_use_logger
+    <set >
+      <if test="workOrderNo != null" >
+        work_order_no = #{workOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderType != null" >
+        work_order_type = #{workOrderType,jdbcType=INTEGER},
+      </if>
+      <if test="useCount != null" >
+        use_count = #{useCount,jdbcType=INTEGER},
+      </if>
+      <if test="sparePartsNo != null" >
+        spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLogger" >
+    update tb_spare_parts_use_logger
+    set work_order_no = #{workOrderNo,jdbcType=VARCHAR},
+      work_order_type = #{workOrderType,jdbcType=INTEGER},
+      use_count = #{useCount,jdbcType=INTEGER},
+      spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR},
+      use_time = #{useTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBySparePartsNo" resultMap="BaseResultMap">
+    select * from  tb_spare_parts_use_logger
+    where  spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateBySparePartsNo" parameterType="com.ejobim.opplat.domain.TbSparePartsUseLogger" >
+    update tb_spare_parts_use_logger
+    set
+      use_count = #{useCount,jdbcType=INTEGER},
+      use_time = #{useTime,jdbcType=TIMESTAMP}
+    where  spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectByWrokOrderNo" resultType="com.ejobim.opplat.domain.TbSparePartsUseLogger">
+    select a.*,b.spare_parts_name sparePartsName,b.sparet_parts_unit sparetPartsUnit  from  tb_spare_parts_use_logger a left  join tb_spare_parts b on
+    a.spare_parts_no =b.spare_parts_no
+    where  a.work_order_no = #{workOrderNo,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

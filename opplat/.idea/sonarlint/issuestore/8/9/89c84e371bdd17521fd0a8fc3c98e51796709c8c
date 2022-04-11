@@ -1,0 +1,88 @@
+
+K
+java:S3740Ğ"/Provide the parametrized type for this generic.(ü›»Œÿÿÿÿÿ
+K
+java:S3740ª"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740ª"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740Ÿ"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740Ÿ"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740Š"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+K
+java:S3740Š"/Provide the parametrized type for this generic.(æ’ï±ÿÿÿÿÿ
+b
+java:S1192”"FDefine a constant instead of duplicating this literal "value" 3 times.(­ üÑûÿÿÿÿ
+e
+java:S1192ô"IDefine a constant instead of duplicating this literal "fileName" 3 times.(ÿŠøÿÿÿÿ
+v
+java:S1192…"ZDefine a constant instead of duplicating this literal "å½“å‰ç™»å½•ç”¨æˆ·User={}" 4 times.(Òİ†şÿÿÿÿ
+@
+java:S2629·"$Invoke method(s) only conditionally.(Ãô¿ºùÿÿÿÿ
+;
+java:S2629â"$Invoke method(s) only conditionally.(ª…ó©
+[	java:S112°"FDefine and throw a dedicated exception instead of using a generic one.(Ò³Ûl
+g
+java:S2259¥"KA "NullPointerException" could be thrown; "equipTypeList" is nullable here.(£Ú©Öùÿÿÿÿ
+a
+java:S2259¥"EA "NullPointerException" could be thrown; "tbDicts" is nullable here.(£Ú©Öùÿÿÿÿ
+{
+java:S1488¸"_Immediately return this expression instead of assigning it to the temporary variable "tbDicts".(àšÅ÷ÿÿÿÿÿ
+O
+java:S1854Ñ"8Remove this useless assignment to local variable "user".(®İï
+,
+java:S3457‹"Not enough arguments.(ÙÙö
+b
+java:S1854™"FRemove this useless assignment to local variable "allTbEquipTypeList".(óÎúšÿÿÿÿÿ
+O
+java:S1854˜"8Remove this useless assignment to local variable "user".(°ßĞä
+O
+java:S1854±"8Remove this useless assignment to local variable "user".(®İï
+O
+java:S1854Ä"8Remove this useless assignment to local variable "user".(®İï
+_
+java:S4488Š"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(˜Ø½ë
+A
+java:S3457Œ"%String contains no format specifiers.(şõßùÿÿÿÿ
+d
+java:S4488™"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(î£Õçúÿÿÿÿ
+U
+java:S1854Ğ">Remove this useless assignment to local variable "ajaxObject".(ëöş
+f
+java:S4488Í"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ï¡»ùÿÿÿÿ
+_
+java:S4488ñ"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(áÕ•æ
+U
+java:S4719´"9Replace charset name argument with StandardCharsets.UTF_8( €Ë¼üÿÿÿÿ
+O
+java:S1854Ü"8Remove this useless assignment to local variable "user".(®İï
+1
+java:S3457æ"Not enough arguments.(ê›×áıÿÿÿÿ
+O
+java:S1854"8Remove this useless assignment to local variable "user".(®İï
+1
+java:S3457™"Not enough arguments.(¸ÃÊùÿÿÿÿ
+O
+java:S1854°"8Remove this useless assignment to local variable "user".(®İï
+1
+java:S3457º"Not enough arguments.(Úº·œøÿÿÿÿ
+@
+java:S1481Ñ")Remove this unused "user" local variable.(®İï
+@
+java:S1481˜")Remove this unused "user" local variable.(°ßĞä
+@
+java:S1481±")Remove this unused "user" local variable.(®İï
+@
+java:S1481Ä")Remove this unused "user" local variable.(®İï
+@
+java:S1481Ü")Remove this unused "user" local variable.(®İï
+@
+java:S1481")Remove this unused "user" local variable.(®İï
+@
+java:S1481°")Remove this unused "user" local variable.(®İï

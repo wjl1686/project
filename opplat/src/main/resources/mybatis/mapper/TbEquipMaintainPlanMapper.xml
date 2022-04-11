@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipMaintainPlanMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipMaintainPlan">
+    <id column="plan_no" jdbcType="VARCHAR" property="planNo" />
+    <result column="equip_no" jdbcType="VARCHAR" property="equipNo" />
+    <result column="equip_name" jdbcType="VARCHAR" property="equipName" />
+    <result column="equip_type_name" jdbcType="VARCHAR" property="equipTypeName" />
+    <result column="equip_location_name" jdbcType="VARCHAR" property="equipLocationName" />
+    <result column="is_entrust" jdbcType="INTEGER" property="isEntrust" />
+    <result column="plan_year" jdbcType="INTEGER" property="planYear" />
+    <result column="plan_circle" jdbcType="INTEGER" property="planCircle" />
+    <result column="plan_cost" jdbcType="DECIMAL" property="planCost" />
+    <result column="real_cost" jdbcType="DECIMAL" property="realCost" />
+    <result column="plan_type" jdbcType="INTEGER" property="planType" />
+    <result column="plan_content" jdbcType="VARCHAR" property="planContent" />
+    <result column="plan_addon" jdbcType="VARCHAR" property="planAddon" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="plan_update_time" jdbcType="TIMESTAMP" property="planUpdateTime" />
+    <result column="flow_no" jdbcType="VARCHAR" property="flowNo" />
+    <association property="workFlow" javaType="com.ejobim.opplat.domain.TbWorkFlow">
+      <id column="flow_no" property="flowNo" jdbcType="VARCHAR" />
+      <result column="work_flow_config_no" property="workFlowConfigNo" jdbcType="VARCHAR" />
+      <result column="org_no" property="orgNo" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+      <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+      <result column="next_user" property="nextUser" jdbcType="VARCHAR" />
+      <result column="next_user_name" property="nextUserName" jdbcType="VARCHAR" />
+      <result column="status_index" property="statusIndex" jdbcType="INTEGER" />
+      <result column="status_code_name" property="statusCodeName" jdbcType="VARCHAR" />
+      <result column="next_status_index" property="nextStatusIndex" jdbcType="INTEGER" />
+      <result column="next_status_code_name" property="nextStatusCodeName" jdbcType="VARCHAR" />
+      <result column="next_plat" property="nextPlat" jdbcType="INTEGER" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    plan_no, equip_no, equip_name, equip_type_name, equip_location_name, is_entrust, 
+    plan_year, plan_circle, plan_cost, real_cost, plan_type, plan_content, plan_addon, 
+    task_type, plan_update_time, flow_no
+  </sql>
+  <sql id="Base_Column_List_1">
+    plan_no, equip_no, equip_name, equip_type_name, equip_location_name, is_entrust,
+    plan_year, plan_circle, plan_cost, real_cost, plan_type, plan_content, plan_addon,
+    task_type, plan_update_time, a.flow_no,
+  </sql>
+  <sql id="Work_Flow_Column_List" >
+    work_flow_config_no, create_time, create_user, create_user_name, next_user,
+    next_user_name, status_index, status_code_name, next_status_index, next_status_code_name,
+    next_plat, update_time, delete_flag, org_no
+  </sql>
+
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_maintain_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_maintain_plan
+    where plan_no = #{planNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByFlow"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_1" />
+    <include refid="Work_Flow_Column_List" />
+    from tb_equip_maintain_plan a left join tb_work_flow b on a.flow_no = b.flow_no
+    where 1=1
+    <if test="orgNo != null">
+      and org_no = #{orgNo,jdbcType=VARCHAR}
+    </if>
+    <if test="equipName != null">
+      and equip_name = CONCAT('%',#{equipName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="userCode != null">
+      and b.next_user = #{userCode,jdbcType=VARCHAR}
+      <if test="plat == 0 ">
+        and b.next_plat &lt;=1
+      </if>
+      <if test="plat == 1 ">
+        and b.next_plat &gt;=1
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_equip_maintain_plan
+    where plan_no = #{planNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExample">
+    delete from tb_equip_maintain_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlan">
+    insert into tb_equip_maintain_plan (plan_no, equip_no, equip_name, 
+      equip_type_name, equip_location_name, is_entrust, 
+      plan_year, plan_circle, plan_cost, 
+      real_cost, plan_type, plan_content, 
+      plan_addon, task_type, plan_update_time, 
+      flow_no)
+    values (#{planNo,jdbcType=VARCHAR}, #{equipNo,jdbcType=VARCHAR}, #{equipName,jdbcType=VARCHAR}, 
+      #{equipTypeName,jdbcType=VARCHAR}, #{equipLocationName,jdbcType=VARCHAR}, #{isEntrust,jdbcType=INTEGER}, 
+      #{planYear,jdbcType=INTEGER}, #{planCircle,jdbcType=INTEGER}, #{planCost,jdbcType=DECIMAL}, 
+      #{realCost,jdbcType=DECIMAL}, #{planType,jdbcType=INTEGER}, #{planContent,jdbcType=VARCHAR}, 
+      #{planAddon,jdbcType=VARCHAR}, #{taskType,jdbcType=INTEGER}, #{planUpdateTime,jdbcType=TIMESTAMP}, 
+      #{flowNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlan">
+    insert into tb_equip_maintain_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="planNo != null">
+        plan_no,
+      </if>
+      <if test="equipNo != null">
+        equip_no,
+      </if>
+      <if test="equipName != null">
+        equip_name,
+      </if>
+      <if test="equipTypeName != null">
+        equip_type_name,
+      </if>
+      <if test="equipLocationName != null">
+        equip_location_name,
+      </if>
+      <if test="isEntrust != null">
+        is_entrust,
+      </if>
+      <if test="planYear != null">
+        plan_year,
+      </if>
+      <if test="planCircle != null">
+        plan_circle,
+      </if>
+      <if test="planCost != null">
+        plan_cost,
+      </if>
+      <if test="realCost != null">
+        real_cost,
+      </if>
+      <if test="planType != null">
+        plan_type,
+      </if>
+      <if test="planContent != null">
+        plan_content,
+      </if>
+      <if test="planAddon != null">
+        plan_addon,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="planUpdateTime != null">
+        plan_update_time,
+      </if>
+      <if test="flowNo != null">
+        flow_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="planNo != null">
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null">
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipName != null">
+        #{equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipTypeName != null">
+        #{equipTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipLocationName != null">
+        #{equipLocationName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEntrust != null">
+        #{isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="planYear != null">
+        #{planYear,jdbcType=INTEGER},
+      </if>
+      <if test="planCircle != null">
+        #{planCircle,jdbcType=INTEGER},
+      </if>
+      <if test="planCost != null">
+        #{planCost,jdbcType=DECIMAL},
+      </if>
+      <if test="realCost != null">
+        #{realCost,jdbcType=DECIMAL},
+      </if>
+      <if test="planType != null">
+        #{planType,jdbcType=INTEGER},
+      </if>
+      <if test="planContent != null">
+        #{planContent,jdbcType=VARCHAR},
+      </if>
+      <if test="planAddon != null">
+        #{planAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="planUpdateTime != null">
+        #{planUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowNo != null">
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlanExample" resultType="java.lang.Integer">
+    select count(*) from tb_equip_maintain_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_equip_maintain_plan
+    <set>
+      <if test="record.planNo != null">
+        plan_no = #{record.planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipNo != null">
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipName != null">
+        equip_name = #{record.equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipTypeName != null">
+        equip_type_name = #{record.equipTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipLocationName != null">
+        equip_location_name = #{record.equipLocationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEntrust != null">
+        is_entrust = #{record.isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="record.planYear != null">
+        plan_year = #{record.planYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.planCircle != null">
+        plan_circle = #{record.planCircle,jdbcType=INTEGER},
+      </if>
+      <if test="record.planCost != null">
+        plan_cost = #{record.planCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realCost != null">
+        real_cost = #{record.realCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.planType != null">
+        plan_type = #{record.planType,jdbcType=INTEGER},
+      </if>
+      <if test="record.planContent != null">
+        plan_content = #{record.planContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planAddon != null">
+        plan_addon = #{record.planAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskType != null">
+        task_type = #{record.taskType,jdbcType=INTEGER},
+      </if>
+      <if test="record.planUpdateTime != null">
+        plan_update_time = #{record.planUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flowNo != null">
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_equip_maintain_plan
+    set plan_no = #{record.planNo,jdbcType=VARCHAR},
+      equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      equip_name = #{record.equipName,jdbcType=VARCHAR},
+      equip_type_name = #{record.equipTypeName,jdbcType=VARCHAR},
+      equip_location_name = #{record.equipLocationName,jdbcType=VARCHAR},
+      is_entrust = #{record.isEntrust,jdbcType=INTEGER},
+      plan_year = #{record.planYear,jdbcType=INTEGER},
+      plan_circle = #{record.planCircle,jdbcType=INTEGER},
+      plan_cost = #{record.planCost,jdbcType=DECIMAL},
+      real_cost = #{record.realCost,jdbcType=DECIMAL},
+      plan_type = #{record.planType,jdbcType=INTEGER},
+      plan_content = #{record.planContent,jdbcType=VARCHAR},
+      plan_addon = #{record.planAddon,jdbcType=VARCHAR},
+      task_type = #{record.taskType,jdbcType=INTEGER},
+      plan_update_time = #{record.planUpdateTime,jdbcType=TIMESTAMP},
+      flow_no = #{record.flowNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlan">
+    update tb_equip_maintain_plan
+    <set>
+      <if test="equipNo != null">
+        equip_no = #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipName != null">
+        equip_name = #{equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipTypeName != null">
+        equip_type_name = #{equipTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipLocationName != null">
+        equip_location_name = #{equipLocationName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEntrust != null">
+        is_entrust = #{isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="planYear != null">
+        plan_year = #{planYear,jdbcType=INTEGER},
+      </if>
+      <if test="planCircle != null">
+        plan_circle = #{planCircle,jdbcType=INTEGER},
+      </if>
+      <if test="planCost != null">
+        plan_cost = #{planCost,jdbcType=DECIMAL},
+      </if>
+      <if test="realCost != null">
+        real_cost = #{realCost,jdbcType=DECIMAL},
+      </if>
+      <if test="planType != null">
+        plan_type = #{planType,jdbcType=INTEGER},
+      </if>
+      <if test="planContent != null">
+        plan_content = #{planContent,jdbcType=VARCHAR},
+      </if>
+      <if test="planAddon != null">
+        plan_addon = #{planAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="planUpdateTime != null">
+        plan_update_time = #{planUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowNo != null">
+        flow_no = #{flowNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plan_no = #{planNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipMaintainPlan">
+    update tb_equip_maintain_plan
+    set equip_no = #{equipNo,jdbcType=VARCHAR},
+      equip_name = #{equipName,jdbcType=VARCHAR},
+      equip_type_name = #{equipTypeName,jdbcType=VARCHAR},
+      equip_location_name = #{equipLocationName,jdbcType=VARCHAR},
+      is_entrust = #{isEntrust,jdbcType=INTEGER},
+      plan_year = #{planYear,jdbcType=INTEGER},
+      plan_circle = #{planCircle,jdbcType=INTEGER},
+      plan_cost = #{planCost,jdbcType=DECIMAL},
+      real_cost = #{realCost,jdbcType=DECIMAL},
+      plan_type = #{planType,jdbcType=INTEGER},
+      plan_content = #{planContent,jdbcType=VARCHAR},
+      plan_addon = #{planAddon,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=INTEGER},
+      plan_update_time = #{planUpdateTime,jdbcType=TIMESTAMP},
+      flow_no = #{flowNo,jdbcType=VARCHAR}
+    where plan_no = #{planNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

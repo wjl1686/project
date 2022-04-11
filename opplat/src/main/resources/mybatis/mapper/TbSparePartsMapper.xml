@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbSparePartsMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbSpareParts">
+    <id column="spare_parts_no" jdbcType="VARCHAR" property="sparePartsNo" />
+    <result column="spare_parts_name" jdbcType="VARCHAR" property="sparePartsName" />
+    <result column="spare_parts_mode" jdbcType="VARCHAR" property="sparePartsMode" />
+    <result column="spare_parts_describe" jdbcType="VARCHAR" property="sparePartsDescribe" />
+    <result column="spare_parts_count" jdbcType="INTEGER" property="sparePartsCount" />
+    <result column="store_room_no" jdbcType="VARCHAR" property="storeRoomNo" />
+    <result column="spare_parts_code" jdbcType="VARCHAR" property="sparePartsCode" />
+    <result column="spare_parts_type" jdbcType="VARCHAR" property="sparePartsType" />
+    <result column="equip_type" jdbcType="VARCHAR" property="equipType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="producter" jdbcType="VARCHAR" property="producter" />
+    <result column="sparet_parts_unit" jdbcType="VARCHAR" property="sparetPartsUnit" />
+    <result column="factory_no" jdbcType="VARCHAR" property="factoryNo" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="creaet_user" jdbcType="VARCHAR" property="creaetUser" />
+    <result column="equip_type_name" jdbcType="VARCHAR" property="equipTypeName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    spare_parts_no, spare_parts_name, spare_parts_mode, spare_parts_describe, spare_parts_count, 
+    store_room_no, spare_parts_code, spare_parts_type, equip_type, create_time, producter, 
+    sparet_parts_unit, factory_no, start_time, creaet_user, equip_type_name
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbSparePartsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_spare_parts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_spare_parts
+    where spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_spare_parts
+    where spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbSparePartsExample">
+    delete from tb_spare_parts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbSpareParts">
+    insert into tb_spare_parts (spare_parts_no, spare_parts_name, spare_parts_mode, 
+      spare_parts_describe, spare_parts_count, store_room_no, 
+      spare_parts_code, spare_parts_type, equip_type, 
+      create_time, producter, sparet_parts_unit, 
+      factory_no, start_time, creaet_user, 
+      equip_type_name)
+    values (#{sparePartsNo,jdbcType=VARCHAR}, #{sparePartsName,jdbcType=VARCHAR}, #{sparePartsMode,jdbcType=VARCHAR}, 
+      #{sparePartsDescribe,jdbcType=VARCHAR}, #{sparePartsCount,jdbcType=INTEGER}, #{storeRoomNo,jdbcType=VARCHAR}, 
+      #{sparePartsCode,jdbcType=VARCHAR}, #{sparePartsType,jdbcType=VARCHAR}, #{equipType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{producter,jdbcType=VARCHAR}, #{sparetPartsUnit,jdbcType=VARCHAR}, 
+      #{factoryNo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{creaetUser,jdbcType=VARCHAR}, 
+      #{equipTypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbSpareParts">
+    insert into tb_spare_parts
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sparePartsNo != null">
+        spare_parts_no,
+      </if>
+      <if test="sparePartsName != null">
+        spare_parts_name,
+      </if>
+      <if test="sparePartsMode != null">
+        spare_parts_mode,
+      </if>
+      <if test="sparePartsDescribe != null">
+        spare_parts_describe,
+      </if>
+      <if test="sparePartsCount != null">
+        spare_parts_count,
+      </if>
+      <if test="storeRoomNo != null">
+        store_room_no,
+      </if>
+      <if test="sparePartsCode != null">
+        spare_parts_code,
+      </if>
+      <if test="sparePartsType != null">
+        spare_parts_type,
+      </if>
+      <if test="equipType != null">
+        equip_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="producter != null">
+        producter,
+      </if>
+      <if test="sparetPartsUnit != null">
+        sparet_parts_unit,
+      </if>
+      <if test="factoryNo != null">
+        factory_no,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="creaetUser != null">
+        creaet_user,
+      </if>
+      <if test="equipTypeName != null">
+        equip_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sparePartsNo != null">
+        #{sparePartsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsName != null">
+        #{sparePartsName,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsMode != null">
+        #{sparePartsMode,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsDescribe != null">
+        #{sparePartsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsCount != null">
+        #{sparePartsCount,jdbcType=INTEGER},
+      </if>
+      <if test="storeRoomNo != null">
+        #{storeRoomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsCode != null">
+        #{sparePartsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsType != null">
+        #{sparePartsType,jdbcType=VARCHAR},
+      </if>
+      <if test="equipType != null">
+        #{equipType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="producter != null">
+        #{producter,jdbcType=VARCHAR},
+      </if>
+      <if test="sparetPartsUnit != null">
+        #{sparetPartsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null">
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creaetUser != null">
+        #{creaetUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipTypeName != null">
+        #{equipTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbSparePartsExample" resultType="java.lang.Integer">
+    select count(*) from tb_spare_parts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_spare_parts
+    <set>
+      <if test="record.sparePartsNo != null">
+        spare_parts_no = #{record.sparePartsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparePartsName != null">
+        spare_parts_name = #{record.sparePartsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparePartsMode != null">
+        spare_parts_mode = #{record.sparePartsMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparePartsDescribe != null">
+        spare_parts_describe = #{record.sparePartsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparePartsCount != null">
+        spare_parts_count = #{record.sparePartsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeRoomNo != null">
+        store_room_no = #{record.storeRoomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparePartsCode != null">
+        spare_parts_code = #{record.sparePartsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparePartsType != null">
+        spare_parts_type = #{record.sparePartsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipType != null">
+        equip_type = #{record.equipType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.producter != null">
+        producter = #{record.producter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparetPartsUnit != null">
+        sparet_parts_unit = #{record.sparetPartsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null">
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creaetUser != null">
+        creaet_user = #{record.creaetUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipTypeName != null">
+        equip_type_name = #{record.equipTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_spare_parts
+    set spare_parts_no = #{record.sparePartsNo,jdbcType=VARCHAR},
+      spare_parts_name = #{record.sparePartsName,jdbcType=VARCHAR},
+      spare_parts_mode = #{record.sparePartsMode,jdbcType=VARCHAR},
+      spare_parts_describe = #{record.sparePartsDescribe,jdbcType=VARCHAR},
+      spare_parts_count = #{record.sparePartsCount,jdbcType=INTEGER},
+      store_room_no = #{record.storeRoomNo,jdbcType=VARCHAR},
+      spare_parts_code = #{record.sparePartsCode,jdbcType=VARCHAR},
+      spare_parts_type = #{record.sparePartsType,jdbcType=VARCHAR},
+      equip_type = #{record.equipType,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      producter = #{record.producter,jdbcType=VARCHAR},
+      sparet_parts_unit = #{record.sparetPartsUnit,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      creaet_user = #{record.creaetUser,jdbcType=VARCHAR},
+      equip_type_name = #{record.equipTypeName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbSpareParts">
+    update tb_spare_parts
+    <set>
+      <if test="sparePartsName != null">
+        spare_parts_name = #{sparePartsName,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsMode != null">
+        spare_parts_mode = #{sparePartsMode,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsDescribe != null">
+        spare_parts_describe = #{sparePartsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsCount != null">
+        spare_parts_count = #{sparePartsCount,jdbcType=INTEGER},
+      </if>
+      <if test="storeRoomNo != null">
+        store_room_no = #{storeRoomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsCode != null">
+        spare_parts_code = #{sparePartsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sparePartsType != null">
+        spare_parts_type = #{sparePartsType,jdbcType=VARCHAR},
+      </if>
+      <if test="equipType != null">
+        equip_type = #{equipType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="producter != null">
+        producter = #{producter,jdbcType=VARCHAR},
+      </if>
+      <if test="sparetPartsUnit != null">
+        sparet_parts_unit = #{sparetPartsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null">
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creaetUser != null">
+        creaet_user = #{creaetUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipTypeName != null">
+        equip_type_name = #{equipTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbSpareParts">
+    update tb_spare_parts
+    set spare_parts_name = #{sparePartsName,jdbcType=VARCHAR},
+      spare_parts_mode = #{sparePartsMode,jdbcType=VARCHAR},
+      spare_parts_describe = #{sparePartsDescribe,jdbcType=VARCHAR},
+      spare_parts_count = #{sparePartsCount,jdbcType=INTEGER},
+      store_room_no = #{storeRoomNo,jdbcType=VARCHAR},
+      spare_parts_code = #{sparePartsCode,jdbcType=VARCHAR},
+      spare_parts_type = #{sparePartsType,jdbcType=VARCHAR},
+      equip_type = #{equipType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      producter = #{producter,jdbcType=VARCHAR},
+      sparet_parts_unit = #{sparetPartsUnit,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      creaet_user = #{creaetUser,jdbcType=VARCHAR},
+      equip_type_name = #{equipTypeName,jdbcType=VARCHAR}
+    where spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+  </update>
+
+  <!--自定义 by Hypo  start-->
+  <sql id="where_all_conds">
+    <if test="sparePartsNo != null and sparePartsNo != ''">
+      and spare_parts_no = #{sparePartsNo,jdbcType=VARCHAR}
+    </if>
+    <if test="sparePartsName != null and sparePartsName != ''">
+      and spare_parts_name = #{sparePartsName,jdbcType=VARCHAR}
+    </if>
+    <if test="sparePartsMode != null and sparePartsMode != ''">
+      and spare_parts_mode = #{sparePartsMode,jdbcType=VARCHAR}
+    </if>
+    <if test="sparePartsDescribe != null and sparePartsDescribe != ''">
+      and spare_parts_describe = #{sparePartsDescribe,jdbcType=VARCHAR}
+    </if>
+    <if test="sparePartsCount != null and sparePartsCount != ''">
+      and spare_parts_count = #{sparePartsCount,jdbcType=INTEGER}
+    </if>
+    <if test="storeRoomNo != null and storeRoomNo != ''">
+      and store_room_no = #{storeRoomNo,jdbcType=VARCHAR}
+    </if>
+    <if test="sparePartsCode != null and sparePartsCode != ''">
+      and spare_parts_code = #{sparePartsCode,jdbcType=VARCHAR}
+    </if>
+    <if test="sparePartsType != null and sparePartsType != ''">
+      and spare_parts_type = #{sparePartsType,jdbcType=VARCHAR}
+    </if>
+    <if test="equipType != null and equipType != ''">
+      and equip_type = #{equipType,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null and createTime != ''">
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="producter != null and producter != ''">
+      and producter = #{producter,jdbcType=VARCHAR}
+    </if>
+    <if test="sparetPartsUnit != null and sparetPartsUnit != ''">
+      and sparet_parts_unit = #{sparetPartsUnit,jdbcType=VARCHAR}
+    </if>
+    <if test="factoryNo != null and factoryNo != ''">
+      and factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime != null and startTime != ''">
+      and start_time = #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="creaetUser != null and creaetUser != ''">
+      and creaet_user = #{creaetUser,jdbcType=VARCHAR}
+    </if>
+    <if test="equipTypeName != null and equipTypeName != ''">
+      and equip_type_name = #{equipTypeName,jdbcType=VARCHAR}
+    </if>
+  </sql>
+
+  <select id="selectSparePartsByCond" parameterType="com.ejobim.opplat.domain.TbSpareParts" resultType="com.ejobim.opplat.domain.TbSpareParts">
+    select <include refid="Base_Column_List"/>
+    from tb_spare_parts
+    <where>
+      <include refid="where_all_conds"/>
+    </where>
+  </select>
+
+
+
+
+
+
+  <!--自定义 by Hypo  end-->
+
+
+</mapper>

@@ -1,0 +1,6 @@
+简单粗暴，同时也适用19版本
+直接将补丁拉拽到程序中，重启即可
+
+密码：yixiong
+
+教程地址：https://www.cnblogs.com/yixiongqiang/p/13035699.html

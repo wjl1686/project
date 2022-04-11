@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.cz</groupId>
+  <artifactId>rocketmq-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20200513.131319</timestamp>
+      <buildNumber>29</buildNumber>
+    </snapshot>
+    <lastUpdated>20200601154506</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.0.1-20200513.131319-29</value>
+        <updated>20200513131319</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.0.1-20200513.131319-29</value>
+        <updated>20200513131319</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

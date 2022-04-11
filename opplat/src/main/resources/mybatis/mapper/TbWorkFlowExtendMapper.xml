@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkFlowExtendMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkFlowExtend">
+    <id column="extend_no" jdbcType="VARCHAR" property="extendNo" />
+    <id column="flow_no" jdbcType="VARCHAR" property="flowNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status_index" jdbcType="INTEGER" property="statusIndex" />
+    <result column="status_code_name" jdbcType="VARCHAR" property="statusCodeName" />
+    <result column="valid_status" jdbcType="INTEGER" property="validStatus" />
+    <result column="commit_user" jdbcType="VARCHAR" property="commitUser" />
+    <result column="commit_user_code" jdbcType="VARCHAR" property="commitUserCode" />
+    <result column="next_user" jdbcType="VARCHAR" property="nextUser" />
+    <result column="commit_time" jdbcType="TIMESTAMP" property="commitTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    extend_no, flow_no, create_time, update_time,  status_code_name, valid_status,
+    commit_user, next_user, commit_time, commit_user_code, status_index
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_flow_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtendKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_flow_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+      and flow_no = #{flowNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtendKey">
+    delete from tb_work_flow_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+      and flow_no = #{flowNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtendExample">
+    delete from tb_work_flow_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtend">
+    insert into tb_work_flow_extend (extend_no, flow_no, create_time, 
+      update_time, status_code_name,
+      valid_status, commit_user, next_user, 
+      commit_time, commit_user_code, status_index)
+    values (#{extendNo,jdbcType=VARCHAR}, #{flowNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{statusCodeName,jdbcType=VARCHAR},
+      #{validStatus,jdbcType=INTEGER}, #{commitUser,jdbcType=VARCHAR}, #{nextUser,jdbcType=VARCHAR}, 
+      #{commitTime,jdbcType=TIMESTAMP}, #{commitUserCode,jdbcType=VARCHAR}, #{statusIndex,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtend">
+    insert into tb_work_flow_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="extendNo != null">
+        extend_no,
+      </if>
+      <if test="flowNo != null">
+        flow_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="statusCodeName != null">
+        status_code_name,
+      </if>
+      <if test="validStatus != null">
+        valid_status,
+      </if>
+      <if test="commitUser != null">
+        commit_user,
+      </if>
+      <if test="commitUserCode != null">
+        commit_user_code,
+      </if>
+      <if test="nextUser != null">
+        next_user,
+      </if>
+      <if test="commitTime != null">
+        commit_time,
+      </if>
+      <if test="statusIndex != null">
+        status_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="extendNo != null">
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNo != null">
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusCodeName != null">
+        #{statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="validStatus != null">
+        #{validStatus,jdbcType=INTEGER},
+      </if>
+      <if test="commitUser != null">
+        #{commitUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commitUserCode != null">
+        #{commitUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUser != null">
+        #{nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commitTime != null">
+        #{commitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusIndex != null">
+        #{statusIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtendExample" resultType="java.lang.Integer">
+    select count(*) from tb_work_flow_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_work_flow_extend
+    <set>
+      <if test="record.extendNo != null">
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowNo != null">
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.statusCodeName != null">
+        status_code_name = #{record.statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validStatus != null">
+        valid_status = #{record.validStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.commitUser != null">
+        commit_user = #{record.commitUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commitUserCode != null">
+        commit_user_code = #{record.commitUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextUser != null">
+        next_user = #{record.nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commitTime != null">
+        commit_time = #{record.commitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.statusIndex != null">
+        status_index = #{record.statusIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_work_flow_extend
+    set extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      status_code_name = #{record.statusCodeName,jdbcType=VARCHAR},
+      valid_status = #{record.validStatus,jdbcType=INTEGER},
+      commit_user = #{record.commitUser,jdbcType=VARCHAR},
+      commit_user_code = #{record.commitUserCode,jdbcType=VARCHAR},
+      next_user = #{record.nextUser,jdbcType=VARCHAR},
+      commit_time = #{record.commitTime,jdbcType=TIMESTAMP},
+      status_index = #{record.statusIndex,jdbcType=INTEGER},
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtend">
+    update tb_work_flow_extend
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusCodeName != null">
+        status_code_name = #{statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="validStatus != null">
+        valid_status = #{validStatus,jdbcType=INTEGER},
+      </if>
+      <if test="commitUser != null">
+        commit_user = #{commitUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commitUserCode != null">
+        commit_user_code = #{commitUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUser != null">
+        next_user = #{nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commitTime != null">
+        commit_time = #{commitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusIndex != null">
+        status_index = #{statusIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+      and flow_no = #{flowNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowExtend">
+    update tb_work_flow_extend
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status_index = #{statusIndex,jdbcType=INTEGER},
+      status_code_name = #{statusCodeName,jdbcType=VARCHAR},
+      valid_status = #{validStatus,jdbcType=INTEGER},
+      commit_user = #{commitUser,jdbcType=VARCHAR},
+      commit_user_code = #{commitUserCode,jdbcType=VARCHAR},
+      next_user = #{nextUser,jdbcType=VARCHAR},
+      commit_time = #{commitTime,jdbcType=TIMESTAMP}
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+      and flow_no = #{flowNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

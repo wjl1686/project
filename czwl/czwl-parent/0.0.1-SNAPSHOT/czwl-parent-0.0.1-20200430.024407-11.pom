@@ -1,0 +1,314 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.czwl</groupId>
+    <artifactId>czwl-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+<!--        <module>../user-service-beans</module>-->
+<!--        <module>../user-service-client</module>-->
+<!--        <module>../user-service</module>-->
+<!--        <module>../common-service-beans</module>-->
+<!--        <module>../common-service-client</module>-->
+<!--        <module>../common-service</module>-->
+    </modules>
+    
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+        <edu.version>0.0.1-SNAPSHOT</edu.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
+        <commons-pool2.version>2.6.0</commons-pool2.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <yzf.framework.version>2.0.0-SNAPSHOT</yzf.framework.version>
+        <id.tool.version>1.0.1.RELEASE</id.tool.version>
+        <logback.version>1.2.3</logback.version>
+        <org.slf4j.version>1.7.25</org.slf4j.version>
+        <logstash.version>5.2</logstash.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <guava.version>27.0-jre</guava.version>
+        <apollo.version>1.0.0</apollo.version>
+        <logstash.version>5.0</logstash.version>
+        <company.version>1.0.0-SNAPSHOT</company.version>
+        <lombok.version>1.18.2</lombok.version>
+        <fastjson.version>1.2.51</fastjson.version>
+        <jom.version>2.0.6</jom.version>
+        <joda.time.version>2.9.9</joda.time.version>
+        <httpcomponents.version>4.5.6</httpcomponents.version>
+        <xxl.job.version>2.0.1</xxl.job.version>
+        <skywalking.version>5.0.0-GA</skywalking.version>
+        <dubbo.version>0.2.0</dubbo.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yzf.education</groupId>
+                <artifactId>edu-manage-beans</artifactId>
+                <version>${edu.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yzf</groupId>
+                <artifactId>accounting-common-base</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yzf</groupId>
+                <artifactId>accounting-common-core</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yzf.education</groupId>
+                <artifactId>edu-manage-client</artifactId>
+                <version>${edu.version}</version>
+            </dependency>
+
+            <!-- Apache Commons依赖开始 -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <!-- Apache Commons依赖结束 -->
+
+            <!-- 公共组件依赖开始 -->
+            <dependency>
+                <groupId>com.yzf</groupId>
+                <artifactId>rabbitmq-spring-boot-starter</artifactId>
+                <version>${yzf.framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yzf</groupId>
+                <artifactId>redis-spring-boot-starter</artifactId>
+                <version>2.0.1.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yzf</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${yzf.framework.version}</version>
+            </dependency>
+
+            <!-- logback相关依赖开始 -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${org.slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
+            </dependency>
+            <!-- logback相关依赖结束 -->
+
+            <!-- swagger2相关依赖开始 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <!-- swagger2相关依赖结束 -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom2</artifactId>
+                <version>${jom.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda.time.version}</version>
+            </dependency>
+
+            <!-- httpclien相关依赖开始 -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpcomponents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpcomponents.version}</version>
+            </dependency>
+            <!-- httpclien相关依赖结束 -->
+
+            <!-- apollo相关依赖开始 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+            <!-- apollo相关依赖结束 -->
+
+            <dependency>
+                <groupId>com.yzf</groupId>
+                <artifactId>id.tool</artifactId>
+                <version>${id.tool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl.job.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.2.12</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>maven-snapshots</name>
+            <url>http://129.211.171.155:8189/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>maven-releases</id>
+            <name>maven-releases</name>
+            <url>http://129.211.171.155:8189/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://129.211.171.155:8189/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://129.211.171.155:8189/repository/maven-public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+
+</project>

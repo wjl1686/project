@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbReportModelMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbReportModel">
+    <id column="rm_no" jdbcType="VARCHAR" property="rmNo" />
+    <result column="rm_name" jdbcType="VARCHAR" property="rmName" />
+    <result column="rm_cycle" jdbcType="INTEGER" property="rmCycle" />
+    <result column="rm_create_user" jdbcType="VARCHAR" property="rmCreateUser" />
+    <result column="rm_create_use_name" jdbcType="VARCHAR" property="rmCreateUseName" />
+    <result column="rm_create_time" jdbcType="TIMESTAMP" property="rmCreateTime" />
+    <result column="rm_check_user" jdbcType="VARCHAR" property="rmCheckUser" />
+    <result column="rm_check_user_name" jdbcType="VARCHAR" property="rmCheckUserName" />
+    <result column="rm_check_time" jdbcType="TIMESTAMP" property="rmCheckTime" />
+    <result column="rm_factory_no" jdbcType="VARCHAR" property="rmFactoryNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    rm_no, rm_name, rm_cycle, rm_create_user, rm_create_use_name, rm_create_time, rm_check_user, 
+    rm_check_user_name, rm_check_time, rm_factory_no
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbReportModelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_report_model
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_report_model
+    where rm_no = #{rmNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_report_model
+    where rm_no = #{rmNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbReportModelExample">
+    delete from tb_report_model
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbReportModel">
+    insert into tb_report_model (rm_no, rm_name, rm_cycle, 
+      rm_create_user, rm_create_use_name, rm_create_time, 
+      rm_check_user, rm_check_user_name, rm_check_time, 
+      rm_factory_no)
+    values (#{rmNo,jdbcType=VARCHAR}, #{rmName,jdbcType=VARCHAR}, #{rmCycle,jdbcType=INTEGER}, 
+      #{rmCreateUser,jdbcType=VARCHAR}, #{rmCreateUseName,jdbcType=VARCHAR}, #{rmCreateTime,jdbcType=TIMESTAMP}, 
+      #{rmCheckUser,jdbcType=VARCHAR}, #{rmCheckUserName,jdbcType=VARCHAR}, #{rmCheckTime,jdbcType=TIMESTAMP}, 
+      #{rmFactoryNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbReportModel">
+    insert into tb_report_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rmNo != null">
+        rm_no,
+      </if>
+      <if test="rmName != null">
+        rm_name,
+      </if>
+      <if test="rmCycle != null">
+        rm_cycle,
+      </if>
+      <if test="rmCreateUser != null">
+        rm_create_user,
+      </if>
+      <if test="rmCreateUseName != null">
+        rm_create_use_name,
+      </if>
+      <if test="rmCreateTime != null">
+        rm_create_time,
+      </if>
+      <if test="rmCheckUser != null">
+        rm_check_user,
+      </if>
+      <if test="rmCheckUserName != null">
+        rm_check_user_name,
+      </if>
+      <if test="rmCheckTime != null">
+        rm_check_time,
+      </if>
+      <if test="rmFactoryNo != null">
+        rm_factory_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rmNo != null">
+        #{rmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rmName != null">
+        #{rmName,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCycle != null">
+        #{rmCycle,jdbcType=INTEGER},
+      </if>
+      <if test="rmCreateUser != null">
+        #{rmCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCreateUseName != null">
+        #{rmCreateUseName,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCreateTime != null">
+        #{rmCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmCheckUser != null">
+        #{rmCheckUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCheckUserName != null">
+        #{rmCheckUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCheckTime != null">
+        #{rmCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmFactoryNo != null">
+        #{rmFactoryNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbReportModelExample" resultType="java.lang.Integer">
+    select count(*) from tb_report_model
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_report_model
+    <set>
+      <if test="record.rmNo != null">
+        rm_no = #{record.rmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmName != null">
+        rm_name = #{record.rmName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmCycle != null">
+        rm_cycle = #{record.rmCycle,jdbcType=INTEGER},
+      </if>
+      <if test="record.rmCreateUser != null">
+        rm_create_user = #{record.rmCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmCreateUseName != null">
+        rm_create_use_name = #{record.rmCreateUseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmCreateTime != null">
+        rm_create_time = #{record.rmCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rmCheckUser != null">
+        rm_check_user = #{record.rmCheckUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmCheckUserName != null">
+        rm_check_user_name = #{record.rmCheckUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rmCheckTime != null">
+        rm_check_time = #{record.rmCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rmFactoryNo != null">
+        rm_factory_no = #{record.rmFactoryNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_report_model
+    set rm_no = #{record.rmNo,jdbcType=VARCHAR},
+      rm_name = #{record.rmName,jdbcType=VARCHAR},
+      rm_cycle = #{record.rmCycle,jdbcType=INTEGER},
+      rm_create_user = #{record.rmCreateUser,jdbcType=VARCHAR},
+      rm_create_use_name = #{record.rmCreateUseName,jdbcType=VARCHAR},
+      rm_create_time = #{record.rmCreateTime,jdbcType=TIMESTAMP},
+      rm_check_user = #{record.rmCheckUser,jdbcType=VARCHAR},
+      rm_check_user_name = #{record.rmCheckUserName,jdbcType=VARCHAR},
+      rm_check_time = #{record.rmCheckTime,jdbcType=TIMESTAMP},
+      rm_factory_no = #{record.rmFactoryNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbReportModel">
+    update tb_report_model
+    <set>
+      <if test="rmName != null">
+        rm_name = #{rmName,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCycle != null">
+        rm_cycle = #{rmCycle,jdbcType=INTEGER},
+      </if>
+      <if test="rmCreateUser != null">
+        rm_create_user = #{rmCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCreateUseName != null">
+        rm_create_use_name = #{rmCreateUseName,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCreateTime != null">
+        rm_create_time = #{rmCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmCheckUser != null">
+        rm_check_user = #{rmCheckUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCheckUserName != null">
+        rm_check_user_name = #{rmCheckUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="rmCheckTime != null">
+        rm_check_time = #{rmCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmFactoryNo != null">
+        rm_factory_no = #{rmFactoryNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rm_no = #{rmNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbReportModel">
+    update tb_report_model
+    set rm_name = #{rmName,jdbcType=VARCHAR},
+      rm_cycle = #{rmCycle,jdbcType=INTEGER},
+      rm_create_user = #{rmCreateUser,jdbcType=VARCHAR},
+      rm_create_use_name = #{rmCreateUseName,jdbcType=VARCHAR},
+      rm_create_time = #{rmCreateTime,jdbcType=TIMESTAMP},
+      rm_check_user = #{rmCheckUser,jdbcType=VARCHAR},
+      rm_check_user_name = #{rmCheckUserName,jdbcType=VARCHAR},
+      rm_check_time = #{rmCheckTime,jdbcType=TIMESTAMP},
+      rm_factory_no = #{rmFactoryNo,jdbcType=VARCHAR}
+    where rm_no = #{rmNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

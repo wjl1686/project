@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border:  1px #eee solid;
+        }
+        th{
+            text-align: center;
+            background: #999;
+        }
+        td{
+            text-align: center;
+            background: #eee;
+        }
+        input{
+            width: 100%;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        function  doSubmit() {
+            var columnInputs =  $("input[name='columnInput']");
+            var valueInputs =  $("input[name='valueInput']");
+
+            var obj = {};
+            for(var i=0;i<columnInputs.length;i++){
+                var column = $(columnInputs[i]).val();
+                if(column!=null){
+                    console.log(column);
+                    obj[column] =$(valueInputs[i]).val();
+                }
+            }
+            console.log(obj);
+            var submitType = $("#submitType").val();
+            var url = $("#url").val();
+            $.ajax({
+                url:url,
+                data:obj,
+                type:submitType,
+                dataType:'text',
+                success:function(msg){
+                   alert(msg);
+                }
+
+            })
+        }
+    </script>
+</head>
+<body>
+    <form id="myForm" action="factory/addTbFillFormConfig" method="post">
+    <table style="width:1000px;">
+        <tr>
+            <th colspan="2">接口测试</th>
+        </tr>
+        <tr>
+            <th style="width:300px;">字段</th>
+            <th style="width:700px;">值</th>
+        </tr>
+        <tr>
+            <td>填报人</td>
+            <td><input type="text" name="userNo" value="0de8f419498d4c1dac91b975acdc4959"></td>
+        </tr>
+        <tr>
+            <td>水厂</td>
+            <td><input type="text" name="factoryNo" value="2fee29b539954fc1a9bd505fce3e120c"></td>
+        </tr>
+        <tr>
+            <td>填报配置</td>
+            <td>
+                <textarea  name="configInfo" style="width: 100%;height: 100px;">{"equipArray":[{"equipName":"高压柜","equipNo":"ddce40a8fae64d63bf3b554927888319","fields":[{"timePoint":"1:00","status":0},{"timePoint":"3:00","status":0},{"timePoint":"5:00","status":0},{"timePoint":"7:00","status":0},{"timePoint":"9:00","status":0},{"timePoint":"11:00","status":0},{"timePoint":"13:00","status":0},{"timePoint":"15:00","status":0},{"timePoint":"17:00","status":0},{"timePoint":"19:00","status":0},{"timePoint":"21:00","status":0},{"timePoint":"23:00","status":0}]}],"timeArea":[{"timePoint":"1:00","status":0},{"timePoint":"3:00","status":0},{"timePoint":"5:00","status":0},{"timePoint":"7:00","status":0},{"timePoint":"9:00","status":0},{"timePoint":"11:00","status":0},{"timePoint":"13:00","status":0},{"timePoint":"15:00","status":0},{"timePoint":"17:00","status":0},{"timePoint":"19:00","status":0},{"timePoint":"21:00","status":0},{"timePoint":"23:00","status":0}]}</textarea>
+            </td>
+        </tr>
+
+    </table>
+        <input type="submit" value="提交">
+    </form>
+    <!--<div>-->
+        <!--提交方式-->
+        <!--<select id="submitType">-->
+            <!--<option value="POST" selected>POST</option>-->
+            <!--<option value="GET">GET</option>-->
+        <!--</select>-->
+    <!--</div>-->
+    <!--<input type="text" id="url" placeholder="提交的地址" style="width: 500px;">-->
+    <!--<input type="button" value="提交" onclick="doSubmit()">-->
+</body>
+</html>

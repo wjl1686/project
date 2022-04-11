@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFillFieldMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFillField" >
+    <id column="field_no" property="fieldNo" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="create_user_code" property="createUserCode" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="field_status" property="fieldStatus" jdbcType="INTEGER" />
+    <result column="field_name" property="fieldName" jdbcType="VARCHAR" />
+    <result column="base_field_no" property="baseFieldNo" jdbcType="VARCHAR" />
+    <result column="field_type" property="fieldType" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_code" property="updateUserCode" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    field_no, factory_no, create_user_code, create_user_name, create_time, field_status, 
+    field_name, base_field_no, field_type, update_time, update_user_code, update_user_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFillFieldExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_fill_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fill_field
+    where field_no = #{fieldNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_fill_field
+    where field_no = #{fieldNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFillFieldExample" >
+    delete from tb_fill_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFillField" >
+    insert into tb_fill_field (field_no, factory_no, create_user_code, 
+      create_user_name, create_time, field_status, 
+      field_name, base_field_no, field_type, 
+      update_time, update_user_code, update_user_name
+      )
+    values (#{fieldNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{createUserCode,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{fieldStatus,jdbcType=INTEGER}, 
+      #{fieldName,jdbcType=VARCHAR}, #{baseFieldNo,jdbcType=VARCHAR}, #{fieldType,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUserCode,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFillField" >
+    insert into tb_fill_field
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fieldNo != null" >
+        field_no,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="createUserCode != null" >
+        create_user_code,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="fieldStatus != null" >
+        field_status,
+      </if>
+      <if test="fieldName != null" >
+        field_name,
+      </if>
+      <if test="baseFieldNo != null" >
+        base_field_no,
+      </if>
+      <if test="fieldType != null" >
+        field_type,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserCode != null" >
+        update_user_code,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fieldNo != null" >
+        #{fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserCode != null" >
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldStatus != null" >
+        #{fieldStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFieldNo != null" >
+        #{baseFieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null" >
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFillFieldExample" resultType="java.lang.Integer" >
+    select count(*) from tb_fill_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_fill_field
+    <set >
+      <if test="record.fieldNo != null" >
+        field_no = #{record.fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserCode != null" >
+        create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fieldStatus != null" >
+        field_status = #{record.fieldStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldName != null" >
+        field_name = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseFieldNo != null" >
+        base_field_no = #{record.baseFieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldType != null" >
+        field_type = #{record.fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserCode != null" >
+        update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserName != null" >
+        update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_fill_field
+    set field_no = #{record.fieldNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      field_status = #{record.fieldStatus,jdbcType=INTEGER},
+      field_name = #{record.fieldName,jdbcType=VARCHAR},
+      base_field_no = #{record.baseFieldNo,jdbcType=VARCHAR},
+      field_type = #{record.fieldType,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      update_user_name = #{record.updateUserName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFillField" >
+    update tb_fill_field
+    <set >
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserCode != null" >
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldStatus != null" >
+        field_status = #{fieldStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fieldName != null" >
+        field_name = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFieldNo != null" >
+        base_field_no = #{baseFieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        field_type = #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null" >
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where field_no = #{fieldNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFillField" >
+    update tb_fill_field
+    set factory_no = #{factoryNo,jdbcType=VARCHAR},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      field_status = #{fieldStatus,jdbcType=INTEGER},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      base_field_no = #{baseFieldNo,jdbcType=VARCHAR},
+      field_type = #{fieldType,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR}
+    where field_no = #{fieldNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

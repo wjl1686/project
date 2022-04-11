@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipTaskFileMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipTaskFile" >
+    <id column="of_no" property="ofNo" jdbcType="VARCHAR" />
+    <result column="of_task_no" property="ofTaskNo" jdbcType="VARCHAR" />
+    <result column="of_task_extend_no" property="ofTaskExtendNo" jdbcType="VARCHAR" />
+    <result column="of_task_status" property="ofTaskStatus" jdbcType="INTEGER" />
+    <result column="of_task_status_code" property="ofTaskStatusCode" jdbcType="VARCHAR" />
+    <result column="of_file_name" property="ofFileName" jdbcType="VARCHAR" />
+    <result column="of_file_url" property="ofFileUrl" jdbcType="VARCHAR" />
+    <result column="of_upload_time" property="ofUploadTime" jdbcType="TIMESTAMP" />
+    <result column="of_file_status" property="ofFileStatus" jdbcType="INTEGER" />
+    <result column="of_factory_no" property="ofFactoryNo" jdbcType="VARCHAR" />
+    <result column="of_type" property="ofType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    of_no, of_task_no, of_task_extend_no, of_task_status, of_task_status_code, of_file_name, 
+    of_file_url, of_upload_time, of_file_status, of_factory_no, of_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipTaskFileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_task_file
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_task_file
+    where of_no = #{ofNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_task_file
+    where of_no = #{ofNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipTaskFileExample" >
+    delete from tb_equip_task_file
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipTaskFile" >
+    insert into tb_equip_task_file (of_no, of_task_no, of_task_extend_no, 
+      of_task_status, of_task_status_code, of_file_name, 
+      of_file_url, of_upload_time, of_file_status, 
+      of_factory_no, of_type)
+    values (#{ofNo,jdbcType=VARCHAR}, #{ofTaskNo,jdbcType=VARCHAR}, #{ofTaskExtendNo,jdbcType=VARCHAR}, 
+      #{ofTaskStatus,jdbcType=INTEGER}, #{ofTaskStatusCode,jdbcType=VARCHAR}, #{ofFileName,jdbcType=VARCHAR}, 
+      #{ofFileUrl,jdbcType=VARCHAR}, #{ofUploadTime,jdbcType=TIMESTAMP}, #{ofFileStatus,jdbcType=INTEGER}, 
+      #{ofFactoryNo,jdbcType=VARCHAR}, #{ofType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipTaskFile" >
+    insert into tb_equip_task_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ofNo != null" >
+        of_no,
+      </if>
+      <if test="ofTaskNo != null" >
+        of_task_no,
+      </if>
+      <if test="ofTaskExtendNo != null" >
+        of_task_extend_no,
+      </if>
+      <if test="ofTaskStatus != null" >
+        of_task_status,
+      </if>
+      <if test="ofTaskStatusCode != null" >
+        of_task_status_code,
+      </if>
+      <if test="ofFileName != null" >
+        of_file_name,
+      </if>
+      <if test="ofFileUrl != null" >
+        of_file_url,
+      </if>
+      <if test="ofUploadTime != null" >
+        of_upload_time,
+      </if>
+      <if test="ofFileStatus != null" >
+        of_file_status,
+      </if>
+      <if test="ofFactoryNo != null" >
+        of_factory_no,
+      </if>
+      <if test="ofType != null" >
+        of_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ofNo != null" >
+        #{ofNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofTaskNo != null" >
+        #{ofTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofTaskExtendNo != null" >
+        #{ofTaskExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofTaskStatus != null" >
+        #{ofTaskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofTaskStatusCode != null" >
+        #{ofTaskStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ofFileName != null" >
+        #{ofFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofFileUrl != null" >
+        #{ofFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ofUploadTime != null" >
+        #{ofUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofFileStatus != null" >
+        #{ofFileStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofFactoryNo != null" >
+        #{ofFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofType != null" >
+        #{ofType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipTaskFileExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_task_file
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_task_file
+    <set >
+      <if test="record.ofNo != null" >
+        of_no = #{record.ofNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofTaskNo != null" >
+        of_task_no = #{record.ofTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofTaskExtendNo != null" >
+        of_task_extend_no = #{record.ofTaskExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofTaskStatus != null" >
+        of_task_status = #{record.ofTaskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ofTaskStatusCode != null" >
+        of_task_status_code = #{record.ofTaskStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofFileName != null" >
+        of_file_name = #{record.ofFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofFileUrl != null" >
+        of_file_url = #{record.ofFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofUploadTime != null" >
+        of_upload_time = #{record.ofUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ofFileStatus != null" >
+        of_file_status = #{record.ofFileStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ofFactoryNo != null" >
+        of_factory_no = #{record.ofFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofType != null" >
+        of_type = #{record.ofType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_task_file
+    set of_no = #{record.ofNo,jdbcType=VARCHAR},
+      of_task_no = #{record.ofTaskNo,jdbcType=VARCHAR},
+      of_task_extend_no = #{record.ofTaskExtendNo,jdbcType=VARCHAR},
+      of_task_status = #{record.ofTaskStatus,jdbcType=INTEGER},
+      of_task_status_code = #{record.ofTaskStatusCode,jdbcType=VARCHAR},
+      of_file_name = #{record.ofFileName,jdbcType=VARCHAR},
+      of_file_url = #{record.ofFileUrl,jdbcType=VARCHAR},
+      of_upload_time = #{record.ofUploadTime,jdbcType=TIMESTAMP},
+      of_file_status = #{record.ofFileStatus,jdbcType=INTEGER},
+      of_factory_no = #{record.ofFactoryNo,jdbcType=VARCHAR},
+      of_type = #{record.ofType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipTaskFile" >
+    update tb_equip_task_file
+    <set >
+      <if test="ofTaskNo != null" >
+        of_task_no = #{ofTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofTaskExtendNo != null" >
+        of_task_extend_no = #{ofTaskExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofTaskStatus != null" >
+        of_task_status = #{ofTaskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofTaskStatusCode != null" >
+        of_task_status_code = #{ofTaskStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ofFileName != null" >
+        of_file_name = #{ofFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofFileUrl != null" >
+        of_file_url = #{ofFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ofUploadTime != null" >
+        of_upload_time = #{ofUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofFileStatus != null" >
+        of_file_status = #{ofFileStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofFactoryNo != null" >
+        of_factory_no = #{ofFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ofType != null" >
+        of_type = #{ofType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where of_no = #{ofNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipTaskFile" >
+    update tb_equip_task_file
+    set of_task_no = #{ofTaskNo,jdbcType=VARCHAR},
+      of_task_extend_no = #{ofTaskExtendNo,jdbcType=VARCHAR},
+      of_task_status = #{ofTaskStatus,jdbcType=INTEGER},
+      of_task_status_code = #{ofTaskStatusCode,jdbcType=VARCHAR},
+      of_file_name = #{ofFileName,jdbcType=VARCHAR},
+      of_file_url = #{ofFileUrl,jdbcType=VARCHAR},
+      of_upload_time = #{ofUploadTime,jdbcType=TIMESTAMP},
+      of_file_status = #{ofFileStatus,jdbcType=INTEGER},
+      of_factory_no = #{ofFactoryNo,jdbcType=VARCHAR},
+      of_type = #{ofType,jdbcType=INTEGER}
+    where of_no = #{ofNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

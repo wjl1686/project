@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFillFormFieldMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFillFormField" >
+    <id column="config_no" property="configNo" jdbcType="VARCHAR" />
+    <result column="config_info" property="configInfo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="config_status" property="configStatus" jdbcType="INTEGER" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="field_name" property="fieldName" jdbcType="VARCHAR" />
+    <result column="field_code" property="fieldCode" jdbcType="VARCHAR" />
+    <result column="field_max_value" property="fieldMaxValue" jdbcType="REAL" />
+    <result column="field_min_value" property="fieldMinValue" jdbcType="REAL" />
+    <result column="field_unit" property="fieldUnit" jdbcType="VARCHAR" />
+    <result column="browse_path" property="browsePath" jdbcType="VARCHAR" />
+    <result column="field_type" property="fieldType" jdbcType="INTEGER" />
+    <result column="gyd_no" property="gydNo" jdbcType="VARCHAR" />
+    <result column="equip_no" property="equipNo" jdbcType="VARCHAR" />
+    <result column="fill_type" property="fillType" jdbcType="INTEGER" />
+    <result column="sed_name" property="sedName" jdbcType="VARCHAR" />
+    <association property="fieldExtend" javaType="com.ejobim.opplat.domain.TbFillFormFieldExtend">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+      <result column="type" property="type" jdbcType="INTEGER" />
+      <result column="cycle" property="cycle" jdbcType="INTEGER" />
+      <result column="week" property="week" jdbcType="VARCHAR" />
+      <result column="mouth" property="mouth" jdbcType="VARCHAR" />
+      <result column="config_no" property="configNo" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="vaild_time" property="vaildTime" jdbcType="VARCHAR" />
+    </association>
+    <association property="parentObj" javaType="com.ejobim.opplat.domain.TbSynObject" >
+      <result column="displayName" property="displayname" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    config_no, config_info, create_time, create_person, config_status, factory_no, field_name,
+    field_code, field_max_value, field_min_value, field_unit, browse_path, field_type,
+    gyd_no, equip_no, fill_type, sed_name
+  </sql>
+  <sql id="Base_Extend_Column_List" >
+    id, start_time, type, cycle, week, mouth, config_no, create_time, vaild_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFillFormFieldExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_fill_form_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fill_form_field
+    where config_no = #{configNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_fill_form_field
+    where config_no = #{configNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFillFormFieldExample" >
+    delete from tb_fill_form_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFillFormField" >
+    insert into tb_fill_form_field (config_no, config_info, create_time, 
+      create_person, config_status, factory_no, 
+      field_name, field_code, field_max_value, 
+      field_min_value, field_unit, browse_path, 
+      field_type, gyd_no, equip_no, 
+      fill_type, sed_name)
+    values (#{configNo,jdbcType=VARCHAR}, #{configInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{configStatus,jdbcType=INTEGER}, #{factoryNo,jdbcType=VARCHAR}, 
+      #{fieldName,jdbcType=VARCHAR}, #{fieldCode,jdbcType=VARCHAR}, #{fieldMaxValue,jdbcType=REAL}, 
+      #{fieldMinValue,jdbcType=REAL}, #{fieldUnit,jdbcType=VARCHAR}, #{browsePath,jdbcType=VARCHAR}, 
+      #{fieldType,jdbcType=INTEGER}, #{gydNo,jdbcType=VARCHAR}, #{equipNo,jdbcType=VARCHAR}, 
+      #{fillType,jdbcType=INTEGER}, #{sedName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFillFormField" >
+    insert into tb_fill_form_field
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="configNo != null" >
+        config_no,
+      </if>
+      <if test="configInfo != null" >
+        config_info,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="configStatus != null" >
+        config_status,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="fieldName != null" >
+        field_name,
+      </if>
+      <if test="fieldCode != null" >
+        field_code,
+      </if>
+      <if test="fieldMaxValue != null" >
+        field_max_value,
+      </if>
+      <if test="fieldMinValue != null" >
+        field_min_value,
+      </if>
+      <if test="fieldUnit != null" >
+        field_unit,
+      </if>
+      <if test="browsePath != null" >
+        browse_path,
+      </if>
+      <if test="fieldType != null" >
+        field_type,
+      </if>
+      <if test="gydNo != null" >
+        gyd_no,
+      </if>
+      <if test="equipNo != null" >
+        equip_no,
+      </if>
+      <if test="fillType != null" >
+        fill_type,
+      </if>
+      <if test="sedName != null" >
+        sed_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="configNo != null" >
+        #{configNo,jdbcType=VARCHAR},
+      </if>
+      <if test="configInfo != null" >
+        #{configInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="configStatus != null" >
+        #{configStatus,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null" >
+        #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldMaxValue != null" >
+        #{fieldMaxValue,jdbcType=REAL},
+      </if>
+      <if test="fieldMinValue != null" >
+        #{fieldMinValue,jdbcType=REAL},
+      </if>
+      <if test="fieldUnit != null" >
+        #{fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="browsePath != null" >
+        #{browsePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="gydNo != null" >
+        #{gydNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillType != null" >
+        #{fillType,jdbcType=INTEGER},
+      </if>
+      <if test="sedName != null" >
+        #{sedName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFillFormFieldExample" resultType="java.lang.Integer" >
+    select count(*) from tb_fill_form_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_fill_form_field
+    <set >
+      <if test="record.configNo != null" >
+        config_no = #{record.configNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configInfo != null" >
+        config_info = #{record.configInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createPerson != null" >
+        create_person = #{record.createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configStatus != null" >
+        config_status = #{record.configStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldName != null" >
+        field_name = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldCode != null" >
+        field_code = #{record.fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldMaxValue != null" >
+        field_max_value = #{record.fieldMaxValue,jdbcType=REAL},
+      </if>
+      <if test="record.fieldMinValue != null" >
+        field_min_value = #{record.fieldMinValue,jdbcType=REAL},
+      </if>
+      <if test="record.fieldUnit != null" >
+        field_unit = #{record.fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browsePath != null" >
+        browse_path = #{record.browsePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldType != null" >
+        field_type = #{record.fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="record.gydNo != null" >
+        gyd_no = #{record.gydNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipNo != null" >
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillType != null" >
+        fill_type = #{record.fillType,jdbcType=INTEGER},
+      </if>
+      <if test="record.sedName != null" >
+        sed_name = #{record.sedName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_fill_form_field
+    set config_no = #{record.configNo,jdbcType=VARCHAR},
+      config_info = #{record.configInfo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      config_status = #{record.configStatus,jdbcType=INTEGER},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      field_name = #{record.fieldName,jdbcType=VARCHAR},
+      field_code = #{record.fieldCode,jdbcType=VARCHAR},
+      field_max_value = #{record.fieldMaxValue,jdbcType=REAL},
+      field_min_value = #{record.fieldMinValue,jdbcType=REAL},
+      field_unit = #{record.fieldUnit,jdbcType=VARCHAR},
+      browse_path = #{record.browsePath,jdbcType=VARCHAR},
+      field_type = #{record.fieldType,jdbcType=INTEGER},
+      gyd_no = #{record.gydNo,jdbcType=VARCHAR},
+      equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      fill_type = #{record.fillType,jdbcType=INTEGER},
+      sed_name = #{record.sedName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFillFormField" >
+    update tb_fill_form_field
+    <set >
+      <if test="configInfo != null" >
+        config_info = #{configInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="configStatus != null" >
+        config_status = #{configStatus,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        field_name = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null" >
+        field_code = #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldMaxValue != null" >
+        field_max_value = #{fieldMaxValue,jdbcType=REAL},
+      </if>
+      <if test="fieldMinValue != null" >
+        field_min_value = #{fieldMinValue,jdbcType=REAL},
+      </if>
+      <if test="fieldUnit != null" >
+        field_unit = #{fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="browsePath != null" >
+        browse_path = #{browsePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        field_type = #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="gydNo != null" >
+        gyd_no = #{gydNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        equip_no = #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillType != null" >
+        fill_type = #{fillType,jdbcType=INTEGER},
+      </if>
+      <if test="sedName != null" >
+        sed_name = #{sedName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where config_no = #{configNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFillFormField" >
+    update tb_fill_form_field
+    set config_info = #{configInfo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      config_status = #{configStatus,jdbcType=INTEGER},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      field_name = #{fieldName,jdbcType=VARCHAR},
+      field_code = #{fieldCode,jdbcType=VARCHAR},
+      field_max_value = #{fieldMaxValue,jdbcType=REAL},
+      field_min_value = #{fieldMinValue,jdbcType=REAL},
+      field_unit = #{fieldUnit,jdbcType=VARCHAR},
+      browse_path = #{browsePath,jdbcType=VARCHAR},
+      field_type = #{fieldType,jdbcType=INTEGER},
+      gyd_no = #{gydNo,jdbcType=VARCHAR},
+      equip_no = #{equipNo,jdbcType=VARCHAR},
+      fill_type = #{fillType,jdbcType=INTEGER},
+      sed_name = #{sedName,jdbcType=VARCHAR}
+    where config_no = #{configNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getFieldLists" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select  b.* from tb_object_data a
+    LEFT JOIN tb_fill_form_field b on a.data_uri =b.config_no
+    where a.object_uri=#{uri}
+    <if test="fieldType != null" >
+      and b.field_type=#{fieldType}
+    </if>
+    <if test="fieldType == null" >
+      and b.field_type  is  NOT null
+    </if>
+    <if test="fieldCode != null" >
+      and b.field_code=#{fieldCode}
+    </if>
+    <if test="fieldName != null" >
+      and b.field_name LIKE concat('%',#{fieldName},'%')
+    </if>
+     order by b.field_name
+  </select>
+
+  <select id="getFieldListExtend" parameterType="com.ejobim.opplat.domain.TbFillFormField" resultMap="BaseResultMap" >
+    select a.*, c.*,d.`displayname`  from  tb_fill_form_field  a LEFT JOIN  tb_object_data b on a.`config_no` =b.`data_uri`
+    left join tb_fill_form_field_extend c on a.`config_no` = c.`config_no`
+    left join tb_syn_object d on a.`equip_no` = d.`uri`
+    <where>
+    <if test="configNo != null" >
+      b.object_uri=#{configNo}
+    </if>
+    <if test="fieldType != null" >
+      and a.field_type=#{fieldType}
+    </if>
+      <if test="fieldType == null" >
+        and a.field_type is  NOT null
+      </if>
+    <if test="fieldCode != null" >
+      and a.field_code LIKE concat('%',#{fieldCode},'%')
+    </if>
+    <if test="fieldName != null" >
+      and a.field_name LIKE concat('%',#{fieldName},'%')
+    </if>
+    </where>
+  </select>
+
+  <select id="getFieldListByFactoryNo" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select a.*, c.*,d.`displayname`  from  tb_fill_form_field  a
+    left join tb_fill_form_field_extend c on a.`config_no` = c.`config_no`
+    left join tb_syn_object d on a.`equip_no` = d.`uri`
+    where a.factory_no=#{factoryNo}
+  </select>
+
+  <insert id="insertBatch"  parameterType="java.util.List">
+    insert into tb_fill_form_field (config_no, config_info, create_time,
+    create_person, config_status, factory_no,
+    field_name, field_code, field_max_value,
+    field_min_value, field_unit, browse_path,
+    field_type, gyd_no, equip_no,
+    fill_type, sed_name)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.configNo,jdbcType=VARCHAR}, #{item.configInfo,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+      #{item.createPerson,jdbcType=VARCHAR}, #{item.configStatus,jdbcType=INTEGER}, #{item.factoryNo,jdbcType=VARCHAR},
+      #{item.fieldName,jdbcType=VARCHAR}, #{item.fieldCode,jdbcType=VARCHAR}, #{item.fieldMaxValue,jdbcType=REAL},
+      #{item.fieldMinValue,jdbcType=REAL}, #{item.fieldUnit,jdbcType=VARCHAR}, #{item.browsePath,jdbcType=VARCHAR},
+      #{item.fieldType,jdbcType=INTEGER}, #{item.gydNo,jdbcType=VARCHAR}, #{item.equipNo,jdbcType=VARCHAR},
+      #{item.fillType,jdbcType=INTEGER}, #{item.sedName,jdbcType=VARCHAR})
+    </foreach>
+
+  </insert>
+
+  <select id="selectTbFillFormFieldList" parameterType="com.ejobim.opplat.domain.TbFillFormField" resultMap="BaseResultMap" >
+    select * from  tb_fill_form_field
+    <where>
+      <if test="configNo != null" >
+        config_no=#{configNo}
+      </if>
+      <if test="factoryNo != null" >
+        and factory_no=#{factoryNo}
+      </if>
+    <if test="fieldCode != null" >
+      and field_code=#{fieldCode}
+    </if>
+    <if test="fieldName != null" >
+      and field_name=#{fieldName}
+    </if>
+      <if test="fillType != null" >
+        and fill_type=#{fillType}
+      </if>
+    </where>
+    order by create_time
+  </select>
+</mapper>

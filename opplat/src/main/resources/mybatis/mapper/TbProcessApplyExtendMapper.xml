@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbProcessApplyExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    <id column="process_apply_no" property="processApplyNo" jdbcType="VARCHAR" />
+    <result column="process_no" property="processNo" jdbcType="VARCHAR" />
+    <result column="step_user_name" property="stepUserName" jdbcType="VARCHAR" />
+    <result column="step_user" property="stepUser" jdbcType="VARCHAR" />
+    <result column="step_time" property="stepTime" jdbcType="TIMESTAMP" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="idea" property="idea" jdbcType="VARCHAR" />
+    <result column="vaild_status" property="vaildStatus" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    process_apply_no, process_no, step_user_name, step_user, step_time, step, remark, 
+    idea, vaild_status, create_user, create_user_name, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_process_apply_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_process_apply_extend
+    where process_apply_no = #{processApplyNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_process_apply_extend
+    where process_apply_no = #{processApplyNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtendExample" >
+    delete from tb_process_apply_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    insert into tb_process_apply_extend (process_apply_no, process_no, step_user_name, 
+      step_user, step_time, step, 
+      remark, idea, vaild_status, 
+      create_user, create_user_name, create_time
+      )
+    values (#{processApplyNo,jdbcType=VARCHAR}, #{processNo,jdbcType=VARCHAR}, #{stepUserName,jdbcType=VARCHAR}, 
+      #{stepUser,jdbcType=VARCHAR}, #{stepTime,jdbcType=TIMESTAMP}, #{step,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{idea,jdbcType=VARCHAR}, #{vaildStatus,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    insert into tb_process_apply_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="processApplyNo != null" >
+        process_apply_no,
+      </if>
+      <if test="processNo != null" >
+        process_no,
+      </if>
+      <if test="stepUserName != null" >
+        step_user_name,
+      </if>
+      <if test="stepUser != null" >
+        step_user,
+      </if>
+      <if test="stepTime != null" >
+        step_time,
+      </if>
+      <if test="step != null" >
+        step,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="idea != null" >
+        idea,
+      </if>
+      <if test="vaildStatus != null" >
+        vaild_status,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="processApplyNo != null" >
+        #{processApplyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="processNo != null" >
+        #{processNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stepUserName != null" >
+        #{stepUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="stepUser != null" >
+        #{stepUser,jdbcType=VARCHAR},
+      </if>
+      <if test="stepTime != null" >
+        #{stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="idea != null" >
+        #{idea,jdbcType=VARCHAR},
+      </if>
+      <if test="vaildStatus != null" >
+        #{vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_process_apply_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_process_apply_extend
+    <set >
+      <if test="record.processApplyNo != null" >
+        process_apply_no = #{record.processApplyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processNo != null" >
+        process_no = #{record.processNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepUserName != null" >
+        step_user_name = #{record.stepUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepUser != null" >
+        step_user = #{record.stepUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepTime != null" >
+        step_time = #{record.stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.step != null" >
+        step = #{record.step,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idea != null" >
+        idea = #{record.idea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vaildStatus != null" >
+        vaild_status = #{record.vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_process_apply_extend
+    set process_apply_no = #{record.processApplyNo,jdbcType=VARCHAR},
+      process_no = #{record.processNo,jdbcType=VARCHAR},
+      step_user_name = #{record.stepUserName,jdbcType=VARCHAR},
+      step_user = #{record.stepUser,jdbcType=VARCHAR},
+      step_time = #{record.stepTime,jdbcType=TIMESTAMP},
+      step = #{record.step,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      idea = #{record.idea,jdbcType=VARCHAR},
+      vaild_status = #{record.vaildStatus,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    update tb_process_apply_extend
+    <set >
+      <if test="processNo != null" >
+        process_no = #{processNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stepUserName != null" >
+        step_user_name = #{stepUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="stepUser != null" >
+        step_user = #{stepUser,jdbcType=VARCHAR},
+      </if>
+      <if test="stepTime != null" >
+        step_time = #{stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="step != null" >
+        step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="idea != null" >
+        idea = #{idea,jdbcType=VARCHAR},
+      </if>
+      <if test="vaildStatus != null" >
+        vaild_status = #{vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where process_apply_no = #{processApplyNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    update tb_process_apply_extend
+    set process_no = #{processNo,jdbcType=VARCHAR},
+      step_user_name = #{stepUserName,jdbcType=VARCHAR},
+      step_user = #{stepUser,jdbcType=VARCHAR},
+      step_time = #{stepTime,jdbcType=TIMESTAMP},
+      step = #{step,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      idea = #{idea,jdbcType=VARCHAR},
+      vaild_status = #{vaildStatus,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where process_apply_no = #{processApplyNo,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByProcessNo" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    update tb_process_apply_extend
+    <set >
+      <if test="stepTime != null" >
+        step_time = #{stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="idea != null" >
+        idea = #{idea,jdbcType=VARCHAR},
+      </if>
+      <if test="vaildStatus != null" >
+        vaild_status = #{vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stepUser != null" >
+        step_user = #{stepUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  step = #{step,jdbcType=INTEGER} and process_no = #{processNo,jdbcType=VARCHAR} and vaild_status=1
+  </update>
+
+  <select id="selectByProcessNo" resultMap="BaseResultMap">
+    select  * from  tb_process_apply_extend where  process_no = #{processNo,jdbcType=VARCHAR} and  vaild_status=1 order by step desc
+  </select>
+
+  <update id="updateByCondition" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    update tb_process_apply_extend
+    set step_time = #{stepTime,jdbcType=TIMESTAMP}
+    where  step = #{step,jdbcType=INTEGER} and process_no = #{processNo,jdbcType=VARCHAR} and vaild_status = #{vaildStatus,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByRejectProcessNo" parameterType="com.ejobim.opplat.domain.TbProcessApplyExtend" >
+    update tb_process_apply_extend
+    <set >
+      <if test="stepTime != null" >
+        step_time = #{stepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="idea != null" >
+        idea = #{idea,jdbcType=VARCHAR},
+      </if>
+      <if test="vaildStatus != null" >
+        vaild_status = #{vaildStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stepUser != null" >
+        step_user = #{stepUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  vaild_status =1 and step = #{step,jdbcType=INTEGER} and process_no = #{processNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

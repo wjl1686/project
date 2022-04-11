@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkFlow" >
+    <id column="flow_no" property="flowNo" jdbcType="VARCHAR" />
+    <result column="work_flow_config_no" property="workFlowConfigNo" jdbcType="VARCHAR" />
+    <result column="org_no" property="orgNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="next_user" property="nextUser" jdbcType="VARCHAR" />
+    <result column="next_user_name" property="nextUserName" jdbcType="VARCHAR" />
+    <result column="status_index" property="statusIndex" jdbcType="INTEGER" />
+    <result column="status_code_name" property="statusCodeName" jdbcType="VARCHAR" />
+    <result column="next_status_index" property="nextStatusIndex" jdbcType="INTEGER" />
+    <result column="next_status_code_name" property="nextStatusCodeName" jdbcType="VARCHAR" />
+    <result column="next_plat" property="nextPlat" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    flow_no, work_flow_config_no, create_time, create_user, create_user_name, next_user, 
+    next_user_name, status_code_name, next_status_code_name,
+    next_plat, update_time, delete_flag, org_no,status_index, next_status_index
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbWorkFlowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_flow
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_work_flow
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowExample" >
+    delete from tb_work_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkFlow" >
+    insert into tb_work_flow (flow_no, work_flow_config_no, create_time, 
+      create_user, create_user_name, next_user, 
+      next_user_name, status_code_name, next_status_code_name, next_plat,
+      update_time, delete_flag, org_no,status_index,next_status_index)
+    values (#{flowNo,jdbcType=VARCHAR}, #{workFlowConfigNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{nextUser,jdbcType=VARCHAR}, 
+      #{nextUserName,jdbcType=VARCHAR}, #{statusCodeName,jdbcType=VARCHAR},
+      #{nextStatusCodeName,jdbcType=VARCHAR}, #{nextPlat,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{orgNo,jdbcType=VARCHAR},
+      #{statusIndex,jdbcType=INTEGER}, #{nextStatusIndex,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkFlow" >
+    insert into tb_work_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flowNo != null" >
+        flow_no,
+      </if>
+      <if test="workFlowConfigNo != null" >
+        work_flow_config_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="nextUser != null" >
+        next_user,
+      </if>
+      <if test="nextUserName != null" >
+        next_user_name,
+      </if>
+      <if test="statusCodeName != null" >
+        status_code_name,
+      </if>
+      <if test="nextStatusCodeName != null" >
+        next_status_code_name,
+      </if>
+      <if test="nextPlat != null" >
+        next_plat,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="orgNo != null" >
+        org_no,
+      </if>
+      <if test="statusIndex != null" >
+        status_index,
+      </if>
+      <if test="nextStatusIndex != null" >
+        next_status_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flowNo != null" >
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workFlowConfigNo != null" >
+        #{workFlowConfigNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUser != null" >
+        #{nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUserName != null" >
+        #{nextUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCodeName != null" >
+        #{statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStatusCodeName != null" >
+        #{nextStatusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextPlat != null" >
+        #{nextPlat,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orgNo != null" >
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statusIndex != null" >
+        #{statusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nextStatusIndex != null" >
+        #{nextStatusIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowExample" resultType="java.lang.Integer" >
+    select count(*) from tb_work_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_work_flow
+    <set >
+      <if test="record.flowNo != null" >
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workFlowConfigNo != null" >
+        work_flow_config_no = #{record.workFlowConfigNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextUser != null" >
+        next_user = #{record.nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextUserName != null" >
+        next_user_name = #{record.nextUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCodeName != null" >
+        status_code_name = #{record.statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextStatusCodeName != null" >
+        next_status_code_name = #{record.nextStatusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextPlat != null" >
+        next_plat = #{record.nextPlat,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgNo != null" >
+        org_no = #{record.orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusIndex != null" >
+        status_index = #{record.statusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextStatusIndex != null" >
+        next_status_index = #{record.nextStatusIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_work_flow
+    set flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      work_flow_config_no = #{record.workFlowConfigNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      next_user = #{record.nextUser,jdbcType=VARCHAR},
+      next_user_name = #{record.nextUserName,jdbcType=VARCHAR},
+      status_code_name = #{record.statusCodeName,jdbcType=VARCHAR},
+      next_status_code_name = #{record.nextStatusCodeName,jdbcType=VARCHAR},
+      next_plat = #{record.nextPlat,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      status_index = #{record.statusIndex,jdbcType=INTEGER},
+      next_status_index = #{record.nextStatusIndex,jdbcType=INTEGER},
+      org_no = #{record.orgNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkFlow" >
+    update tb_work_flow
+    <set >
+      <if test="workFlowConfigNo != null" >
+        work_flow_config_no = #{workFlowConfigNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUser != null" >
+        next_user = #{nextUser,jdbcType=VARCHAR},
+      </if>
+      <if test="nextUserName != null" >
+        next_user_name = #{nextUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCodeName != null" >
+        status_code_name = #{statusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStatusCodeName != null" >
+        next_status_code_name = #{nextStatusCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextPlat != null" >
+        next_plat = #{nextPlat,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="statusIndex != null" >
+        status_index = #{statusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nextStatusIndex != null" >
+        next_status_index = #{nextStatusIndex,jdbcType=INTEGER},
+      </if>
+      <if test="orgNo != null" >
+        org_no = #{orgNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlow" >
+    update tb_work_flow
+    set work_flow_config_no = #{workFlowConfigNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      next_user = #{nextUser,jdbcType=VARCHAR},
+      next_user_name = #{nextUserName,jdbcType=VARCHAR},
+      status_code_name = #{statusCodeName,jdbcType=VARCHAR},
+      next_status_code_name = #{nextStatusCodeName,jdbcType=VARCHAR},
+      next_plat = #{nextPlat,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      status_index = #{statusIndex,jdbcType=INTEGER},
+      next_status_index = #{nextStatusIndex,jdbcType=INTEGER},
+      org_no = #{orgNo,jdbcType=VARCHAR},
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

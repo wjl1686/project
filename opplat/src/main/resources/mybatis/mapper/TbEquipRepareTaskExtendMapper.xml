@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipRepareTaskExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipRepareTaskExtend" >
+    <id column="task_no" property="taskNo" jdbcType="VARCHAR" />
+    <result column="extend_no" property="extendNo" jdbcType="VARCHAR" />
+    <result column="sparepart_lists" property="sparepartLists" jdbcType="VARCHAR" />
+    <result column="repare_content" property="repareContent" jdbcType="VARCHAR" />
+    <result column="repare_pictures" property="reparePictures" jdbcType="VARCHAR" />
+    <result column="repare_video" property="repareVideo" jdbcType="VARCHAR" />
+    <result column="repare_appearance_ok" property="repareAppearanceOk" jdbcType="INTEGER" />
+    <result column="repare_conversion_ok" property="repareConversionOk" jdbcType="INTEGER" />
+    <result column="repare_sound_ok" property="repareSoundOk" jdbcType="INTEGER" />
+    <result column="repare_temp_ok" property="repareTempOk" jdbcType="INTEGER" />
+    <result column="repare_sanitation_ok" property="repareSanitationOk" jdbcType="INTEGER" />
+    <result column="repare_electric_current" property="repareElectricCurrent" jdbcType="INTEGER" />
+    <result column="deails_conclusion" property="deailsConclusion" jdbcType="VARCHAR" />
+    <result column="empirical_analysis" property="empiricalAnalysis" jdbcType="VARCHAR" />
+    <result column="follow_decision" property="followDecision" jdbcType="VARCHAR" />
+    <result column="detail_file_no" property="detailFileNo" jdbcType="VARCHAR" />
+    <result column="detail_amount" property="detailAmount" jdbcType="DECIMAL" />
+    <result column="detail_party" property="detailParty" jdbcType="VARCHAR" />
+    <result column="repare_addon" property="repareAddon" jdbcType="VARCHAR" />
+    <result column="repare_chart_attach" property="repareChartAttach" jdbcType="VARCHAR" />
+    <result column="repare_report_jun" property="repareReportJun" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    task_no, extend_no, sparepart_lists, repare_content, repare_pictures, repare_video, 
+    repare_appearance_ok, repare_conversion_ok, repare_sound_ok, repare_temp_ok, repare_electric_current, 
+    deails_conclusion, empirical_analysis, follow_decision, detail_file_no, detail_amount, 
+    detail_party, repare_addon, repare_chart_attach, repare_report_jun, repare_sanitation_ok
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_repare_task_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_repare_task_extend
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_repare_task_extend
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtendExample" >
+    delete from tb_equip_repare_task_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtend" >
+    insert into tb_equip_repare_task_extend (task_no, extend_no, sparepart_lists, 
+      repare_content, repare_pictures, repare_video, 
+      repare_appearance_ok, repare_conversion_ok, 
+      repare_sound_ok, repare_temp_ok, repare_electric_current, 
+      deails_conclusion, empirical_analysis, follow_decision, 
+      detail_file_no, detail_amount, detail_party, 
+      repare_addon, repare_chart_attach, repare_report_jun,
+      repare_sanitation_ok
+      )
+    values (#{taskNo,jdbcType=VARCHAR}, #{extendNo,jdbcType=VARCHAR}, #{sparepartLists,jdbcType=VARCHAR}, 
+      #{repareContent,jdbcType=VARCHAR}, #{reparePictures,jdbcType=VARCHAR}, #{repareVideo,jdbcType=VARCHAR}, 
+      #{repareAppearanceOk,jdbcType=INTEGER}, #{repareConversionOk,jdbcType=INTEGER}, 
+      #{repareSoundOk,jdbcType=INTEGER}, #{repareTempOk,jdbcType=INTEGER}, #{repareElectricCurrent,jdbcType=INTEGER}, 
+      #{deailsConclusion,jdbcType=VARCHAR}, #{empiricalAnalysis,jdbcType=VARCHAR}, #{followDecision,jdbcType=VARCHAR}, 
+      #{detailFileNo,jdbcType=VARCHAR}, #{detailAmount,jdbcType=DECIMAL}, #{detailParty,jdbcType=VARCHAR}, 
+      #{repareAddon,jdbcType=VARCHAR}, #{repareChartAttach,jdbcType=VARCHAR}, #{repareReportJun,jdbcType=VARCHAR},
+      #{repareSanitationOk,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtend" >
+    insert into tb_equip_repare_task_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskNo != null" >
+        task_no,
+      </if>
+      <if test="extendNo != null" >
+        extend_no,
+      </if>
+      <if test="sparepartLists != null" >
+        sparepart_lists,
+      </if>
+      <if test="repareContent != null" >
+        repare_content,
+      </if>
+      <if test="reparePictures != null" >
+        repare_pictures,
+      </if>
+      <if test="repareVideo != null" >
+        repare_video,
+      </if>
+      <if test="repareAppearanceOk != null" >
+        repare_appearance_ok,
+      </if>
+      <if test="repareConversionOk != null" >
+        repare_conversion_ok,
+      </if>
+      <if test="repareSoundOk != null" >
+        repare_sound_ok,
+      </if>
+      <if test="repareTempOk != null" >
+        repare_temp_ok,
+      </if>
+      <if test="repareElectricCurrent != null" >
+        repare_electric_current,
+      </if>
+      <if test="deailsConclusion != null" >
+        deails_conclusion,
+      </if>
+      <if test="empiricalAnalysis != null" >
+        empirical_analysis,
+      </if>
+      <if test="followDecision != null" >
+        follow_decision,
+      </if>
+      <if test="detailFileNo != null" >
+        detail_file_no,
+      </if>
+      <if test="detailAmount != null" >
+        detail_amount,
+      </if>
+      <if test="detailParty != null" >
+        detail_party,
+      </if>
+      <if test="repareAddon != null" >
+        repare_addon,
+      </if>
+      <if test="repareChartAttach != null" >
+        repare_chart_attach,
+      </if>
+      <if test="repareReportJun != null" >
+        repare_report_jun,
+      </if>
+      <if test="repareSanitationOk != null" >
+        repare_sanitation_ok,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskNo != null" >
+        #{taskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendNo != null" >
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sparepartLists != null" >
+        #{sparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="repareContent != null" >
+        #{repareContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reparePictures != null" >
+        #{reparePictures,jdbcType=VARCHAR},
+      </if>
+      <if test="repareVideo != null" >
+        #{repareVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="repareAppearanceOk != null" >
+        #{repareAppearanceOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareConversionOk != null" >
+        #{repareConversionOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareSoundOk != null" >
+        #{repareSoundOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareTempOk != null" >
+        #{repareTempOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareElectricCurrent != null" >
+        #{repareElectricCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="deailsConclusion != null" >
+        #{deailsConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="empiricalAnalysis != null" >
+        #{empiricalAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="followDecision != null" >
+        #{followDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="detailFileNo != null" >
+        #{detailFileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAmount != null" >
+        #{detailAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="detailParty != null" >
+        #{detailParty,jdbcType=VARCHAR},
+      </if>
+      <if test="repareAddon != null" >
+        #{repareAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="repareChartAttach != null" >
+        #{repareChartAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="repareReportJun != null" >
+        #{repareReportJun,jdbcType=VARCHAR},
+      </if>
+      <if test="repareSanitationOk != null" >
+        #{repareSanitationOk,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_repare_task_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_repare_task_extend
+    <set >
+      <if test="record.taskNo != null" >
+        task_no = #{record.taskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendNo != null" >
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sparepartLists != null" >
+        sparepart_lists = #{record.sparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repareContent != null" >
+        repare_content = #{record.repareContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reparePictures != null" >
+        repare_pictures = #{record.reparePictures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repareVideo != null" >
+        repare_video = #{record.repareVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repareAppearanceOk != null" >
+        repare_appearance_ok = #{record.repareAppearanceOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.repareConversionOk != null" >
+        repare_conversion_ok = #{record.repareConversionOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.repareSoundOk != null" >
+        repare_sound_ok = #{record.repareSoundOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.repareTempOk != null" >
+        repare_temp_ok = #{record.repareTempOk,jdbcType=INTEGER},
+      </if>
+      <if test="record.repareElectricCurrent != null" >
+        repare_electric_current = #{record.repareElectricCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="record.deailsConclusion != null" >
+        deails_conclusion = #{record.deailsConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empiricalAnalysis != null" >
+        empirical_analysis = #{record.empiricalAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.followDecision != null" >
+        follow_decision = #{record.followDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailFileNo != null" >
+        detail_file_no = #{record.detailFileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAmount != null" >
+        detail_amount = #{record.detailAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.detailParty != null" >
+        detail_party = #{record.detailParty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repareAddon != null" >
+        repare_addon = #{record.repareAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repareChartAttach != null" >
+        repare_chart_attach = #{record.repareChartAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repareReportJun != null" >
+        repare_report_jun = #{record.repareReportJun,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_repare_task_extend
+    set task_no = #{record.taskNo,jdbcType=VARCHAR},
+      extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      sparepart_lists = #{record.sparepartLists,jdbcType=VARCHAR},
+      repare_content = #{record.repareContent,jdbcType=VARCHAR},
+      repare_pictures = #{record.reparePictures,jdbcType=VARCHAR},
+      repare_video = #{record.repareVideo,jdbcType=VARCHAR},
+      repare_appearance_ok = #{record.repareAppearanceOk,jdbcType=INTEGER},
+      repare_conversion_ok = #{record.repareConversionOk,jdbcType=INTEGER},
+      repare_sound_ok = #{record.repareSoundOk,jdbcType=INTEGER},
+      repare_temp_ok = #{record.repareTempOk,jdbcType=INTEGER},
+      repare_electric_current = #{record.repareElectricCurrent,jdbcType=INTEGER},
+      deails_conclusion = #{record.deailsConclusion,jdbcType=VARCHAR},
+      empirical_analysis = #{record.empiricalAnalysis,jdbcType=VARCHAR},
+      follow_decision = #{record.followDecision,jdbcType=VARCHAR},
+      detail_file_no = #{record.detailFileNo,jdbcType=VARCHAR},
+      detail_amount = #{record.detailAmount,jdbcType=DECIMAL},
+      detail_party = #{record.detailParty,jdbcType=VARCHAR},
+      repare_addon = #{record.repareAddon,jdbcType=VARCHAR},
+      repare_chart_attach = #{record.repareChartAttach,jdbcType=VARCHAR},
+      repare_report_jun = #{record.repareReportJun,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtend" >
+    update tb_equip_repare_task_extend
+    <set >
+      <if test="extendNo != null" >
+        extend_no = #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sparepartLists != null" >
+        sparepart_lists = #{sparepartLists,jdbcType=VARCHAR},
+      </if>
+      <if test="repareContent != null" >
+        repare_content = #{repareContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reparePictures != null" >
+        repare_pictures = #{reparePictures,jdbcType=VARCHAR},
+      </if>
+      <if test="repareVideo != null" >
+        repare_video = #{repareVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="repareAppearanceOk != null" >
+        repare_appearance_ok = #{repareAppearanceOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareConversionOk != null" >
+        repare_conversion_ok = #{repareConversionOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareSoundOk != null" >
+        repare_sound_ok = #{repareSoundOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareTempOk != null" >
+        repare_temp_ok = #{repareTempOk,jdbcType=INTEGER},
+      </if>
+      <if test="repareElectricCurrent != null" >
+        repare_electric_current = #{repareElectricCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="deailsConclusion != null" >
+        deails_conclusion = #{deailsConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="empiricalAnalysis != null" >
+        empirical_analysis = #{empiricalAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="followDecision != null" >
+        follow_decision = #{followDecision,jdbcType=VARCHAR},
+      </if>
+      <if test="detailFileNo != null" >
+        detail_file_no = #{detailFileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAmount != null" >
+        detail_amount = #{detailAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="detailParty != null" >
+        detail_party = #{detailParty,jdbcType=VARCHAR},
+      </if>
+      <if test="repareAddon != null" >
+        repare_addon = #{repareAddon,jdbcType=VARCHAR},
+      </if>
+      <if test="repareChartAttach != null" >
+        repare_chart_attach = #{repareChartAttach,jdbcType=VARCHAR},
+      </if>
+      <if test="repareReportJun != null" >
+        repare_report_jun = #{repareReportJun,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipRepareTaskExtend" >
+    update tb_equip_repare_task_extend
+    set extend_no = #{extendNo,jdbcType=VARCHAR},
+      sparepart_lists = #{sparepartLists,jdbcType=VARCHAR},
+      repare_content = #{repareContent,jdbcType=VARCHAR},
+      repare_pictures = #{reparePictures,jdbcType=VARCHAR},
+      repare_video = #{repareVideo,jdbcType=VARCHAR},
+      repare_appearance_ok = #{repareAppearanceOk,jdbcType=INTEGER},
+      repare_conversion_ok = #{repareConversionOk,jdbcType=INTEGER},
+      repare_sound_ok = #{repareSoundOk,jdbcType=INTEGER},
+      repare_temp_ok = #{repareTempOk,jdbcType=INTEGER},
+      repare_electric_current = #{repareElectricCurrent,jdbcType=INTEGER},
+      deails_conclusion = #{deailsConclusion,jdbcType=VARCHAR},
+      empirical_analysis = #{empiricalAnalysis,jdbcType=VARCHAR},
+      follow_decision = #{followDecision,jdbcType=VARCHAR},
+      detail_file_no = #{detailFileNo,jdbcType=VARCHAR},
+      detail_amount = #{detailAmount,jdbcType=DECIMAL},
+      detail_party = #{detailParty,jdbcType=VARCHAR},
+      repare_addon = #{repareAddon,jdbcType=VARCHAR},
+      repare_chart_attach = #{repareChartAttach,jdbcType=VARCHAR},
+      repare_report_jun = #{repareReportJun,jdbcType=VARCHAR}
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

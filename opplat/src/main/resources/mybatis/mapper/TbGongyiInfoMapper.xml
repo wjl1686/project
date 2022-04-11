@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbGongyiInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbGongyiInfo">
+    <id column="gongyi_no" jdbcType="VARCHAR" property="gongyiNo" />
+    <result column="gongyi_name" jdbcType="VARCHAR" property="gongyiName" />
+    <result column="gongyi_create_user" jdbcType="VARCHAR" property="gongyiCreateUser" />
+    <result column="gongyi_create_time" jdbcType="TIMESTAMP" property="gongyiCreateTime" />
+    <result column="gongyi_update_user" jdbcType="VARCHAR" property="gongyiUpdateUser" />
+    <result column="gongyi_updtate_time" jdbcType="TIMESTAMP" property="gongyiUpdtateTime" />
+    <result column="gongyi_factory_no" jdbcType="VARCHAR" property="gongyiFactoryNo" />
+    <result column="gongyi_index" jdbcType="INTEGER" property="gongyiIndex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    gongyi_no, gongyi_name, gongyi_create_user, gongyi_create_time, gongyi_update_user, 
+    gongyi_updtate_time, gongyi_factory_no, gongyi_index
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbGongyiInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_gongyi_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_gongyi_info
+    where gongyi_no = #{gongyiNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_gongyi_info
+    where gongyi_no = #{gongyiNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbGongyiInfoExample">
+    delete from tb_gongyi_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbGongyiInfo">
+    insert into tb_gongyi_info (gongyi_no, gongyi_name, gongyi_create_user, 
+      gongyi_create_time, gongyi_update_user, gongyi_updtate_time, 
+      gongyi_factory_no, gongyi_index)
+    values (#{gongyiNo,jdbcType=VARCHAR}, #{gongyiName,jdbcType=VARCHAR}, #{gongyiCreateUser,jdbcType=VARCHAR}, 
+      #{gongyiCreateTime,jdbcType=TIMESTAMP}, #{gongyiUpdateUser,jdbcType=VARCHAR}, #{gongyiUpdtateTime,jdbcType=TIMESTAMP}, 
+      #{gongyiFactoryNo,jdbcType=VARCHAR}, #{gongyiIndex,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbGongyiInfo">
+    insert into tb_gongyi_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gongyiNo != null">
+        gongyi_no,
+      </if>
+      <if test="gongyiName != null">
+        gongyi_name,
+      </if>
+      <if test="gongyiCreateUser != null">
+        gongyi_create_user,
+      </if>
+      <if test="gongyiCreateTime != null">
+        gongyi_create_time,
+      </if>
+      <if test="gongyiUpdateUser != null">
+        gongyi_update_user,
+      </if>
+      <if test="gongyiUpdtateTime != null">
+        gongyi_updtate_time,
+      </if>
+      <if test="gongyiFactoryNo != null">
+        gongyi_factory_no,
+      </if>
+      <if test="gongyiIndex != null">
+        gongyi_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gongyiNo != null">
+        #{gongyiNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiName != null">
+        #{gongyiName,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiCreateUser != null">
+        #{gongyiCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiCreateTime != null">
+        #{gongyiCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gongyiUpdateUser != null">
+        #{gongyiUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiUpdtateTime != null">
+        #{gongyiUpdtateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gongyiFactoryNo != null">
+        #{gongyiFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiIndex != null">
+        #{gongyiIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbGongyiInfoExample" resultType="java.lang.Integer">
+    select count(*) from tb_gongyi_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_gongyi_info
+    <set>
+      <if test="record.gongyiNo != null">
+        gongyi_no = #{record.gongyiNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gongyiName != null">
+        gongyi_name = #{record.gongyiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gongyiCreateUser != null">
+        gongyi_create_user = #{record.gongyiCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gongyiCreateTime != null">
+        gongyi_create_time = #{record.gongyiCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gongyiUpdateUser != null">
+        gongyi_update_user = #{record.gongyiUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gongyiUpdtateTime != null">
+        gongyi_updtate_time = #{record.gongyiUpdtateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gongyiFactoryNo != null">
+        gongyi_factory_no = #{record.gongyiFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gongyiIndex != null">
+        gongyi_index = #{record.gongyiIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_gongyi_info
+    set gongyi_no = #{record.gongyiNo,jdbcType=VARCHAR},
+      gongyi_name = #{record.gongyiName,jdbcType=VARCHAR},
+      gongyi_create_user = #{record.gongyiCreateUser,jdbcType=VARCHAR},
+      gongyi_create_time = #{record.gongyiCreateTime,jdbcType=TIMESTAMP},
+      gongyi_update_user = #{record.gongyiUpdateUser,jdbcType=VARCHAR},
+      gongyi_updtate_time = #{record.gongyiUpdtateTime,jdbcType=TIMESTAMP},
+      gongyi_factory_no = #{record.gongyiFactoryNo,jdbcType=VARCHAR},
+      gongyi_index = #{record.gongyiIndex,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbGongyiInfo">
+    update tb_gongyi_info
+    <set>
+      <if test="gongyiName != null">
+        gongyi_name = #{gongyiName,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiCreateUser != null">
+        gongyi_create_user = #{gongyiCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiCreateTime != null">
+        gongyi_create_time = #{gongyiCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gongyiUpdateUser != null">
+        gongyi_update_user = #{gongyiUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiUpdtateTime != null">
+        gongyi_updtate_time = #{gongyiUpdtateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gongyiFactoryNo != null">
+        gongyi_factory_no = #{gongyiFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gongyiIndex != null">
+        gongyi_index = #{gongyiIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gongyi_no = #{gongyiNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbGongyiInfo">
+    update tb_gongyi_info
+    set gongyi_name = #{gongyiName,jdbcType=VARCHAR},
+      gongyi_create_user = #{gongyiCreateUser,jdbcType=VARCHAR},
+      gongyi_create_time = #{gongyiCreateTime,jdbcType=TIMESTAMP},
+      gongyi_update_user = #{gongyiUpdateUser,jdbcType=VARCHAR},
+      gongyi_updtate_time = #{gongyiUpdtateTime,jdbcType=TIMESTAMP},
+      gongyi_factory_no = #{gongyiFactoryNo,jdbcType=VARCHAR},
+      gongyi_index = #{gongyiIndex,jdbcType=INTEGER}
+    where gongyi_no = #{gongyiNo,jdbcType=VARCHAR}
+  </update>
+    
+    <select id ="getCheckGongyiList" parameterType="com.ejobim.opplat.domain.TbGongyiInfo" resultMap="BaseResultMap">
+      select *  from tb_gongyi_info where (gongyi_factory_no = #{gongyiFactoryNo,jdbcType=VARCHAR}) and  (( gongyi_index = #{gongyiIndex,jdbcType=INTEGER} and gongyi_name = #{gongyiName,jdbcType=VARCHAR} ) 
+      or( gongyi_index = #{gongyiIndex,jdbcType=INTEGER}) 
+      or( gongyi_name = #{gongyiName,jdbcType=VARCHAR}))
+    </select>
+</mapper>

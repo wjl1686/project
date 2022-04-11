@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkFlowConfigMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkFlowConfig">
+    <id column="flow_no" jdbcType="VARCHAR" property="flowNo" />
+    <result column="flow_name" jdbcType="VARCHAR" property="flowName" />
+    <result column="org_no" jdbcType="VARCHAR" property="orgNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+    <result column="flow_code" jdbcType="VARCHAR" property="flowCode" />
+    <result column="last_flow_code" jdbcType="VARCHAR" property="lastFlowCode" />
+    <result column="next_flow_code" jdbcType="VARCHAR" property="nextFlowCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    flow_no, flow_name, org_no, create_time, create_user, update_time, update_user, create_user_name, 
+    update_user_name, flow_code, last_flow_code, next_flow_code
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_flow_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_flow_config
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_work_flow_config
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigExample">
+    delete from tb_work_flow_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfig">
+    insert into tb_work_flow_config (flow_no, flow_name, org_no, 
+      create_time, create_user, update_time, 
+      update_user, create_user_name, update_user_name, 
+      flow_code, last_flow_code, next_flow_code)
+    values (#{flowNo,jdbcType=VARCHAR}, #{flowName,jdbcType=VARCHAR}, #{orgNo,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, 
+      #{flowCode,jdbcType=VARCHAR},  #{lastFlowCode,jdbcType=VARCHAR},  #{nextFlowCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfig">
+    insert into tb_work_flow_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flowNo != null">
+        flow_no,
+      </if>
+      <if test="flowName != null">
+        flow_name,
+      </if>
+      <if test="orgNo != null">
+        org_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="updateUserName != null">
+        update_user_name,
+      </if>
+      <if test="flowCode != null">
+        flow_code,
+      </if>
+      <if test="lastFlowCode != null">
+        last_flow_code,
+      </if>
+      <if test="nextFlowCode != null">
+        next_flow_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flowNo != null">
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null">
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null">
+        #{flowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFlowCode != null">
+        #{lastFlowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextFlowCode != null">
+        #{nextFlowCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigExample" resultType="java.lang.Integer">
+    select count(*) from tb_work_flow_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_work_flow_config
+    <set>
+      <if test="record.flowNo != null">
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowName != null">
+        flow_name = #{record.flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgNo != null">
+        org_no = #{record.orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null">
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserName != null">
+        update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCode != null">
+        flow_code = #{record.flowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastFlowCode != null">
+        last_flow_code = #{record.lastFlowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextFlowCode != null">
+        next_flow_code = #{record.nextFlowCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_work_flow_config
+    set flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      flow_name = #{record.flowName,jdbcType=VARCHAR},
+      org_no = #{record.orgNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      flow_code = #{record.flowCode,jdbcType=VARCHAR},
+      last_flow_code = #{record.lastFlowCode,jdbcType=VARCHAR},
+      next_flow_code = #{record.nextFlowCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfig">
+    update tb_work_flow_config
+    <set>
+      <if test="flowName != null">
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        org_no = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null">
+        flow_code = #{flowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFlowCode != null">
+        last_flow_code = #{lastFlowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextFlowCode != null">
+        next_flow_code = #{nextFlowCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfig">
+    update tb_work_flow_config
+    set flow_name = #{flowName,jdbcType=VARCHAR},
+      org_no = #{orgNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      flow_code = #{flowCode,jdbcType=VARCHAR},
+      last_flow_code = #{lastFlowCode,jdbcType=VARCHAR},
+      next_flow_code = #{nextFlowCode,jdbcType=VARCHAR}
+    where flow_no = #{flowNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

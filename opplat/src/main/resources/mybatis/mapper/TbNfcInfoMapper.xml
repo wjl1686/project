@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbNfcInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbNfcInfo" >
+    <id column="nfc_no" property="nfcNo" jdbcType="VARCHAR" />
+    <result column="node_name" property="nodeName" jdbcType="VARCHAR" />
+    <result column="node_id" property="nodeId" jdbcType="VARCHAR" />
+    <result column="node_type" property="nodeType" jdbcType="INTEGER" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    nfc_no, node_name, node_id, node_type, factory_no, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbNfcInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_nfc_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_nfc_info
+    where nfc_no = #{nfcNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_nfc_info
+    where nfc_no = #{nfcNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbNfcInfoExample" >
+    delete from tb_nfc_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbNfcInfo" >
+    insert into tb_nfc_info (nfc_no, node_name, node_id, 
+      node_type, factory_no, create_time
+      )
+    values (#{nfcNo,jdbcType=VARCHAR}, #{nodeName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
+      #{nodeType,jdbcType=INTEGER}, #{factoryNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbNfcInfo" >
+    insert into tb_nfc_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nfcNo != null" >
+        nfc_no,
+      </if>
+      <if test="nodeName != null" >
+        node_name,
+      </if>
+      <if test="nodeId != null" >
+        node_id,
+      </if>
+      <if test="nodeType != null" >
+        node_type,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nfcNo != null" >
+        #{nfcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeType != null" >
+        #{nodeType,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbNfcInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_nfc_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_nfc_info
+    <set >
+      <if test="record.nfcNo != null" >
+        nfc_no = #{record.nfcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeName != null" >
+        node_name = #{record.nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeId != null" >
+        node_id = #{record.nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeType != null" >
+        node_type = #{record.nodeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_nfc_info
+    set nfc_no = #{record.nfcNo,jdbcType=VARCHAR},
+      node_name = #{record.nodeName,jdbcType=VARCHAR},
+      node_id = #{record.nodeId,jdbcType=VARCHAR},
+      node_type = #{record.nodeType,jdbcType=INTEGER},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbNfcInfo" >
+    update tb_nfc_info
+    <set >
+      <if test="nodeName != null" >
+        node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        node_id = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeType != null" >
+        node_type = #{nodeType,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where nfc_no = #{nfcNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbNfcInfo" >
+    update tb_nfc_info
+    set node_name = #{nodeName,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      node_type = #{nodeType,jdbcType=INTEGER},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where nfc_no = #{nfcNo,jdbcType=VARCHAR}
+  </update>
+    
+    <select id="getEquipCheckNFCList" parameterType="com.ejobim.opplat.domain.TbNfcInfo" resultMap="BaseResultMap">
+      select *  from tb_nfc_info where (factory_no = #{factoryNo,jdbcType=VARCHAR}) and  (( node_id = #{nodeId,jdbcType=VARCHAR} and nfc_no = #{nfcNo,jdbcType=VARCHAR} ) 
+      or( node_id = #{nodeId,jdbcType=VARCHAR}) 
+      or( nfc_no = #{nfcNo,jdbcType=VARCHAR}))
+    </select>
+</mapper>

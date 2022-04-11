@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border:  1px #eee solid;
+        }
+        th{
+            text-align: center;
+            background: #999;
+        }
+        td{
+            text-align: center;
+            background: #eee;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        function  doSubmit() {
+            var columnInputs =  $("input[name='columnInput']");
+            var valueInputs =  $("input[name='valueInput']");
+
+            var obj = {};
+            for(var i=0;i<columnInputs.length;i++){
+                var column = $(columnInputs[i]).val();
+                if(column!=null){
+                    console.log(column);
+                    obj[column] =$(valueInputs[i]).val();
+                }
+            }
+            console.log(obj);
+            var submitType = $("#submitType").val();
+            var url = $("#url").val();
+            $.ajax({
+                url:url,
+                data:obj,
+                type:submitType,
+                dataType:'text',
+                success:function(msg){
+                   alert(msg);
+                }
+
+            })
+        }
+    </script>
+</head>
+<body>
+    <form id="myForm" enctype="multipart/form-data" action="factory/saveEquip" method="post">
+    <table style="width:600px;">
+        <tr>
+            <th colspan="2">接口测试</th>
+        </tr>
+        <tr>
+            <th style="width:300px;">字段</th>
+            <th style="width:300px;">值</th>
+        </tr>
+        <tr>
+            <td>设备名称</td>
+            <td><input type="text" name="equipName"></td>
+        </tr>
+        <tr>
+            <td>设备类型</td>
+            <td><input type="text" name="equipType"></td>
+        </tr>
+        <tr>
+            <td> 使用年限</td>
+            <td><input type="text" name="expirationYear"></td>
+        </tr>
+        <tr>
+            <td>维保周期(天)</td>
+            <td><input type="text" name="maintenancePeriod"></td>
+        </tr>
+        <tr>
+            <td>启用时间</td>
+            <td><input type="date" name="invocationDate"></td>
+        </tr>
+        <tr>
+            <td>采购时间</td>
+            <td><input type="date" name="purchaseDate"></td>
+        </tr>
+        <tr>
+            <td>采购编号</td>
+            <td><input type="text" name="purchaseNo"></td>
+        </tr>
+        <tr>
+            <td>采购商</td>
+            <td><input type="text" name="manufacturer"></td>
+        </tr>
+        <tr>
+            <td>设备类型</td>
+            <td><input type="text" name="manufacturer"></td>
+        </tr>
+        <tr>
+            <td>设备图片</td>
+            <td><input type="file"  name="uploadFile"></td>
+        </tr>
+
+    </table>
+        <input type="submit" value="提交">
+    </form>
+    <!--<div>-->
+        <!--提交方式-->
+        <!--<select id="submitType">-->
+            <!--<option value="POST" selected>POST</option>-->
+            <!--<option value="GET">GET</option>-->
+        <!--</select>-->
+    <!--</div>-->
+    <!--<input type="text" id="url" placeholder="提交的地址" style="width: 500px;">-->
+    <!--<input type="button" value="提交" onclick="doSubmit()">-->
+</body>
+</html>

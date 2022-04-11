@@ -1,0 +1,7 @@
+
+e
+java:S1192P"ODefine a constant instead of duplicating this literal "å‚æ•°idå¼‚å¸¸" 3 times.(²Üé™
+m
+java:S3776Z"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(¬‘éªşÿÿÿÿ
+r
+java:S2159–"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÚÅâÒşÿÿÿÿ

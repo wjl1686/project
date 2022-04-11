@@ -1,0 +1,10 @@
+
+N
+java:S1854"8Remove this useless assignment to local variable "reqs".(›¨ý¢
+W
+java:S1854"<Remove this useless assignment to local variable "response".(òŠ‘Ûøÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(„àçÆýÿÿÿÿ
+H
+java:S1481"-Remove this unused "response" local variable.(òŠ‘Ûøÿÿÿÿ
+?
+java:S1481")Remove this unused "reqs" local variable.(›¨ý¢

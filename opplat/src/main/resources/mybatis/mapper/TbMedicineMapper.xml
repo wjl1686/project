@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbMedicineMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbMedicine">
+    <result column="medicine_no" jdbcType="VARCHAR" property="medicineNo" />
+    <result column="factory_no" jdbcType="VARCHAR" property="factoryNo" />
+    <result column="target_no" jdbcType="VARCHAR" property="targetNo" />
+    <result column="chemical_name" jdbcType="VARCHAR" property="chemicalName" />
+    <result column="chemical" jdbcType="VARCHAR" property="chemical" />
+    <result column="medicine_category" jdbcType="VARCHAR" property="medicineCategory" />
+    <result column="category_type" jdbcType="VARCHAR" property="categoryType" />
+    <result column="medicine_vaid" jdbcType="VARCHAR" property="medicineVaid" />
+    <result column="medicine_content" jdbcType="VARCHAR" property="medicineContent" />
+    <result column="report_type" jdbcType="INTEGER" property="reportType" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    medicine_no, factory_no, target_no, chemical_name, chemical, medicine_category, category_type, 
+    medicine_vaid, medicine_content, report_type, type, uri, name, create_time, create_user
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbMedicineExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_medicine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbMedicineExample">
+    delete from tb_medicine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbMedicine">
+    insert into tb_medicine (medicine_no, factory_no, target_no, 
+      chemical_name, chemical, medicine_category, 
+      category_type, medicine_vaid, medicine_content, 
+      report_type, type, uri, 
+      name, create_time, create_user
+      )
+    values (#{medicineNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{targetNo,jdbcType=VARCHAR}, 
+      #{chemicalName,jdbcType=VARCHAR}, #{chemical,jdbcType=VARCHAR}, #{medicineCategory,jdbcType=VARCHAR}, 
+      #{categoryType,jdbcType=VARCHAR}, #{medicineVaid,jdbcType=VARCHAR}, #{medicineContent,jdbcType=VARCHAR}, 
+      #{reportType,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbMedicine">
+    insert into tb_medicine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicineNo != null">
+        medicine_no,
+      </if>
+      <if test="factoryNo != null">
+        factory_no,
+      </if>
+      <if test="targetNo != null">
+        target_no,
+      </if>
+      <if test="chemicalName != null">
+        chemical_name,
+      </if>
+      <if test="chemical != null">
+        chemical,
+      </if>
+      <if test="medicineCategory != null">
+        medicine_category,
+      </if>
+      <if test="categoryType != null">
+        category_type,
+      </if>
+      <if test="medicineVaid != null">
+        medicine_vaid,
+      </if>
+      <if test="medicineContent != null">
+        medicine_content,
+      </if>
+      <if test="reportType != null">
+        report_type,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="uri != null">
+        uri,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicineNo != null">
+        #{medicineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null">
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="targetNo != null">
+        #{targetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="chemicalName != null">
+        #{chemicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemical != null">
+        #{chemical,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCategory != null">
+        #{medicineCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryType != null">
+        #{categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineVaid != null">
+        #{medicineVaid,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineContent != null">
+        #{medicineContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null">
+        #{reportType,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbMedicineExample" resultType="java.lang.Integer">
+    select count(*) from tb_medicine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_medicine
+    <set>
+      <if test="record.medicineNo != null">
+        medicine_no = #{record.medicineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null">
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetNo != null">
+        target_no = #{record.targetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chemicalName != null">
+        chemical_name = #{record.chemicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chemical != null">
+        chemical = #{record.chemical,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineCategory != null">
+        medicine_category = #{record.medicineCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryType != null">
+        category_type = #{record.categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineVaid != null">
+        medicine_vaid = #{record.medicineVaid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineContent != null">
+        medicine_content = #{record.medicineContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportType != null">
+        report_type = #{record.reportType,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.uri != null">
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_medicine
+    set medicine_no = #{record.medicineNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      target_no = #{record.targetNo,jdbcType=VARCHAR},
+      chemical_name = #{record.chemicalName,jdbcType=VARCHAR},
+      chemical = #{record.chemical,jdbcType=VARCHAR},
+      medicine_category = #{record.medicineCategory,jdbcType=VARCHAR},
+      category_type = #{record.categoryType,jdbcType=VARCHAR},
+      medicine_vaid = #{record.medicineVaid,jdbcType=VARCHAR},
+      medicine_content = #{record.medicineContent,jdbcType=VARCHAR},
+      report_type = #{record.reportType,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      uri = #{record.uri,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbMedicine">
+    update tb_medicine
+    <set>
+      <if test="factoryNo != null">
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="targetNo != null">
+        target_no = #{targetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="chemicalName != null">
+        chemical_name = #{chemicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemical != null">
+        chemical = #{chemical,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCategory != null">
+        medicine_category = #{medicineCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryType != null">
+        category_type = #{categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineVaid != null">
+        medicine_vaid = #{medicineVaid,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineContent != null">
+        medicine_content = #{medicineContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null">
+        report_type = #{reportType,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uri != null">
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medicine_no = #{medicineNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbMedicine">
+    update tb_medicine
+    set factory_no = #{factoryNo,jdbcType=VARCHAR},
+      target_no = #{targetNo,jdbcType=VARCHAR},
+      chemical_name = #{chemicalName,jdbcType=VARCHAR},
+      chemical = #{chemical,jdbcType=VARCHAR},
+      medicine_category = #{medicineCategory,jdbcType=VARCHAR},
+      category_type = #{categoryType,jdbcType=VARCHAR},
+      medicine_vaid = #{medicineVaid,jdbcType=VARCHAR},
+      medicine_content = #{medicineContent,jdbcType=VARCHAR},
+      report_type = #{reportType,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      uri = #{uri,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR}
+    where medicine_no = #{medicineNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findMedicineList" parameterType="com.ejobim.opplat.domain.TbMedicine" resultMap="BaseResultMap">
+    select * from  tb_medicine
+    <where>
+      <if test="targetNo != null and targetNo !=''">
+        target_no = #{targetNo,jdbcType=VARCHAR}
+      </if>
+      <if test="chemicalName != null and chemicalName !=''">
+        and chemical_name = #{chemicalName,jdbcType=VARCHAR}
+      </if>
+      <if test="medicineCategory != null and medicineCategory !=''">
+        and medicine_category = #{medicineCategory,jdbcType=VARCHAR}
+      </if>
+      <if test="medicineVaid != null and medicineVaid !=''">
+        and medicine_vaid like concat('%',#{medicineVaid},'%')
+      </if>
+    </where>
+    ORDER BY create_time
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="String">
+    delete from tb_medicine
+      where  medicine_no =  #{medicineNo}
+  </delete>
+
+
+</mapper>

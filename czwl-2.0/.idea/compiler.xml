@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/auth-web/src/main/java/com/czwl/auth/auth/service/AuthServiceImpl.java" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="team-service-beans" />
+        <module name="school-web" />
+        <module name="user-service" />
+        <module name="daizhang-cases-service-client" />
+        <module name="course-service" />
+        <module name="daizhang-student-client" />
+        <module name="examine-service-client" />
+        <module name="statistics-service-beans" />
+        <module name="statistics-service" />
+        <module name="daizhang-teacher-web-beans" />
+        <module name="doc-service" />
+        <module name="statistics-service-client" />
+        <module name="school-service-client" />
+        <module name="user-service-beans" />
+        <module name="common-service" />
+        <module name="common-service-client" />
+        <module name="exam-service" />
+        <module name="exam-service-client" />
+        <module name="score-service-beans" />
+        <module name="team-service" />
+        <module name="classes-service" />
+        <module name="daizhang-cases-service-beans" />
+        <module name="classes-service-client" />
+        <module name="auth-web" />
+        <module name="eureka-service" />
+        <module name="daizhang-student-beans" />
+        <module name="common-service-beans" />
+        <module name="res-web" />
+        <module name="daizhang-teacher-web" />
+        <module name="uc-web" />
+        <module name="score-service" />
+        <module name="cases-service-beans" />
+        <module name="score-service-client" />
+        <module name="file-storage" />
+        <module name="team-service-client" />
+        <module name="user-service-client" />
+        <module name="classes-service-beans" />
+        <module name="daizhang-teacher-web-client" />
+        <module name="cases-service" />
+        <module name="daizhang-student-web" />
+        <module name="course-service-client" />
+        <module name="base-service-beans" />
+        <module name="cases-service-client" />
+        <module name="examine-service-beans" />
+        <module name="gateway-service" />
+        <module name="doc-service-client" />
+        <module name="manager-web" />
+        <module name="base-service" />
+        <module name="res-service-beans" />
+        <module name="daizhang-cases-service" />
+        <module name="exam-service-beans" />
+        <module name="res-service-client" />
+        <module name="examine-service" />
+        <module name="res-service" />
+        <module name="school-service-beans" />
+        <module name="school-service" />
+        <module name="course-service-beans" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auth-web" target="1.8" />
+      <module name="base-service" target="1.8" />
+      <module name="base-service-beans" target="1.5" />
+      <module name="cases-service" target="1.8" />
+      <module name="cases-service-beans" target="1.8" />
+      <module name="cases-service-client" target="1.8" />
+      <module name="classes-service" target="1.8" />
+      <module name="classes-service-beans" target="1.8" />
+      <module name="classes-service-client" target="1.8" />
+      <module name="common-service" target="1.8" />
+      <module name="common-service-beans" target="1.8" />
+      <module name="common-service-client" target="1.8" />
+      <module name="course-service" target="1.8" />
+      <module name="course-service-beans" target="1.8" />
+      <module name="course-service-client" target="1.8" />
+      <module name="czwl-parent" target="1.5" />
+      <module name="daizhang-cases-service" target="1.8" />
+      <module name="daizhang-cases-service-beans" target="1.8" />
+      <module name="daizhang-cases-service-client" target="1.8" />
+      <module name="daizhang-student-beans" target="1.8" />
+      <module name="daizhang-student-client" target="1.8" />
+      <module name="daizhang-student-web" target="1.8" />
+      <module name="daizhang-teacher-web" target="1.8" />
+      <module name="daizhang-teacher-web-beans" target="1.8" />
+      <module name="daizhang-teacher-web-client" target="1.8" />
+      <module name="doc-service" target="1.8" />
+      <module name="doc-service-client" target="1.8" />
+      <module name="eureka-service" target="1.8" />
+      <module name="exam-service" target="1.8" />
+      <module name="exam-service-beans" target="1.8" />
+      <module name="exam-service-client" target="1.8" />
+      <module name="examine-service" target="1.8" />
+      <module name="examine-service-beans" target="1.8" />
+      <module name="examine-service-client" target="1.8" />
+      <module name="file-storage" target="1.8" />
+      <module name="gateway-service" target="1.8" />
+      <module name="manager-web" target="1.8" />
+      <module name="res-service" target="1.8" />
+      <module name="res-service-beans" target="1.8" />
+      <module name="res-service-client" target="1.8" />
+      <module name="res-web" target="1.8" />
+      <module name="school-service" target="1.8" />
+      <module name="school-service-beans" target="1.8" />
+      <module name="school-service-client" target="1.8" />
+      <module name="school-web" target="1.8" />
+      <module name="score-service" target="1.8" />
+      <module name="score-service-beans" target="1.8" />
+      <module name="score-service-client" target="1.8" />
+      <module name="statistics-service" target="1.8" />
+      <module name="statistics-service-beans" target="1.8" />
+      <module name="statistics-service-client" target="1.8" />
+      <module name="team-service" target="1.8" />
+      <module name="team-service-beans" target="1.8" />
+      <module name="team-service-client" target="1.8" />
+      <module name="uc-web" target="1.8" />
+      <module name="user-service" target="1.8" />
+      <module name="user-service-beans" target="1.8" />
+      <module name="user-service-client" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gateway-service" options="-parameters -parameters" />
+    </option>
+  </component>
+</project>

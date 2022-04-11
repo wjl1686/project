@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbDraftDataMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbDraftData">
+    <id column="draft_no" jdbcType="VARCHAR" property="draftNo" />
+    <result column="draft_time" jdbcType="TIMESTAMP" property="draftTime" />
+    <result column="draft_date" jdbcType="VARCHAR" property="draftDate" />
+    <result column="draft_value" jdbcType="DOUBLE" property="draftValue" />
+    <result column="draft_unit" jdbcType="VARCHAR" property="draftUnit" />
+    <result column="static_type" jdbcType="INTEGER" property="staticType" />
+    <result column="draft_type" jdbcType="INTEGER" property="draftType" />
+    <result column="data_from" jdbcType="VARCHAR" property="dataFrom" />
+    <result column="field_no" jdbcType="VARCHAR" property="fieldNo" />
+    <result column="draft_name" jdbcType="VARCHAR" property="draftName" />
+    <result column="factory_no" jdbcType="VARCHAR" property="factoryNo" />
+    <result column="fill_no" jdbcType="VARCHAR" property="fillNo" />
+    <result column="fill_task_no" jdbcType="VARCHAR" property="fillTaskNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    draft_no, draft_time, draft_date, draft_value, draft_unit, static_type, draft_type, 
+    data_from, field_no, draft_name, factory_no, fill_no, fill_task_no
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbDraftDataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_draft_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_draft_data
+    where draft_no = #{draftNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_draft_data
+    where draft_no = #{draftNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbDraftDataExample">
+    delete from tb_draft_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbDraftData">
+    insert into tb_draft_data (draft_no, draft_time, draft_date, 
+      draft_value, draft_unit, static_type, 
+      draft_type, data_from, field_no, 
+      draft_name, factory_no, fill_no,
+      fill_task_no
+      )
+    values (#{draftNo,jdbcType=VARCHAR}, #{draftTime,jdbcType=TIMESTAMP}, #{draftDate,jdbcType=VARCHAR}, 
+      #{draftValue,jdbcType=DOUBLE}, #{draftUnit,jdbcType=VARCHAR}, #{staticType,jdbcType=INTEGER}, 
+      #{draftType,jdbcType=INTEGER}, #{dataFrom,jdbcType=VARCHAR}, #{fieldNo,jdbcType=VARCHAR}, 
+      #{draftName,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{fillNo,jdbcType=VARCHAR},
+      #{fillTaskNo,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbDraftData">
+    insert into tb_draft_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="draftNo != null">
+        draft_no,
+      </if>
+      <if test="draftTime != null">
+        draft_time,
+      </if>
+      <if test="draftDate != null">
+        draft_date,
+      </if>
+      <if test="draftValue != null">
+        draft_value,
+      </if>
+      <if test="draftUnit != null">
+        draft_unit,
+      </if>
+      <if test="staticType != null">
+        static_type,
+      </if>
+      <if test="draftType != null">
+        draft_type,
+      </if>
+      <if test="dataFrom != null">
+        data_from,
+      </if>
+      <if test="fieldNo != null">
+        field_no,
+      </if>
+      <if test="draftName != null">
+        draft_name,
+      </if>
+      <if test="factoryNo != null">
+        factory_no,
+      </if>
+      <if test="fillNo != null">
+        fill_no,
+      </if>
+      <if test="fillTaskNo != null">
+        fill_task_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="draftNo != null">
+        #{draftNo,jdbcType=VARCHAR},
+      </if>
+      <if test="draftTime != null">
+        #{draftTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="draftDate != null">
+        #{draftDate,jdbcType=VARCHAR},
+      </if>
+      <if test="draftValue != null">
+        #{draftValue,jdbcType=DOUBLE},
+      </if>
+      <if test="draftUnit != null">
+        #{draftUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="staticType != null">
+        #{staticType,jdbcType=INTEGER},
+      </if>
+      <if test="draftType != null">
+        #{draftType,jdbcType=INTEGER},
+      </if>
+      <if test="dataFrom != null">
+        #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldNo != null">
+        #{fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="draftName != null">
+        #{draftName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null">
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillNo != null">
+        #{fillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillTaskNo != null">
+        #{fillTaskNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbDraftDataExample" resultType="java.lang.Integer">
+    select count(*) from tb_draft_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_draft_data
+    <set>
+      <if test="record.draftNo != null">
+        draft_no = #{record.draftNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.draftTime != null">
+        draft_time = #{record.draftTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.draftDate != null">
+        draft_date = #{record.draftDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.draftValue != null">
+        draft_value = #{record.draftValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.draftUnit != null">
+        draft_unit = #{record.draftUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staticType != null">
+        static_type = #{record.staticType,jdbcType=INTEGER},
+      </if>
+      <if test="record.draftType != null">
+        draft_type = #{record.draftType,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataFrom != null">
+        data_from = #{record.dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldNo != null">
+        field_no = #{record.fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.draftName != null">
+        draft_name = #{record.draftName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null">
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillNo != null">
+        fill_no = #{record.fillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillTaskNo != null">
+        fill_task_no = #{record.fillTaskNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_draft_data
+    set draft_no = #{record.draftNo,jdbcType=VARCHAR},
+      draft_time = #{record.draftTime,jdbcType=TIMESTAMP},
+      draft_date = #{record.draftDate,jdbcType=VARCHAR},
+      draft_value = #{record.draftValue,jdbcType=DOUBLE},
+      draft_unit = #{record.draftUnit,jdbcType=VARCHAR},
+      static_type = #{record.staticType,jdbcType=INTEGER},
+      draft_type = #{record.draftType,jdbcType=INTEGER},
+      data_from = #{record.dataFrom,jdbcType=VARCHAR},
+      field_no = #{record.fieldNo,jdbcType=VARCHAR},
+      draft_name = #{record.draftName,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      fill_no = #{record.fillNo,jdbcType=VARCHAR},
+      fill_task_no = #{record.fillTaskNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbDraftData">
+    update tb_draft_data
+    <set>
+      <if test="draftTime != null">
+        draft_time = #{draftTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="draftDate != null">
+        draft_date = #{draftDate,jdbcType=VARCHAR},
+      </if>
+      <if test="draftValue != null">
+        draft_value = #{draftValue,jdbcType=DOUBLE},
+      </if>
+      <if test="draftUnit != null">
+        draft_unit = #{draftUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="staticType != null">
+        static_type = #{staticType,jdbcType=INTEGER},
+      </if>
+      <if test="draftType != null">
+        draft_type = #{draftType,jdbcType=INTEGER},
+      </if>
+      <if test="dataFrom != null">
+        data_from = #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldNo != null">
+        field_no = #{fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="draftName != null">
+        draft_name = #{draftName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null">
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillNo != null">
+        fill_no = #{fillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillTaskNo != null">
+        fill_task_no = #{fillTaskNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where draft_no = #{draftNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbDraftData">
+    update tb_draft_data
+    set draft_time = #{draftTime,jdbcType=TIMESTAMP},
+      draft_date = #{draftDate,jdbcType=VARCHAR},
+      draft_value = #{draftValue,jdbcType=DOUBLE},
+      draft_unit = #{draftUnit,jdbcType=VARCHAR},
+      static_type = #{staticType,jdbcType=INTEGER},
+      draft_type = #{draftType,jdbcType=INTEGER},
+      data_from = #{dataFrom,jdbcType=VARCHAR},
+      field_no = #{fieldNo,jdbcType=VARCHAR},
+      draft_name = #{draftName,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      fill_no = #{fillNo,jdbcType=VARCHAR},
+      fill_task_no = #{fillTaskNo,jdbcType=VARCHAR}
+    where draft_no = #{draftNo,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insertBatch" parameterType="com.ejobim.opplat.domain.TbDraftData">
+    insert into tb_draft_data (draft_no, draft_time, draft_date,
+      draft_value, draft_unit, static_type,
+      draft_type, data_from, field_no,
+      draft_name, factory_no, fill_no,
+      fill_task_no
+      )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.draftNo,jdbcType=VARCHAR}, #{item.draftTime,jdbcType=TIMESTAMP}, #{item.draftDate,jdbcType=VARCHAR},
+      #{item.draftValue,jdbcType=DOUBLE}, #{item.draftUnit,jdbcType=VARCHAR}, #{item.staticType,jdbcType=INTEGER},
+      #{item.draftType,jdbcType=INTEGER}, #{item.dataFrom,jdbcType=VARCHAR}, #{item.fieldNo,jdbcType=VARCHAR},
+      #{item.draftName,jdbcType=VARCHAR}, #{item.factoryNo,jdbcType=VARCHAR}, #{item.fillNo,jdbcType=VARCHAR},
+      #{item.fillTaskNo,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <select id="selectReportDayWeekDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_draft_data
+    where factory_no = #{factoryNo,jdbcType=VARCHAR} and (draft_date &gt;= #{monDay} and draft_date &lt;= #{sunDay}) order by draft_date
+  </select>
+  <select id="getTbDraftDataList" parameterType="com.ejobim.opplat.domain.TbDraftData" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_draft_data
+    where factory_no = #{factoryNo,jdbcType=VARCHAR} and  DATE_FORMAT(draft_time,'%Y-%m-%d') &lt; #{draftTimeByString}
+    <if test="draftName != null" >
+      and  draft_name  like concat('%',#{draftName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="startTime!=null and startTime!='' ">
+      and DATE_FORMAT(draft_time,'%Y-%m-%d') &gt;= #{startTime}
+    </if>
+    <if test="endTime!=null and endTime!=''">
+      and DATE_FORMAT(draft_time,'%Y-%m-%d') &lt;= #{endTime}
+    </if>
+    order by draft_date
+  </select>
+</mapper>

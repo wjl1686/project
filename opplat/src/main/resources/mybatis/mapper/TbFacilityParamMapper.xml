@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFacilityParamMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFacilityParam" >
+    <id column="fati_param_no" property="fatiParamNo" jdbcType="VARCHAR" />
+    <result column="fati_param_uri" property="fatiParamUri" jdbcType="VARCHAR" />
+    <result column="fati_model_name" property="fatiModelName" jdbcType="VARCHAR" />
+    <result column="fati_param_name" property="fatiParamName" jdbcType="VARCHAR" />
+    <result column="fati_param_value" property="fatiParamValue" jdbcType="REAL" />
+    <result column="fati_param_unit" property="fatiParamUnit" jdbcType="VARCHAR" />
+    <result column="fati_update_time" property="fatiUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="param_factory_no" property="paramFactoryNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fati_param_no, fati_param_uri, fati_model_name, fati_param_name, fati_param_value, 
+    fati_param_unit, fati_update_time, param_factory_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFacilityParamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_facility_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_facility_param
+    where fati_param_no = #{fatiParamNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_facility_param
+    where fati_param_no = #{fatiParamNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFacilityParamExample" >
+    delete from tb_facility_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFacilityParam" >
+    insert into tb_facility_param (fati_param_no, fati_param_uri, fati_model_name, 
+      fati_param_name, fati_param_value, fati_param_unit, 
+      fati_update_time, param_factory_no)
+    values (#{fatiParamNo,jdbcType=VARCHAR}, #{fatiParamUri,jdbcType=VARCHAR}, #{fatiModelName,jdbcType=VARCHAR}, 
+      #{fatiParamName,jdbcType=VARCHAR}, #{fatiParamValue,jdbcType=REAL}, #{fatiParamUnit,jdbcType=VARCHAR}, 
+      #{fatiUpdateTime,jdbcType=TIMESTAMP}, #{paramFactoryNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFacilityParam" >
+    insert into tb_facility_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fatiParamNo != null" >
+        fati_param_no,
+      </if>
+      <if test="fatiParamUri != null" >
+        fati_param_uri,
+      </if>
+      <if test="fatiModelName != null" >
+        fati_model_name,
+      </if>
+      <if test="fatiParamName != null" >
+        fati_param_name,
+      </if>
+      <if test="fatiParamValue != null" >
+        fati_param_value,
+      </if>
+      <if test="fatiParamUnit != null" >
+        fati_param_unit,
+      </if>
+      <if test="fatiUpdateTime != null" >
+        fati_update_time,
+      </if>
+      <if test="paramFactoryNo != null" >
+        param_factory_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fatiParamNo != null" >
+        #{fatiParamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiParamUri != null" >
+        #{fatiParamUri,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiModelName != null" >
+        #{fatiModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiParamName != null" >
+        #{fatiParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiParamValue != null" >
+        #{fatiParamValue,jdbcType=REAL},
+      </if>
+      <if test="fatiParamUnit != null" >
+        #{fatiParamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiUpdateTime != null" >
+        #{fatiUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paramFactoryNo != null" >
+        #{paramFactoryNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFacilityParamExample" resultType="java.lang.Integer" >
+    select count(*) from tb_facility_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_facility_param
+    <set >
+      <if test="record.fatiParamNo != null" >
+        fati_param_no = #{record.fatiParamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiParamUri != null" >
+        fati_param_uri = #{record.fatiParamUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiModelName != null" >
+        fati_model_name = #{record.fatiModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiParamName != null" >
+        fati_param_name = #{record.fatiParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiParamValue != null" >
+        fati_param_value = #{record.fatiParamValue,jdbcType=REAL},
+      </if>
+      <if test="record.fatiParamUnit != null" >
+        fati_param_unit = #{record.fatiParamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiUpdateTime != null" >
+        fati_update_time = #{record.fatiUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paramFactoryNo != null" >
+        param_factory_no = #{record.paramFactoryNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_facility_param
+    set fati_param_no = #{record.fatiParamNo,jdbcType=VARCHAR},
+      fati_param_uri = #{record.fatiParamUri,jdbcType=VARCHAR},
+      fati_model_name = #{record.fatiModelName,jdbcType=VARCHAR},
+      fati_param_name = #{record.fatiParamName,jdbcType=VARCHAR},
+      fati_param_value = #{record.fatiParamValue,jdbcType=REAL},
+      fati_param_unit = #{record.fatiParamUnit,jdbcType=VARCHAR},
+      fati_update_time = #{record.fatiUpdateTime,jdbcType=TIMESTAMP},
+      param_factory_no = #{record.paramFactoryNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFacilityParam" >
+    update tb_facility_param
+    <set >
+      <if test="fatiParamUri != null" >
+        fati_param_uri = #{fatiParamUri,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiModelName != null" >
+        fati_model_name = #{fatiModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiParamName != null" >
+        fati_param_name = #{fatiParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiParamValue != null" >
+        fati_param_value = #{fatiParamValue,jdbcType=REAL},
+      </if>
+      <if test="fatiParamUnit != null" >
+        fati_param_unit = #{fatiParamUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiUpdateTime != null" >
+        fati_update_time = #{fatiUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paramFactoryNo != null" >
+        param_factory_no = #{paramFactoryNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fati_param_no = #{fatiParamNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFacilityParam" >
+    update tb_facility_param
+    set fati_param_uri = #{fatiParamUri,jdbcType=VARCHAR},
+      fati_model_name = #{fatiModelName,jdbcType=VARCHAR},
+      fati_param_name = #{fatiParamName,jdbcType=VARCHAR},
+      fati_param_value = #{fatiParamValue,jdbcType=REAL},
+      fati_param_unit = #{fatiParamUnit,jdbcType=VARCHAR},
+      fati_update_time = #{fatiUpdateTime,jdbcType=TIMESTAMP},
+      param_factory_no = #{paramFactoryNo,jdbcType=VARCHAR}
+    where fati_param_no = #{fatiParamNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

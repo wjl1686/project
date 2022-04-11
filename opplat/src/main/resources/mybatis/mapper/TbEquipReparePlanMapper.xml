@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipReparePlanMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipReparePlan" >
+    <id column="rp_no" property="rpNo" jdbcType="VARCHAR" />
+    <result column="plan_finish_time" property="planFinishTime" jdbcType="DATE" />
+    <result column="maintain_type" property="maintainType" jdbcType="INTEGER" />
+    <result column="flow_no" property="flowNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rp_no, plan_finish_time, maintain_type, flow_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_repare_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_repare_plan
+    where rp_no = #{rpNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_repare_plan
+    where rp_no = #{rpNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExample" >
+    delete from tb_equip_repare_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipReparePlan" >
+    insert into tb_equip_repare_plan (rp_no, plan_finish_time, maintain_type, 
+      flow_no)
+    values (#{rpNo,jdbcType=VARCHAR}, #{planFinishTime,jdbcType=DATE}, #{maintainType,jdbcType=INTEGER}, 
+      #{flowNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipReparePlan" >
+    insert into tb_equip_repare_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rpNo != null" >
+        rp_no,
+      </if>
+      <if test="planFinishTime != null" >
+        plan_finish_time,
+      </if>
+      <if test="maintainType != null" >
+        maintain_type,
+      </if>
+      <if test="flowNo != null" >
+        flow_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rpNo != null" >
+        #{rpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planFinishTime != null" >
+        #{planFinishTime,jdbcType=DATE},
+      </if>
+      <if test="maintainType != null" >
+        #{maintainType,jdbcType=INTEGER},
+      </if>
+      <if test="flowNo != null" >
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_repare_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_repare_plan
+    <set >
+      <if test="record.rpNo != null" >
+        rp_no = #{record.rpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planFinishTime != null" >
+        plan_finish_time = #{record.planFinishTime,jdbcType=DATE},
+      </if>
+      <if test="record.maintainType != null" >
+        maintain_type = #{record.maintainType,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowNo != null" >
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_repare_plan
+    set rp_no = #{record.rpNo,jdbcType=VARCHAR},
+      plan_finish_time = #{record.planFinishTime,jdbcType=DATE},
+      maintain_type = #{record.maintainType,jdbcType=INTEGER},
+      flow_no = #{record.flowNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipReparePlan" >
+    update tb_equip_repare_plan
+    <set >
+      <if test="planFinishTime != null" >
+        plan_finish_time = #{planFinishTime,jdbcType=DATE},
+      </if>
+      <if test="maintainType != null" >
+        maintain_type = #{maintainType,jdbcType=INTEGER},
+      </if>
+      <if test="flowNo != null" >
+        flow_no = #{flowNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rp_no = #{rpNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipReparePlan" >
+    update tb_equip_repare_plan
+    set plan_finish_time = #{planFinishTime,jdbcType=DATE},
+      maintain_type = #{maintainType,jdbcType=INTEGER},
+      flow_no = #{flowNo,jdbcType=VARCHAR}
+    where rp_no = #{rpNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

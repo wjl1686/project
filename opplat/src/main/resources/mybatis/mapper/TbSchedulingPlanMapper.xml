@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbSchedulingPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbSchedulingPlan" >
+    <id column="scheduling_no" property="schedulingNo" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="group_type" property="groupType" jdbcType="INTEGER" />
+    <result column="group_no" property="groupNo" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="start_time_point" property="startTimePoint" jdbcType="TIMESTAMP" />
+    <result column="end_time_point" property="endTimePoint" jdbcType="TIMESTAMP" />
+    <result column="time_no" property="timeNo" jdbcType="VARCHAR" />
+    <result column="day_type" property="dayType" jdbcType="INTEGER" />
+    <result column="scheduling_time" property="schedulingTime" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_code" property="createUserCode" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="update_user_code" property="updateUserCode" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="schedule_rule" property="scheduleRule" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    scheduling_no, factory_no, group_type, group_no, group_name, start_time_point, end_time_point, 
+    time_no, day_type, scheduling_time, create_time, create_user_code, create_user_name, 
+    update_user_name, update_user_code, update_time, flag, schedule_rule
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbSchedulingPlanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_scheduling_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_scheduling_plan
+    where scheduling_no = #{schedulingNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_scheduling_plan
+    where scheduling_no = #{schedulingNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbSchedulingPlanExample" >
+    delete from tb_scheduling_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" >
+    insert into tb_scheduling_plan (scheduling_no, factory_no, group_type, 
+      group_no, group_name, start_time_point, 
+      end_time_point, time_no, day_type, 
+      scheduling_time, create_time, create_user_code, 
+      create_user_name, update_user_name, update_user_code, 
+      update_time, flag, schedule_rule)
+    values (#{schedulingNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{groupType,jdbcType=INTEGER}, 
+      #{groupNo,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, #{startTimePoint,jdbcType=TIMESTAMP}, 
+      #{endTimePoint,jdbcType=TIMESTAMP}, #{timeNo,jdbcType=VARCHAR}, #{dayType,jdbcType=INTEGER}, 
+      #{schedulingTime,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, #{updateUserCode,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{scheduleRule,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" >
+    insert into tb_scheduling_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schedulingNo != null" >
+        scheduling_no,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="groupType != null" >
+        group_type,
+      </if>
+      <if test="groupNo != null" >
+        group_no,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="startTimePoint != null" >
+        start_time_point,
+      </if>
+      <if test="endTimePoint != null" >
+        end_time_point,
+      </if>
+      <if test="timeNo != null" >
+        time_no,
+      </if>
+      <if test="dayType != null" >
+        day_type,
+      </if>
+      <if test="schedulingTime != null" >
+        scheduling_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserCode != null" >
+        create_user_code,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="updateUserCode != null" >
+        update_user_code,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="scheduleRule != null" >
+        schedule_rule,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schedulingNo != null" >
+        #{schedulingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="groupNo != null" >
+        #{groupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTimePoint != null" >
+        #{startTimePoint,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimePoint != null" >
+        #{endTimePoint,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeNo != null" >
+        #{timeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dayType != null" >
+        #{dayType,jdbcType=INTEGER},
+      </if>
+      <if test="schedulingTime != null" >
+        #{schedulingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null" >
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserCode != null" >
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleRule != null" >
+        #{scheduleRule,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbSchedulingPlanExample" resultType="java.lang.Integer" >
+    select count(*) from tb_scheduling_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_scheduling_plan
+    <set >
+      <if test="record.schedulingNo != null" >
+        scheduling_no = #{record.schedulingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupType != null" >
+        group_type = #{record.groupType,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupNo != null" >
+        group_no = #{record.groupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupName != null" >
+        group_name = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTimePoint != null" >
+        start_time_point = #{record.startTimePoint,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTimePoint != null" >
+        end_time_point = #{record.endTimePoint,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timeNo != null" >
+        time_no = #{record.timeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayType != null" >
+        day_type = #{record.dayType,jdbcType=INTEGER},
+      </if>
+      <if test="record.schedulingTime != null" >
+        scheduling_time = #{record.schedulingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserCode != null" >
+        create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserName != null" >
+        update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserCode != null" >
+        update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.scheduleRule != null" >
+        schedule_rule = #{record.scheduleRule,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_scheduling_plan
+    set scheduling_no = #{record.schedulingNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      group_type = #{record.groupType,jdbcType=INTEGER},
+      group_no = #{record.groupNo,jdbcType=VARCHAR},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      start_time_point = #{record.startTimePoint,jdbcType=TIMESTAMP},
+      end_time_point = #{record.endTimePoint,jdbcType=TIMESTAMP},
+      time_no = #{record.timeNo,jdbcType=VARCHAR},
+      day_type = #{record.dayType,jdbcType=INTEGER},
+      scheduling_time = #{record.schedulingTime,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user_code = #{record.createUserCode,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      update_user_name = #{record.updateUserName,jdbcType=VARCHAR},
+      update_user_code = #{record.updateUserCode,jdbcType=VARCHAR},
+      schedule_rule = #{record.scheduleRule,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      flag = #{record.flag,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" >
+    update tb_scheduling_plan
+    <set >
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        group_type = #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="groupNo != null" >
+        group_no = #{groupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTimePoint != null" >
+        start_time_point = #{startTimePoint,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimePoint != null" >
+        end_time_point = #{endTimePoint,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeNo != null" >
+        time_no = #{timeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dayType != null" >
+        day_type = #{dayType,jdbcType=INTEGER},
+      </if>
+      <if test="schedulingTime != null" >
+        scheduling_time = #{schedulingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null" >
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserCode != null" >
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleRule != null" >
+        schedule_rule = #{scheduleRule,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where scheduling_no = #{schedulingNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" >
+    update tb_scheduling_plan
+    set factory_no = #{factoryNo,jdbcType=VARCHAR},
+      group_type = #{groupType,jdbcType=INTEGER},
+      group_no = #{groupNo,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      start_time_point = #{startTimePoint,jdbcType=TIMESTAMP},
+      end_time_point = #{endTimePoint,jdbcType=TIMESTAMP},
+      time_no = #{timeNo,jdbcType=VARCHAR},
+      day_type = #{dayType,jdbcType=INTEGER},
+      scheduling_time = #{schedulingTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      schedule_rule = #{scheduleRule,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER}
+    where scheduling_no = #{schedulingNo,jdbcType=VARCHAR}
+  </update>
+    <select id="selectSchedulingPlanListByCondition" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+      select a.* from tb_scheduling_plan  a 
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="type==0" >
+            and (a.group_type = 1 or a.group_type=2)
+        </if>
+        <if test="type==1" >
+            and a.group_type = 1 
+        </if>
+        <if test="type==2" >
+            and  a.group_type=2
+        </if>
+        <if test="startTime!=null ">
+            and  a.scheduling_time &gt;= #{startTime}
+        </if>
+        <if test="endTime!=null">
+            and a.scheduling_time &lt;= #{endTime}
+        </if>
+        <if test="groupNo != null" >
+            and a.group_no = #{groupNo,jdbcType=VARCHAR}
+        </if>
+        <if test="schedulingTime!=null ">
+            and  a.scheduling_time = #{schedulingTime}
+        </if>
+        order by  a.create_time desc  ,a.start_time_point
+    </select>
+
+    <select id="selectSchedulingPlanListByConditionApp" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan  a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="type==0" >
+            and (a.group_type = 1 or a.group_type=2)
+        </if>
+        <if test="type==1" >
+            and a.group_type = 1
+        </if>
+        <if test="type==2" >
+            and  a.group_type=2
+        </if>
+        <if test="startTime!=null ">
+            and  a.scheduling_time &gt;= #{startTime}
+        </if>
+        <if test="endTime!=null">
+            and a.scheduling_time &lt;= #{endTime}
+        </if>
+        <if test="groupNo != null and groupNo!=''" >
+            and a.group_no = #{groupNo,jdbcType=VARCHAR}
+        </if>
+        <if test="schedulingTime!=null  and schedulingTime!=''">
+            and  a.scheduling_time = #{schedulingTime}
+        </if>
+        <if test="userCode != null" >
+            and  b.user_code = #{userCode,jdbcType=VARCHAR}
+        </if>
+        order by  a.start_time_point 
+    </select>
+
+    <select id="getbSchedulingPlanInfoByTimePoint" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="currentTime!=null ">
+            and  a.end_time_point &gt;= #{currentTime}
+        </if>
+        <if test="currentTime!=null">
+            and a.start_time_point &lt;= #{currentTime} 
+        </if>
+        <if test="type != null" >
+            and a.group_type = #{type,jdbcType=INTEGER}
+        </if>
+        <if test="userCode != null" >
+            and  b.user_code = #{userCode,jdbcType=VARCHAR}
+        </if>
+        order by  a.create_time desc
+    </select>
+
+    <select id="getbSchedulingPlanInfoByTime" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="schedulingTime!=null ">
+            and  a.scheduling_time = #{schedulingTime}
+        </if>
+        <if test="type != null" >
+            and a.group_type = #{type,jdbcType=INTEGER}
+        </if>
+        <if test="userCode != null" >
+            and  b.user_code = #{userCode,jdbcType=VARCHAR}
+        </if>
+        order by  a.create_time desc
+    </select>
+    <select id="getTbSchedulingPlanByApplyUser" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultType="com.ejobim.opplat.domain.vo.TbSchedulingPlanVo">
+        select  a.group_no groupNo ,a.group_name groupName, a.scheduling_no schedulingNo, a.factory_no factoryNo, a.group_type groupType, a.start_time_point startTimePoint, a.end_time_point endTimePoint,
+        a.scheduling_time schedulingTime, a.day_type dayType, b.scheduling_no_detail schedulingNoDetail  from tb_scheduling_plan a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="schedulingTime!=null ">
+            and  scheduling_time = #{schedulingTime}
+        </if>
+        <if test="userCode != null" >
+            and  b.user_code = #{userCode,jdbcType=VARCHAR}
+        </if>
+        order by  a.create_time desc
+    </select>
+    
+    <select id="getbSchedulingPlanInfoByUserCodeByDate" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="currentTime!=null ">
+            and  scheduling_time = #{currentTime}
+        </if>
+        <if test="endTime!=null ">
+            and  a.end_time_point &gt;= #{endTime}
+        </if>
+        <if test="startTime!=null">
+            and a.end_time_point &lt;= #{startTime}
+        </if>
+        <if test="userCode != null" >
+            and  b.user_code = #{userCode,jdbcType=VARCHAR}
+        </if>
+        order by  a.create_time desc
+    </select>
+
+    <select id="getTbSchedulingPlanByReviceUser" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="endTimePointName!=null">
+            and a.start_time_point = #{endTimePointName}
+        </if>
+        <if test="createUserCode != null" >
+            and  b.user_code = #{createUserCode,jdbcType=VARCHAR}
+        </if>
+        <if test="groupType != null" >
+            and a.group_type = #{groupType,jdbcType=INTEGER}
+        </if>
+        <if test="groupNo != null" >
+            and  a.group_no <![CDATA[<>]]> #{groupNo,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="selectSchedulingPlanByTime" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a 
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="schedulingTime!=null ">
+            and  a.scheduling_time = #{schedulingTime}
+        </if>
+        <if test="groupType != null" >
+            and a.group_type = #{groupType,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="getUserGroupCode" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a LEFT JOIN tb_scheduling_plan_deatail b on a.scheduling_no = b.scheduling_no
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="schedulingTime != null" >
+            and  a.scheduling_time = #{schedulingTime,jdbcType=VARCHAR}
+        </if>
+        <if test="userCode != null" >
+            and  b.user_code = #{userCode,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="getbSchedulingPlanInfoByGroupType" parameterType="com.ejobim.opplat.domain.condition.TbSchedulingPlanCondition" resultMap="BaseResultMap">
+        select a.* from tb_scheduling_plan a 
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null" >
+            and a.group_type = #{type,jdbcType=INTEGER}
+        </if>
+        <if test="type==1" >
+           and  (a.end_time_point &gt;= #{currentTime} and a.start_time_point &lt;= #{currentTime})
+        </if>
+        <if test="type==2" >
+            and  a.scheduling_time = #{schedulingTime}
+        </if>
+        order by  a.create_time desc 
+    </select>
+
+    <select id="selectSchedulingByCondition" parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" resultType="java.lang.Integer">
+        select count(1) from tb_scheduling_plan a
+        where 1=1
+        <if test="factoryNo != null" >
+            and a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="groupType != null" >
+            and a.group_type = #{groupType,jdbcType=INTEGER}
+        </if>
+        <if test="schedulingTime != null" >
+            and  a.scheduling_time = #{schedulingTime}
+        </if>
+        <if test="groupNo != null" >
+            and (a.group_no = #{groupNo,jdbcType=VARCHAR} or  a.day_type = #{dayType,jdbcType=INTEGER} )
+        </if>
+        order by  a.create_time desc
+    </select>
+
+    <select id="selectTbSchedulingPlanListByConditionTime"  parameterType="com.ejobim.opplat.domain.TbSchedulingPlan" resultMap="BaseResultMap" >
+        select a.* from tb_scheduling_plan a 
+        where a.scheduling_time = #{schedulingTime,jdbcType=VARCHAR} and a.factory_no = #{factoryNo,jdbcType=VARCHAR} and a.group_type = #{groupType,jdbcType=INTEGER}
+        and a.scheduling_no not in(
+        select scheduling_no from  tb_scheduling_plan_deatail 
+        where user_code = #{userCode,jdbcType=VARCHAR} and  factory_no = #{factoryNo,jdbcType=VARCHAR} and group_type =#{groupType,jdbcType=INTEGER} 
+        group by scheduling_no)
+    </select>
+
+  <insert id="insertBatch"  parameterType="java.util.List">
+    insert into tb_scheduling_plan (scheduling_no, factory_no, group_type,
+    group_no, group_name, start_time_point,
+    end_time_point, time_no, day_type,
+    scheduling_time, create_time, create_user_code,
+    create_user_name, update_user_name, update_user_code,
+    update_time, flag, schedule_rule)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.schedulingNo,jdbcType=VARCHAR}, #{item.factoryNo,jdbcType=VARCHAR}, #{item.groupType,jdbcType=INTEGER},
+      #{item.groupNo,jdbcType=VARCHAR}, #{item.groupName,jdbcType=VARCHAR}, #{item.startTimePoint,jdbcType=TIMESTAMP},
+      #{item.endTimePoint,jdbcType=TIMESTAMP}, #{item.timeNo,jdbcType=VARCHAR}, #{item.dayType,jdbcType=INTEGER},
+      #{item.schedulingTime,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createUserCode,jdbcType=VARCHAR},
+      #{item.createUserName,jdbcType=VARCHAR}, #{item.updateUserName,jdbcType=VARCHAR}, #{item.updateUserCode,jdbcType=VARCHAR},
+      #{item.updateTime,jdbcType=TIMESTAMP}, #{item.flag,jdbcType=INTEGER}, #{item.scheduleRule,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbFacilityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFacilityInfo">
+    <id column="fati_no" jdbcType="VARCHAR" property="fatiNo" />
+    <result column="fati_uri" jdbcType="VARCHAR" property="fatiUri" />
+    <result column="fati_factory_no" jdbcType="VARCHAR" property="fatiFactoryNo" />
+    <result column="fati_name" jdbcType="VARCHAR" property="fatiName" />
+    <result column="fati_browse_name" jdbcType="VARCHAR" property="fatiBrowseName" />
+    <result column="fati_code" jdbcType="VARCHAR" property="fatiCode" />
+    <result column="fati_gongyi" jdbcType="VARCHAR" property="fatiGongyi" />
+    <result column="fati_num" jdbcType="INTEGER" property="fatiNum" />
+    <result column="fati_unit" jdbcType="VARCHAR" property="fatiUnit" />
+    <result column="fati_type" jdbcType="INTEGER" property="fatiType" />
+    <result column="fati_init_date" jdbcType="DATE" property="fatiInitDate" />
+    <result column="fati_design_org" jdbcType="VARCHAR" property="fatiDesignOrg" />
+    <result column="fati_build_org" jdbcType="VARCHAR" property="fatiBuildOrg" />
+    <result column="fati_manager_status" jdbcType="INTEGER" property="fatiManagerStatus" />
+    <result column="fati_description" jdbcType="VARCHAR" property="fatiDescription" />
+    <result column="fati_create_time" jdbcType="TIMESTAMP" property="fatiCreateTime" />
+    <result column="fati_create_user_code" jdbcType="VARCHAR" property="fatiCreateUserCode" />
+    <result column="fati_create_user_name" jdbcType="VARCHAR" property="fatiCreateUserName" />
+    <result column="fati_gongyi_name" jdbcType="VARCHAR" property="fatiGongyiName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    fati_no, fati_uri, fati_factory_no, fati_name, fati_browse_name, fati_code, fati_gongyi, 
+    fati_num, fati_unit, fati_type, fati_init_date, fati_design_org, fati_build_org, 
+    fati_manager_status, fati_description, fati_create_time, fati_create_user_code, fati_create_user_name, 
+    fati_gongyi_name
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbFacilityInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_facility_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_facility_info
+    where fati_no = #{fatiNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_facility_info
+    where fati_no = #{fatiNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFacilityInfoExample">
+    delete from tb_facility_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFacilityInfo">
+    insert into tb_facility_info (fati_no, fati_uri, fati_factory_no, 
+      fati_name, fati_browse_name, fati_code, 
+      fati_gongyi, fati_num, fati_unit, 
+      fati_type, fati_init_date, fati_design_org, 
+      fati_build_org, fati_manager_status, fati_description, 
+      fati_create_time, fati_create_user_code, fati_create_user_name, 
+      fati_gongyi_name)
+    values (#{fatiNo,jdbcType=VARCHAR}, #{fatiUri,jdbcType=VARCHAR}, #{fatiFactoryNo,jdbcType=VARCHAR}, 
+      #{fatiName,jdbcType=VARCHAR}, #{fatiBrowseName,jdbcType=VARCHAR}, #{fatiCode,jdbcType=VARCHAR}, 
+      #{fatiGongyi,jdbcType=VARCHAR}, #{fatiNum,jdbcType=INTEGER}, #{fatiUnit,jdbcType=VARCHAR}, 
+      #{fatiType,jdbcType=INTEGER}, #{fatiInitDate,jdbcType=DATE}, #{fatiDesignOrg,jdbcType=VARCHAR}, 
+      #{fatiBuildOrg,jdbcType=VARCHAR}, #{fatiManagerStatus,jdbcType=INTEGER}, #{fatiDescription,jdbcType=VARCHAR}, 
+      #{fatiCreateTime,jdbcType=TIMESTAMP}, #{fatiCreateUserCode,jdbcType=VARCHAR}, #{fatiCreateUserName,jdbcType=VARCHAR}, 
+      #{fatiGongyiName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFacilityInfo">
+    insert into tb_facility_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fatiNo != null">
+        fati_no,
+      </if>
+      <if test="fatiUri != null">
+        fati_uri,
+      </if>
+      <if test="fatiFactoryNo != null">
+        fati_factory_no,
+      </if>
+      <if test="fatiName != null">
+        fati_name,
+      </if>
+      <if test="fatiBrowseName != null">
+        fati_browse_name,
+      </if>
+      <if test="fatiCode != null">
+        fati_code,
+      </if>
+      <if test="fatiGongyi != null">
+        fati_gongyi,
+      </if>
+      <if test="fatiNum != null">
+        fati_num,
+      </if>
+      <if test="fatiUnit != null">
+        fati_unit,
+      </if>
+      <if test="fatiType != null">
+        fati_type,
+      </if>
+      <if test="fatiInitDate != null">
+        fati_init_date,
+      </if>
+      <if test="fatiDesignOrg != null">
+        fati_design_org,
+      </if>
+      <if test="fatiBuildOrg != null">
+        fati_build_org,
+      </if>
+      <if test="fatiManagerStatus != null">
+        fati_manager_status,
+      </if>
+      <if test="fatiDescription != null">
+        fati_description,
+      </if>
+      <if test="fatiCreateTime != null">
+        fati_create_time,
+      </if>
+      <if test="fatiCreateUserCode != null">
+        fati_create_user_code,
+      </if>
+      <if test="fatiCreateUserName != null">
+        fati_create_user_name,
+      </if>
+      <if test="fatiGongyiName != null">
+        fati_gongyi_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fatiNo != null">
+        #{fatiNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiUri != null">
+        #{fatiUri,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiFactoryNo != null">
+        #{fatiFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiName != null">
+        #{fatiName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiBrowseName != null">
+        #{fatiBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiCode != null">
+        #{fatiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiGongyi != null">
+        #{fatiGongyi,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiNum != null">
+        #{fatiNum,jdbcType=INTEGER},
+      </if>
+      <if test="fatiUnit != null">
+        #{fatiUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiType != null">
+        #{fatiType,jdbcType=INTEGER},
+      </if>
+      <if test="fatiInitDate != null">
+        #{fatiInitDate,jdbcType=DATE},
+      </if>
+      <if test="fatiDesignOrg != null">
+        #{fatiDesignOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiBuildOrg != null">
+        #{fatiBuildOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiManagerStatus != null">
+        #{fatiManagerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fatiDescription != null">
+        #{fatiDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiCreateTime != null">
+        #{fatiCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fatiCreateUserCode != null">
+        #{fatiCreateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiCreateUserName != null">
+        #{fatiCreateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiGongyiName != null">
+        #{fatiGongyiName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFacilityInfoExample" resultType="java.lang.Integer">
+    select count(*) from tb_facility_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_facility_info
+    <set>
+      <if test="record.fatiNo != null">
+        fati_no = #{record.fatiNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiUri != null">
+        fati_uri = #{record.fatiUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiFactoryNo != null">
+        fati_factory_no = #{record.fatiFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiName != null">
+        fati_name = #{record.fatiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiBrowseName != null">
+        fati_browse_name = #{record.fatiBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiCode != null">
+        fati_code = #{record.fatiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiGongyi != null">
+        fati_gongyi = #{record.fatiGongyi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiNum != null">
+        fati_num = #{record.fatiNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.fatiUnit != null">
+        fati_unit = #{record.fatiUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiType != null">
+        fati_type = #{record.fatiType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fatiInitDate != null">
+        fati_init_date = #{record.fatiInitDate,jdbcType=DATE},
+      </if>
+      <if test="record.fatiDesignOrg != null">
+        fati_design_org = #{record.fatiDesignOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiBuildOrg != null">
+        fati_build_org = #{record.fatiBuildOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiManagerStatus != null">
+        fati_manager_status = #{record.fatiManagerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.fatiDescription != null">
+        fati_description = #{record.fatiDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiCreateTime != null">
+        fati_create_time = #{record.fatiCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fatiCreateUserCode != null">
+        fati_create_user_code = #{record.fatiCreateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiCreateUserName != null">
+        fati_create_user_name = #{record.fatiCreateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatiGongyiName != null">
+        fati_gongyi_name = #{record.fatiGongyiName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_facility_info
+    set fati_no = #{record.fatiNo,jdbcType=VARCHAR},
+      fati_uri = #{record.fatiUri,jdbcType=VARCHAR},
+      fati_factory_no = #{record.fatiFactoryNo,jdbcType=VARCHAR},
+      fati_name = #{record.fatiName,jdbcType=VARCHAR},
+      fati_browse_name = #{record.fatiBrowseName,jdbcType=VARCHAR},
+      fati_code = #{record.fatiCode,jdbcType=VARCHAR},
+      fati_gongyi = #{record.fatiGongyi,jdbcType=VARCHAR},
+      fati_num = #{record.fatiNum,jdbcType=INTEGER},
+      fati_unit = #{record.fatiUnit,jdbcType=VARCHAR},
+      fati_type = #{record.fatiType,jdbcType=INTEGER},
+      fati_init_date = #{record.fatiInitDate,jdbcType=DATE},
+      fati_design_org = #{record.fatiDesignOrg,jdbcType=VARCHAR},
+      fati_build_org = #{record.fatiBuildOrg,jdbcType=VARCHAR},
+      fati_manager_status = #{record.fatiManagerStatus,jdbcType=INTEGER},
+      fati_description = #{record.fatiDescription,jdbcType=VARCHAR},
+      fati_create_time = #{record.fatiCreateTime,jdbcType=TIMESTAMP},
+      fati_create_user_code = #{record.fatiCreateUserCode,jdbcType=VARCHAR},
+      fati_create_user_name = #{record.fatiCreateUserName,jdbcType=VARCHAR},
+      fati_gongyi_name = #{record.fatiGongyiName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFacilityInfo">
+    update tb_facility_info
+    <set>
+      <if test="fatiUri != null">
+        fati_uri = #{fatiUri,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiFactoryNo != null">
+        fati_factory_no = #{fatiFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiName != null">
+        fati_name = #{fatiName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiBrowseName != null">
+        fati_browse_name = #{fatiBrowseName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiCode != null">
+        fati_code = #{fatiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiGongyi != null">
+        fati_gongyi = #{fatiGongyi,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiNum != null">
+        fati_num = #{fatiNum,jdbcType=INTEGER},
+      </if>
+      <if test="fatiUnit != null">
+        fati_unit = #{fatiUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiType != null">
+        fati_type = #{fatiType,jdbcType=INTEGER},
+      </if>
+      <if test="fatiInitDate != null">
+        fati_init_date = #{fatiInitDate,jdbcType=DATE},
+      </if>
+      <if test="fatiDesignOrg != null">
+        fati_design_org = #{fatiDesignOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiBuildOrg != null">
+        fati_build_org = #{fatiBuildOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiManagerStatus != null">
+        fati_manager_status = #{fatiManagerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fatiDescription != null">
+        fati_description = #{fatiDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiCreateTime != null">
+        fati_create_time = #{fatiCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fatiCreateUserCode != null">
+        fati_create_user_code = #{fatiCreateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiCreateUserName != null">
+        fati_create_user_name = #{fatiCreateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatiGongyiName != null">
+        fati_gongyi_name = #{fatiGongyiName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fati_no = #{fatiNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFacilityInfo">
+    update tb_facility_info
+    set fati_uri = #{fatiUri,jdbcType=VARCHAR},
+      fati_factory_no = #{fatiFactoryNo,jdbcType=VARCHAR},
+      fati_name = #{fatiName,jdbcType=VARCHAR},
+      fati_browse_name = #{fatiBrowseName,jdbcType=VARCHAR},
+      fati_code = #{fatiCode,jdbcType=VARCHAR},
+      fati_gongyi = #{fatiGongyi,jdbcType=VARCHAR},
+      fati_num = #{fatiNum,jdbcType=INTEGER},
+      fati_unit = #{fatiUnit,jdbcType=VARCHAR},
+      fati_type = #{fatiType,jdbcType=INTEGER},
+      fati_init_date = #{fatiInitDate,jdbcType=DATE},
+      fati_design_org = #{fatiDesignOrg,jdbcType=VARCHAR},
+      fati_build_org = #{fatiBuildOrg,jdbcType=VARCHAR},
+      fati_manager_status = #{fatiManagerStatus,jdbcType=INTEGER},
+      fati_description = #{fatiDescription,jdbcType=VARCHAR},
+      fati_create_time = #{fatiCreateTime,jdbcType=TIMESTAMP},
+      fati_create_user_code = #{fatiCreateUserCode,jdbcType=VARCHAR},
+      fati_create_user_name = #{fatiCreateUserName,jdbcType=VARCHAR},
+      fati_gongyi_name = #{fatiGongyiName,jdbcType=VARCHAR}
+    where fati_no = #{fatiNo,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByTbFacilityInfo" parameterType="com.ejobim.opplat.domain.TbFacilityInfo" resultMap="BaseResultMap">
+    select * from  tb_facility_info where  fati_code = #{fatiCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

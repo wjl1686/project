@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbRoutingTrajectoryMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbRoutingTrajectory" >
+    <id column="traje_no" property="trajeNo" jdbcType="VARCHAR" />
+    <result column="location_no" property="locationNo" jdbcType="VARCHAR" />
+    <result column="traje_time" property="trajeTime" jdbcType="TIMESTAMP" />
+    <result column="routing_task_no" property="routingTaskNo" jdbcType="VARCHAR" />
+    <result column="traje_x" property="trajeX" jdbcType="DOUBLE" />
+    <result column="traje_y" property="trajeY" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    traje_no, location_no, traje_time, routing_task_no, traje_x, traje_y
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_routing_trajectory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_routing_trajectory
+    where traje_no = #{trajeNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_routing_trajectory
+    where traje_no = #{trajeNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectoryExample" >
+    delete from tb_routing_trajectory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectory" >
+    insert into tb_routing_trajectory (traje_no, location_no, traje_time, 
+      routing_task_no, traje_x, traje_y
+      )
+    values (#{trajeNo,jdbcType=VARCHAR}, #{locationNo,jdbcType=VARCHAR}, #{trajeTime,jdbcType=TIMESTAMP}, 
+      #{routingTaskNo,jdbcType=VARCHAR}, #{trajeX,jdbcType=DOUBLE}, #{trajeY,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectory" >
+    insert into tb_routing_trajectory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trajeNo != null" >
+        traje_no,
+      </if>
+      <if test="locationNo != null" >
+        location_no,
+      </if>
+      <if test="trajeTime != null" >
+        traje_time,
+      </if>
+      <if test="routingTaskNo != null" >
+        routing_task_no,
+      </if>
+      <if test="trajeX != null" >
+        traje_x,
+      </if>
+      <if test="trajeY != null" >
+        traje_y,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trajeNo != null" >
+        #{trajeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="locationNo != null" >
+        #{locationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trajeTime != null" >
+        #{trajeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="routingTaskNo != null" >
+        #{routingTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trajeX != null" >
+        #{trajeX,jdbcType=DOUBLE},
+      </if>
+      <if test="trajeY != null" >
+        #{trajeY,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectoryExample" resultType="java.lang.Integer" >
+    select count(*) from tb_routing_trajectory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_routing_trajectory
+    <set >
+      <if test="record.trajeNo != null" >
+        traje_no = #{record.trajeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationNo != null" >
+        location_no = #{record.locationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trajeTime != null" >
+        traje_time = #{record.trajeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.routingTaskNo != null" >
+        routing_task_no = #{record.routingTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trajeX != null" >
+        traje_x = #{record.trajeX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trajeY != null" >
+        traje_y = #{record.trajeY,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_routing_trajectory
+    set traje_no = #{record.trajeNo,jdbcType=VARCHAR},
+      location_no = #{record.locationNo,jdbcType=VARCHAR},
+      traje_time = #{record.trajeTime,jdbcType=TIMESTAMP},
+      routing_task_no = #{record.routingTaskNo,jdbcType=VARCHAR},
+      traje_x = #{record.trajeX,jdbcType=DOUBLE},
+      traje_y = #{record.trajeY,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectory" >
+    update tb_routing_trajectory
+    <set >
+      <if test="locationNo != null" >
+        location_no = #{locationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trajeTime != null" >
+        traje_time = #{trajeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="routingTaskNo != null" >
+        routing_task_no = #{routingTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trajeX != null" >
+        traje_x = #{trajeX,jdbcType=DOUBLE},
+      </if>
+      <if test="trajeY != null" >
+        traje_y = #{trajeY,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where traje_no = #{trajeNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbRoutingTrajectory" >
+    update tb_routing_trajectory
+    set location_no = #{locationNo,jdbcType=VARCHAR},
+      traje_time = #{trajeTime,jdbcType=TIMESTAMP},
+      routing_task_no = #{routingTaskNo,jdbcType=VARCHAR},
+      traje_x = #{trajeX,jdbcType=DOUBLE},
+      traje_y = #{trajeY,jdbcType=DOUBLE}
+    where traje_no = #{trajeNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

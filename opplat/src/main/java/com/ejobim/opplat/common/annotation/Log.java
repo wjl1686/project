@@ -1,0 +1,16 @@
+package com.ejobim.opplat.common.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+/**
+ * 日志注解
+ * @author wujianlong
+ */
+public @interface Log {
+    String value() default "";
+}

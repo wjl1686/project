@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbGongyiAdjustMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbGongyiAdjust" >
+    <id column="adjust_no" property="adjustNo" jdbcType="VARCHAR" />
+    <result column="flow_no" property="flowNo" jdbcType="VARCHAR" />
+    <result column="adjust_name" property="adjustName" jdbcType="VARCHAR" />
+    <result column="adjust_type" property="adjustType" jdbcType="INTEGER" />
+    <result column="adjust_content" property="adjustContent" jdbcType="VARCHAR" />
+    <result column="adjust_addon" property="adjustAddon" jdbcType="VARCHAR" />
+    <association property="workFlow" javaType="com.ejobim.opplat.domain.TbWorkFlow">
+      <id column="flow_no" property="flowNo" jdbcType="VARCHAR" />
+      <result column="work_flow_config_no" property="workFlowConfigNo" jdbcType="VARCHAR" />
+      <result column="org_no" property="orgNo" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+      <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+      <result column="next_user" property="nextUser" jdbcType="VARCHAR" />
+      <result column="next_user_name" property="nextUserName" jdbcType="VARCHAR" />
+      <result column="status_index" property="statusIndex" jdbcType="INTEGER" />
+      <result column="status_code_name" property="statusCodeName" jdbcType="VARCHAR" />
+      <result column="next_status_index" property="nextStatusIndex" jdbcType="INTEGER" />
+      <result column="next_status_code_name" property="nextStatusCodeName" jdbcType="VARCHAR" />
+      <result column="next_plat" property="nextPlat" jdbcType="INTEGER" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    adjust_no, flow_no, adjust_name, adjust_type, adjust_content, adjust_addon
+  </sql>
+  <sql id="Base_Column_List_1" >
+    adjust_no, a.flow_no, adjust_name, adjust_type, adjust_content, adjust_addon,
+  </sql>
+  <sql id="Work_Flow_Column_List" >
+    work_flow_config_no, create_time, create_user, create_user_name, next_user,
+    next_user_name, status_index, status_code_name, next_status_index, next_status_code_name,
+    next_plat, b.update_time, delete_flag, org_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_gongyi_adjust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_gongyi_adjust
+    where adjust_no = #{adjustNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByFlow"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_1" />
+    <include refid="Work_Flow_Column_List" />
+    from tb_gongyi_adjust a left join tb_work_flow b on a.flow_no = b.flow_no
+    where  1=1
+    <if test="orgNo != null">
+      and org_no = #{orgNo,jdbcType=VARCHAR}
+    </if>
+    <if test="adjustName != null">
+      and adjust_name = CONCAT('%',#{adjustName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="userCode != null">
+      and b.next_user = #{userCode,jdbcType=VARCHAR}
+      <if test="plat == 0 ">
+        and b.next_plat &lt;=1
+      </if>
+      <if test="plat == 1 ">
+        and b.next_plat &gt;=1
+      </if>
+    </if>
+    order by b.update_time desc;
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_gongyi_adjust
+    where adjust_no = #{adjustNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExample" >
+    delete from tb_gongyi_adjust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbGongyiAdjust" >
+    insert into tb_gongyi_adjust (adjust_no, flow_no, adjust_name, 
+      adjust_type, adjust_content, adjust_addon
+      )
+    values (#{adjustNo,jdbcType=VARCHAR}, #{flowNo,jdbcType=VARCHAR}, #{adjustName,jdbcType=VARCHAR}, 
+      #{adjustType,jdbcType=INTEGER}, #{adjustContent,jdbcType=VARCHAR}, #{adjustAddon,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbGongyiAdjust" >
+    insert into tb_gongyi_adjust
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adjustNo != null" >
+        adjust_no,
+      </if>
+      <if test="flowNo != null" >
+        flow_no,
+      </if>
+      <if test="adjustName != null" >
+        adjust_name,
+      </if>
+      <if test="adjustType != null" >
+        adjust_type,
+      </if>
+      <if test="adjustContent != null" >
+        adjust_content,
+      </if>
+      <if test="adjustAddon != null" >
+        adjust_addon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adjustNo != null" >
+        #{adjustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNo != null" >
+        #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustName != null" >
+        #{adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustType != null" >
+        #{adjustType,jdbcType=INTEGER},
+      </if>
+      <if test="adjustContent != null" >
+        #{adjustContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustAddon != null" >
+        #{adjustAddon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExample" resultType="java.lang.Integer" >
+    select count(*) from tb_gongyi_adjust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_gongyi_adjust
+    <set >
+      <if test="record.adjustNo != null" >
+        adjust_no = #{record.adjustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowNo != null" >
+        flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustName != null" >
+        adjust_name = #{record.adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustType != null" >
+        adjust_type = #{record.adjustType,jdbcType=INTEGER},
+      </if>
+      <if test="record.adjustContent != null" >
+        adjust_content = #{record.adjustContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustAddon != null" >
+        adjust_addon = #{record.adjustAddon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_gongyi_adjust
+    set adjust_no = #{record.adjustNo,jdbcType=VARCHAR},
+      flow_no = #{record.flowNo,jdbcType=VARCHAR},
+      adjust_name = #{record.adjustName,jdbcType=VARCHAR},
+      adjust_type = #{record.adjustType,jdbcType=INTEGER},
+      adjust_content = #{record.adjustContent,jdbcType=VARCHAR},
+      adjust_addon = #{record.adjustAddon,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbGongyiAdjust" >
+    update tb_gongyi_adjust
+    <set >
+      <if test="flowNo != null" >
+        flow_no = #{flowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustName != null" >
+        adjust_name = #{adjustName,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustType != null" >
+        adjust_type = #{adjustType,jdbcType=INTEGER},
+      </if>
+      <if test="adjustContent != null" >
+        adjust_content = #{adjustContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustAddon != null" >
+        adjust_addon = #{adjustAddon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adjust_no = #{adjustNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbGongyiAdjust" >
+    update tb_gongyi_adjust
+    set flow_no = #{flowNo,jdbcType=VARCHAR},
+      adjust_name = #{adjustName,jdbcType=VARCHAR},
+      adjust_type = #{adjustType,jdbcType=INTEGER},
+      adjust_content = #{adjustContent,jdbcType=VARCHAR},
+      adjust_addon = #{adjustAddon,jdbcType=VARCHAR}
+    where adjust_no = #{adjustNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

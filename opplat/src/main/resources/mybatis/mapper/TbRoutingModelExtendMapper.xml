@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbRoutingModelExtendMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbRoutingModelExtend">
+    <id column="routing_model_extend_no" jdbcType="VARCHAR" property="routingModelExtendNo" />
+    <result column="routing_model_no" jdbcType="VARCHAR" property="routingModelNo" />
+    <result column="routing_element_no" jdbcType="VARCHAR" property="routingElementNo" />
+    <result column="routing_element_type" jdbcType="INTEGER" property="routingElementType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="routing_location_no" jdbcType="VARCHAR" property="routingLocationNo" />
+    <result column="routing_equip_no" jdbcType="VARCHAR" property="routingEquipNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    routing_model_extend_no, routing_model_no, routing_element_no, routing_element_type, 
+    create_time, routing_location_no, routing_equip_no
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_routing_model_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_routing_model_extend
+    where routing_model_extend_no = #{routingModelExtendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_routing_model_extend
+    where routing_model_extend_no = #{routingModelExtendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtendExample">
+    delete from tb_routing_model_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtend">
+    insert into tb_routing_model_extend (routing_model_extend_no, routing_model_no, 
+      routing_element_no, routing_element_type, create_time, 
+      routing_location_no, routing_equip_no)
+    values (#{routingModelExtendNo,jdbcType=VARCHAR}, #{routingModelNo,jdbcType=VARCHAR}, 
+      #{routingElementNo,jdbcType=VARCHAR}, #{routingElementType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{routingLocationNo,jdbcType=VARCHAR}, #{routingEquipNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtend">
+    insert into tb_routing_model_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="routingModelExtendNo != null">
+        routing_model_extend_no,
+      </if>
+      <if test="routingModelNo != null">
+        routing_model_no,
+      </if>
+      <if test="routingElementNo != null">
+        routing_element_no,
+      </if>
+      <if test="routingElementType != null">
+        routing_element_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="routingLocationNo != null">
+        routing_location_no,
+      </if>
+      <if test="routingEquipNo != null">
+        routing_equip_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="routingModelExtendNo != null">
+        #{routingModelExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingModelNo != null">
+        #{routingModelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingElementNo != null">
+        #{routingElementNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingElementType != null">
+        #{routingElementType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="routingLocationNo != null">
+        #{routingLocationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingEquipNo != null">
+        #{routingEquipNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtendExample" resultType="java.lang.Integer">
+    select count(*) from tb_routing_model_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_routing_model_extend
+    <set>
+      <if test="record.routingModelExtendNo != null">
+        routing_model_extend_no = #{record.routingModelExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingModelNo != null">
+        routing_model_no = #{record.routingModelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingElementNo != null">
+        routing_element_no = #{record.routingElementNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingElementType != null">
+        routing_element_type = #{record.routingElementType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.routingLocationNo != null">
+        routing_location_no = #{record.routingLocationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingEquipNo != null">
+        routing_equip_no = #{record.routingEquipNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_routing_model_extend
+    set routing_model_extend_no = #{record.routingModelExtendNo,jdbcType=VARCHAR},
+      routing_model_no = #{record.routingModelNo,jdbcType=VARCHAR},
+      routing_element_no = #{record.routingElementNo,jdbcType=VARCHAR},
+      routing_element_type = #{record.routingElementType,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      routing_location_no = #{record.routingLocationNo,jdbcType=VARCHAR},
+      routing_equip_no = #{record.routingEquipNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtend">
+    update tb_routing_model_extend
+    <set>
+      <if test="routingModelNo != null">
+        routing_model_no = #{routingModelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingElementNo != null">
+        routing_element_no = #{routingElementNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingElementType != null">
+        routing_element_type = #{routingElementType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="routingLocationNo != null">
+        routing_location_no = #{routingLocationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingEquipNo != null">
+        routing_equip_no = #{routingEquipNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where routing_model_extend_no = #{routingModelExtendNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbRoutingModelExtend">
+    update tb_routing_model_extend
+    set routing_model_no = #{routingModelNo,jdbcType=VARCHAR},
+      routing_element_no = #{routingElementNo,jdbcType=VARCHAR},
+      routing_element_type = #{routingElementType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      routing_location_no = #{routingLocationNo,jdbcType=VARCHAR},
+      routing_equip_no = #{routingEquipNo,jdbcType=VARCHAR}
+    where routing_model_extend_no = #{routingModelExtendNo,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insertBatch"  parameterType="java.util.List">
+    insert into tb_routing_model_extend (routing_model_extend_no, routing_model_no,
+      routing_element_no, routing_element_type, create_time,
+      routing_location_no, routing_equip_no)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.routingModelExtendNo,jdbcType=VARCHAR}, #{item.routingModelNo,jdbcType=VARCHAR},
+      #{item.routingElementNo,jdbcType=VARCHAR}, #{item.routingElementType,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP},
+      #{item.routingLocationNo,jdbcType=VARCHAR}, #{item.routingEquipNo,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <select id="getRoutingModelList" parameterType="java.lang.String" resultType="java.lang.String">
+   SELECT distinct(routing_model_no)
+    FROM tb_routing_model_extend
+    where routing_location_no = #{locationNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

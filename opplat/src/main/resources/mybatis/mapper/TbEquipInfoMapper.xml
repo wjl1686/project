@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipInfo" >
+    <id column="equip_no" property="equipNo" jdbcType="VARCHAR" />
+    <result column="equip_uri" property="equipUri" jdbcType="VARCHAR" />
+    <result column="equip_type" property="equipType" jdbcType="VARCHAR" />
+    <result column="equip_mode" property="equipMode" jdbcType="VARCHAR" />
+    <result column="equip_describe" property="equipDescribe" jdbcType="VARCHAR" />
+    <result column="equip_power" property="equipPower" jdbcType="DOUBLE" />
+    <result column="asset_type" property="assetType" jdbcType="VARCHAR" />
+    <result column="asset_value" property="assetValue" jdbcType="DOUBLE" />
+    <result column="asset_net_value" property="assetNetValue" jdbcType="DOUBLE" />
+    <result column="installation_site" property="installationSite" jdbcType="VARCHAR" />
+    <result column="installation_location" property="installationLocation" jdbcType="VARCHAR" />
+    <result column="supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="service_telephone" property="serviceTelephone" jdbcType="VARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="purchase_no" property="purchaseNo" jdbcType="VARCHAR" />
+    <result column="purchase_date" property="purchaseDate" jdbcType="TIMESTAMP" />
+    <result column="invocation_date" property="invocationDate" jdbcType="TIMESTAMP" />
+    <result column="maintenance_period" property="maintenancePeriod" jdbcType="VARCHAR" />
+    <result column="expiration_year" property="expirationYear" jdbcType="INTEGER" />
+    <result column="equip_status" property="equipStatus" jdbcType="INTEGER" />
+    <result column="equip_picture" property="equipPicture" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="equip_name" property="equipName" jdbcType="VARCHAR" />
+    <result column="equip_code" property="equipCode" jdbcType="VARCHAR" />
+    <result column="equip_main_type" property="equipMainType" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="equip_type_code" property="equipTypeCode" jdbcType="VARCHAR" />
+    <result column="equip_sort" property="equipSort" jdbcType="INTEGER" />
+    <result column="equip_new_type" property="equipNewType" jdbcType="INTEGER" />
+    <result column="issue_no" property="issueNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    equip_no, equip_uri, equip_type, equip_mode, equip_describe, equip_power, asset_type, 
+    asset_value, asset_net_value, installation_site, installation_location, supplier, 
+    service_telephone, manufacturer, purchase_no, purchase_date, invocation_date, maintenance_period, 
+    expiration_year, equip_status, equip_picture, factory_no, equip_name, equip_code, 
+    equip_main_type, start_date, update_time, update_user, equip_type_code, equip_sort, 
+    equip_new_type, issue_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_info
+    where equip_no = #{equipNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_info
+    where equip_no = #{equipNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipInfoExample" >
+    delete from tb_equip_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipInfo" >
+    insert into tb_equip_info (equip_no, equip_uri, equip_type, 
+      equip_mode, equip_describe, equip_power, 
+      asset_type, asset_value, asset_net_value, 
+      installation_site, installation_location, 
+      supplier, service_telephone, manufacturer, 
+      purchase_no, purchase_date, invocation_date, 
+      maintenance_period, expiration_year, equip_status, 
+      equip_picture, factory_no, equip_name, 
+      equip_code, equip_main_type, start_date, 
+      update_time, update_user, equip_type_code, 
+      equip_sort, equip_new_type, issue_no
+      )
+    values (#{equipNo,jdbcType=VARCHAR}, #{equipUri,jdbcType=VARCHAR}, #{equipType,jdbcType=VARCHAR}, 
+      #{equipMode,jdbcType=VARCHAR}, #{equipDescribe,jdbcType=VARCHAR}, #{equipPower,jdbcType=DOUBLE}, 
+      #{assetType,jdbcType=VARCHAR}, #{assetValue,jdbcType=DOUBLE}, #{assetNetValue,jdbcType=DOUBLE}, 
+      #{installationSite,jdbcType=VARCHAR}, #{installationLocation,jdbcType=VARCHAR}, 
+      #{supplier,jdbcType=VARCHAR}, #{serviceTelephone,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{purchaseNo,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, #{invocationDate,jdbcType=TIMESTAMP}, 
+      #{maintenancePeriod,jdbcType=VARCHAR}, #{expirationYear,jdbcType=INTEGER}, #{equipStatus,jdbcType=INTEGER}, 
+      #{equipPicture,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{equipName,jdbcType=VARCHAR}, 
+      #{equipCode,jdbcType=VARCHAR}, #{equipMainType,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{equipTypeCode,jdbcType=VARCHAR}, 
+      #{equipSort,jdbcType=INTEGER}, #{equipNewType,jdbcType=INTEGER}, #{issueNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipInfo" >
+    insert into tb_equip_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="equipNo != null" >
+        equip_no,
+      </if>
+      <if test="equipUri != null" >
+        equip_uri,
+      </if>
+      <if test="equipType != null" >
+        equip_type,
+      </if>
+      <if test="equipMode != null" >
+        equip_mode,
+      </if>
+      <if test="equipDescribe != null" >
+        equip_describe,
+      </if>
+      <if test="equipPower != null" >
+        equip_power,
+      </if>
+      <if test="assetType != null" >
+        asset_type,
+      </if>
+      <if test="assetValue != null" >
+        asset_value,
+      </if>
+      <if test="assetNetValue != null" >
+        asset_net_value,
+      </if>
+      <if test="installationSite != null" >
+        installation_site,
+      </if>
+      <if test="installationLocation != null" >
+        installation_location,
+      </if>
+      <if test="supplier != null" >
+        supplier,
+      </if>
+      <if test="serviceTelephone != null" >
+        service_telephone,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="purchaseNo != null" >
+        purchase_no,
+      </if>
+      <if test="purchaseDate != null" >
+        purchase_date,
+      </if>
+      <if test="invocationDate != null" >
+        invocation_date,
+      </if>
+      <if test="maintenancePeriod != null" >
+        maintenance_period,
+      </if>
+      <if test="expirationYear != null" >
+        expiration_year,
+      </if>
+      <if test="equipStatus != null" >
+        equip_status,
+      </if>
+      <if test="equipPicture != null" >
+        equip_picture,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="equipName != null" >
+        equip_name,
+      </if>
+      <if test="equipCode != null" >
+        equip_code,
+      </if>
+      <if test="equipMainType != null" >
+        equip_main_type,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="equipTypeCode != null" >
+        equip_type_code,
+      </if>
+      <if test="equipSort != null" >
+        equip_sort,
+      </if>
+      <if test="equipNewType != null" >
+        equip_new_type,
+      </if>
+      <if test="issueNo != null" >
+        issue_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="equipNo != null" >
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipUri != null" >
+        #{equipUri,jdbcType=VARCHAR},
+      </if>
+      <if test="equipType != null" >
+        #{equipType,jdbcType=VARCHAR},
+      </if>
+      <if test="equipMode != null" >
+        #{equipMode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipDescribe != null" >
+        #{equipDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="equipPower != null" >
+        #{equipPower,jdbcType=DOUBLE},
+      </if>
+      <if test="assetType != null" >
+        #{assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="assetValue != null" >
+        #{assetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="assetNetValue != null" >
+        #{assetNetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="installationSite != null" >
+        #{installationSite,jdbcType=VARCHAR},
+      </if>
+      <if test="installationLocation != null" >
+        #{installationLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null" >
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTelephone != null" >
+        #{serviceTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseNo != null" >
+        #{purchaseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null" >
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invocationDate != null" >
+        #{invocationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenancePeriod != null" >
+        #{maintenancePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationYear != null" >
+        #{expirationYear,jdbcType=INTEGER},
+      </if>
+      <if test="equipStatus != null" >
+        #{equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="equipPicture != null" >
+        #{equipPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipName != null" >
+        #{equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipCode != null" >
+        #{equipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipMainType != null" >
+        #{equipMainType,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipTypeCode != null" >
+        #{equipTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipSort != null" >
+        #{equipSort,jdbcType=INTEGER},
+      </if>
+      <if test="equipNewType != null" >
+        #{equipNewType,jdbcType=INTEGER},
+      </if>
+      <if test="issueNo != null" >
+        #{issueNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_info
+    <set >
+      <if test="record.equipNo != null" >
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipUri != null" >
+        equip_uri = #{record.equipUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipType != null" >
+        equip_type = #{record.equipType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipMode != null" >
+        equip_mode = #{record.equipMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipDescribe != null" >
+        equip_describe = #{record.equipDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipPower != null" >
+        equip_power = #{record.equipPower,jdbcType=DOUBLE},
+      </if>
+      <if test="record.assetType != null" >
+        asset_type = #{record.assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetValue != null" >
+        asset_value = #{record.assetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.assetNetValue != null" >
+        asset_net_value = #{record.assetNetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.installationSite != null" >
+        installation_site = #{record.installationSite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.installationLocation != null" >
+        installation_location = #{record.installationLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplier != null" >
+        supplier = #{record.supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTelephone != null" >
+        service_telephone = #{record.serviceTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manufacturer != null" >
+        manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseNo != null" >
+        purchase_no = #{record.purchaseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseDate != null" >
+        purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invocationDate != null" >
+        invocation_date = #{record.invocationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.maintenancePeriod != null" >
+        maintenance_period = #{record.maintenancePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expirationYear != null" >
+        expiration_year = #{record.expirationYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipStatus != null" >
+        equip_status = #{record.equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipPicture != null" >
+        equip_picture = #{record.equipPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipName != null" >
+        equip_name = #{record.equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipCode != null" >
+        equip_code = #{record.equipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipMainType != null" >
+        equip_main_type = #{record.equipMainType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipTypeCode != null" >
+        equip_type_code = #{record.equipTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipSort != null" >
+        equip_sort = #{record.equipSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipNewType != null" >
+        equip_new_type = #{record.equipNewType,jdbcType=INTEGER},
+      </if>
+      <if test="record.issueNo != null" >
+        issue_no = #{record.issueNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_info
+    set equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      equip_uri = #{record.equipUri,jdbcType=VARCHAR},
+      equip_type = #{record.equipType,jdbcType=VARCHAR},
+      equip_mode = #{record.equipMode,jdbcType=VARCHAR},
+      equip_describe = #{record.equipDescribe,jdbcType=VARCHAR},
+      equip_power = #{record.equipPower,jdbcType=DOUBLE},
+      asset_type = #{record.assetType,jdbcType=VARCHAR},
+      asset_value = #{record.assetValue,jdbcType=DOUBLE},
+      asset_net_value = #{record.assetNetValue,jdbcType=DOUBLE},
+      installation_site = #{record.installationSite,jdbcType=VARCHAR},
+      installation_location = #{record.installationLocation,jdbcType=VARCHAR},
+      supplier = #{record.supplier,jdbcType=VARCHAR},
+      service_telephone = #{record.serviceTelephone,jdbcType=VARCHAR},
+      manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
+      purchase_no = #{record.purchaseNo,jdbcType=VARCHAR},
+      purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      invocation_date = #{record.invocationDate,jdbcType=TIMESTAMP},
+      maintenance_period = #{record.maintenancePeriod,jdbcType=VARCHAR},
+      expiration_year = #{record.expirationYear,jdbcType=INTEGER},
+      equip_status = #{record.equipStatus,jdbcType=INTEGER},
+      equip_picture = #{record.equipPicture,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      equip_name = #{record.equipName,jdbcType=VARCHAR},
+      equip_code = #{record.equipCode,jdbcType=VARCHAR},
+      equip_main_type = #{record.equipMainType,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      equip_type_code = #{record.equipTypeCode,jdbcType=VARCHAR},
+      equip_sort = #{record.equipSort,jdbcType=INTEGER},
+      equip_new_type = #{record.equipNewType,jdbcType=INTEGER},
+      issue_no = #{record.issueNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipInfo" >
+    update tb_equip_info
+    <set >
+      <if test="equipUri != null" >
+        equip_uri = #{equipUri,jdbcType=VARCHAR},
+      </if>
+      <if test="equipType != null" >
+        equip_type = #{equipType,jdbcType=VARCHAR},
+      </if>
+      <if test="equipMode != null" >
+        equip_mode = #{equipMode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipDescribe != null" >
+        equip_describe = #{equipDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="equipPower != null" >
+        equip_power = #{equipPower,jdbcType=DOUBLE},
+      </if>
+      <if test="assetType != null" >
+        asset_type = #{assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="assetValue != null" >
+        asset_value = #{assetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="assetNetValue != null" >
+        asset_net_value = #{assetNetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="installationSite != null" >
+        installation_site = #{installationSite,jdbcType=VARCHAR},
+      </if>
+      <if test="installationLocation != null" >
+        installation_location = #{installationLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null" >
+        supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTelephone != null" >
+        service_telephone = #{serviceTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseNo != null" >
+        purchase_no = #{purchaseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null" >
+        purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invocationDate != null" >
+        invocation_date = #{invocationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenancePeriod != null" >
+        maintenance_period = #{maintenancePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationYear != null" >
+        expiration_year = #{expirationYear,jdbcType=INTEGER},
+      </if>
+      <if test="equipStatus != null" >
+        equip_status = #{equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="equipPicture != null" >
+        equip_picture = #{equipPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipName != null" >
+        equip_name = #{equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipCode != null" >
+        equip_code = #{equipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipMainType != null" >
+        equip_main_type = #{equipMainType,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipTypeCode != null" >
+        equip_type_code = #{equipTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipSort != null" >
+        equip_sort = #{equipSort,jdbcType=INTEGER},
+      </if>
+      <if test="equipNewType != null" >
+        equip_new_type = #{equipNewType,jdbcType=INTEGER},
+      </if>
+      <if test="issueNo != null" >
+        issue_no = #{issueNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where equip_no = #{equipNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipInfo" >
+    update tb_equip_info
+    set equip_uri = #{equipUri,jdbcType=VARCHAR},
+      equip_type = #{equipType,jdbcType=VARCHAR},
+      equip_mode = #{equipMode,jdbcType=VARCHAR},
+      equip_describe = #{equipDescribe,jdbcType=VARCHAR},
+      equip_power = #{equipPower,jdbcType=DOUBLE},
+      asset_type = #{assetType,jdbcType=VARCHAR},
+      asset_value = #{assetValue,jdbcType=DOUBLE},
+      asset_net_value = #{assetNetValue,jdbcType=DOUBLE},
+      installation_site = #{installationSite,jdbcType=VARCHAR},
+      installation_location = #{installationLocation,jdbcType=VARCHAR},
+      supplier = #{supplier,jdbcType=VARCHAR},
+      service_telephone = #{serviceTelephone,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      purchase_no = #{purchaseNo,jdbcType=VARCHAR},
+      purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      invocation_date = #{invocationDate,jdbcType=TIMESTAMP},
+      maintenance_period = #{maintenancePeriod,jdbcType=VARCHAR},
+      expiration_year = #{expirationYear,jdbcType=INTEGER},
+      equip_status = #{equipStatus,jdbcType=INTEGER},
+      equip_picture = #{equipPicture,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      equip_name = #{equipName,jdbcType=VARCHAR},
+      equip_code = #{equipCode,jdbcType=VARCHAR},
+      equip_main_type = #{equipMainType,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      equip_type_code = #{equipTypeCode,jdbcType=VARCHAR},
+      equip_sort = #{equipSort,jdbcType=INTEGER},
+      equip_new_type = #{equipNewType,jdbcType=INTEGER},
+      issue_no = #{issueNo,jdbcType=VARCHAR}
+    where equip_no = #{equipNo,jdbcType=VARCHAR}
+  </update>
+  <select id="getTbEquipInfo"  parameterType="com.ejobim.opplat.domain.TbEquipInfo" resultType="com.ejobim.opplat.domain.TbEquipInfo">
+
+    select a.equip_name equipName , a.equip_mode equipMode,a.installation_site installationSite,  b.name equipTypeName ,a.equip_no equipNo ,a.equip_code equipCode
+    from tb_equip_info a left join tb_param b on a.equip_type =b.uri
+    where b.type=1
+    <if test="equipType != null" >
+      AND a.equip_type = #{equipType,jdbcType=VARCHAR}
+    </if>
+    <if test="equipNo != null" >
+      and a.equip_no = #{equipNo,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <!--自定义 by Hypo start-->
+  <sql id="where_all_conds">
+    <if test="equipNo != null" >
+      and equip_no = #{equipNo,jdbcType=VARCHAR}
+    </if>
+    <if test="equipType != null" >
+      and equip_type = #{equipType,jdbcType=VARCHAR}
+    </if>
+    <if test="equipMode != null" >
+      and equip_mode = #{equipMode,jdbcType=VARCHAR}
+    </if>
+    <if test="equipDescribe != null" >
+      and equip_describe = #{equipDescribe,jdbcType=VARCHAR}
+    </if>
+    <if test="equipPower != null" >
+      and equip_power = #{equipPower,jdbcType=DOUBLE}
+    </if>
+    <if test="assetType != null" >
+      and asset_type = #{assetType,jdbcType=VARCHAR}
+    </if>
+    <if test="assetValue != null" >
+      and asset_value = #{assetValue,jdbcType=DOUBLE}
+    </if>
+    <if test="assetNetValue != null" >
+      and asset_net_value = #{assetNetValue,jdbcType=DOUBLE}
+    </if>
+    <if test="installationSite != null" >
+      and installation_site = #{installationSite,jdbcType=VARCHAR}
+    </if>
+    <if test="installationLocation != null" >
+      and installation_location = #{installationLocation,jdbcType=VARCHAR}
+    </if>
+    <if test="supplier != null" >
+      and supplier = #{supplier,jdbcType=VARCHAR}
+    </if>
+    <if test="serviceTelephone != null" >
+      and service_telephone = #{serviceTelephone,jdbcType=VARCHAR}
+    </if>
+    <if test="manufacturer != null" >
+      and manufacturer = #{manufacturer,jdbcType=VARCHAR}
+    </if>
+    <if test="purchaseNo != null" >
+      and purchase_no = #{purchaseNo,jdbcType=VARCHAR}
+    </if>
+    <if test="purchaseDate != null" >
+      and purchase_date = #{purchaseDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="invocationDate != null" >
+      and invocation_date = #{invocationDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="maintenancePeriod != null" >
+      and maintenance_period = #{maintenancePeriod,jdbcType=VARCHAR}
+    </if>
+    <if test="expirationYear != null" >
+      and expiration_year = #{expirationYear,jdbcType=INTEGER}
+    </if>
+    <if test="equipStatus != null" >
+      and equip_status = #{equipStatus,jdbcType=INTEGER}
+    </if>
+    <if test="equipPicture != null" >
+      and equip_picture = #{equipPicture,jdbcType=VARCHAR}
+    </if>
+    <if test="factoryNo != null" >
+      and factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="equipName != null" >
+      and equip_name = #{equipName,jdbcType=VARCHAR}
+    </if>
+    <if test="equipCode != null" >
+      and equip_code = #{equipCode,jdbcType=VARCHAR}
+    </if>
+    <if test="equipMainType != null" >
+      and equip_main_type = #{equipMainType,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null " >
+      and start_date = #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="equipUri != null" >
+      and equip_uri = #{equipUri,jdbcType=VARCHAR}
+    </if>
+  </sql>
+
+
+
+  <select id="selectEquipBaseInfoByKey" parameterType="com.ejobim.opplat.domain.TbEquipInfo" resultType="com.ejobim.opplat.domain.TbEquipInfo">
+    select <include refid="Base_Column_List"/>
+    from tb_equip_info
+    <where>
+      <include refid="where_all_conds"/>
+    </where>
+  </select>
+  <!--自定义 by Hypo end-->
+  <select id="selectEquipBatchlist" resultMap="BaseResultMap">
+    select * from tb_equip_info where equip_no in
+    <foreach collection="list" item="uri" open="(" close=")" separator=",">
+      #{uri}
+    </foreach>
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from  tb_equip_info where factory_no=#{factory_no}
+  </delete>
+
+    <insert id="insertEquipBatchlist"  parameterType="java.util.List">
+        insert into tb_equip_info (equip_no, equip_uri, equip_type, 
+          equip_mode, equip_describe, equip_power, 
+          asset_type, asset_value, asset_net_value, 
+          installation_site, installation_location, 
+          supplier, service_telephone, manufacturer, 
+          purchase_no, purchase_date, invocation_date, 
+          maintenance_period, expiration_year, equip_status, 
+          equip_picture, factory_no, equip_name, 
+          equip_code, equip_main_type, start_date, 
+          update_time, update_user, equip_type_code, 
+          equip_sort, equip_new_type, issue_no
+      )
+      values
+        <foreach collection="list" item="item" index="index" separator=",">
+          (#{item.equipNo,jdbcType=VARCHAR}, #{item.equipUri,jdbcType=VARCHAR}, #{item.equipType,jdbcType=VARCHAR}, 
+          #{item.equipMode,jdbcType=VARCHAR}, #{item.equipDescribe,jdbcType=VARCHAR}, #{item.equipPower,jdbcType=DOUBLE}, 
+          #{item.assetType,jdbcType=VARCHAR}, #{item.assetValue,jdbcType=DOUBLE}, #{item.assetNetValue,jdbcType=DOUBLE}, 
+          #{item.installationSite,jdbcType=VARCHAR}, #{item.installationLocation,jdbcType=VARCHAR}, 
+          #{item.supplier,jdbcType=VARCHAR}, #{item.serviceTelephone,jdbcType=VARCHAR}, #{item.manufacturer,jdbcType=VARCHAR}, 
+          #{item.purchaseNo,jdbcType=VARCHAR}, #{item.purchaseDate,jdbcType=TIMESTAMP}, #{item.invocationDate,jdbcType=TIMESTAMP}, 
+          #{item.maintenancePeriod,jdbcType=VARCHAR}, #{item.expirationYear,jdbcType=INTEGER}, #{item.equipStatus,jdbcType=INTEGER}, 
+          #{item.equipPicture,jdbcType=VARCHAR}, #{item.factoryNo,jdbcType=VARCHAR}, #{item.equipName,jdbcType=VARCHAR}, 
+          #{item.equipCode,jdbcType=VARCHAR}, #{item.equipMainType,jdbcType=VARCHAR}, #{item.startDate,jdbcType=TIMESTAMP}, 
+          #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateUser,jdbcType=VARCHAR}, #{item.equipTypeCode,jdbcType=VARCHAR}, 
+          #{item.equipSort,jdbcType=INTEGER}, #{item.equipNewType,jdbcType=INTEGER}, #{item.issueNo,jdbcType=VARCHAR}
+          )
+        </foreach>
+    </insert>
+    
+    <select id="getNfcEquipInfoList" parameterType="com.ejobim.opplat.domain.TbNfcInfo" resultType="map">
+        select equip_no code ,equip_name name from tb_equip_info where factory_no =#{factoryNo,jdbcType=VARCHAR} and equip_no  not in ( select node_id nodeId from
+          tb_nfc_info where factory_no =#{factoryNo,jdbcType=VARCHAR} and  node_type = #{nodeType,jdbcType=INTEGER}
+         )
+    </select>
+
+</mapper>

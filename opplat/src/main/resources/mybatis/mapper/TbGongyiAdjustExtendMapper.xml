@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbGongyiAdjustExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbGongyiAdjustExtend" >
+    <id column="ad_extend_no" property="adExtendNo" jdbcType="VARCHAR" />
+    <result column="extend_no" property="extendNo" jdbcType="VARCHAR" />
+    <result column="adjust_content" property="adjustContent" jdbcType="VARCHAR" />
+    <result column="adjust_addon" property="adjustAddon" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ad_extend_no, extend_no, adjust_content, adjust_addon
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_gongyi_adjust_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_gongyi_adjust_extend
+    where ad_extend_no = #{adExtendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_gongyi_adjust_extend
+    where ad_extend_no = #{adExtendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtendExample" >
+    delete from tb_gongyi_adjust_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtend" >
+    insert into tb_gongyi_adjust_extend (ad_extend_no, extend_no, adjust_content, 
+      adjust_addon)
+    values (#{adExtendNo,jdbcType=VARCHAR}, #{extendNo,jdbcType=VARCHAR}, #{adjustContent,jdbcType=VARCHAR}, 
+      #{adjustAddon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtend" >
+    insert into tb_gongyi_adjust_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adExtendNo != null" >
+        ad_extend_no,
+      </if>
+      <if test="extendNo != null" >
+        extend_no,
+      </if>
+      <if test="adjustContent != null" >
+        adjust_content,
+      </if>
+      <if test="adjustAddon != null" >
+        adjust_addon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adExtendNo != null" >
+        #{adExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendNo != null" >
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustContent != null" >
+        #{adjustContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustAddon != null" >
+        #{adjustAddon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_gongyi_adjust_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_gongyi_adjust_extend
+    <set >
+      <if test="record.adExtendNo != null" >
+        ad_extend_no = #{record.adExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendNo != null" >
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustContent != null" >
+        adjust_content = #{record.adjustContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustAddon != null" >
+        adjust_addon = #{record.adjustAddon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_gongyi_adjust_extend
+    set ad_extend_no = #{record.adExtendNo,jdbcType=VARCHAR},
+      extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      adjust_content = #{record.adjustContent,jdbcType=VARCHAR},
+      adjust_addon = #{record.adjustAddon,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtend" >
+    update tb_gongyi_adjust_extend
+    <set >
+      <if test="extendNo != null" >
+        extend_no = #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustContent != null" >
+        adjust_content = #{adjustContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustAddon != null" >
+        adjust_addon = #{adjustAddon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_extend_no = #{adExtendNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbGongyiAdjustExtend" >
+    update tb_gongyi_adjust_extend
+    set extend_no = #{extendNo,jdbcType=VARCHAR},
+      adjust_content = #{adjustContent,jdbcType=VARCHAR},
+      adjust_addon = #{adjustAddon,jdbcType=VARCHAR}
+    where ad_extend_no = #{adExtendNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

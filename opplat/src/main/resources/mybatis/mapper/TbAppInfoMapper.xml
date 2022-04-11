@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbAppInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbAppInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_version" jdbcType="VARCHAR" property="appVersion" />
+    <result column="app_update_time" jdbcType="TIMESTAMP" property="appUpdateTime" />
+    <result column="app_download_url" jdbcType="VARCHAR" property="appDownloadUrl" />
+    <result column="app_update_detail" jdbcType="VARCHAR" property="appUpdateDetail" />
+    <result column="app_update_user" jdbcType="VARCHAR" property="appUpdateUser" />
+    <result column="app_status" jdbcType="INTEGER" property="appStatus" />
+    <result column="app_channel" jdbcType="INTEGER" property="appChannel" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, app_version, app_update_time, app_download_url, app_update_detail, app_update_user, 
+    app_status, app_channel
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbAppInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_app_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_app_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_app_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbAppInfoExample">
+    delete from tb_app_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbAppInfo">
+    insert into tb_app_info (id, app_version, app_update_time, 
+      app_download_url, app_update_detail, app_update_user, 
+      app_status, app_channel)
+    values (#{id,jdbcType=INTEGER}, #{appVersion,jdbcType=VARCHAR}, #{appUpdateTime,jdbcType=TIMESTAMP}, 
+      #{appDownloadUrl,jdbcType=VARCHAR}, #{appUpdateDetail,jdbcType=VARCHAR}, #{appUpdateUser,jdbcType=VARCHAR}, 
+      #{appStatus,jdbcType=INTEGER}, #{appChannel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbAppInfo">
+    insert into tb_app_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appVersion != null">
+        app_version,
+      </if>
+      <if test="appUpdateTime != null">
+        app_update_time,
+      </if>
+      <if test="appDownloadUrl != null">
+        app_download_url,
+      </if>
+      <if test="appUpdateDetail != null">
+        app_update_detail,
+      </if>
+      <if test="appUpdateUser != null">
+        app_update_user,
+      </if>
+      <if test="appStatus != null">
+        app_status,
+      </if>
+      <if test="appChannel != null">
+        app_channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appVersion != null">
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpdateTime != null">
+        #{appUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appDownloadUrl != null">
+        #{appDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpdateDetail != null">
+        #{appUpdateDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpdateUser != null">
+        #{appUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="appStatus != null">
+        #{appStatus,jdbcType=INTEGER},
+      </if>
+      <if test="appChannel != null">
+        #{appChannel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbAppInfoExample" resultType="java.lang.Integer">
+    select count(*) from tb_app_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_app_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.appVersion != null">
+        app_version = #{record.appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appUpdateTime != null">
+        app_update_time = #{record.appUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.appDownloadUrl != null">
+        app_download_url = #{record.appDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appUpdateDetail != null">
+        app_update_detail = #{record.appUpdateDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appUpdateUser != null">
+        app_update_user = #{record.appUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appStatus != null">
+        app_status = #{record.appStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.appChannel != null">
+        app_channel = #{record.appChannel,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_app_info
+    set id = #{record.id,jdbcType=INTEGER},
+      app_version = #{record.appVersion,jdbcType=VARCHAR},
+      app_update_time = #{record.appUpdateTime,jdbcType=TIMESTAMP},
+      app_download_url = #{record.appDownloadUrl,jdbcType=VARCHAR},
+      app_update_detail = #{record.appUpdateDetail,jdbcType=VARCHAR},
+      app_update_user = #{record.appUpdateUser,jdbcType=VARCHAR},
+      app_status = #{record.appStatus,jdbcType=INTEGER},
+      app_channel = #{record.appChannel,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbAppInfo">
+    update tb_app_info
+    <set>
+      <if test="appVersion != null">
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpdateTime != null">
+        app_update_time = #{appUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appDownloadUrl != null">
+        app_download_url = #{appDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpdateDetail != null">
+        app_update_detail = #{appUpdateDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpdateUser != null">
+        app_update_user = #{appUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="appStatus != null">
+        app_status = #{appStatus,jdbcType=INTEGER},
+      </if>
+      <if test="appChannel != null">
+        app_channel = #{appChannel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbAppInfo">
+    update tb_app_info
+    set app_version = #{appVersion,jdbcType=VARCHAR},
+      app_update_time = #{appUpdateTime,jdbcType=TIMESTAMP},
+      app_download_url = #{appDownloadUrl,jdbcType=VARCHAR},
+      app_update_detail = #{appUpdateDetail,jdbcType=VARCHAR},
+      app_update_user = #{appUpdateUser,jdbcType=VARCHAR},
+      app_status = #{appStatus,jdbcType=INTEGER},
+      app_channel = #{appChannel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipReparePlanExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipReparePlanExtend" >
+    <id column="plan_extend_no" property="planExtendNo" jdbcType="VARCHAR" />
+    <result column="extend_no" property="extendNo" jdbcType="VARCHAR" />
+    <result column="plan_urgency" property="planUrgency" jdbcType="INTEGER" />
+    <result column="is_entrust" property="isEntrust" jdbcType="INTEGER" />
+    <result column="plan_cost" property="planCost" jdbcType="DECIMAL" />
+    <result column="plan_content" property="planContent" jdbcType="VARCHAR" />
+    <result column="tb_equip_repare_plan_extendcol" property="tbEquipReparePlanExtendcol" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    plan_extend_no, extend_no, plan_urgency, is_entrust, plan_cost, plan_content, tb_equip_repare_plan_extendcol
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_repare_plan_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_repare_plan_extend
+    where plan_extend_no = #{planExtendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_equip_repare_plan_extend
+    where plan_extend_no = #{planExtendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtendExample" >
+    delete from tb_equip_repare_plan_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtend" >
+    insert into tb_equip_repare_plan_extend (plan_extend_no, extend_no, plan_urgency, 
+      is_entrust, plan_cost, plan_content, 
+      tb_equip_repare_plan_extendcol)
+    values (#{planExtendNo,jdbcType=VARCHAR}, #{extendNo,jdbcType=VARCHAR}, #{planUrgency,jdbcType=INTEGER}, 
+      #{isEntrust,jdbcType=INTEGER}, #{planCost,jdbcType=DECIMAL}, #{planContent,jdbcType=VARCHAR}, 
+      #{tbEquipReparePlanExtendcol,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtend" >
+    insert into tb_equip_repare_plan_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planExtendNo != null" >
+        plan_extend_no,
+      </if>
+      <if test="extendNo != null" >
+        extend_no,
+      </if>
+      <if test="planUrgency != null" >
+        plan_urgency,
+      </if>
+      <if test="isEntrust != null" >
+        is_entrust,
+      </if>
+      <if test="planCost != null" >
+        plan_cost,
+      </if>
+      <if test="planContent != null" >
+        plan_content,
+      </if>
+      <if test="tbEquipReparePlanExtendcol != null" >
+        tb_equip_repare_plan_extendcol,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planExtendNo != null" >
+        #{planExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendNo != null" >
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planUrgency != null" >
+        #{planUrgency,jdbcType=INTEGER},
+      </if>
+      <if test="isEntrust != null" >
+        #{isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="planCost != null" >
+        #{planCost,jdbcType=DECIMAL},
+      </if>
+      <if test="planContent != null" >
+        #{planContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tbEquipReparePlanExtendcol != null" >
+        #{tbEquipReparePlanExtendcol,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_repare_plan_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_repare_plan_extend
+    <set >
+      <if test="record.planExtendNo != null" >
+        plan_extend_no = #{record.planExtendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendNo != null" >
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planUrgency != null" >
+        plan_urgency = #{record.planUrgency,jdbcType=INTEGER},
+      </if>
+      <if test="record.isEntrust != null" >
+        is_entrust = #{record.isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="record.planCost != null" >
+        plan_cost = #{record.planCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.planContent != null" >
+        plan_content = #{record.planContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tbEquipReparePlanExtendcol != null" >
+        tb_equip_repare_plan_extendcol = #{record.tbEquipReparePlanExtendcol,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_repare_plan_extend
+    set plan_extend_no = #{record.planExtendNo,jdbcType=VARCHAR},
+      extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      plan_urgency = #{record.planUrgency,jdbcType=INTEGER},
+      is_entrust = #{record.isEntrust,jdbcType=INTEGER},
+      plan_cost = #{record.planCost,jdbcType=DECIMAL},
+      plan_content = #{record.planContent,jdbcType=VARCHAR},
+      tb_equip_repare_plan_extendcol = #{record.tbEquipReparePlanExtendcol,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtend" >
+    update tb_equip_repare_plan_extend
+    <set >
+      <if test="extendNo != null" >
+        extend_no = #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planUrgency != null" >
+        plan_urgency = #{planUrgency,jdbcType=INTEGER},
+      </if>
+      <if test="isEntrust != null" >
+        is_entrust = #{isEntrust,jdbcType=INTEGER},
+      </if>
+      <if test="planCost != null" >
+        plan_cost = #{planCost,jdbcType=DECIMAL},
+      </if>
+      <if test="planContent != null" >
+        plan_content = #{planContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tbEquipReparePlanExtendcol != null" >
+        tb_equip_repare_plan_extendcol = #{tbEquipReparePlanExtendcol,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plan_extend_no = #{planExtendNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipReparePlanExtend" >
+    update tb_equip_repare_plan_extend
+    set extend_no = #{extendNo,jdbcType=VARCHAR},
+      plan_urgency = #{planUrgency,jdbcType=INTEGER},
+      is_entrust = #{isEntrust,jdbcType=INTEGER},
+      plan_cost = #{planCost,jdbcType=DECIMAL},
+      plan_content = #{planContent,jdbcType=VARCHAR},
+      tb_equip_repare_plan_extendcol = #{tbEquipReparePlanExtendcol,jdbcType=VARCHAR}
+    where plan_extend_no = #{planExtendNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

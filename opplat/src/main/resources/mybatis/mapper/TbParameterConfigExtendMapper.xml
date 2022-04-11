@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbParameterConfigExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbParameterConfigExtend" >
+    <id column="extend_no" property="extendNo" jdbcType="VARCHAR" />
+    <result column="extend_param_no" property="extendParamNo" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="sub_index" property="subIndex" jdbcType="INTEGER" />
+    <result column="extend_math_type" property="extendMathType" jdbcType="INTEGER" />
+    <result column="extend_name" property="extendName" jdbcType="VARCHAR" />
+    <association property="parameterConfig" javaType="com.ejobim.opplat.domain.TbParameterConfig"   >
+      <id column="param_no" property="paramNo" jdbcType="VARCHAR" />
+      <result column="fill_rate" property="fillRate" jdbcType="INTEGER" />
+      <result column="param_type" property="paramType" jdbcType="INTEGER" />
+      <result column="param_name" property="paramName" jdbcType="VARCHAR" />
+      <result column="param_code" property="paramCode" jdbcType="VARCHAR" />
+      <result column="param_unit" property="paramUnit" jdbcType="VARCHAR" />
+      <result column="param_fill_type" property="paramFillType" jdbcType="INTEGER" />
+      <result column="parem_math_type" property="paremMathType" jdbcType="INTEGER" />
+      <result column="param_from" property="paramFrom" jdbcType="INTEGER" />
+      <result column="browse_name" property="browseName" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    extend_no, extend_param_no, factory_no, sub_index, extend_math_type, extend_name
+  </sql>
+  <sql id="Config_Column_List" >
+    param_no, fill_rate, param_type, param_name, param_code, param_unit, param_fill_type,
+    parem_math_type, param_from, browse_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />,
+    <include refid="Config_Column_List" />
+    from tb_parameter_config_extend a
+      left join  tb_parameter_config b on a.extend_param_no = b.param_no
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />,
+    <include refid="Config_Column_List" />
+    from tb_parameter_config_extend a
+    left join  tb_parameter_config b on a.extend_param_no = b.param_no
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_parameter_config_extend
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtendExample" >
+    delete from tb_parameter_config_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtend" >
+    insert into tb_parameter_config_extend (extend_no, extend_param_no, factory_no, 
+      sub_index, extend_math_type, extend_name
+      )
+    values (#{extendNo,jdbcType=VARCHAR}, #{extendParamNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, 
+      #{subIndex,jdbcType=INTEGER}, #{extendMathType,jdbcType=INTEGER}, #{extendName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtend" >
+    insert into tb_parameter_config_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="extendNo != null" >
+        extend_no,
+      </if>
+      <if test="extendParamNo != null" >
+        extend_param_no,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="subIndex != null" >
+        sub_index,
+      </if>
+      <if test="extendMathType != null" >
+        extend_math_type,
+      </if>
+      <if test="extendName != null" >
+        extend_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="extendNo != null" >
+        #{extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extendParamNo != null" >
+        #{extendParamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndex != null" >
+        #{subIndex,jdbcType=INTEGER},
+      </if>
+      <if test="extendMathType != null" >
+        #{extendMathType,jdbcType=INTEGER},
+      </if>
+      <if test="extendName != null" >
+        #{extendName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_parameter_config_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_parameter_config_extend
+    <set >
+      <if test="record.extendNo != null" >
+        extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendParamNo != null" >
+        extend_param_no = #{record.extendParamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subIndex != null" >
+        sub_index = #{record.subIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendMathType != null" >
+        extend_math_type = #{record.extendMathType,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendName != null" >
+        extend_name = #{record.extendName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_parameter_config_extend
+    set extend_no = #{record.extendNo,jdbcType=VARCHAR},
+      extend_param_no = #{record.extendParamNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      sub_index = #{record.subIndex,jdbcType=INTEGER},
+      extend_math_type = #{record.extendMathType,jdbcType=INTEGER},
+      extend_name = #{record.extendName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtend" >
+    update tb_parameter_config_extend
+    <set >
+      <if test="extendParamNo != null" >
+        extend_param_no = #{extendParamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subIndex != null" >
+        sub_index = #{subIndex,jdbcType=INTEGER},
+      </if>
+      <if test="extendMathType != null" >
+        extend_math_type = #{extendMathType,jdbcType=INTEGER},
+      </if>
+      <if test="extendName != null" >
+        extend_name = #{extendName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbParameterConfigExtend" >
+    update tb_parameter_config_extend
+    set extend_param_no = #{extendParamNo,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      sub_index = #{subIndex,jdbcType=INTEGER},
+      extend_math_type = #{extendMathType,jdbcType=INTEGER},
+      extend_name = #{extendName,jdbcType=VARCHAR}
+    where extend_no = #{extendNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

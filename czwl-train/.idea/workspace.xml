@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="904376d0-6790-4ebf-bc54-c2d82b7a19f5" name="Default Changelist" comment="修改计算效率值">
+      <change beforePath="$PROJECT_DIR$/classes-service/src/main/java/com/czwl/app/classes/front/service/SignInFrontServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes-service/src/main/java/com/czwl/app/classes/front/service/SignInFrontServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes-service/src/main/java/com/czwl/app/classes/front/service/TrainClassFrontServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes-service/src/main/java/com/czwl/app/classes/front/service/TrainClassFrontServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes-service/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/classes-service/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-service/src/main/java/com/czwl/app/course/domain/entity/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/java/com/czwl/app/course/domain/entity/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/score-service/src/main/java/com/czwl/app/score/domain/entity/ExcelTemp.java" beforeDir="false" afterPath="$PROJECT_DIR$/score-service/src/main/java/com/czwl/app/score/domain/entity/ExcelTemp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/score-service/src/main/java/com/czwl/app/score/micro/service/ScoreMicroServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/score-service/src/main/java/com/czwl/app/score/micro/service/ScoreMicroServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - @129.211.171.155" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - @129.211.171.155" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - @129.211.171.155" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="course: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="czwl-train" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/classes-service" value="dev" />
+        <entry key="$PROJECT_DIR$/classes-service-beans" value="dev" />
+        <entry key="$PROJECT_DIR$/classes-service-client" value="dev" />
+        <entry key="$PROJECT_DIR$/course-service" value="dev" />
+        <entry key="$PROJECT_DIR$/course-service-beans" value="master" />
+        <entry key="$PROJECT_DIR$/course-service-client" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_COMMON_BRANCH" value="0808" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/course-service" />
+    <option name="ROOT_SYNC" value="SYNC" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\maven\repository" />
+        <option name="mavenHome" value="D:/maven/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\maven\apache-maven-3.3.9\conf\settings-czwl.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1c6btVvRG4OYoS1qVR8g3jI4UJh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="Git.Branch.Popup.ShowAllRepositories" value="true" />
+    <property name="MyBatisLogPluginindexNum" value="55687" />
+    <property name="MyBatisLogPluginparameters" value="Parameters:" />
+    <property name="MyBatisLogPluginpreparing" value="Preparing:" />
+    <property name="MyBatisLogPluginrunning" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="service.view.auto.scroll.from.source" value="true" />
+    <property name="service.view.auto.scroll.to.source" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.czwl.app.score.beans" />
+      <recent name="com.czwl.app.score.utils" />
+      <recent name="com.czwl.app.score.domain" />
+      <recent name="com.czwl.app.course.configure" />
+      <recent name="com.czwl.app.classes.configure" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\czwl-train\score-service\src\main\java\com\czwl\app\score\domain\dao" />
+      <recent name="E:\czwl-train\score-service\src\main\resources\mapper" />
+      <recent name="E:\czwl-train\score-service\src\main\java\com\czwl\app\score\front\controller" />
+      <recent name="E:\czwl-train\score-service\src\main\java\com\czwl\app\score\front\service" />
+      <recent name="E:\czwl-train\score-service\src\main\java\com\czwl\app\score\utils" />
+    </key>
+  </component>
+  <component name="RestServicesNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="Found 1138 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+        </path>
+        <path>
+          <item name="Found 1138 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="classes-service" type="c588b436:RestServiceStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.AccountSubjectFrontController">
+    <configuration name="AccountSubjectFrontController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.czwl.app.score.front.controller.AccountSubjectFrontController" />
+      <module name="score-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.czwl.app.score.front.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScoreFrontServiceImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.czwl.app.score.front.service.ScoreFrontServiceImpl" />
+      <module name="score-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.czwl.app.score.front.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainClassFrontServiceImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.czwl.app.classes.front.service.TrainClassFrontServiceImpl" />
+      <module name="classes-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.czwl.app.classes.front.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="classes" type="Remote">
+      <module name="classes-service" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="129.211.171.155" />
+      <option name="PORT" value="42004" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="42004" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="classes-Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="classes-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.czwl.app.Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="course-Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="course-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cz.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.czwl.app.Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="customer-Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="customer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.czwl.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.czwl.app.Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="score-Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="score-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.czwl.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.czwl.app.Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ScoreFrontServiceImpl" />
+      <item itemvalue="Application.TrainClassFrontServiceImpl" />
+      <item itemvalue="Application.AccountSubjectFrontController" />
+      <item itemvalue="Remote.classes" />
+      <item itemvalue="Spring Boot.classes-Application" />
+      <item itemvalue="Spring Boot.customer-Application" />
+      <item itemvalue="Spring Boot.course-Application" />
+      <item itemvalue="Spring Boot.score-Application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.course-Application" />
+        <item itemvalue="Spring Boot.score-Application" />
+        <item itemvalue="Application.AccountSubjectFrontController" />
+        <item itemvalue="Application.ScoreFrontServiceImpl" />
+        <item itemvalue="Application.TrainClassFrontServiceImpl" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.17911255" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="904376d0-6790-4ebf-bc54-c2d82b7a19f5" name="Default Changelist" comment="" />
+      <created>1589852205032</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589852205032</updated>
+      <workItem from="1589852206493" duration="2262000" />
+      <workItem from="1589869222391" duration="6533000" />
+      <workItem from="1589937309085" duration="48523000" />
+      <workItem from="1590046775330" duration="38793000" />
+      <workItem from="1590379196093" duration="251344000" />
+      <workItem from="1591578623840" duration="2197000" />
+      <workItem from="1591583053015" duration="20823000" />
+      <workItem from="1591612824023" duration="91446000" />
+      <workItem from="1592183277182" duration="18531000" />
+      <workItem from="1592212351851" duration="47509000" />
+      <workItem from="1592449870827" duration="25127000" />
+      <workItem from="1592788074195" duration="17102000" />
+      <workItem from="1593331461718" duration="50030000" />
+      <workItem from="1593575284379" duration="18812000" />
+      <workItem from="1593778795565" duration="68938000" />
+      <workItem from="1594270869917" duration="1850000" />
+      <workItem from="1594275466185" duration="28513000" />
+      <workItem from="1594360955565" duration="12579000" />
+      <workItem from="1594602359214" duration="12159000" />
+      <workItem from="1594622958909" duration="38468000" />
+      <workItem from="1594775103718" duration="19591000" />
+      <workItem from="1594965784663" duration="683000" />
+      <workItem from="1594966959314" duration="7324000" />
+      <workItem from="1595207423403" duration="16721000" />
+      <workItem from="1595302744648" duration="16000" />
+      <workItem from="1595303093480" duration="2364000" />
+      <workItem from="1595313226546" duration="49958000" />
+      <workItem from="1595812379378" duration="19912000" />
+      <workItem from="1595990067827" duration="30287000" />
+      <workItem from="1596417056129" duration="33175000" />
+      <workItem from="1596675905931" duration="23942000" />
+      <workItem from="1596762385785" duration="6298000" />
+      <workItem from="1597021358943" duration="8360000" />
+      <workItem from="1597107993004" duration="3241000" />
+      <workItem from="1597129236508" duration="8876000" />
+      <workItem from="1597710780165" duration="2271000" />
+      <workItem from="1597799279042" duration="4005000" />
+      <workItem from="1597885838017" duration="21506000" />
+      <workItem from="1597971901746" duration="8333000" />
+      <workItem from="1597990187245" duration="14105000" />
+      <workItem from="1598231628540" duration="11300000" />
+      <workItem from="1598248735067" duration="15728000" />
+      <workItem from="1598317588685" duration="21630000" />
+      <workItem from="1598404268962" duration="6241000" />
+      <workItem from="1598430551472" duration="1198000" />
+      <workItem from="1598490330928" duration="1120000" />
+      <workItem from="1598492715066" duration="2566000" />
+      <workItem from="1598517624992" duration="2205000" />
+      <workItem from="1598574826020" duration="9749000" />
+      <workItem from="1598836832444" duration="727000" />
+      <workItem from="1598839991796" duration="107000" />
+      <workItem from="1598840118276" duration="4368000" />
+      <workItem from="1598922027346" duration="1268000" />
+      <workItem from="1599008721657" duration="9989000" />
+      <workItem from="1599095391953" duration="2580000" />
+      <workItem from="1599181372727" duration="3481000" />
+      <workItem from="1599440912556" duration="3206000" />
+      <workItem from="1623046709083" duration="1004000" />
+      <workItem from="1645498360326" duration="749000" />
+    </task>
+    <task id="LOCAL-00226" summary="修改代码注释;修改资源库的获取创建时间字段">
+      <created>1596450269228</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1596450269228</updated>
+    </task>
+    <task id="LOCAL-00227" summary="修改资源库的列表">
+      <created>1596451683035</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1596451683035</updated>
+    </task>
+    <task id="LOCAL-00228" summary="修改设置权重接口,过滤0或者0.00的数据">
+      <created>1596507902775</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1596507902775</updated>
+    </task>
+    <task id="LOCAL-00229" summary="投票添加标题字段">
+      <created>1596522447946</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1596522447946</updated>
+    </task>
+    <task id="LOCAL-00230" summary="添加标题字段sql">
+      <created>1596525362488</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1596525362489</updated>
+    </task>
+    <task id="LOCAL-00231" summary="添加采集相关实体和查询接口">
+      <created>1596622126114</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1596622126115</updated>
+    </task>
+    <task id="LOCAL-00232" summary="配置采集api;采集表及sql">
+      <created>1596676765271</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1596676765271</updated>
+    </task>
+    <task id="LOCAL-00233" summary="修改申报接口">
+      <created>1596698980504</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1596698980504</updated>
+    </task>
+    <task id="LOCAL-00234" summary="修改申报接口">
+      <created>1596699252850</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1596699252850</updated>
+    </task>
+    <task id="LOCAL-00235" summary="修改申报接口错误提示">
+      <created>1596699569579</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1596699569579</updated>
+    </task>
+    <task id="LOCAL-00236" summary="添加上线sql日期">
+      <created>1596700669885</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1596700669885</updated>
+    </task>
+    <task id="LOCAL-00237" summary="修改多余括号">
+      <created>1596700779545</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1596700779545</updated>
+    </task>
+    <task id="LOCAL-00238" summary="取掉sql里面的表名">
+      <created>1596700997955</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1596700997955</updated>
+    </task>
+    <task id="LOCAL-00239" summary="取掉sql里面的表名">
+      <created>1596701045168</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1596701045168</updated>
+    </task>
+    <task id="LOCAL-00240" summary="修改获取yzf答案接口">
+      <created>1596702373042</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1596702373042</updated>
+    </task>
+    <task id="LOCAL-00241" summary="优化代码">
+      <created>1596780534615</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1596780534616</updated>
+    </task>
+    <task id="LOCAL-00242" summary="修改日志">
+      <created>1596794602864</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1596794602865</updated>
+    </task>
+    <task id="LOCAL-00243" summary="修改教师端和学生端查看教学资源sql">
+      <created>1597801493142</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1597801493143</updated>
+    </task>
+    <task id="LOCAL-00244" summary="修改学生端查看教学资源sql">
+      <created>1597801804489</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1597801804489</updated>
+    </task>
+    <task id="LOCAL-00245" summary="添加根据classId查询是否有账套任务接口">
+      <created>1597892714695</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1597892714696</updated>
+    </task>
+    <task id="LOCAL-00246" summary="修改学生端查看教学资源和添加根据classId查询是否有账套任务接口">
+      <created>1597894356094</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1597894356094</updated>
+    </task>
+    <task id="LOCAL-00247" summary="教师端修改查看学生接口(添加税务分和财务分数)">
+      <created>1597909978310</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1597909978310</updated>
+    </task>
+    <task id="LOCAL-00248" summary="添加根据班级id插叙是否有账套任务">
+      <created>1597911667619</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1597911667619</updated>
+    </task>
+    <task id="LOCAL-00249" summary="添加根据班级id插叙是否有账套任务api表sql">
+      <created>1597912906741</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1597912906741</updated>
+    </task>
+    <task id="LOCAL-00250" summary="添加配置文件,获取能力项过滤">
+      <created>1597914011229</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1597914011229</updated>
+    </task>
+    <task id="LOCAL-00251" summary="修改设置是否有账套">
+      <created>1597918270437</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1597918270437</updated>
+    </task>
+    <task id="LOCAL-00252" summary="添加个人查看账套详情和团队账套详情接口;&#10;添加根据条件查询账套">
+      <created>1597977954567</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1597977954569</updated>
+    </task>
+    <task id="LOCAL-00253" summary="添加个人查看账套详情和团队账套详情接口;&#10;添加根据条件查询账套;&#10;添加个人查看账套详情sql">
+      <created>1597992299341</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1597992299343</updated>
+    </task>
+    <task id="LOCAL-00254" summary="修改返回数据格式">
+      <created>1597992822363</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1597992822363</updated>
+    </task>
+    <task id="LOCAL-00255" summary="修改学生成绩列表添加效率值;完成查看团队的账套详情">
+      <created>1598000346829</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1598000346829</updated>
+    </task>
+    <task id="LOCAL-00256" summary="修改学生成绩列表添加效率值;完成查看团队的账套详情;修改查看个人账套详情">
+      <created>1598001966708</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1598001966708</updated>
+    </task>
+    <task id="LOCAL-00257" summary="完成查看团队的账套详情的sql">
+      <created>1598003041246</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1598003041246</updated>
+    </task>
+    <task id="LOCAL-00258" summary="修改查询账套任务">
+      <created>1598235139321</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
+      <option name="project" value="LOCAL" />
+      <updated>1598235139321</updated>
+    </task>
+    <task id="LOCAL-00259" summary="添加雷达图计算税务,财务,效率值分数">
+      <created>1598250459480</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1598250459494</updated>
+    </task>
+    <task id="LOCAL-00260" summary="修改计算税务和财务得分">
+      <created>1598251952768</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1598251952768</updated>
+    </task>
+    <task id="LOCAL-00261" summary="修改查询甄别后的分数">
+      <created>1598252809990</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1598252809990</updated>
+    </task>
+    <task id="LOCAL-00262" summary="添加根据团队查询账套 和 成绩列表查询">
+      <created>1598258832209</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1598258832209</updated>
+    </task>
+    <task id="LOCAL-00263" summary="添加根据课程查询能力项 税务,财务,效率值">
+      <created>1598260151574</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1598260151574</updated>
+    </task>
+    <task id="LOCAL-00264" summary="修改教务端,教师端,学生端雷达提截图,添加集合判断相等工具类">
+      <created>1598261270407</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1598261270407</updated>
+    </task>
+    <task id="LOCAL-00265" summary="修改计算效率值">
+      <created>1598262703315</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1598262703315</updated>
+    </task>
+    <task id="LOCAL-00266" summary="修改导出数据添加效率值,税务,财务">
+      <created>1598263796843</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1598263796843</updated>
+    </task>
+    <task id="LOCAL-00267" summary="添加学生成绩导出表头">
+      <created>1598264111496</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1598264111496</updated>
+    </task>
+    <task id="LOCAL-00268" summary="修改学生成绩计算效率值">
+      <created>1598326570806</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1598326570807</updated>
+    </task>
+    <task id="LOCAL-00269" summary="修改计算税务和财务分数">
+      <created>1598335728894</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1598335728894</updated>
+    </task>
+    <task id="LOCAL-00270" summary="修改计算效率值,税务分数,财务分数">
+      <created>1598338823913</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1598338823913</updated>
+    </task>
+    <task id="LOCAL-00271" summary="修改查看团队详情计算税务,财务分数">
+      <created>1598342819936</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1598342819936</updated>
+    </task>
+    <task id="LOCAL-00272" summary="代码优化">
+      <created>1598344938521</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1598344938521</updated>
+    </task>
+    <task id="LOCAL-00273" summary="修改计算税务分,财务分,实体添加默认值">
+      <created>1598350778820</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1598350778820</updated>
+    </task>
+    <task id="LOCAL-00274" summary="修改根据课程查询是否有账套任务">
+      <created>1599027617683</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1599027617683</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="me" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/team-service" />
+      <path value="$PROJECT_DIR$/team-service-beans" />
+      <path value="$PROJECT_DIR$/team-service-client" />
+      <path value="$PROJECT_DIR$/cz-app-parent" />
+    </ignored-roots>
+    <MESSAGE value="添加配置文件,获取能力项过滤" />
+    <MESSAGE value="修改设置是否有账套" />
+    <MESSAGE value="添加个人查看账套详情和团队账套详情接口;&#10;添加根据条件查询账套" />
+    <MESSAGE value="添加个人查看账套详情和团队账套详情接口;&#10;添加根据条件查询账套;&#10;添加个人查看账套详情sql" />
+    <MESSAGE value="修改返回数据格式" />
+    <MESSAGE value="修改学生成绩列表添加效率值;完成查看团队的账套详情" />
+    <MESSAGE value="修改学生成绩列表添加效率值;完成查看团队的账套详情;修改查看个人账套详情" />
+    <MESSAGE value="完成查看团队的账套详情的sql" />
+    <MESSAGE value="修改查询账套任务" />
+    <MESSAGE value="添加雷达图计算税务,财务,效率值分数" />
+    <MESSAGE value="修改计算税务和财务得分" />
+    <MESSAGE value="修改查询甄别后的分数" />
+    <MESSAGE value="添加根据团队查询账套 和 成绩列表查询" />
+    <MESSAGE value="添加根据课程查询能力项 税务,财务,效率值" />
+    <MESSAGE value="修改教务端,教师端,学生端雷达提截图,添加集合判断相等工具类" />
+    <MESSAGE value="修改计算效率值" />
+    <MESSAGE value="修改导出数据添加效率值,税务,财务" />
+    <MESSAGE value="添加学生成绩导出表头" />
+    <MESSAGE value="修改学生成绩计算效率值" />
+    <MESSAGE value="修改计算税务和财务分数" />
+    <MESSAGE value="修改计算效率值,税务分数,财务分数" />
+    <MESSAGE value="修改查看团队详情计算税务,财务分数" />
+    <MESSAGE value="代码优化" />
+    <MESSAGE value="修改计算税务分,财务分,实体添加默认值" />
+    <MESSAGE value="修改根据课程查询是否有账套任务" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改根据课程查询是否有账套任务" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1623046762305">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1623046762305" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/cz/idtool/0.0.1-SNAPSHOT/idtool-0.0.1-20200813.100818-1.jar!/com/czwl/id/tool/core/IdWorker.class</url>
+          <line>68</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

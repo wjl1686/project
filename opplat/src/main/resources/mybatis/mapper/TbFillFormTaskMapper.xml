@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFillFormTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFillFormTask" >
+    <result column="fill_task_no" property="fillTaskNo" jdbcType="VARCHAR" />
+    <result column="fill_task_time" property="fillTaskTime" jdbcType="TIMESTAMP" />
+    <result column="fill_task_user_no" property="fillTaskUserNo" jdbcType="VARCHAR" />
+    <result column="fill_count_all" property="fillCountAll" jdbcType="INTEGER" />
+    <result column="fill_count" property="fillCount" jdbcType="INTEGER" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="task_type" property="taskType" jdbcType="VARCHAR" />
+    <result column="equip_status" property="equipStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="commit_time" property="commitTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="check_user" property="checkUser" jdbcType="VARCHAR" />
+    <result column="check_user_name" property="checkUserName" jdbcType="VARCHAR" />
+    <result column="fill_user" property="fillUser" jdbcType="VARCHAR" />
+    <result column="fill_user_name" property="fillUserName" jdbcType="VARCHAR" />
+    <result column="fill_task_code" property="fillTaskCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fill_task_no, fill_task_time, fill_task_user_no, fill_count_all, fill_count, factory_no, 
+    equip_status, create_time, create_user, status, check_user, fill_user,task_type,fill_task_code,
+    end_time,commit_time,fill_user_name,check_user_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFillFormTaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_fill_form_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="getTbFillFormTaskByKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+     from tb_fill_form_task
+      where fill_task_no = #{taskNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFillFormTaskExample" >
+    delete from tb_fill_form_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFillFormTask" >
+    insert into tb_fill_form_task (fill_task_no, fill_task_time, fill_task_user_no, 
+      fill_count_all, fill_count, factory_no,
+      equip_status, create_time, create_user,
+      status, check_user, fill_user ,task_type,
+      fill_task_code,end_time,commit_time,
+      fill_user_name, check_user_name
+      )
+    values (#{fillTaskNo,jdbcType=VARCHAR}, #{fillTaskTime,jdbcType=TIMESTAMP}, #{fillTaskUserNo,jdbcType=VARCHAR}, 
+      #{fillCountAll,jdbcType=INTEGER}, #{fillCount,jdbcType=INTEGER}, #{factoryNo,jdbcType=VARCHAR}, 
+      #{equipStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{checkUser,jdbcType=VARCHAR}, #{fillUser,jdbcType=VARCHAR},#{taskType,jdbcType=INTEGER},
+      #{fillTaskCode,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, #{commitTime,jdbcType=TIMESTAMP},
+      #{fillUserName,jdbcType=VARCHAR},#{checkUserName,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFillFormTask" >
+    insert into tb_fill_form_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fillTaskNo != null" >
+        fill_task_no,
+      </if>
+      <if test="fillTaskTime != null" >
+        fill_task_time,
+      </if>
+      <if test="fillTaskUserNo != null" >
+        fill_task_user_no,
+      </if>
+      <if test="fillCountAll != null" >
+        fill_count_all,
+      </if>
+      <if test="fillCount != null" >
+        fill_count,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="equipStatus != null" >
+        equip_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="checkUser != null" >
+        check_user,
+      </if>
+      <if test="fillUser != null" >
+        fill_user,
+      </if>
+      <if test="taskType != null" >
+        task_type,
+      </if>
+      <if test="fillTaskCode != null" >
+        fill_task_code,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="commitTime != null" >
+        commit_time,
+      </if>
+      <if test="fillUserName != null" >
+        fill_user_name,
+      </if>
+      <if test="checkUserName != null" >
+        check_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fillTaskNo != null" >
+        #{fillTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillTaskTime != null" >
+        #{fillTaskTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillTaskUserNo != null" >
+        #{fillTaskUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillCountAll != null" >
+        #{fillCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="fillCount != null" >
+        #{fillCount,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="equipStatus != null" >
+        #{equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="checkUser != null" >
+        #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fillUser != null" >
+        #{fillUser,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="fillTaskCode != null" >
+        #{fillTaskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="commitTime != null" >
+        #{commitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillUserName != null" >
+        #{fillUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUserName != null" >
+        #{checkUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFillFormTaskExample" resultType="java.lang.Integer" >
+    select count(*) from tb_fill_form_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_fill_form_task
+    <set >
+      <if test="record.fillTaskNo != null" >
+        fill_task_no = #{record.fillTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillTaskTime != null" >
+        fill_task_time = #{record.fillTaskTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fillTaskUserNo != null" >
+        fill_task_user_no = #{record.fillTaskUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillCountAll != null" >
+        fill_count_all = #{record.fillCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.fillCount != null" >
+        fill_count = #{record.fillCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipStatus != null" >
+        equip_status = #{record.equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkUser != null" >
+        check_user = #{record.checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fillUser != null" >
+        fill_user = #{record.fillUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskType != null" >
+        task_type = #{record.taskType,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="record.commitTime != null" >
+        commit_time = #{record.commitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fillUserName != null" >
+        fill_user_name = #{record.fillUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkUserName != null" >
+        check_user_name = #{record.checkUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_fill_form_task
+    set fill_task_no = #{record.fillTaskNo,jdbcType=VARCHAR},
+      fill_task_time = #{record.fillTaskTime,jdbcType=TIMESTAMP},
+      fill_task_user_no = #{record.fillTaskUserNo,jdbcType=VARCHAR},
+      fill_count_all = #{record.fillCountAll,jdbcType=INTEGER},
+      fill_count = #{record.fillCount,jdbcType=INTEGER},
+      task_type = #{record.taskType,jdbcType=INTEGER},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      equip_status = #{record.equipStatus,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      check_user = #{record.checkUser,jdbcType=VARCHAR},
+      fill_user = #{record.fillUser,jdbcType=VARCHAR},
+      fill_task_code=#{record.fillTaskCode,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      fill_user_name = #{record.fillUserName,jdbcType=VARCHAR},
+      check_user_name = #{record.checkUserName,jdbcType=VARCHAR},
+      commit_time = #{record.commitTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFillFormTask" >
+    update tb_fill_form_task
+    <set >
+      <if test="fillTaskTime != null" >
+        fill_task_time = #{fillTaskTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillTaskUserNo != null" >
+        fill_task_user_no = #{fillTaskUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fillCountAll != null" >
+        fill_count_all = #{fillCountAll,jdbcType=INTEGER},
+      </if>
+      <if test="fillCount != null" >
+        fill_count = #{fillCount,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="fillUser != null" >
+        fill_user = #{fillUser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUser != null" >
+        check_user = #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="equipStatus != null" >
+        equip_status = #{equipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commitTime != null" >
+        commit_time = #{commitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillUserName != null" >
+        fill_user_name = #{fillUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUserName != null" >
+        check_user_name = #{checkUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fill_task_no = #{fillTaskNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFillFormTask" >
+    update tb_fill_form_task
+    set fill_task_time = #{fillTaskTime,jdbcType=TIMESTAMP},
+      fill_task_user_no = #{fillTaskUserNo,jdbcType=VARCHAR},
+      fill_count_all = #{fillCountAll,jdbcType=INTEGER},
+      fill_count = #{fillCount,jdbcType=INTEGER},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      equip_status = #{equipStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      commit_time = #{commitTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR}
+    where fill_task_no = #{fillTaskNo,jdbcType=VARCHAR}
+  </update>
+  <select id="selectTbFillFormTaskList" parameterType="com.ejobim.opplat.domain.TbFillFormTask" resultMap="BaseResultMap" >
+    select * from  tb_fill_form_task
+    <where>
+      <if test="task.status != null" >
+        status = #{task.status}
+      </if>
+      <if test="task.fillTaskCode != null" >
+        and fill_task_code  like concat('%',#{task.fillTaskCode,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="task.taskType != null" >
+        and task_type = #{task.taskType,jdbcType=INTEGER}
+      </if>
+      <if test="task.fillUserName != null" >
+        and fill_user_name like concat('%',#{task.fillUserName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="task.checkUserName != null" >
+        and check_user_name like concat('%',#{task.checkUserName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="task.fillTaskUserNo != null" >
+        and fill_task_user_no = #{task.fillTaskUserNo,jdbcType=VARCHAR}
+      </if>
+      <if test="task.checkUser != null" >
+        and check_user = #{task.checkUser,jdbcType=VARCHAR}
+      </if>
+      <if test='task.factoryNo != null'>
+        and factory_no = #{task.factoryNo,jdbcType=VARCHAR}
+      </if>
+      <if test="beginTime!=null">
+        and fill_task_time &gt;= #{beginTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime!=null">
+        and fill_task_time &lt;= #{endTime,jdbcType=VARCHAR}
+      </if>
+      <if test='factoryList != null'>
+        and factory_no in
+        <foreach collection="factoryList" item="id" index="index" open="(" close=")" separator=",">
+          #{id}
+        </foreach>
+      </if>
+
+      <if test="task.flag ==1" >
+        and ( status = 4 or status = 6 )
+      </if>
+      <if test="task.flag ==2" >
+        and ( status = 1 or status = 2  or status = 11)
+      </if>
+      <if test="task.flag ==3" >
+        and ( status > 3 and status &lt; 10 )
+      </if>
+    </where>
+    ORDER BY fill_task_time desc
+  </select>
+
+  <select id="getTbFillFormTaskListByUser"  parameterType="com.ejobim.opplat.domain.condition.TaskInfoCondition" resultType="com.ejobim.opplat.domain.vo.TbFillFormTaskVo">
+    select fill_task_no fillTaskNo,commit_time commitTime ,fill_user fillUser,DATE_FORMAT(fill_task_time,'%Y-%m-%d') fillTaskTime  ,end_time endTime,create_user createUser from tb_fill_form_task
+    where 1=1
+    <if test="factoryNo != null" >
+      and factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="dutyUser != null" >
+      and fill_task_user_no = #{dutyUser,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime!=null and startTime!='' ">
+      and  DATE_FORMAT(fill_task_time,'%Y-%m-%d') &gt;= #{startTime}
+    </if>
+    <if test="endTime!=null and endTime!=''">
+      and DATE_FORMAT(fill_task_time,'%Y-%m-%d') &lt;= #{endTime}
+    </if>
+    order by fill_task_time desc
+  </select>
+</mapper>

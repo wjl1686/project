@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFactoryInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFactoryInfo" >
+    <id column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="factory_name" property="factoryName" jdbcType="VARCHAR" />
+    <result column="factory_address" property="factoryAddress" jdbcType="VARCHAR" />
+    <result column="factory_location" property="factoryLocation" jdbcType="VARCHAR" />
+    <result column="factory_manager" property="factoryManager" jdbcType="VARCHAR" />
+    <result column="factory_telephone" property="factoryTelephone" jdbcType="VARCHAR" />
+    <result column="factory_describe" property="factoryDescribe" jdbcType="VARCHAR" />
+    <result column="uri" property="uri" jdbcType="VARCHAR" />
+    <result column="browsePath" property="browsepath" jdbcType="VARCHAR" />
+    <result column="browseName" property="browsename" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="factory_serial_no" property="factorySerialNo" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="operate_abbreviation" property="operateAbbreviation" jdbcType="VARCHAR" />
+    <result column="operate_company_name" property="operateCompanyName" jdbcType="VARCHAR" />
+    <result column="project_type" property="projectType" jdbcType="INTEGER" />
+    <result column="project_address" property="projectAddress" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="operate_type" property="operateType" jdbcType="INTEGER" />
+    <result column="business_start_time" property="businessStartTime" jdbcType="DATE" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="project_exit_time" property="projectExitTime" jdbcType="DATE" />
+    <result column="item" property="item" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="descripion" property="descripion" jdbcType="VARCHAR" />
+    <result column="sortindex" property="sortindex" jdbcType="INTEGER" />
+    <result column="factory_code" property="factoryCode" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="factory_map" property="factoryMap" jdbcType="VARCHAR" />
+    <result column="center_url" property="centerUrl" jdbcType="VARCHAR" />
+    <result column="sortindex" property="sortindex" jdbcType="INTEGER" />
+    <result column="issue_no" property="issueNo" jdbcType="INTEGER" />
+    <result column="parent_factory_no" property="parentFactoryNo" jdbcType="VARCHAR" />
+    <result column="org_group_no" property="orgGroupNo" jdbcType="VARCHAR" />
+      <association property="inOutWater" javaType="com.ejobim.opplat.domain.TbFactoryWater">
+          <result column="id" property="id" jdbcType="INTEGER" />
+          <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+          <result column="total_inwater_cod" property="totalInwaterCod" jdbcType="DOUBLE" />
+          <result column="total_inwater_bod" property="totalInwaterBod" jdbcType="DOUBLE" />
+          <result column="total_inwater_ss" property="totalInwaterSs" jdbcType="DOUBLE" />
+          <result column="total_inwater_nh3_n" property="totalInwaterNh3N" jdbcType="DOUBLE" />
+          <result column="total_inwater_tn" property="totalInwaterTn" jdbcType="DOUBLE" />
+          <result column="total_inwater_tp" property="totalInwaterTp" jdbcType="DOUBLE" />
+          <result column="total_inwater_ph_up" property="totalInwaterPhUp" jdbcType="DOUBLE" />
+          <result column="total_inwater_ph_down" property="totalInwaterPhDown" jdbcType="DOUBLE" />
+          <result column="total_inwater_chroma" property="totalInwaterChroma" jdbcType="INTEGER" />
+          <result column="total_outwater_cod" property="totalOutwaterCod" jdbcType="DOUBLE" />
+          <result column="total_outwater_bod" property="totalOutwaterBod" jdbcType="DOUBLE" />
+          <result column="total_outwater_ss" property="totalOutwaterSs" jdbcType="DOUBLE" />
+          <result column="total_outwater_nh3_n_1" property="totalOutwaterNh3N1" jdbcType="DOUBLE" />
+          <result column="total_outwater_nh3_n_2" property="totalOutwaterNh3N2" jdbcType="DOUBLE" />
+          <result column="total_outwater_tn" property="totalOutwaterTn" jdbcType="DOUBLE" />
+          <result column="total_outwater_tp" property="totalOutwaterTp" jdbcType="DOUBLE" />
+          <result column="total_outwater_ph_up" property="totalOutwaterPhUp" jdbcType="DOUBLE" />
+          <result column="total_outwater_ph_down" property="totalOutwaterPhDown" jdbcType="DOUBLE" />
+          <result column="total_outwater_chroma" property="totalOutwaterChroma" jdbcType="INTEGER" />
+          <result column="total_outwater_coliform" property="totalOutwaterColiform" jdbcType="INTEGER" />
+          <result column="total_outwater_turbidity" property="totalOutwaterTurbidity" jdbcType="INTEGER" />
+          <result column="total_outwater_dissolution" property="totalOutwaterDissolution" jdbcType="DOUBLE" />
+          <result column="total_outwater_hardness" property="totalOutwaterHardness" jdbcType="DOUBLE" />
+          <result column="total_outwater_anion" property="totalOutwaterAnion" jdbcType="DOUBLE" />
+          <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+      </association>
+      <association property="dehydrationSystem" javaType="com.ejobim.opplat.domain.TbFactoryDehydrationSystem">
+          <result column="id" property="id" jdbcType="INTEGER" />
+          <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+          <result column="sludge_type" property="sludgeType" jdbcType="INTEGER" />
+          <result column="dehydration_type" property="dehydrationType" jdbcType="INTEGER" />
+          <result column="dehydration_mud" property="dehydrationMud" jdbcType="DOUBLE" />
+          <result column="dehydration_pre_type" property="dehydrationPreType" jdbcType="INTEGER" />
+          <result column="pre_dehydration_mud_water_rate" property="preDehydrationMudWaterRate" jdbcType="DOUBLE" />
+          <result column="mud_depth_dehydration_type" property="mudDepthDehydrationType" jdbcType="INTEGER" />
+          <result column="depth_dehydration_mud_water_rate" property="depthDehydrationMudWaterRate" jdbcType="DOUBLE" />
+          <result column="mud_transport_type" property="mudTransportType" jdbcType="INTEGER" />
+          <result column="mud_handle_type" property="mudHandleType" jdbcType="INTEGER" />
+          <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      </association>
+      <association property="factoryInfoExtend" javaType="com.ejobim.opplat.domain.TbFactoryInfoExtend">
+          <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+          <result column="planning_scale" property="planningScale" jdbcType="DOUBLE" />
+          <result column="contract_scale" property="contractScale" jdbcType="DOUBLE" />
+          <result column="power_rate" property="powerRate" jdbcType="DOUBLE" />
+          <result column="power_scale" property="powerScale" jdbcType="DOUBLE" />
+          <result column="buile_scale" property="buileScale" jdbcType="DOUBLE" />
+          <result column="hold_scale" property="holdScale" jdbcType="DOUBLE" />
+          <result column="hold_maintain" property="holdMaintain" jdbcType="DOUBLE" />
+          <result column="service_population" property="servicePopulation" jdbcType="DOUBLE" />
+          <result column="service_area" property="serviceArea" jdbcType="DOUBLE" />
+          <result column="industrial_waste_rate" property="industrialWasteRate" jdbcType="DOUBLE" />
+          <result column="core_process" property="coreProcess" jdbcType="VARCHAR" />
+          <result column="water_quality_norm_out" property="waterQualityNormOut" jdbcType="VARCHAR" />
+          <result column="contract_period" property="contractPeriod" jdbcType="DOUBLE" />
+          <result column="keep_water_volume" property="keepWaterVolume" jdbcType="DOUBLE" />
+          <result column="contract_unit_price" property="contractUnitPrice" jdbcType="DOUBLE" />
+          <result column="filled_account" property="filledAccount" jdbcType="VARCHAR" />
+          <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+      </association>
+      <association property="factoryMeasureCaliber" javaType="com.ejobim.opplat.domain.TbFactoryMeasureCaliber">
+          <result column="measure_caliber_type" property="measureCaliberType" jdbcType="VARCHAR" />
+          <result column="description" property="description" jdbcType="VARCHAR" />
+          <!--<result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />-->
+      </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    factory_no, factory_name, factory_address, factory_location, factory_manager, factory_telephone, 
+    factory_describe, uri, browsePath, browseName, create_time, factory_serial_no, region, 
+    operate_abbreviation, operate_company_name, project_type, project_address, latitude, 
+    longitude, operate_type, business_start_time, remarks, project_exit_time, item, value, level,
+    descripion,sortindex, factory_code, factory_map,center_url,issue_no, parent_factory_no,
+    org_group_no
+  </sql>
+  <sql id="Base_Column_List_Join" >
+    info.factory_no, factory_name, factory_address, factory_location, factory_manager, factory_telephone,
+    factory_describe, uri, browsePath, browseName, info.create_time, factory_serial_no, region,
+    operate_abbreviation, operate_company_name, project_type, project_address, latitude,
+    longitude, operate_type, business_start_time, remarks, project_exit_time, item, value,level,
+    descripion,sortindex, factory_code ,factory_map,issue_no,center_url,org_group_no, parent_factory_no
+  </sql>
+  <sql id="Base_Water_Column_List" >
+    , total_inwater_cod, total_inwater_bod, total_inwater_ss, total_inwater_nh3_n,
+    total_inwater_tn, total_inwater_tp, total_inwater_ph_up, total_inwater_ph_down, total_inwater_chroma,
+    total_outwater_cod, total_outwater_bod, total_outwater_ss, total_outwater_nh3_n_1,
+    total_outwater_nh3_n_2, total_outwater_tn, total_outwater_tp, total_outwater_ph_up,
+    total_outwater_ph_down, total_outwater_chroma, total_outwater_coliform, total_outwater_turbidity,
+    total_outwater_dissolution, total_outwater_hardness, total_outwater_anion
+  </sql>
+  <sql id="Base_Dry_Column_List" >
+    ,  sludge_type, dehydration_type, dehydration_mud, dehydration_pre_type,
+    pre_dehydration_mud_water_rate, mud_depth_dehydration_type, depth_dehydration_mud_water_rate,
+    mud_transport_type, mud_handle_type
+  </sql>
+  <sql id="facinfo_extend_Base_Column_List" >
+    , planning_scale, contract_scale, power_rate, power_scale, buile_scale,
+    hold_scale, hold_maintain, service_population, service_area, industrial_waste_rate,
+    core_process, water_quality_norm_out, contract_period, keep_water_volume, contract_unit_price,
+    filled_account, iex.last_update_time
+  </sql>
+  <sql id="factory_measure_caliber_Base_Column_List" >
+    , measure_caliber_type, description
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_factory_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List_Join" />
+    <include refid="Base_Water_Column_List" />
+    <include refid="Base_Dry_Column_List" />
+    <include refid="facinfo_extend_Base_Column_List"/>
+    <include refid="factory_measure_caliber_Base_Column_List"/>
+    from tb_factory_info  info
+    left join tb_factory_water water on info.factory_no = water.factory_no
+    left join tb_factory_dehydration_system dry on info.factory_no = dry.factory_no
+    left join tb_factory_info_extend iex on info.factory_no = iex.factory_no
+    left join tb_factory_measure_caliber meas on info.factory_no = meas.factory_no
+    where info.factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectByPrimaryKeyNew" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List_Join" />
+        <include refid="Base_Water_Column_List" />
+        <include refid="Base_Dry_Column_List" />
+        <include refid="facinfo_extend_Base_Column_List"/>
+        <include refid="factory_measure_caliber_Base_Column_List"/>
+        from tb_factory_info  info
+        left join tb_factory_water water on info.factory_no = water.factory_no
+        left join tb_factory_dehydration_system dry on info.factory_no = dry.factory_no
+        left join tb_factory_info_extend iex on info.factory_no = iex.factory_no
+        left join tb_factory_measure_caliber meas on info.factory_no = meas.factory_no
+        where info.factory_no = #{factoryNo,jdbcType=VARCHAR} or info.parent_factory_no =#{factoryNo,jdbcType=VARCHAR} order by  info.issue_no
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_factory_info
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExample" >
+    delete from tb_factory_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFactoryInfo" >
+    insert into tb_factory_info (factory_no, factory_name, factory_address, 
+      factory_location, factory_manager, factory_telephone, 
+      factory_describe, uri, browsePath, 
+      browseName, create_time, factory_serial_no, 
+      region, operate_abbreviation, operate_company_name, 
+      project_type, project_address, latitude, 
+      longitude, operate_type, business_start_time, 
+      remarks, project_exit_time, item, 
+      value, descripion, sortindex,
+      factory_code, level, factory_map, 
+      center_url, issue_no, parent_factory_no, org_group_no)
+    values (#{factoryNo,jdbcType=VARCHAR}, #{factoryName,jdbcType=VARCHAR}, #{factoryAddress,jdbcType=VARCHAR}, 
+      #{factoryLocation,jdbcType=VARCHAR}, #{factoryManager,jdbcType=VARCHAR}, #{factoryTelephone,jdbcType=VARCHAR}, 
+      #{factoryDescribe,jdbcType=VARCHAR}, #{uri,jdbcType=VARCHAR}, #{browsepath,jdbcType=VARCHAR}, 
+      #{browsename,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{factorySerialNo,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{operateAbbreviation,jdbcType=VARCHAR}, #{operateCompanyName,jdbcType=VARCHAR}, 
+      #{projectType,jdbcType=INTEGER}, #{projectAddress,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, 
+      #{longitude,jdbcType=DOUBLE}, #{operateType,jdbcType=INTEGER}, #{businessStartTime,jdbcType=DATE}, 
+      #{remarks,jdbcType=VARCHAR}, #{projectExitTime,jdbcType=DATE}, #{item,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, #{sortindex,jdbcType=INTEGER},
+      #{factoryCode,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{factoryMap,jdbcType=VARCHAR}, 
+      #{centerUrl,jdbcType=VARCHAR}, #{issueNo,jdbcType=INTEGER}, #{parentFactoryNo,jdbcType=VARCHAR},
+      #{orgGroupNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFactoryInfo" >
+    insert into tb_factory_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="factoryName != null" >
+        factory_name,
+      </if>
+      <if test="factoryAddress != null" >
+        factory_address,
+      </if>
+      <if test="factoryLocation != null" >
+        factory_location,
+      </if>
+      <if test="factoryManager != null" >
+        factory_manager,
+      </if>
+      <if test="factoryTelephone != null" >
+        factory_telephone,
+      </if>
+      <if test="factoryDescribe != null" >
+        factory_describe,
+      </if>
+      <if test="uri != null" >
+        uri,
+      </if>
+      <if test="browsepath != null" >
+        browsePath,
+      </if>
+      <if test="browsename != null" >
+        browseName,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="factorySerialNo != null" >
+        factory_serial_no,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="operateAbbreviation != null" >
+        operate_abbreviation,
+      </if>
+      <if test="operateCompanyName != null" >
+        operate_company_name,
+      </if>
+      <if test="projectType != null" >
+        project_type,
+      </if>
+      <if test="projectAddress != null" >
+        project_address,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="operateType != null" >
+        operate_type,
+      </if>
+      <if test="businessStartTime != null" >
+        business_start_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="projectExitTime != null" >
+        project_exit_time,
+      </if>
+      <if test="item != null" >
+        item,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="descripion != null" >
+        descripion,
+      </if>
+      <if test="sortindex != null" >
+        sortindex,
+      </if>
+      <if test="factoryCode != null" >
+        factory_code,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="factoryMap != null" >
+        factory_map,
+      </if>
+      <if test="centerUrl != null" >
+        center_url,
+      </if>
+      <if test="issueNo != null" >
+        issue_no,
+      </if>
+      <if test="parentFactoryNo != null" >
+        parent_factory_no,
+      </if>
+      <if test="orgGroupNo != null" >
+        org_group_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryName != null" >
+        #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryAddress != null" >
+        #{factoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryLocation != null" >
+        #{factoryLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryManager != null" >
+        #{factoryManager,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryTelephone != null" >
+        #{factoryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryDescribe != null" >
+        #{factoryDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null" >
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="browsepath != null" >
+        #{browsepath,jdbcType=VARCHAR},
+      </if>
+      <if test="browsename != null" >
+        #{browsename,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factorySerialNo != null" >
+        #{factorySerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="operateAbbreviation != null" >
+        #{operateAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="operateCompanyName != null" >
+        #{operateCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=INTEGER},
+      </if>
+      <if test="projectAddress != null" >
+        #{projectAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=INTEGER},
+      </if>
+      <if test="businessStartTime != null" >
+        #{businessStartTime,jdbcType=DATE},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="projectExitTime != null" >
+        #{projectExitTime,jdbcType=DATE},
+      </if>
+      <if test="item != null" >
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="descripion != null" >
+        #{descripion,jdbcType=VARCHAR},
+      </if>
+      <if test="sortindex != null" >
+        #{sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="factoryCode != null" >
+        #{factoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="factoryMap != null" >
+        #{factoryMap,jdbcType=VARCHAR},
+      </if>
+      <if test="centerUrl != null" >
+        #{centerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="issueNo != null" >
+        #{issueNo,jdbcType=INTEGER},
+      </if>
+      <if test="parentFactoryNo != null" >
+        #{parentFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgGroupNo != null" >
+        #{orgGroupNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_factory_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_factory_info
+    <set >
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryName != null" >
+        factory_name = #{record.factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryAddress != null" >
+        factory_address = #{record.factoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryLocation != null" >
+        factory_location = #{record.factoryLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryManager != null" >
+        factory_manager = #{record.factoryManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryTelephone != null" >
+        factory_telephone = #{record.factoryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryDescribe != null" >
+        factory_describe = #{record.factoryDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uri != null" >
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browsepath != null" >
+        browsePath = #{record.browsepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browsename != null" >
+        browseName = #{record.browsename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.factorySerialNo != null" >
+        factory_serial_no = #{record.factorySerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateAbbreviation != null" >
+        operate_abbreviation = #{record.operateAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateCompanyName != null" >
+        operate_company_name = #{record.operateCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        project_type = #{record.projectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectAddress != null" >
+        project_address = #{record.projectAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.operateType != null" >
+        operate_type = #{record.operateType,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessStartTime != null" >
+        business_start_time = #{record.businessStartTime,jdbcType=DATE},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectExitTime != null" >
+        project_exit_time = #{record.projectExitTime,jdbcType=DATE},
+      </if>
+      <if test="record.item != null" >
+        item = #{record.item,jdbcType=VARCHAR},
+      </if>
+      <if test="record.value != null" >
+        value = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descripion != null" >
+        descripion = #{record.descripion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortindex != null" >
+        sortindex = #{record.sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryCode != null" >
+        factory_code = #{record.factoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryMap != null" >
+        factory_map = #{record.factoryMap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centerUrl != null" >
+        center_url = #{record.centerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueNo != null" >
+        issue_no = #{record.issueNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentFactoryNo != null" >
+        parent_factory_no = #{record.parentFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgGroupNo != null" >
+        org_group_no = #{record.orgGroupNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_factory_info
+    set factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      factory_name = #{record.factoryName,jdbcType=VARCHAR},
+      factory_address = #{record.factoryAddress,jdbcType=VARCHAR},
+      factory_location = #{record.factoryLocation,jdbcType=VARCHAR},
+      factory_manager = #{record.factoryManager,jdbcType=VARCHAR},
+      factory_telephone = #{record.factoryTelephone,jdbcType=VARCHAR},
+      factory_describe = #{record.factoryDescribe,jdbcType=VARCHAR},
+      uri = #{record.uri,jdbcType=VARCHAR},
+      browsePath = #{record.browsepath,jdbcType=VARCHAR},
+      browseName = #{record.browsename,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      factory_serial_no = #{record.factorySerialNo,jdbcType=VARCHAR},
+      region = #{record.region,jdbcType=VARCHAR},
+      operate_abbreviation = #{record.operateAbbreviation,jdbcType=VARCHAR},
+      operate_company_name = #{record.operateCompanyName,jdbcType=VARCHAR},
+      project_type = #{record.projectType,jdbcType=INTEGER},
+      project_address = #{record.projectAddress,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      operate_type = #{record.operateType,jdbcType=INTEGER},
+      business_start_time = #{record.businessStartTime,jdbcType=DATE},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      project_exit_time = #{record.projectExitTime,jdbcType=DATE},
+      item = #{record.item,jdbcType=VARCHAR},
+      value = #{record.value,jdbcType=VARCHAR},
+      descripion = #{record.descripion,jdbcType=VARCHAR},
+      sortindex = #{record.sortindex,jdbcType=INTEGER},
+      factory_code = #{record.factoryCode,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      factory_map = #{record.factoryMap,jdbcType=VARCHAR},
+      center_url = #{record.centerUrl,jdbcType=VARCHAR},
+      issue_no = #{record.issueNo,jdbcType=INTEGER},
+      parent_factory_no = #{record.parentFactoryNo,jdbcType=VARCHAR},
+      org_group_no = #{record.orgGroupNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFactoryInfo" >
+    update tb_factory_info
+    <set >
+      <if test="factoryName != null" >
+        factory_name = #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryAddress != null" >
+        factory_address = #{factoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryLocation != null" >
+        factory_location = #{factoryLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryManager != null" >
+        factory_manager = #{factoryManager,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryTelephone != null" >
+        factory_telephone = #{factoryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryDescribe != null" >
+        factory_describe = #{factoryDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null" >
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="browsepath != null" >
+        browsePath = #{browsepath,jdbcType=VARCHAR},
+      </if>
+      <if test="browsename != null" >
+        browseName = #{browsename,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factorySerialNo != null" >
+        factory_serial_no = #{factorySerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="operateAbbreviation != null" >
+        operate_abbreviation = #{operateAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="operateCompanyName != null" >
+        operate_company_name = #{operateCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        project_type = #{projectType,jdbcType=INTEGER},
+      </if>
+      <if test="projectAddress != null" >
+        project_address = #{projectAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="operateType != null" >
+        operate_type = #{operateType,jdbcType=INTEGER},
+      </if>
+      <if test="businessStartTime != null" >
+        business_start_time = #{businessStartTime,jdbcType=DATE},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="projectExitTime != null" >
+        project_exit_time = #{projectExitTime,jdbcType=DATE},
+      </if>
+      <if test="item != null" >
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="descripion != null" >
+        descripion = #{descripion,jdbcType=VARCHAR},
+      </if>
+      <if test="sortindex != null" >
+        sortindex = #{sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="factoryCode != null" >
+        factory_code = #{factoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="factoryMap != null" >
+        factory_map = #{factoryMap,jdbcType=VARCHAR},
+      </if>
+      <if test="centerUrl != null" >
+        center_url = #{centerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="issueNo != null" >
+        issue_no = #{issueNo,jdbcType=INTEGER},
+      </if>
+      <if test="parentFactoryNo != null" >
+        parent_factory_no = #{parentFactoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgGroupNo != null" >
+        org_group_no = #{orgGroupNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFactoryInfo" >
+    update tb_factory_info
+    set factory_name = #{factoryName,jdbcType=VARCHAR},
+      factory_address = #{factoryAddress,jdbcType=VARCHAR},
+      factory_location = #{factoryLocation,jdbcType=VARCHAR},
+      factory_manager = #{factoryManager,jdbcType=VARCHAR},
+      factory_telephone = #{factoryTelephone,jdbcType=VARCHAR},
+      factory_describe = #{factoryDescribe,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      browsePath = #{browsepath,jdbcType=VARCHAR},
+      browseName = #{browsename,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      factory_serial_no = #{factorySerialNo,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      operate_abbreviation = #{operateAbbreviation,jdbcType=VARCHAR},
+      operate_company_name = #{operateCompanyName,jdbcType=VARCHAR},
+      project_type = #{projectType,jdbcType=INTEGER},
+      project_address = #{projectAddress,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      operate_type = #{operateType,jdbcType=INTEGER},
+      business_start_time = #{businessStartTime,jdbcType=DATE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      project_exit_time = #{projectExitTime,jdbcType=DATE},
+      item = #{item,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      descripion = #{descripion,jdbcType=VARCHAR},
+      sortindex = #{sortindex,jdbcType=INTEGER},
+      factory_code = #{factoryCode,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      factory_map = #{factoryMap,jdbcType=VARCHAR},
+      center_url = #{centerUrl,jdbcType=VARCHAR},
+      issue_no = #{issueNo,jdbcType=INTEGER},
+      parent_factory_no = #{parentFactoryNo,jdbcType=VARCHAR},
+      org_group_no = #{orgGroupNo,jdbcType=VARCHAR}
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </update>
+  <select id="selectTbFactoryInfoByName"  parameterType="java.lang.String" resultMap="BaseResultMap" >
+     select * from  tb_factory_info where factory_name= #{factoryName,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbWorkFlowConfigDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbWorkFlowConfigDetail">
+    <id column="node_no" jdbcType="VARCHAR" property="nodeNo" />
+    <result column="config_no" jdbcType="VARCHAR" property="configNo" />
+    <result column="node_sort" jdbcType="INTEGER" property="nodeSort" />
+    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="node_opt_name" jdbcType="VARCHAR" property="nodeOptName" />
+    <result column="node_role" jdbcType="VARCHAR" property="nodeRole" />
+    <result column="node_role_org" jdbcType="VARCHAR" property="nodeRoleOrg" />
+    <result column="node_need_check" jdbcType="INTEGER" property="nodeNeedCheck" />
+    <result column="node_return" jdbcType="VARCHAR" property="nodeReturn" />
+    <result column="node_return_name" jdbcType="VARCHAR" property="nodeReturnName" />
+    <result column="node_code" jdbcType="VARCHAR" property="nodeCode" />
+    <result column="position_x" jdbcType="REAL" property="positionX" />
+    <result column="position_y" jdbcType="REAL" property="positionY" />
+    <result column="linked_nodes" jdbcType="VARCHAR" property="linkedNodes" />
+    <result column="org_no" jdbcType="VARCHAR" property="orgNo" />
+    <result column="node_index" jdbcType="INTEGER" property="nodeIndex" />
+    <result column="node_plat" jdbcType="INTEGER" property="nodePlat" />
+    <result column="step_code" jdbcType="VARCHAR" property="stepCode" />
+    <result column="node_user_code" jdbcType="VARCHAR" property="nodeUserCode" />
+    <result column="node_user_index" jdbcType="INTEGER" property="nodeUserIndex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    node_no, config_no, node_sort, node_name, node_opt_name, node_role, node_role_org, 
+    node_need_check, node_return, node_return_name, node_code, position_x, position_y, 
+    linked_nodes, org_no, node_index, node_plat, step_code, node_user_index, node_user_code
+  </sql>
+  <select id="selectByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_work_flow_config_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_flow_config_detail
+    where node_no = #{nodeNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_work_flow_config_detail
+    where node_no = #{nodeNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExample">
+    delete from tb_work_flow_config_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetail">
+    insert into tb_work_flow_config_detail (node_no, config_no, node_sort, 
+      node_name, node_opt_name, node_role, 
+      node_role_org, node_need_check, node_return, 
+      node_return_name, node_code, position_x, 
+      position_y, linked_nodes, org_no, 
+      node_index, node_plat, step_code,
+      node_user_index, node_user_code)
+    values (#{nodeNo,jdbcType=VARCHAR}, #{configNo,jdbcType=VARCHAR}, #{nodeSort,jdbcType=INTEGER}, 
+      #{nodeName,jdbcType=VARCHAR}, #{nodeOptName,jdbcType=VARCHAR}, #{nodeRole,jdbcType=VARCHAR}, 
+      #{nodeRoleOrg,jdbcType=VARCHAR}, #{nodeNeedCheck,jdbcType=INTEGER}, #{nodeReturn,jdbcType=VARCHAR}, 
+      #{nodeReturnName,jdbcType=VARCHAR}, #{nodeCode,jdbcType=VARCHAR}, #{positionX,jdbcType=REAL}, 
+      #{positionY,jdbcType=REAL}, #{linkedNodes,jdbcType=VARCHAR}, #{orgNo,jdbcType=VARCHAR}, 
+      #{nodeIndex,jdbcType=INTEGER}, #{nodePlat,jdbcType=INTEGER}, #{stepCode,jdbcType=VARCHAR},
+      #{nodeUserIndex,jdbcType=INTEGER}, #{nodeUserCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetail">
+    insert into tb_work_flow_config_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nodeNo != null">
+        node_no,
+      </if>
+      <if test="configNo != null">
+        config_no,
+      </if>
+      <if test="nodeSort != null">
+        node_sort,
+      </if>
+      <if test="nodeName != null">
+        node_name,
+      </if>
+      <if test="nodeOptName != null">
+        node_opt_name,
+      </if>
+      <if test="nodeRole != null">
+        node_role,
+      </if>
+      <if test="nodeRoleOrg != null">
+        node_role_org,
+      </if>
+      <if test="nodeNeedCheck != null">
+        node_need_check,
+      </if>
+      <if test="nodeReturn != null">
+        node_return,
+      </if>
+      <if test="nodeReturnName != null">
+        node_return_name,
+      </if>
+      <if test="nodeCode != null">
+        node_code,
+      </if>
+      <if test="positionX != null">
+        position_x,
+      </if>
+      <if test="positionY != null">
+        position_y,
+      </if>
+      <if test="linkedNodes != null">
+        linked_nodes,
+      </if>
+      <if test="orgNo != null">
+        org_no,
+      </if>
+      <if test="nodeIndex != null">
+        node_index,
+      </if>
+      <if test="nodePlat != null">
+        node_plat,
+      </if>
+      <if test="stepCode != null">
+        step_code,
+      </if>
+      <if test="nodeUserIndex != null">
+        node_user_index,
+      </if>
+      <if test="nodeUserCode != null">
+        node_user_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nodeNo != null">
+        #{nodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="configNo != null">
+        #{configNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeSort != null">
+        #{nodeSort,jdbcType=INTEGER},
+      </if>
+      <if test="nodeName != null">
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeOptName != null">
+        #{nodeOptName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeRole != null">
+        #{nodeRole,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeRoleOrg != null">
+        #{nodeRoleOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeNeedCheck != null">
+        #{nodeNeedCheck,jdbcType=INTEGER},
+      </if>
+      <if test="nodeReturn != null">
+        #{nodeReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeReturnName != null">
+        #{nodeReturnName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeCode != null">
+        #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="positionX != null">
+        #{positionX,jdbcType=REAL},
+      </if>
+      <if test="positionY != null">
+        #{positionY,jdbcType=REAL},
+      </if>
+      <if test="linkedNodes != null">
+        #{linkedNodes,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeIndex != null">
+        #{nodeIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nodePlat != null">
+        #{nodePlat,jdbcType=INTEGER},
+      </if>
+      <if test="stepCode != null">
+        #{stepCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeUserIndex != null">
+        #{nodeUserIndex,jdbcType=INTEGER},
+      </if>
+       <if test="nodeUserCode != null">
+        #{nodeUserCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetailExample" resultType="java.lang.Integer">
+    select count(*) from tb_work_flow_config_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_work_flow_config_detail
+    <set>
+      <if test="record.nodeNo != null">
+        node_no = #{record.nodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configNo != null">
+        config_no = #{record.configNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeSort != null">
+        node_sort = #{record.nodeSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeName != null">
+        node_name = #{record.nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeOptName != null">
+        node_opt_name = #{record.nodeOptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeRole != null">
+        node_role = #{record.nodeRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeRoleOrg != null">
+        node_role_org = #{record.nodeRoleOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeNeedCheck != null">
+        node_need_check = #{record.nodeNeedCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeReturn != null">
+        node_return = #{record.nodeReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeReturnName != null">
+        node_return_name = #{record.nodeReturnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeCode != null">
+        node_code = #{record.nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionX != null">
+        position_x = #{record.positionX,jdbcType=REAL},
+      </if>
+      <if test="record.positionY != null">
+        position_y = #{record.positionY,jdbcType=REAL},
+      </if>
+      <if test="record.linkedNodes != null">
+        linked_nodes = #{record.linkedNodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgNo != null">
+        org_no = #{record.orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeIndex != null">
+        node_index = #{record.nodeIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodePlat != null">
+        node_plat = #{record.nodePlat,jdbcType=INTEGER},
+      </if>
+      <if test="record.stepCode != null">
+        step_code = #{record.stepCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeUserIndex != null">
+        node_user_index = #{record.nodeUserIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeUserCode != null">
+        node_user_code = #{record.nodeUserCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_work_flow_config_detail
+    set node_no = #{record.nodeNo,jdbcType=VARCHAR},
+      config_no = #{record.configNo,jdbcType=VARCHAR},
+      node_sort = #{record.nodeSort,jdbcType=INTEGER},
+      node_name = #{record.nodeName,jdbcType=VARCHAR},
+      node_opt_name = #{record.nodeOptName,jdbcType=VARCHAR},
+      node_role = #{record.nodeRole,jdbcType=VARCHAR},
+      node_role_org = #{record.nodeRoleOrg,jdbcType=VARCHAR},
+      node_need_check = #{record.nodeNeedCheck,jdbcType=INTEGER},
+      node_return = #{record.nodeReturn,jdbcType=VARCHAR},
+      node_return_name = #{record.nodeReturnName,jdbcType=VARCHAR},
+      node_code = #{record.nodeCode,jdbcType=VARCHAR},
+      position_x = #{record.positionX,jdbcType=REAL},
+      position_y = #{record.positionY,jdbcType=REAL},
+      linked_nodes = #{record.linkedNodes,jdbcType=VARCHAR},
+      org_no = #{record.orgNo,jdbcType=VARCHAR},
+      node_index = #{record.nodeIndex,jdbcType=INTEGER},
+      node_plat = #{record.nodePlat,jdbcType=INTEGER},
+      step_code = #{record.stepCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetail">
+    update tb_work_flow_config_detail
+    <set>
+      <if test="configNo != null">
+        config_no = #{configNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeSort != null">
+        node_sort = #{nodeSort,jdbcType=INTEGER},
+      </if>
+      <if test="nodeName != null">
+        node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeOptName != null">
+        node_opt_name = #{nodeOptName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeRole != null">
+        node_role = #{nodeRole,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeRoleOrg != null">
+        node_role_org = #{nodeRoleOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeNeedCheck != null">
+        node_need_check = #{nodeNeedCheck,jdbcType=INTEGER},
+      </if>
+      <if test="nodeReturn != null">
+        node_return = #{nodeReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeReturnName != null">
+        node_return_name = #{nodeReturnName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeCode != null">
+        node_code = #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="positionX != null">
+        position_x = #{positionX,jdbcType=REAL},
+      </if>
+      <if test="positionY != null">
+        position_y = #{positionY,jdbcType=REAL},
+      </if>
+      <if test="linkedNodes != null">
+        linked_nodes = #{linkedNodes,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        org_no = #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeIndex != null">
+        node_index = #{nodeIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nodePlat != null">
+        node_plat = #{nodePlat,jdbcType=INTEGER},
+      </if>
+      <if test="stepCode != null">
+        step_code = #{stepCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeUserIndex != null">
+        node_user_index = #{nodeUserIndex,jdbcType=INTEGER},
+      </if>
+      <if test="nodeUserCode != null">
+        node_user_code = #{nodeUserCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where node_no = #{nodeNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbWorkFlowConfigDetail">
+    update tb_work_flow_config_detail
+    set config_no = #{configNo,jdbcType=VARCHAR},
+      node_sort = #{nodeSort,jdbcType=INTEGER},
+      node_name = #{nodeName,jdbcType=VARCHAR},
+      node_opt_name = #{nodeOptName,jdbcType=VARCHAR},
+      node_role = #{nodeRole,jdbcType=VARCHAR},
+      node_role_org = #{nodeRoleOrg,jdbcType=VARCHAR},
+      node_need_check = #{nodeNeedCheck,jdbcType=INTEGER},
+      node_return = #{nodeReturn,jdbcType=VARCHAR},
+      node_return_name = #{nodeReturnName,jdbcType=VARCHAR},
+      node_code = #{nodeCode,jdbcType=VARCHAR},
+      position_x = #{positionX,jdbcType=REAL},
+      position_y = #{positionY,jdbcType=REAL},
+      linked_nodes = #{linkedNodes,jdbcType=VARCHAR},
+      org_no = #{orgNo,jdbcType=VARCHAR},
+      node_index = #{nodeIndex,jdbcType=INTEGER},
+      node_plat = #{nodePlat,jdbcType=INTEGER},
+      node_user_index = #{nodeUserIndex,jdbcType=INTEGER},
+      step_code = #{stepCode,jdbcType=VARCHAR},
+      node_user_code = #{nodeUserCode,jdbcType=VARCHAR}
+    where node_no = #{nodeNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

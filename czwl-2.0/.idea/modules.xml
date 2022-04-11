@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/auth-web/auth-web.iml" filepath="$PROJECT_DIR$/auth-web/auth-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base-service/base-service.iml" filepath="$PROJECT_DIR$/base-service/base-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base-service-beans/base-service-beans.iml" filepath="$PROJECT_DIR$/base-service-beans/base-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cases-service/cases-service.iml" filepath="$PROJECT_DIR$/cases-service/cases-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cases-service-beans/cases-service-beans.iml" filepath="$PROJECT_DIR$/cases-service-beans/cases-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cases-service-client/cases-service-client.iml" filepath="$PROJECT_DIR$/cases-service-client/cases-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/classes-service/classes-service.iml" filepath="$PROJECT_DIR$/classes-service/classes-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/classes-service-beans/classes-service-beans.iml" filepath="$PROJECT_DIR$/classes-service-beans/classes-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/classes-service-client/classes-service-client.iml" filepath="$PROJECT_DIR$/classes-service-client/classes-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-service/common-service.iml" filepath="$PROJECT_DIR$/common-service/common-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-service-beans/common-service-beans.iml" filepath="$PROJECT_DIR$/common-service-beans/common-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-service-client/common-service-client.iml" filepath="$PROJECT_DIR$/common-service-client/common-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course-service/course-service.iml" filepath="$PROJECT_DIR$/course-service/course-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course-service-beans/course-service-beans.iml" filepath="$PROJECT_DIR$/course-service-beans/course-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course-service-clients/course-service-client.iml" filepath="$PROJECT_DIR$/course-service-clients/course-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/czwl-2.0.iml" filepath="$PROJECT_DIR$/.idea/czwl-2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/czwl-parent/czwl-parent.iml" filepath="$PROJECT_DIR$/czwl-parent/czwl-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-cases-service/daizhang-cases-service.iml" filepath="$PROJECT_DIR$/daizhang-cases-service/daizhang-cases-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-cases-service-beans/daizhang-cases-service-beans.iml" filepath="$PROJECT_DIR$/daizhang-cases-service-beans/daizhang-cases-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-cases-service-client/daizhang-cases-service-client.iml" filepath="$PROJECT_DIR$/daizhang-cases-service-client/daizhang-cases-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-student-beans/daizhang-student-beans.iml" filepath="$PROJECT_DIR$/daizhang-student-beans/daizhang-student-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-student-client/daizhang-student-client.iml" filepath="$PROJECT_DIR$/daizhang-student-client/daizhang-student-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-student-web/daizhang-student-web.iml" filepath="$PROJECT_DIR$/daizhang-student-web/daizhang-student-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-teacher-web/daizhang-teacher-web.iml" filepath="$PROJECT_DIR$/daizhang-teacher-web/daizhang-teacher-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-teacher-web-beans/daizhang-teacher-web-beans.iml" filepath="$PROJECT_DIR$/daizhang-teacher-web-beans/daizhang-teacher-web-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daizhang-teacher-web-client/daizhang-teacher-web-client.iml" filepath="$PROJECT_DIR$/daizhang-teacher-web-client/daizhang-teacher-web-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doc-service/doc-service.iml" filepath="$PROJECT_DIR$/doc-service/doc-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doc-service-client/doc-service-client.iml" filepath="$PROJECT_DIR$/doc-service-client/doc-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exam-service/exam-service.iml" filepath="$PROJECT_DIR$/exam-service/exam-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exam-service-beans/exam-service-beans.iml" filepath="$PROJECT_DIR$/exam-service-beans/exam-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exam-service-client/exam-service-client.iml" filepath="$PROJECT_DIR$/exam-service-client/exam-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examine-service/examine-service.iml" filepath="$PROJECT_DIR$/examine-service/examine-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examine-service-beans/examine-service-beans.iml" filepath="$PROJECT_DIR$/examine-service-beans/examine-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examine-service-client/examine-service-client.iml" filepath="$PROJECT_DIR$/examine-service-client/examine-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/file-storage/file-storage.iml" filepath="$PROJECT_DIR$/file-storage/file-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/gateway-service/gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manager-web/manager-web.iml" filepath="$PROJECT_DIR$/manager-web/manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/res-service/res-service.iml" filepath="$PROJECT_DIR$/res-service/res-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/res-service-beans/res-service-beans.iml" filepath="$PROJECT_DIR$/res-service-beans/res-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/res-service-client/res-service-client.iml" filepath="$PROJECT_DIR$/res-service-client/res-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/res-web/res-web.iml" filepath="$PROJECT_DIR$/res-web/res-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/school-service/school-service.iml" filepath="$PROJECT_DIR$/school-service/school-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/school-service-beans/school-service-beans.iml" filepath="$PROJECT_DIR$/school-service-beans/school-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/school-service-client/school-service-client.iml" filepath="$PROJECT_DIR$/school-service-client/school-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/school-web/school-web.iml" filepath="$PROJECT_DIR$/school-web/school-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service/score-service.iml" filepath="$PROJECT_DIR$/score-service/score-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service-beans/score-service-beans.iml" filepath="$PROJECT_DIR$/score-service-beans/score-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service-client/score-service-client.iml" filepath="$PROJECT_DIR$/score-service-client/score-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistics-service/statistics-service.iml" filepath="$PROJECT_DIR$/statistics-service/statistics-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistics-service-beans/statistics-service-beans.iml" filepath="$PROJECT_DIR$/statistics-service-beans/statistics-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistics-service-client/statistics-service-client.iml" filepath="$PROJECT_DIR$/statistics-service-client/statistics-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-service/team-service.iml" filepath="$PROJECT_DIR$/team-service/team-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-service-beans/team-service-beans.iml" filepath="$PROJECT_DIR$/team-service-beans/team-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-service-client/team-service-client.iml" filepath="$PROJECT_DIR$/team-service-client/team-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uc-web/uc-web.iml" filepath="$PROJECT_DIR$/uc-web/uc-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service-beans/user-service-beans.iml" filepath="$PROJECT_DIR$/user-service-beans/user-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service-client/user-service-client.iml" filepath="$PROJECT_DIR$/user-service-client/user-service-client.iml" />
+    </modules>
+  </component>
+</project>

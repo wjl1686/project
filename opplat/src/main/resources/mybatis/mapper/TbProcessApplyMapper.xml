@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbProcessApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbProcessApply" >
+    <id column="process_no" property="processNo" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="process_name" property="processName" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="apply_user" property="applyUser" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    process_no, factory_no, process_name, category, content, status, apply_user, apply_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbProcessApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_process_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_process_apply
+    where process_no = #{processNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_process_apply
+    where process_no = #{processNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbProcessApplyExample" >
+    delete from tb_process_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbProcessApply" >
+    insert into tb_process_apply (process_no, factory_no, process_name, 
+      category, content, status, 
+      apply_user, apply_time)
+    values (#{processNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{processName,jdbcType=VARCHAR}, 
+      #{category,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{applyUser,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbProcessApply" keyProperty="processNo" >
+    insert into tb_process_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="processNo != null" >
+        process_no,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="processName != null" >
+        process_name,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="applyUser != null" >
+        apply_user,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="processNo != null" >
+        #{processNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="applyUser != null" >
+        #{applyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbProcessApplyExample" resultType="java.lang.Integer" >
+    select count(*) from tb_process_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_process_apply
+    <set >
+      <if test="record.processNo != null" >
+        process_no = #{record.processNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processName != null" >
+        process_name = #{record.processName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyUser != null" >
+        apply_user = #{record.applyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_process_apply
+    set process_no = #{record.processNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      process_name = #{record.processName,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      apply_user = #{record.applyUser,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbProcessApply" >
+    update tb_process_apply
+    <set >
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="processName != null" >
+        process_name = #{processName,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="applyUser != null" >
+        apply_user = #{applyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where process_no = #{processNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbProcessApply" >
+    update tb_process_apply
+    set factory_no = #{factoryNo,jdbcType=VARCHAR},
+      process_name = #{processName,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      apply_user = #{applyUser,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP}
+    where process_no = #{processNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectTbProcessApplyList" parameterType="com.ejobim.opplat.domain.TbProcessApply" resultType="com.ejobim.opplat.domain.vo.TbProcessApplyVo">
+    SELECT
+    a.process_no processNo,a.process_name processName,a.content content ,a.apply_user applyUser,c.create_user_name createUserName , a.apply_time applyTime,a.status status, b.factory_name factoryName
+    FROM
+    tb_process_apply a
+    LEFT JOIN tb_factory_info b ON a.factory_no = b.factory_no
+    Left JOIN tb_process_apply_extend c on a.process_no =c.process_no
+    where c.step_time is null and c.vaild_status =1
+    <if test="status != null" >
+     and  a.status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="processNo != null" >
+      and  a.process_no = #{processNo,jdbcType=VARCHAR}
+    </if>
+    <if test="factoryNo != null" >
+      and  a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+    </if>
+    <if test="applyUser != null" >
+      and a.apply_user = #{applyUser,jdbcType=VARCHAR}
+    </if>
+    <if test="chooseUser != null" >
+     and c.step_user = #{chooseUser,jdbcType=VARCHAR}
+    </if>
+    <if test="content != null" >
+     and  a.content like  concat('%',#{content},'%')
+    </if>
+    order by a.apply_time desc
+  </select>
+
+
+
+  <select id="selectByProcessNo"  resultType="com.ejobim.opplat.domain.vo.TbProcessApplyVo">
+    SELECT
+    a.process_no processNo,a.process_name processName,a.content content ,a.category category,a.apply_user applyUser,apply_time, a.apply_time applyTime,a.status status,b.step_time stepTime,b.step_user stepUser,b.idea idea,b.remark remark, c.factory_name factoryName
+    from tb_process_apply a
+    Left JOIN tb_process_apply_extend b on a.process_no =b.process_no
+   LEFT JOIN tb_factory_info c ON a.factory_no = c.factory_no
+    where b.step= #{step,jdbcType=INTEGER} and  a.process_no = #{processNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectTbProcessApplyLists"  resultType="com.ejobim.opplat.domain.TbProcessApply" resultMap="BaseResultMap">
+    SELECT *
+    from tb_process_apply
+    where status= #{status,jdbcType=INTEGER} and  factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectTbProcessApplyAllList"  resultType="com.ejobim.opplat.domain.TbProcessApply" resultMap="BaseResultMap">
+    SELECT a.*,c.factory_name factoryName
+    from tb_process_apply a  LEFT JOIN tb_factory_info c ON a.factory_no = c.factory_no
+    where  a.factory_no = #{factoryNo,jdbcType=VARCHAR}
+    <if test="content != null" >
+      and  a.content like  concat('%',#{content},'%')
+    </if>
+    <if test="status != null" >
+      and  a.status = #{status,jdbcType=INTEGER}
+    </if>
+    order by a.apply_time desc
+  </select>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FindBugsConfigurable">
+    <option name="make" value="true" />
+    <option name="effort" value="default" />
+    <option name="priority" value="Medium" />
+    <option name="excludeFilter" value="" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/auth-web/pom.xml" />
+        <option value="$PROJECT_DIR$/base-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/uc-web/pom.xml" />
+        <option value="$PROJECT_DIR$/exam-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-teacher-web-client/pom.xml" />
+        <option value="$PROJECT_DIR$/classes-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/res-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-student-web/pom.xml" />
+        <option value="$PROJECT_DIR$/school-web/pom.xml" />
+        <option value="$PROJECT_DIR$/team-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/course-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/classes-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-service/pom.xml" />
+        <option value="$PROJECT_DIR$/team-service/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-cases-service/pom.xml" />
+        <option value="$PROJECT_DIR$/course-service/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-teacher-web-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/czwl-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/classes-service/pom.xml" />
+        <option value="$PROJECT_DIR$/res-service/pom.xml" />
+        <option value="$PROJECT_DIR$/score-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-cases-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/file-storage/pom.xml" />
+        <option value="$PROJECT_DIR$/team-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/common-service/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-teacher-web/pom.xml" />
+        <option value="$PROJECT_DIR$/examine-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/res-web/pom.xml" />
+        <option value="$PROJECT_DIR$/score-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/cases-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/base-service/pom.xml" />
+        <option value="$PROJECT_DIR$/school-service/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-cases-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-student-client/pom.xml" />
+        <option value="$PROJECT_DIR$/daizhang-student-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/res-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/examine-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/score-service/pom.xml" />
+        <option value="$PROJECT_DIR$/common-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/cases-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cases-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/examine-service/pom.xml" />
+        <option value="$PROJECT_DIR$/exam-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/manager-web/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-service/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/exam-service/pom.xml" />
+        <option value="$PROJECT_DIR$/school-service-beans/pom.xml" />
+        <option value="$PROJECT_DIR$/school-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/course-service-clients/pom.xml" />
+        <option value="$PROJECT_DIR$/common-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service-client/pom.xml" />
+        <option value="$PROJECT_DIR$/doc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/doc-service-client/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="SuppressionsComponent">
+    <option name="suppComments" value="[]" />
+  </component>
+</project>

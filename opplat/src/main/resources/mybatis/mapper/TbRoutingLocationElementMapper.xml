@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbRoutingLocationElementMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbRoutingLocationElement" >
+    <id column="location_field_no" property="locationFieldNo" jdbcType="VARCHAR" />
+    <result column="parent_no" property="parentNo" jdbcType="VARCHAR" />
+    <result column="field_no" property="fieldNo" jdbcType="VARCHAR" />
+    <result column="element_name" property="elementName" jdbcType="VARCHAR" />
+    <result column="parent_type" property="parentType" jdbcType="INTEGER" />
+    <result column="element_method" property="elementMethod" jdbcType="VARCHAR" />
+    <result column="element_level" property="elementLevel" jdbcType="INTEGER" />
+    <result column="fill_times" property="fillTimes" jdbcType="VARCHAR" />
+    <result column="element_type" property="elementType" jdbcType="INTEGER" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="field_unit" property="fieldUnit" jdbcType="VARCHAR" />
+    <result column="auto_field_uri" property="autoFieldUri" jdbcType="VARCHAR" />
+    <result column="auto_field_browse_path" property="autoFieldBrowsePath" jdbcType="VARCHAR" />
+    <result column="element_sort" property="elementSort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    location_field_no, parent_no, field_no, element_name, parent_type, element_method, 
+    element_level, fill_times, element_type, factory_no, create_time, create_user, update_time, 
+    delete_flag, field_unit, auto_field_uri, auto_field_browse_path, element_sort
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_routing_location_element
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_routing_location_element
+    where location_field_no = #{locationFieldNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_routing_location_element
+    where location_field_no = #{locationFieldNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElementExample" >
+    delete from tb_routing_location_element
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElement" >
+    insert into tb_routing_location_element (location_field_no, parent_no, field_no, 
+      element_name, parent_type, element_method, 
+      element_level, fill_times, element_type, 
+      factory_no, create_time, create_user, 
+      update_time, delete_flag, field_unit, 
+      auto_field_uri, auto_field_browse_path, element_sort
+      )
+    values (#{locationFieldNo,jdbcType=VARCHAR}, #{parentNo,jdbcType=VARCHAR}, #{fieldNo,jdbcType=VARCHAR}, 
+      #{elementName,jdbcType=VARCHAR}, #{parentType,jdbcType=INTEGER}, #{elementMethod,jdbcType=VARCHAR}, 
+      #{elementLevel,jdbcType=INTEGER}, #{fillTimes,jdbcType=VARCHAR}, #{elementType,jdbcType=INTEGER}, 
+      #{factoryNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{fieldUnit,jdbcType=VARCHAR}, 
+      #{autoFieldUri,jdbcType=VARCHAR}, #{autoFieldBrowsePath,jdbcType=VARCHAR}, #{elementSort,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElement" >
+    insert into tb_routing_location_element
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="locationFieldNo != null" >
+        location_field_no,
+      </if>
+      <if test="parentNo != null" >
+        parent_no,
+      </if>
+      <if test="fieldNo != null" >
+        field_no,
+      </if>
+      <if test="elementName != null" >
+        element_name,
+      </if>
+      <if test="parentType != null" >
+        parent_type,
+      </if>
+      <if test="elementMethod != null" >
+        element_method,
+      </if>
+      <if test="elementLevel != null" >
+        element_level,
+      </if>
+      <if test="fillTimes != null" >
+        fill_times,
+      </if>
+      <if test="elementType != null" >
+        element_type,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="fieldUnit != null" >
+        field_unit,
+      </if>
+      <if test="autoFieldUri != null" >
+        auto_field_uri,
+      </if>
+      <if test="autoFieldBrowsePath != null" >
+        auto_field_browse_path,
+      </if>
+      <if test="elementSort != null" >
+        element_sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="locationFieldNo != null" >
+        #{locationFieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNo != null" >
+        #{parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldNo != null" >
+        #{fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="elementName != null" >
+        #{elementName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentType != null" >
+        #{parentType,jdbcType=INTEGER},
+      </if>
+      <if test="elementMethod != null" >
+        #{elementMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="elementLevel != null" >
+        #{elementLevel,jdbcType=INTEGER},
+      </if>
+      <if test="fillTimes != null" >
+        #{fillTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="elementType != null" >
+        #{elementType,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="fieldUnit != null" >
+        #{fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFieldUri != null" >
+        #{autoFieldUri,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFieldBrowsePath != null" >
+        #{autoFieldBrowsePath,jdbcType=VARCHAR},
+      </if>
+      <if test="elementSort != null" >
+        #{elementSort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElementExample" resultType="java.lang.Integer" >
+    select count(*) from tb_routing_location_element
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_routing_location_element
+    <set >
+      <if test="record.locationFieldNo != null" >
+        location_field_no = #{record.locationFieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentNo != null" >
+        parent_no = #{record.parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldNo != null" >
+        field_no = #{record.fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.elementName != null" >
+        element_name = #{record.elementName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentType != null" >
+        parent_type = #{record.parentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.elementMethod != null" >
+        element_method = #{record.elementMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.elementLevel != null" >
+        element_level = #{record.elementLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.fillTimes != null" >
+        fill_times = #{record.fillTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.elementType != null" >
+        element_type = #{record.elementType,jdbcType=INTEGER},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldUnit != null" >
+        field_unit = #{record.fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoFieldUri != null" >
+        auto_field_uri = #{record.autoFieldUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoFieldBrowsePath != null" >
+        auto_field_browse_path = #{record.autoFieldBrowsePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.elementSort != null" >
+        element_sort = #{record.elementSort,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_routing_location_element
+    set location_field_no = #{record.locationFieldNo,jdbcType=VARCHAR},
+      parent_no = #{record.parentNo,jdbcType=VARCHAR},
+      field_no = #{record.fieldNo,jdbcType=VARCHAR},
+      element_name = #{record.elementName,jdbcType=VARCHAR},
+      parent_type = #{record.parentType,jdbcType=INTEGER},
+      element_method = #{record.elementMethod,jdbcType=VARCHAR},
+      element_level = #{record.elementLevel,jdbcType=INTEGER},
+      fill_times = #{record.fillTimes,jdbcType=VARCHAR},
+      element_type = #{record.elementType,jdbcType=INTEGER},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      field_unit = #{record.fieldUnit,jdbcType=VARCHAR},
+      auto_field_uri = #{record.autoFieldUri,jdbcType=VARCHAR},
+      auto_field_browse_path = #{record.autoFieldBrowsePath,jdbcType=VARCHAR},
+      element_sort = #{record.elementSort,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElement" >
+    update tb_routing_location_element
+    <set >
+      <if test="parentNo != null" >
+        parent_no = #{parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldNo != null" >
+        field_no = #{fieldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="elementName != null" >
+        element_name = #{elementName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentType != null" >
+        parent_type = #{parentType,jdbcType=INTEGER},
+      </if>
+      <if test="elementMethod != null" >
+        element_method = #{elementMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="elementLevel != null" >
+        element_level = #{elementLevel,jdbcType=INTEGER},
+      </if>
+      <if test="fillTimes != null" >
+        fill_times = #{fillTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="elementType != null" >
+        element_type = #{elementType,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="fieldUnit != null" >
+        field_unit = #{fieldUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFieldUri != null" >
+        auto_field_uri = #{autoFieldUri,jdbcType=VARCHAR},
+      </if>
+      <if test="autoFieldBrowsePath != null" >
+        auto_field_browse_path = #{autoFieldBrowsePath,jdbcType=VARCHAR},
+      </if>
+      <if test="elementSort != null" >
+        element_sort = #{elementSort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where location_field_no = #{locationFieldNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbRoutingLocationElement" >
+    update tb_routing_location_element
+    set parent_no = #{parentNo,jdbcType=VARCHAR},
+      field_no = #{fieldNo,jdbcType=VARCHAR},
+      element_name = #{elementName,jdbcType=VARCHAR},
+      parent_type = #{parentType,jdbcType=INTEGER},
+      element_method = #{elementMethod,jdbcType=VARCHAR},
+      element_level = #{elementLevel,jdbcType=INTEGER},
+      fill_times = #{fillTimes,jdbcType=VARCHAR},
+      element_type = #{elementType,jdbcType=INTEGER},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      field_unit = #{fieldUnit,jdbcType=VARCHAR},
+      auto_field_uri = #{autoFieldUri,jdbcType=VARCHAR},
+      auto_field_browse_path = #{autoFieldBrowsePath,jdbcType=VARCHAR},
+      element_sort = #{elementSort,jdbcType=INTEGER}
+    where location_field_no = #{locationFieldNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

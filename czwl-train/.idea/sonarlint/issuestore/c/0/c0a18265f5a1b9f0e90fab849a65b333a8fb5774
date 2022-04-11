@@ -1,0 +1,11 @@
+
+K
+java:S3740§"/Provide the parametrized type for this generic.(ƒµ¸Úüÿÿÿÿ
+[
+java:S2259Á"EA "NullPointerException" could be thrown; "userMap" is nullable here.(Ç™_
+a
+java:S2259Ç"EA "NullPointerException" could be thrown; "teamMap" is nullable here.(¨Í¦–úÿÿÿÿ
+{
+java:S1488A"`Immediately return this expression instead of assigning it to the temporary variable "voteList".(òûî™ùÿÿÿÿ
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(ÀÜ¡òùÿÿÿÿ

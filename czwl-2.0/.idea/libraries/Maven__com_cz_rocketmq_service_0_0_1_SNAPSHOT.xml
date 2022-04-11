@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.cz:rocketmq-service:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cz/rocketmq-service/0.0.1-SNAPSHOT/rocketmq-service-0.0.1-20200728.084030-11.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cz/rocketmq-service/0.0.1-SNAPSHOT/rocketmq-service-0.0.1-20200728.084030-11-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/cz/rocketmq-service/0.0.1-SNAPSHOT/rocketmq-service-0.0.1-20200728.084030-11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

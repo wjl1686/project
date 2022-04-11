@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.czwl:user-service-client:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/czwl/user-service-client/unknown/user-service-client-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/czwl/user-service-client/unknown/user-service-client-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/czwl/user-service-client/unknown/user-service-client-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

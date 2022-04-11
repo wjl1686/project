@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border:  1px #eee solid;
+        }
+        th{
+            text-align: center;
+            background: #999;
+        }
+        td{
+            text-align: center;
+            background: #eee;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        function  doSubmit() {
+            var columnInputs =  $("input[name='columnInput']");
+            var valueInputs =  $("input[name='valueInput']");
+
+            var obj = {};
+            for(var i=0;i<columnInputs.length;i++){
+                var column = $(columnInputs[i]).val();
+                if(column!=null){
+                    console.log(column);
+                    obj[column] =$(valueInputs[i]).val();
+                }
+            }
+            console.log(obj);
+            var submitType = $("#submitType").val();
+            var url = $("#url").val();
+            $.ajax({
+                url:url,
+                data:obj,
+                type:submitType,
+                dataType:'text',
+                success:function(msg){
+                   $("#resultSpan").text(msg);
+                }
+
+            })
+        }
+    </script>
+</head>
+<body>
+    <form id="myForm">
+    <table style="width:600px;">
+        <tr>
+            <th colspan="2">接口测试</th>
+        </tr>
+        <tr>
+            <th style="width:300px;">字段</th>
+            <th style="width:300px;">值</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="columnInput"></td>
+            <td><input type="text" name="valueInput"></td>
+        </tr>
+    </table>
+    </form>
+    <div>
+        提交方式
+        <select id="submitType">
+            <option value="POST" selected>POST</option>
+            <option value="GET">GET</option>
+        </select>
+    </div>
+    <input type="text" id="url" placeholder="提交的地址" style="width: 500px;">
+    <input type="button" value="提交" onclick="doSubmit()">
+    <br>
+    <span id="resultSpan">1111111111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+</body>
+</html>

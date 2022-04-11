@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbEquipAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbEquipAttachment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="attachment_no" property="attachmentNo" jdbcType="VARCHAR" />
+    <result column="attachment_filename" property="attachmentFilename" jdbcType="VARCHAR" />
+    <result column="attachment_describe" property="attachmentDescribe" jdbcType="VARCHAR" />
+    <result column="attachment_upload" property="attachmentUpload" jdbcType="VARCHAR" />
+    <result column="attachment_upload_time" property="attachmentUploadTime" jdbcType="TIMESTAMP" />
+    <result column="attachment_filepath" property="attachmentFilepath" jdbcType="VARCHAR" />
+    <result column="equip_no" property="equipNo" jdbcType="VARCHAR" />
+    <result column="file_type" property="fileType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, attachment_no, attachment_filename, attachment_describe, attachment_upload, attachment_upload_time, 
+    attachment_filepath, equip_no, file_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbEquipAttachmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_equip_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equip_attachment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_equip_attachment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbEquipAttachmentExample" >
+    delete from tb_equip_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbEquipAttachment" >
+    insert into tb_equip_attachment (id, attachment_no, attachment_filename, 
+      attachment_describe, attachment_upload, attachment_upload_time, 
+      attachment_filepath, equip_no, file_type
+      )
+    values (#{id,jdbcType=INTEGER}, #{attachmentNo,jdbcType=VARCHAR}, #{attachmentFilename,jdbcType=VARCHAR}, 
+      #{attachmentDescribe,jdbcType=VARCHAR}, #{attachmentUpload,jdbcType=VARCHAR}, #{attachmentUploadTime,jdbcType=TIMESTAMP}, 
+      #{attachmentFilepath,jdbcType=VARCHAR}, #{equipNo,jdbcType=VARCHAR}, #{fileType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbEquipAttachment" >
+    insert into tb_equip_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attachmentNo != null" >
+        attachment_no,
+      </if>
+      <if test="attachmentFilename != null" >
+        attachment_filename,
+      </if>
+      <if test="attachmentDescribe != null" >
+        attachment_describe,
+      </if>
+      <if test="attachmentUpload != null" >
+        attachment_upload,
+      </if>
+      <if test="attachmentUploadTime != null" >
+        attachment_upload_time,
+      </if>
+      <if test="attachmentFilepath != null" >
+        attachment_filepath,
+      </if>
+      <if test="equipNo != null" >
+        equip_no,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentNo != null" >
+        #{attachmentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentFilename != null" >
+        #{attachmentFilename,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentDescribe != null" >
+        #{attachmentDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentUpload != null" >
+        #{attachmentUpload,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentUploadTime != null" >
+        #{attachmentUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attachmentFilepath != null" >
+        #{attachmentFilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbEquipAttachmentExample" resultType="java.lang.Integer" >
+    select count(*) from tb_equip_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_equip_attachment
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.attachmentNo != null" >
+        attachment_no = #{record.attachmentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachmentFilename != null" >
+        attachment_filename = #{record.attachmentFilename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachmentDescribe != null" >
+        attachment_describe = #{record.attachmentDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachmentUpload != null" >
+        attachment_upload = #{record.attachmentUpload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachmentUploadTime != null" >
+        attachment_upload_time = #{record.attachmentUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.attachmentFilepath != null" >
+        attachment_filepath = #{record.attachmentFilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equipNo != null" >
+        equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileType != null" >
+        file_type = #{record.fileType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_equip_attachment
+    set id = #{record.id,jdbcType=INTEGER},
+      attachment_no = #{record.attachmentNo,jdbcType=VARCHAR},
+      attachment_filename = #{record.attachmentFilename,jdbcType=VARCHAR},
+      attachment_describe = #{record.attachmentDescribe,jdbcType=VARCHAR},
+      attachment_upload = #{record.attachmentUpload,jdbcType=VARCHAR},
+      attachment_upload_time = #{record.attachmentUploadTime,jdbcType=TIMESTAMP},
+      attachment_filepath = #{record.attachmentFilepath,jdbcType=VARCHAR},
+      equip_no = #{record.equipNo,jdbcType=VARCHAR},
+      file_type = #{record.fileType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbEquipAttachment" >
+    update tb_equip_attachment
+    <set >
+      <if test="attachmentNo != null" >
+        attachment_no = #{attachmentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentFilename != null" >
+        attachment_filename = #{attachmentFilename,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentDescribe != null" >
+        attachment_describe = #{attachmentDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentUpload != null" >
+        attachment_upload = #{attachmentUpload,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentUploadTime != null" >
+        attachment_upload_time = #{attachmentUploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attachmentFilepath != null" >
+        attachment_filepath = #{attachmentFilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="equipNo != null" >
+        equip_no = #{equipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        file_type = #{fileType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbEquipAttachment" >
+    update tb_equip_attachment
+    set attachment_no = #{attachmentNo,jdbcType=VARCHAR},
+      attachment_filename = #{attachmentFilename,jdbcType=VARCHAR},
+      attachment_describe = #{attachmentDescribe,jdbcType=VARCHAR},
+      attachment_upload = #{attachmentUpload,jdbcType=VARCHAR},
+      attachment_upload_time = #{attachmentUploadTime,jdbcType=TIMESTAMP},
+      attachment_filepath = #{attachmentFilepath,jdbcType=VARCHAR},
+      equip_no = #{equipNo,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByEquipNo" parameterType="com.ejobim.opplat.domain.TbEquipAttachment" resultType="com.ejobim.opplat.domain.TbEquipAttachment">
+     select attachment_filepath attachmentFilepath
+     from  tb_equip_attachment
+     where equip_no = #{equipNo,jdbcType=VARCHAR}
+    <if test="fileType != null" >
+      and file_type = #{fileType,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>

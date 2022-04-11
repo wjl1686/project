@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.cz</groupId>
+  <artifactId>file-storage</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20200529.021500</timestamp>
+      <buildNumber>9</buildNumber>
+    </snapshot>
+    <lastUpdated>20200602154505</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.0.1-20200529.021500-9</value>
+        <updated>20200529021500</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.0.1-20200529.021500-9</value>
+        <updated>20200529021500</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

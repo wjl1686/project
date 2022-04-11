@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbSynFieldMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbSynField" >
+    <id column="uri" property="uri" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="browsePath" property="browsepath" jdbcType="VARCHAR" />
+    <result column="browseName" property="browsename" jdbcType="VARCHAR" />
+    <result column="displayName" property="displayname" jdbcType="VARCHAR" />
+    <result column="accessLevel" property="accesslevel" jdbcType="VARCHAR" />
+    <result column="hasValue" property="hasvalue" jdbcType="INTEGER" />
+    <result column="parent_uri" property="parentUri" jdbcType="VARCHAR" />
+    <result column="factory_uri" property="factoryUri" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uri, name, description, browsePath, browseName, displayName, accessLevel, hasValue, 
+    parent_uri, factory_uri, factory_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbSynFieldExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_syn_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_syn_field
+    where uri = #{uri,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_syn_field
+    where uri = #{uri,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbSynFieldExample" >
+    delete from tb_syn_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbSynField" >
+    insert into tb_syn_field (uri, name, description, 
+      browsePath, browseName, displayName, 
+      accessLevel, hasValue, parent_uri, 
+      factory_uri, factory_no)
+    values (#{uri,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{browsepath,jdbcType=VARCHAR}, #{browsename,jdbcType=VARCHAR}, #{displayname,jdbcType=VARCHAR}, 
+      #{accesslevel,jdbcType=VARCHAR}, #{hasvalue,jdbcType=INTEGER}, #{parentUri,jdbcType=VARCHAR}, 
+      #{factoryUri,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbSynField" >
+    insert into tb_syn_field
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uri != null" >
+        uri,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="browsepath != null" >
+        browsePath,
+      </if>
+      <if test="browsename != null" >
+        browseName,
+      </if>
+      <if test="displayname != null" >
+        displayName,
+      </if>
+      <if test="accesslevel != null" >
+        accessLevel,
+      </if>
+      <if test="hasvalue != null" >
+        hasValue,
+      </if>
+      <if test="parentUri != null" >
+        parent_uri,
+      </if>
+      <if test="factoryUri != null" >
+        factory_uri,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uri != null" >
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="browsepath != null" >
+        #{browsepath,jdbcType=VARCHAR},
+      </if>
+      <if test="browsename != null" >
+        #{browsename,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="accesslevel != null" >
+        #{accesslevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hasvalue != null" >
+        #{hasvalue,jdbcType=INTEGER},
+      </if>
+      <if test="parentUri != null" >
+        #{parentUri,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryUri != null" >
+        #{factoryUri,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbSynFieldExample" resultType="java.lang.Integer" >
+    select count(*) from tb_syn_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_syn_field
+    <set >
+      <if test="record.uri != null" >
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browsepath != null" >
+        browsePath = #{record.browsepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browsename != null" >
+        browseName = #{record.browsename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.displayname != null" >
+        displayName = #{record.displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accesslevel != null" >
+        accessLevel = #{record.accesslevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasvalue != null" >
+        hasValue = #{record.hasvalue,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentUri != null" >
+        parent_uri = #{record.parentUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryUri != null" >
+        factory_uri = #{record.factoryUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_syn_field
+    set uri = #{record.uri,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      browsePath = #{record.browsepath,jdbcType=VARCHAR},
+      browseName = #{record.browsename,jdbcType=VARCHAR},
+      displayName = #{record.displayname,jdbcType=VARCHAR},
+      accessLevel = #{record.accesslevel,jdbcType=VARCHAR},
+      hasValue = #{record.hasvalue,jdbcType=INTEGER},
+      parent_uri = #{record.parentUri,jdbcType=VARCHAR},
+      factory_uri = #{record.factoryUri,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbSynField" >
+    update tb_syn_field
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="browsepath != null" >
+        browsePath = #{browsepath,jdbcType=VARCHAR},
+      </if>
+      <if test="browsename != null" >
+        browseName = #{browsename,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        displayName = #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="accesslevel != null" >
+        accessLevel = #{accesslevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hasvalue != null" >
+        hasValue = #{hasvalue,jdbcType=INTEGER},
+      </if>
+      <if test="parentUri != null" >
+        parent_uri = #{parentUri,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryUri != null" >
+        factory_uri = #{factoryUri,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uri = #{uri,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbSynField" >
+    update tb_syn_field
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      browsePath = #{browsepath,jdbcType=VARCHAR},
+      browseName = #{browsename,jdbcType=VARCHAR},
+      displayName = #{displayname,jdbcType=VARCHAR},
+      accessLevel = #{accesslevel,jdbcType=VARCHAR},
+      hasValue = #{hasvalue,jdbcType=INTEGER},
+      parent_uri = #{parentUri,jdbcType=VARCHAR},
+      factory_uri = #{factoryUri,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR}
+    where uri = #{uri,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

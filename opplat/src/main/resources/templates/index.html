@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <span th:text="${key}"></span>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>设备ID</td>
+            <td>信息</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="dev : ${list}">
+                <td th:text="${dev.devId}"  th:id="${dev.devId}">1</td>
+            <td th:text="${dev.repMsg}">2</td>
+        </tr>
+    </table>
+</body>
+</html>

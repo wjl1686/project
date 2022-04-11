@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbTaskInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbTaskInfo" >
+    <id column="task_no" property="taskNo" jdbcType="VARCHAR" />
+    <result column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="task_name" property="taskName" jdbcType="VARCHAR" />
+    <result column="task_group" property="taskGroup" jdbcType="VARCHAR" />
+    <result column="task_user_no" property="taskUserNo" jdbcType="VARCHAR" />
+    <result column="task_user_name" property="taskUserName" jdbcType="VARCHAR" />
+    <result column="task_type" property="taskType" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="task_status" property="taskStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_no" property="createUserNo" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="expect_start_time" property="expectStartTime" jdbcType="TIMESTAMP" />
+    <result column="expect_end_time" property="expectEndTime" jdbcType="TIMESTAMP" />
+    <result column="actual_start_time" property="actualStartTime" jdbcType="TIMESTAMP" />
+    <result column="actual_end_time" property="actualEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    task_no, task_id, task_name, task_group, task_user_no, task_user_name, task_type, 
+    end_time, finish_time, task_status, create_time, create_user_no, create_user_name, 
+    expect_start_time, expect_end_time, actual_start_time, actual_end_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbTaskInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_task_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_task_info
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_task_info
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbTaskInfoExample" >
+    delete from tb_task_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbTaskInfo" >
+    insert into tb_task_info (task_no, task_id, task_name, 
+      task_group, task_user_no, task_user_name, 
+      task_type, end_time, finish_time, 
+      task_status, create_time, create_user_no, 
+      create_user_name, expect_start_time, expect_end_time, 
+      actual_start_time, actual_end_time)
+    values (#{taskNo,jdbcType=VARCHAR}, #{taskId,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, 
+      #{taskGroup,jdbcType=VARCHAR}, #{taskUserNo,jdbcType=VARCHAR}, #{taskUserName,jdbcType=VARCHAR}, 
+      #{taskType,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
+      #{taskStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUserNo,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{expectStartTime,jdbcType=TIMESTAMP}, #{expectEndTime,jdbcType=TIMESTAMP}, 
+      #{actualStartTime,jdbcType=TIMESTAMP}, #{actualEndTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbTaskInfo" >
+    insert into tb_task_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskNo != null" >
+        task_no,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="taskName != null" >
+        task_name,
+      </if>
+      <if test="taskGroup != null" >
+        task_group,
+      </if>
+      <if test="taskUserNo != null" >
+        task_user_no,
+      </if>
+      <if test="taskUserName != null" >
+        task_user_name,
+      </if>
+      <if test="taskType != null" >
+        task_type,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="finishTime != null" >
+        finish_time,
+      </if>
+      <if test="taskStatus != null" >
+        task_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserNo != null" >
+        create_user_no,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="expectStartTime != null" >
+        expect_start_time,
+      </if>
+      <if test="expectEndTime != null" >
+        expect_end_time,
+      </if>
+      <if test="actualStartTime != null" >
+        actual_start_time,
+      </if>
+      <if test="actualEndTime != null" >
+        actual_end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskNo != null" >
+        #{taskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskGroup != null" >
+        #{taskGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="taskUserNo != null" >
+        #{taskUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskUserName != null" >
+        #{taskUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskStatus != null" >
+        #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserNo != null" >
+        #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="expectStartTime != null" >
+        #{expectStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expectEndTime != null" >
+        #{expectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualStartTime != null" >
+        #{actualStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualEndTime != null" >
+        #{actualEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbTaskInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_task_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_task_info
+    <set >
+      <if test="record.taskNo != null" >
+        task_no = #{record.taskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskId != null" >
+        task_id = #{record.taskId,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskName != null" >
+        task_name = #{record.taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskGroup != null" >
+        task_group = #{record.taskGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskUserNo != null" >
+        task_user_no = #{record.taskUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskUserName != null" >
+        task_user_name = #{record.taskUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskType != null" >
+        task_type = #{record.taskType,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.finishTime != null" >
+        finish_time = #{record.finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.taskStatus != null" >
+        task_status = #{record.taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserNo != null" >
+        create_user_no = #{record.createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null" >
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectStartTime != null" >
+        expect_start_time = #{record.expectStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expectEndTime != null" >
+        expect_end_time = #{record.expectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.actualStartTime != null" >
+        actual_start_time = #{record.actualStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.actualEndTime != null" >
+        actual_end_time = #{record.actualEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_task_info
+    set task_no = #{record.taskNo,jdbcType=VARCHAR},
+      task_id = #{record.taskId,jdbcType=INTEGER},
+      task_name = #{record.taskName,jdbcType=VARCHAR},
+      task_group = #{record.taskGroup,jdbcType=VARCHAR},
+      task_user_no = #{record.taskUserNo,jdbcType=VARCHAR},
+      task_user_name = #{record.taskUserName,jdbcType=VARCHAR},
+      task_type = #{record.taskType,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      finish_time = #{record.finishTime,jdbcType=TIMESTAMP},
+      task_status = #{record.taskStatus,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user_no = #{record.createUserNo,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      expect_start_time = #{record.expectStartTime,jdbcType=TIMESTAMP},
+      expect_end_time = #{record.expectEndTime,jdbcType=TIMESTAMP},
+      actual_start_time = #{record.actualStartTime,jdbcType=TIMESTAMP},
+      actual_end_time = #{record.actualEndTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbTaskInfo" >
+    update tb_task_info
+    <set >
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null" >
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskGroup != null" >
+        task_group = #{taskGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="taskUserNo != null" >
+        task_user_no = #{taskUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskUserName != null" >
+        task_user_name = #{taskUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        task_type = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null" >
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskStatus != null" >
+        task_status = #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserNo != null" >
+        create_user_no = #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="expectStartTime != null" >
+        expect_start_time = #{expectStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expectEndTime != null" >
+        expect_end_time = #{expectEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualStartTime != null" >
+        actual_start_time = #{actualStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualEndTime != null" >
+        actual_end_time = #{actualEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbTaskInfo" >
+    update tb_task_info
+    set task_id = #{taskId,jdbcType=INTEGER},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      task_group = #{taskGroup,jdbcType=VARCHAR},
+      task_user_no = #{taskUserNo,jdbcType=VARCHAR},
+      task_user_name = #{taskUserName,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      task_status = #{taskStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_no = #{createUserNo,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      expect_start_time = #{expectStartTime,jdbcType=TIMESTAMP},
+      expect_end_time = #{expectEndTime,jdbcType=TIMESTAMP},
+      actual_start_time = #{actualStartTime,jdbcType=TIMESTAMP},
+      actual_end_time = #{actualEndTime,jdbcType=TIMESTAMP}
+    where task_no = #{taskNo,jdbcType=VARCHAR}
+  </update>
+  <select id="selectTaskInfoList" parameterType="com.ejobim.opplat.domain.condition.TaskInfoCondition"  resultType="com.ejobim.opplat.domain.vo.TbTaskInfoVo" >
+    select task_no taskNO, end_time endTime from tb_task_info
+    <where>
+      <if test="startTime!=null and startTime!='' ">
+        end_time &gt;= #{startTime}
+      </if>
+      <if test="endTime!=null and endTime!=''">
+        and end_time &lt;= #{endTime}
+      </if>
+    </where>
+    ORDER BY end_time
+  </select>
+
+  <select id="getCurrentMouthTaskInfo"   resultMap="BaseResultMap" >
+    SELECT * FROM tb_task_info WHERE DATE_FORMAT( end_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  </select>
+  <select id="selectTaskList" parameterType="com.ejobim.opplat.domain.TbTaskInfo"  resultMap="BaseResultMap" >
+    SELECT * FROM tb_task_info
+    <where>
+      <if test="createUserNo != null" >
+        create_user_no = #{createUserNo,jdbcType=VARCHAR}
+      </if>
+      <if test="taskName!=null and taskName!='' ">
+        task_name = #{taskName}
+      </if>
+      <if test="queryTime!=null and queryTime!='' ">
+        and DATE_FORMAT(end_time,'%Y-%m-%d') = #{queryTime}
+      </if>
+    </where>
+    ORDER BY end_time
+  </select>
+</mapper>

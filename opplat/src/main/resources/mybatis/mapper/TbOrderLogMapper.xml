@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbOrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbOrderLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="before_user" property="beforeUser" jdbcType="VARCHAR" />
+    <result column="before_user_no" property="beforeUserNo" jdbcType="VARCHAR" />
+    <result column="after_user" property="afterUser" jdbcType="VARCHAR" />
+    <result column="after_user_no" property="afterUserNo" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_no, order_type, before_user, before_user_no, after_user, after_user_no, 
+    reason
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbOrderLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_order_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbOrderLogExample" >
+    delete from tb_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbOrderLog" >
+    insert into tb_order_log (id, order_no, order_type, 
+      before_user, before_user_no, after_user, 
+      after_user_no, reason)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, 
+      #{beforeUser,jdbcType=VARCHAR}, #{beforeUserNo,jdbcType=VARCHAR}, #{afterUser,jdbcType=VARCHAR}, 
+      #{afterUserNo,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbOrderLog" >
+    insert into tb_order_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="beforeUser != null" >
+        before_user,
+      </if>
+      <if test="beforeUserNo != null" >
+        before_user_no,
+      </if>
+      <if test="afterUser != null" >
+        after_user,
+      </if>
+      <if test="afterUserNo != null" >
+        after_user_no,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="beforeUser != null" >
+        #{beforeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeUserNo != null" >
+        #{beforeUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="afterUser != null" >
+        #{afterUser,jdbcType=VARCHAR},
+      </if>
+      <if test="afterUserNo != null" >
+        #{afterUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbOrderLogExample" resultType="java.lang.Integer" >
+    select count(*) from tb_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_order_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.beforeUser != null" >
+        before_user = #{record.beforeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforeUserNo != null" >
+        before_user_no = #{record.beforeUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterUser != null" >
+        after_user = #{record.afterUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterUserNo != null" >
+        after_user_no = #{record.afterUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_order_log
+    set id = #{record.id,jdbcType=INTEGER},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      before_user = #{record.beforeUser,jdbcType=VARCHAR},
+      before_user_no = #{record.beforeUserNo,jdbcType=VARCHAR},
+      after_user = #{record.afterUser,jdbcType=VARCHAR},
+      after_user_no = #{record.afterUserNo,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbOrderLog" >
+    update tb_order_log
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="beforeUser != null" >
+        before_user = #{beforeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeUserNo != null" >
+        before_user_no = #{beforeUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="afterUser != null" >
+        after_user = #{afterUser,jdbcType=VARCHAR},
+      </if>
+      <if test="afterUserNo != null" >
+        after_user_no = #{afterUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbOrderLog" >
+    update tb_order_log
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=INTEGER},
+      before_user = #{beforeUser,jdbcType=VARCHAR},
+      before_user_no = #{beforeUserNo,jdbcType=VARCHAR},
+      after_user = #{afterUser,jdbcType=VARCHAR},
+      after_user_no = #{afterUserNo,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

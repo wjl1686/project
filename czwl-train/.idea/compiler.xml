@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="classes-service-beans" />
+        <module name="score-service-beans" />
+        <module name="team-service" />
+        <module name="classes-service" />
+        <module name="course-service-client" />
+        <module name="course-service" />
+        <module name="customer-service-beans" />
+        <module name="score-service-client" />
+        <module name="team-service-beans" />
+        <module name="course-service-beans" />
+        <module name="customer-service-client" />
+        <module name="classes-service-client" />
+        <module name="customer-service" />
+        <module name="score-service" />
+        <module name="team-service-client" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="classes-service" target="1.5" />
+      <module name="classes-service-beans" target="1.5" />
+      <module name="classes-service-client" target="1.5" />
+      <module name="course-service" target="1.5" />
+      <module name="course-service-beans" target="1.5" />
+      <module name="course-service-client" target="1.5" />
+      <module name="customer-service" target="1.5" />
+      <module name="customer-service-beans" target="1.5" />
+      <module name="customer-service-client" target="1.5" />
+      <module name="cz-app-parent" target="1.8" />
+      <module name="score-service" target="1.5" />
+      <module name="score-service-beans" target="1.5" />
+      <module name="score-service-client" target="1.5" />
+      <module name="team-service" target="1.8" />
+      <module name="team-service-beans" target="1.8" />
+      <module name="team-service-client" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="classes-service" options="-parameters" />
+      <module name="course-service" options="-parameters" />
+      <module name="customer-service" options="-parameters" />
+      <module name="score-service" options="-parameters" />
+      <module name="team-service" options="-parameters" />
+    </option>
+  </component>
+</project>

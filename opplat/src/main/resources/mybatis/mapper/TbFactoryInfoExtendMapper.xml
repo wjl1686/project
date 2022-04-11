@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbFactoryInfoExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbFactoryInfoExtend" >
+    <id column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="planning_scale" property="planningScale" jdbcType="DOUBLE" />
+    <result column="contract_scale" property="contractScale" jdbcType="DOUBLE" />
+    <result column="power_rate" property="powerRate" jdbcType="DOUBLE" />
+    <result column="power_scale" property="powerScale" jdbcType="DOUBLE" />
+    <result column="buile_scale" property="buileScale" jdbcType="DOUBLE" />
+    <result column="hold_scale" property="holdScale" jdbcType="DOUBLE" />
+    <result column="hold_maintain" property="holdMaintain" jdbcType="DOUBLE" />
+    <result column="service_population" property="servicePopulation" jdbcType="DOUBLE" />
+    <result column="service_area" property="serviceArea" jdbcType="DOUBLE" />
+    <result column="industrial_waste_rate" property="industrialWasteRate" jdbcType="DOUBLE" />
+    <result column="core_process" property="coreProcess" jdbcType="VARCHAR" />
+    <result column="water_quality_norm_out" property="waterQualityNormOut" jdbcType="VARCHAR" />
+    <result column="contract_period" property="contractPeriod" jdbcType="DOUBLE" />
+    <result column="keep_water_volume" property="keepWaterVolume" jdbcType="DOUBLE" />
+    <result column="contract_unit_price" property="contractUnitPrice" jdbcType="DOUBLE" />
+    <result column="filled_account" property="filledAccount" jdbcType="VARCHAR" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    factory_no, planning_scale, contract_scale, power_rate, power_scale, buile_scale, 
+    hold_scale, hold_maintain, service_population, service_area, industrial_waste_rate, 
+    core_process, water_quality_norm_out, contract_period, keep_water_volume, contract_unit_price, 
+    filled_account, last_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_factory_info_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_factory_info_extend
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_factory_info_extend
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtendExample" >
+    delete from tb_factory_info_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtend" >
+    insert into tb_factory_info_extend (factory_no, planning_scale, contract_scale, 
+      power_rate, power_scale, buile_scale, 
+      hold_scale, hold_maintain, service_population, 
+      service_area, industrial_waste_rate, core_process, 
+      water_quality_norm_out, contract_period, keep_water_volume, 
+      contract_unit_price, filled_account, last_update_time
+      )
+    values (#{factoryNo,jdbcType=VARCHAR}, #{planningScale,jdbcType=DOUBLE}, #{contractScale,jdbcType=DOUBLE}, 
+      #{powerRate,jdbcType=DOUBLE}, #{powerScale,jdbcType=DOUBLE}, #{buileScale,jdbcType=DOUBLE}, 
+      #{holdScale,jdbcType=DOUBLE}, #{holdMaintain,jdbcType=DOUBLE}, #{servicePopulation,jdbcType=DOUBLE}, 
+      #{serviceArea,jdbcType=DOUBLE}, #{industrialWasteRate,jdbcType=DOUBLE}, #{coreProcess,jdbcType=VARCHAR}, 
+      #{waterQualityNormOut,jdbcType=VARCHAR}, #{contractPeriod,jdbcType=DOUBLE}, #{keepWaterVolume,jdbcType=DOUBLE}, 
+      #{contractUnitPrice,jdbcType=DOUBLE}, #{filledAccount,jdbcType=VARCHAR},
+      CASE  WHEN #{lastUpdateTime,jdbcType=TIMESTAMP} is not null THEN #{lastUpdateTime,jdbcType=TIMESTAMP} ELSE now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtend" >
+    insert into tb_factory_info_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="planningScale != null" >
+        planning_scale,
+      </if>
+      <if test="contractScale != null" >
+        contract_scale,
+      </if>
+      <if test="powerRate != null" >
+        power_rate,
+      </if>
+      <if test="powerScale != null" >
+        power_scale,
+      </if>
+      <if test="buileScale != null" >
+        buile_scale,
+      </if>
+      <if test="holdScale != null" >
+        hold_scale,
+      </if>
+      <if test="holdMaintain != null" >
+        hold_maintain,
+      </if>
+      <if test="servicePopulation != null" >
+        service_population,
+      </if>
+      <if test="serviceArea != null" >
+        service_area,
+      </if>
+      <if test="industrialWasteRate != null" >
+        industrial_waste_rate,
+      </if>
+      <if test="coreProcess != null" >
+        core_process,
+      </if>
+      <if test="waterQualityNormOut != null" >
+        water_quality_norm_out,
+      </if>
+      <if test="contractPeriod != null" >
+        contract_period,
+      </if>
+      <if test="keepWaterVolume != null" >
+        keep_water_volume,
+      </if>
+      <if test="contractUnitPrice != null" >
+        contract_unit_price,
+      </if>
+      <if test="filledAccount != null" >
+        filled_account,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planningScale != null" >
+        #{planningScale,jdbcType=DOUBLE},
+      </if>
+      <if test="contractScale != null" >
+        #{contractScale,jdbcType=DOUBLE},
+      </if>
+      <if test="powerRate != null" >
+        #{powerRate,jdbcType=DOUBLE},
+      </if>
+      <if test="powerScale != null" >
+        #{powerScale,jdbcType=DOUBLE},
+      </if>
+      <if test="buileScale != null" >
+        #{buileScale,jdbcType=DOUBLE},
+      </if>
+      <if test="holdScale != null" >
+        #{holdScale,jdbcType=DOUBLE},
+      </if>
+      <if test="holdMaintain != null" >
+        #{holdMaintain,jdbcType=DOUBLE},
+      </if>
+      <if test="servicePopulation != null" >
+        #{servicePopulation,jdbcType=DOUBLE},
+      </if>
+      <if test="serviceArea != null" >
+        #{serviceArea,jdbcType=DOUBLE},
+      </if>
+      <if test="industrialWasteRate != null" >
+        #{industrialWasteRate,jdbcType=DOUBLE},
+      </if>
+      <if test="coreProcess != null" >
+        #{coreProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="waterQualityNormOut != null" >
+        #{waterQualityNormOut,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPeriod != null" >
+        #{contractPeriod,jdbcType=DOUBLE},
+      </if>
+      <if test="keepWaterVolume != null" >
+        #{keepWaterVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="contractUnitPrice != null" >
+        #{contractUnitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="filledAccount != null" >
+        #{filledAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_factory_info_extend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_factory_info_extend
+    <set >
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planningScale != null" >
+        planning_scale = #{record.planningScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.contractScale != null" >
+        contract_scale = #{record.contractScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.powerRate != null" >
+        power_rate = #{record.powerRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.powerScale != null" >
+        power_scale = #{record.powerScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.buileScale != null" >
+        buile_scale = #{record.buileScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.holdScale != null" >
+        hold_scale = #{record.holdScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.holdMaintain != null" >
+        hold_maintain = #{record.holdMaintain,jdbcType=DOUBLE},
+      </if>
+      <if test="record.servicePopulation != null" >
+        service_population = #{record.servicePopulation,jdbcType=DOUBLE},
+      </if>
+      <if test="record.serviceArea != null" >
+        service_area = #{record.serviceArea,jdbcType=DOUBLE},
+      </if>
+      <if test="record.industrialWasteRate != null" >
+        industrial_waste_rate = #{record.industrialWasteRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.coreProcess != null" >
+        core_process = #{record.coreProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waterQualityNormOut != null" >
+        water_quality_norm_out = #{record.waterQualityNormOut,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractPeriod != null" >
+        contract_period = #{record.contractPeriod,jdbcType=DOUBLE},
+      </if>
+      <if test="record.keepWaterVolume != null" >
+        keep_water_volume = #{record.keepWaterVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="record.contractUnitPrice != null" >
+        contract_unit_price = #{record.contractUnitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.filledAccount != null" >
+        filled_account = #{record.filledAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_factory_info_extend
+    set factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      planning_scale = #{record.planningScale,jdbcType=DOUBLE},
+      contract_scale = #{record.contractScale,jdbcType=DOUBLE},
+      power_rate = #{record.powerRate,jdbcType=DOUBLE},
+      power_scale = #{record.powerScale,jdbcType=DOUBLE},
+      buile_scale = #{record.buileScale,jdbcType=DOUBLE},
+      hold_scale = #{record.holdScale,jdbcType=DOUBLE},
+      hold_maintain = #{record.holdMaintain,jdbcType=DOUBLE},
+      service_population = #{record.servicePopulation,jdbcType=DOUBLE},
+      service_area = #{record.serviceArea,jdbcType=DOUBLE},
+      industrial_waste_rate = #{record.industrialWasteRate,jdbcType=DOUBLE},
+      core_process = #{record.coreProcess,jdbcType=VARCHAR},
+      water_quality_norm_out = #{record.waterQualityNormOut,jdbcType=VARCHAR},
+      contract_period = #{record.contractPeriod,jdbcType=DOUBLE},
+      keep_water_volume = #{record.keepWaterVolume,jdbcType=DOUBLE},
+      contract_unit_price = #{record.contractUnitPrice,jdbcType=DOUBLE},
+      filled_account = #{record.filledAccount,jdbcType=VARCHAR},
+      last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtend" >
+    update tb_factory_info_extend
+    <set >
+      <if test="planningScale != null" >
+        planning_scale = #{planningScale,jdbcType=DOUBLE},
+      </if>
+      <if test="contractScale != null" >
+        contract_scale = #{contractScale,jdbcType=DOUBLE},
+      </if>
+      <if test="powerRate != null" >
+        power_rate = #{powerRate,jdbcType=DOUBLE},
+      </if>
+      <if test="powerScale != null" >
+        power_scale = #{powerScale,jdbcType=DOUBLE},
+      </if>
+      <if test="buileScale != null" >
+        buile_scale = #{buileScale,jdbcType=DOUBLE},
+      </if>
+      <if test="holdScale != null" >
+        hold_scale = #{holdScale,jdbcType=DOUBLE},
+      </if>
+      <if test="holdMaintain != null" >
+        hold_maintain = #{holdMaintain,jdbcType=DOUBLE},
+      </if>
+      <if test="servicePopulation != null" >
+        service_population = #{servicePopulation,jdbcType=DOUBLE},
+      </if>
+      <if test="serviceArea != null" >
+        service_area = #{serviceArea,jdbcType=DOUBLE},
+      </if>
+      <if test="industrialWasteRate != null" >
+        industrial_waste_rate = #{industrialWasteRate,jdbcType=DOUBLE},
+      </if>
+      <if test="coreProcess != null" >
+        core_process = #{coreProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="waterQualityNormOut != null" >
+        water_quality_norm_out = #{waterQualityNormOut,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPeriod != null" >
+        contract_period = #{contractPeriod,jdbcType=DOUBLE},
+      </if>
+      <if test="keepWaterVolume != null" >
+        keep_water_volume = #{keepWaterVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="contractUnitPrice != null" >
+        contract_unit_price = #{contractUnitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="filledAccount != null" >
+        filled_account = #{filledAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null " >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime == null " >
+        last_update_time = now(),
+      </if>
+    </set>
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbFactoryInfoExtend" >
+    update tb_factory_info_extend
+    set planning_scale = #{planningScale,jdbcType=DOUBLE},
+      contract_scale = #{contractScale,jdbcType=DOUBLE},
+      power_rate = #{powerRate,jdbcType=DOUBLE},
+      power_scale = #{powerScale,jdbcType=DOUBLE},
+      buile_scale = #{buileScale,jdbcType=DOUBLE},
+      hold_scale = #{holdScale,jdbcType=DOUBLE},
+      hold_maintain = #{holdMaintain,jdbcType=DOUBLE},
+      service_population = #{servicePopulation,jdbcType=DOUBLE},
+      service_area = #{serviceArea,jdbcType=DOUBLE},
+      industrial_waste_rate = #{industrialWasteRate,jdbcType=DOUBLE},
+      core_process = #{coreProcess,jdbcType=VARCHAR},
+      water_quality_norm_out = #{waterQualityNormOut,jdbcType=VARCHAR},
+      contract_period = #{contractPeriod,jdbcType=DOUBLE},
+      keep_water_volume = #{keepWaterVolume,jdbcType=DOUBLE},
+      contract_unit_price = #{contractUnitPrice,jdbcType=DOUBLE},
+      filled_account = #{filledAccount,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where factory_no = #{factoryNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

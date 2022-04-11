@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbMedicineDictMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbMedicineDict" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="traget_no" property="tragetNo" jdbcType="VARCHAR" />
+    <result column="medicine_category" property="medicineCategory" jdbcType="VARCHAR" />
+    <result column="category_type" property="categoryType" jdbcType="VARCHAR" />
+    <result column="medicine_name" property="medicineName" jdbcType="VARCHAR" />
+    <result column="chemical" property="chemical" jdbcType="VARCHAR" />
+    <result column="medicine_type" property="medicineType" jdbcType="VARCHAR" />
+    <result column="medicine_vaid" property="medicineVaid" jdbcType="VARCHAR" />
+    <result column="medicine_content" property="medicineContent" jdbcType="VARCHAR" />
+    <result column="choose" property="choose" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, traget_no, medicine_category, category_type, medicine_name, chemical, medicine_type, 
+    medicine_vaid, medicine_content, choose
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbMedicineDictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_medicine_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_medicine_dict
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_medicine_dict
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbMedicineDictExample" >
+    delete from tb_medicine_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbMedicineDict" >
+    insert into tb_medicine_dict (id, traget_no, medicine_category, 
+      category_type, medicine_name, chemical, 
+      medicine_type, medicine_vaid, medicine_content, 
+      choose)
+    values (#{id,jdbcType=INTEGER}, #{tragetNo,jdbcType=VARCHAR}, #{medicineCategory,jdbcType=VARCHAR}, 
+      #{categoryType,jdbcType=VARCHAR}, #{medicineName,jdbcType=VARCHAR}, #{chemical,jdbcType=VARCHAR}, 
+      #{medicineType,jdbcType=VARCHAR}, #{medicineVaid,jdbcType=VARCHAR}, #{medicineContent,jdbcType=VARCHAR}, 
+      #{choose,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbMedicineDict" >
+    insert into tb_medicine_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tragetNo != null" >
+        traget_no,
+      </if>
+      <if test="medicineCategory != null" >
+        medicine_category,
+      </if>
+      <if test="categoryType != null" >
+        category_type,
+      </if>
+      <if test="medicineName != null" >
+        medicine_name,
+      </if>
+      <if test="chemical != null" >
+        chemical,
+      </if>
+      <if test="medicineType != null" >
+        medicine_type,
+      </if>
+      <if test="medicineVaid != null" >
+        medicine_vaid,
+      </if>
+      <if test="medicineContent != null" >
+        medicine_content,
+      </if>
+      <if test="choose != null" >
+        choose,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tragetNo != null" >
+        #{tragetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCategory != null" >
+        #{medicineCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryType != null" >
+        #{categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineName != null" >
+        #{medicineName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemical != null" >
+        #{chemical,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineType != null" >
+        #{medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineVaid != null" >
+        #{medicineVaid,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineContent != null" >
+        #{medicineContent,jdbcType=VARCHAR},
+      </if>
+      <if test="choose != null" >
+        #{choose,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbMedicineDictExample" resultType="java.lang.Integer" >
+    select count(*) from tb_medicine_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_medicine_dict
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tragetNo != null" >
+        traget_no = #{record.tragetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineCategory != null" >
+        medicine_category = #{record.medicineCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryType != null" >
+        category_type = #{record.categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineName != null" >
+        medicine_name = #{record.medicineName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chemical != null" >
+        chemical = #{record.chemical,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineType != null" >
+        medicine_type = #{record.medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineVaid != null" >
+        medicine_vaid = #{record.medicineVaid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineContent != null" >
+        medicine_content = #{record.medicineContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.choose != null" >
+        choose = #{record.choose,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_medicine_dict
+    set id = #{record.id,jdbcType=INTEGER},
+      traget_no = #{record.tragetNo,jdbcType=VARCHAR},
+      medicine_category = #{record.medicineCategory,jdbcType=VARCHAR},
+      category_type = #{record.categoryType,jdbcType=VARCHAR},
+      medicine_name = #{record.medicineName,jdbcType=VARCHAR},
+      chemical = #{record.chemical,jdbcType=VARCHAR},
+      medicine_type = #{record.medicineType,jdbcType=VARCHAR},
+      medicine_vaid = #{record.medicineVaid,jdbcType=VARCHAR},
+      medicine_content = #{record.medicineContent,jdbcType=VARCHAR},
+      choose = #{record.choose,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbMedicineDict" >
+    update tb_medicine_dict
+    <set >
+      <if test="tragetNo != null" >
+        traget_no = #{tragetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCategory != null" >
+        medicine_category = #{medicineCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryType != null" >
+        category_type = #{categoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineName != null" >
+        medicine_name = #{medicineName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemical != null" >
+        chemical = #{chemical,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineType != null" >
+        medicine_type = #{medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineVaid != null" >
+        medicine_vaid = #{medicineVaid,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineContent != null" >
+        medicine_content = #{medicineContent,jdbcType=VARCHAR},
+      </if>
+      <if test="choose != null" >
+        choose = #{choose,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbMedicineDict" >
+    update tb_medicine_dict
+    set traget_no = #{tragetNo,jdbcType=VARCHAR},
+      medicine_category = #{medicineCategory,jdbcType=VARCHAR},
+      category_type = #{categoryType,jdbcType=VARCHAR},
+      medicine_name = #{medicineName,jdbcType=VARCHAR},
+      chemical = #{chemical,jdbcType=VARCHAR},
+      medicine_type = #{medicineType,jdbcType=VARCHAR},
+      medicine_vaid = #{medicineVaid,jdbcType=VARCHAR},
+      medicine_content = #{medicineContent,jdbcType=VARCHAR},
+      choose = #{choose,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 根据剧典id list查询剧典 -->
+  <select id="selectBatchIds" resultMap="BaseResultMap">
+    select * from tb_medicine_dict where id in
+    <foreach collection="mids" item="mid" open="(" close=")" separator=",">
+      #{mid}
+    </foreach>
+  </select>
+
+</mapper>

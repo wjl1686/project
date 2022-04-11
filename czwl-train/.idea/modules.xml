@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/classes-service/classes-service.iml" filepath="$PROJECT_DIR$/classes-service/classes-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/classes-service-beans/classes-service-beans.iml" filepath="$PROJECT_DIR$/classes-service-beans/classes-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/classes-service-client/classes-service-client.iml" filepath="$PROJECT_DIR$/classes-service-client/classes-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course-service/course-service.iml" filepath="$PROJECT_DIR$/course-service/course-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course-service-beans/course-service-beans.iml" filepath="$PROJECT_DIR$/course-service-beans/course-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course-service-client/course-service-client.iml" filepath="$PROJECT_DIR$/course-service-client/course-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customer-service/customer-service.iml" filepath="$PROJECT_DIR$/customer-service/customer-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customer-service-beans/customer-service-beans.iml" filepath="$PROJECT_DIR$/customer-service-beans/customer-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customer-service-client/customer-service-client.iml" filepath="$PROJECT_DIR$/customer-service-client/customer-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/czwl-train.iml" filepath="$PROJECT_DIR$/.idea/czwl-train.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service/score-service.iml" filepath="$PROJECT_DIR$/score-service/score-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service-beans/score-service-beans.iml" filepath="$PROJECT_DIR$/score-service-beans/score-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service-client/score-service-client.iml" filepath="$PROJECT_DIR$/score-service-client/score-service-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-service/team-service.iml" filepath="$PROJECT_DIR$/team-service/team-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-service-beans/team-service-beans.iml" filepath="$PROJECT_DIR$/team-service-beans/team-service-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-service-client/team-service-client.iml" filepath="$PROJECT_DIR$/team-service-client/team-service-client.iml" />
+    </modules>
+  </component>
+</project>

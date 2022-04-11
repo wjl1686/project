@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/classes-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/classes-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/classes-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/course-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/course-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/course-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/customer-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/customer-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/customer-service-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/score-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/score-service-beans" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/score-service-client" vcs="Git" />
+  </component>
+</project>

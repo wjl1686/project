@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejobim.opplat.mapper.TbRoutingLocationMapper">
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbRoutingLocation">
+    <id column="location_no" jdbcType="VARCHAR" property="locationNo" />
+    <result column="factory_no" jdbcType="VARCHAR" property="factoryNo" />
+    <result column="location_name" jdbcType="VARCHAR" property="locationName" />
+    <result column="location_describe" jdbcType="VARCHAR" property="locationDescribe" />
+    <result column="location_type" jdbcType="INTEGER" property="locationType" />
+    <result column="location_level" jdbcType="INTEGER" property="locationLevel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="location_sort" jdbcType="INTEGER" property="locationSort" />
+    <result column="equip_count" jdbcType="INTEGER" property="equipCount" />
+    <result column="fill_count" jdbcType="INTEGER" property="fillCount" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    location_no, factory_no, location_name, location_describe, location_type, location_level, 
+    create_time, create_user, update_time, update_user, delete_flag, location_sort, equip_count, 
+    fill_count, nfc_no, location_x, location_y
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbRoutingLocationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_routing_location
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_routing_location
+    where location_no = #{locationNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_routing_location
+    where location_no = #{locationNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbRoutingLocationExample" >
+    delete from tb_routing_location
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbRoutingLocation" >
+    insert into tb_routing_location (location_no, factory_no, location_name, 
+      location_describe, location_type, location_level, 
+      create_time, create_user, update_time, 
+      update_user, delete_flag, location_sort, 
+      equip_count, fill_count, nfc_no, location_x,location_y
+      )
+    values (#{locationNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{locationName,jdbcType=VARCHAR},
+      #{locationDescribe,jdbcType=VARCHAR}, #{locationType,jdbcType=INTEGER}, #{locationLevel,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=INTEGER}, #{locationSort,jdbcType=INTEGER}, 
+      #{equipCount,jdbcType=INTEGER}, #{fillCount,jdbcType=INTEGER}, #{nfcNo,jdbcType=VARCHAR},
+      #{locationX,jdbcType=DOUBLE}, #{locationY,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbRoutingLocation" >
+    insert into tb_routing_location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="locationNo != null" >
+        location_no,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="locationName != null" >
+        location_name,
+      </if>
+      <if test="locationDescribe != null" >
+        location_describe,
+      </if>
+      <if test="locationType != null" >
+        location_type,
+      </if>
+      <if test="locationLevel != null" >
+        location_level,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="locationSort != null" >
+        location_sort,
+      </if>
+      <if test="equipCount != null" >
+        equip_count,
+      </if>
+      <if test="fillCount != null" >
+        fill_count,
+      </if>
+      <if test="nfcNo != null" >
+        nfc_no,
+      </if>
+      <if test="locationX != null">
+        location_x,
+      </if>
+      <if test="locationY != null">
+        location_y,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="locationNo != null" >
+        #{locationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="locationName != null" >
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationDescribe != null" >
+        #{locationDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="locationType != null" >
+        #{locationType,jdbcType=INTEGER},
+      </if>
+      <if test="locationLevel != null" >
+        #{locationLevel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="locationSort != null" >
+        #{locationSort,jdbcType=INTEGER},
+      </if>
+      <if test="equipCount != null" >
+        #{equipCount,jdbcType=INTEGER},
+      </if>
+      <if test="fillCount != null" >
+        #{fillCount,jdbcType=INTEGER},
+      </if>
+      <if test="nfcNo != null" >
+        #{nfcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null">
+        #{locationX,jdbcType=DOUBLE},
+      </if>
+      <if test="locationY != null">
+        #{locationY,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbRoutingLocationExample" resultType="java.lang.Integer" >
+    select count(*) from tb_routing_location
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_routing_location
+    <set >
+      <if test="record.locationNo != null" >
+        location_no = #{record.locationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationName != null" >
+        location_name = #{record.locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationDescribe != null" >
+        location_describe = #{record.locationDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationType != null" >
+        location_type = #{record.locationType,jdbcType=INTEGER},
+      </if>
+      <if test="record.locationLevel != null" >
+        location_level = #{record.locationLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.locationSort != null">
+        location_sort = #{record.locationSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipCount != null" >
+        equip_count = #{record.equipCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.fillCount != null" >
+        fill_count = #{record.fillCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.locationX != null">
+        location_x = #{record.locationX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.locationY != null">
+        location_y = #{record.locationY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.nfcNo != null" >
+        nfc_no = #{record.nfcNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_routing_location
+    set location_no = #{record.locationNo,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      location_name = #{record.locationName,jdbcType=VARCHAR},
+      location_describe = #{record.locationDescribe,jdbcType=VARCHAR},
+      location_type = #{record.locationType,jdbcType=INTEGER},
+      location_level = #{record.locationLevel,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      location_sort = #{record.locationSort,jdbcType=INTEGER},
+      equip_count = #{record.equipCount,jdbcType=INTEGER},
+      fill_count = #{record.fillCount,jdbcType=INTEGER},
+      location_x = #{record.locationX,jdbcType=DOUBLE},
+      location_y = #{record.locationY,jdbcType=DOUBLE},
+      nfc_no = #{record.nfcNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbRoutingLocation" >
+    update tb_routing_location
+    <set >
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="locationName != null" >
+        location_name = #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationDescribe != null" >
+        location_describe = #{locationDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="locationType != null" >
+        location_type = #{locationType,jdbcType=INTEGER},
+      </if>
+      <if test="locationLevel != null" >
+        location_level = #{locationLevel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="locationSort != null" >
+        location_sort = #{locationSort,jdbcType=INTEGER},
+      </if>
+      <if test="equipCount != null" >
+        equip_count = #{equipCount,jdbcType=INTEGER},
+      </if>
+      <if test="fillCount != null" >
+        fill_count = #{fillCount,jdbcType=INTEGER},
+      </if>
+      <if test="nfcNo != null" >
+        nfc_no = #{nfcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null">
+        location_x = #{locationX,jdbcType=DOUBLE},
+      </if>
+      <if test="locationY != null">
+        location_y = #{locationY,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where location_no = #{locationNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbRoutingLocation" >
+    update tb_routing_location
+    set factory_no = #{factoryNo,jdbcType=VARCHAR},
+      location_name = #{locationName,jdbcType=VARCHAR},
+      location_describe = #{locationDescribe,jdbcType=VARCHAR},
+      location_type = #{locationType,jdbcType=INTEGER},
+      location_level = #{locationLevel,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      location_sort = #{locationSort,jdbcType=INTEGER},
+      equip_count = #{equipCount,jdbcType=INTEGER},
+      fill_count = #{fillCount,jdbcType=INTEGER},
+      location_x = #{locationX,jdbcType=DOUBLE},
+      location_y = #{locationY,jdbcType=DOUBLE},
+      nfc_no = #{nfcNo,jdbcType=VARCHAR}
+    where location_no = #{locationNo,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectRoutingLocationList" resultMap="BaseResultMap">
+        select * from tb_routing_location where location_no in
+        <foreach collection="list" item="uri" open="(" close=")" separator=",">
+            #{uri}
+        </foreach>
+    </select>
+
+    <select id="getTaskRoutingLocationByNfcNo" resultMap="BaseResultMap">
+        select * from tb_routing_location where 1=1
+        <if test="factoryNo != null" >
+            and factory_no = #{factoryNo,jdbcType=VARCHAR}
+        </if>
+        <if test="nfcNo != null" >
+            and nfc_no = #{nfcNo,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="getNfcRoutingLocationList" parameterType="com.ejobim.opplat.domain.TbNfcInfo" resultType="map">
+        select location_no code ,location_name name from tb_routing_location where factory_no =#{factoryNo,jdbcType=VARCHAR}  and delete_flag =0 and location_no  not in ( select node_id nodeId from
+          tb_nfc_info where factory_no =#{factoryNo,jdbcType=VARCHAR} and  node_type = #{nodeType,jdbcType=INTEGER}
+         )
+    </select>
+    <select id="selectCheckRoutingLocationList" parameterType="com.ejobim.opplat.domain.TbRoutingLocation" resultMap="BaseResultMap">
+        select *  from tb_routing_location where factory_no =#{factoryNo,jdbcType=VARCHAR}   and delete_flag=0
+        and ( location_name = #{locationName,jdbcType=VARCHAR} or location_sort = #{locationSort,jdbcType=INTEGER})
+    </select>
+</mapper>

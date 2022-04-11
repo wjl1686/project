@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejobim.opplat.mapper.TbRoutingModelMapper" >
+  <resultMap id="BaseResultMap" type="com.ejobim.opplat.domain.TbRoutingModel" >
+    <id column="routing_model_no" property="routingModelNo" jdbcType="VARCHAR" />
+    <result column="routing_model_name" property="routingModelName" jdbcType="VARCHAR" />
+    <result column="routing_model_level" property="routingModelLevel" jdbcType="INTEGER" />
+    <result column="routing_model_status" property="routingModelStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="factory_no" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="time_zones" property="timeZones" jdbcType="VARCHAR" />
+    <result column="all_count" property="allCount" jdbcType="INTEGER" />
+    <result column="route_type" property="routeType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    routing_model_no, routing_model_name, routing_model_level, routing_model_status, 
+    create_time, create_user, update_time, update_user, factory_no, delete_flag, time_zones, 
+    all_count, route_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejobim.opplat.domain.TbRoutingModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_routing_model
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_routing_model
+    where routing_model_no = #{routingModelNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_routing_model
+    where routing_model_no = #{routingModelNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejobim.opplat.domain.TbRoutingModelExample" >
+    delete from tb_routing_model
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejobim.opplat.domain.TbRoutingModel" >
+    insert into tb_routing_model (routing_model_no, routing_model_name, 
+      routing_model_level, routing_model_status, 
+      create_time, create_user, update_time, 
+      update_user, factory_no, delete_flag, 
+      time_zones, all_count, route_type
+      )
+    values (#{routingModelNo,jdbcType=VARCHAR}, #{routingModelName,jdbcType=VARCHAR}, 
+      #{routingModelLevel,jdbcType=INTEGER}, #{routingModelStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=INTEGER}, 
+      #{timeZones,jdbcType=VARCHAR}, #{allCount,jdbcType=INTEGER}, #{routeType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejobim.opplat.domain.TbRoutingModel" >
+    insert into tb_routing_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="routingModelNo != null" >
+        routing_model_no,
+      </if>
+      <if test="routingModelName != null" >
+        routing_model_name,
+      </if>
+      <if test="routingModelLevel != null" >
+        routing_model_level,
+      </if>
+      <if test="routingModelStatus != null" >
+        routing_model_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="timeZones != null" >
+        time_zones,
+      </if>
+      <if test="allCount != null" >
+        all_count,
+      </if>
+      <if test="routeType != null" >
+        route_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="routingModelNo != null" >
+        #{routingModelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="routingModelName != null" >
+        #{routingModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="routingModelLevel != null" >
+        #{routingModelLevel,jdbcType=INTEGER},
+      </if>
+      <if test="routingModelStatus != null" >
+        #{routingModelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="timeZones != null" >
+        #{timeZones,jdbcType=VARCHAR},
+      </if>
+      <if test="allCount != null" >
+        #{allCount,jdbcType=INTEGER},
+      </if>
+      <if test="routeType != null" >
+        #{routeType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejobim.opplat.domain.TbRoutingModelExample" resultType="java.lang.Integer" >
+    select count(*) from tb_routing_model
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_routing_model
+    <set >
+      <if test="record.routingModelNo != null" >
+        routing_model_no = #{record.routingModelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingModelName != null" >
+        routing_model_name = #{record.routingModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingModelLevel != null" >
+        routing_model_level = #{record.routingModelLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.routingModelStatus != null" >
+        routing_model_status = #{record.routingModelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeZones != null" >
+        time_zones = #{record.timeZones,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allCount != null" >
+        all_count = #{record.allCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.routeType != null" >
+        route_type = #{record.routeType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_routing_model
+    set routing_model_no = #{record.routingModelNo,jdbcType=VARCHAR},
+      routing_model_name = #{record.routingModelName,jdbcType=VARCHAR},
+      routing_model_level = #{record.routingModelLevel,jdbcType=INTEGER},
+      routing_model_status = #{record.routingModelStatus,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      factory_no = #{record.factoryNo,jdbcType=VARCHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=INTEGER},
+      time_zones = #{record.timeZones,jdbcType=VARCHAR},
+      all_count = #{record.allCount,jdbcType=INTEGER},
+      route_type = #{record.routeType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejobim.opplat.domain.TbRoutingModel" >
+    update tb_routing_model
+    <set >
+      <if test="routingModelName != null" >
+        routing_model_name = #{routingModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="routingModelLevel != null" >
+        routing_model_level = #{routingModelLevel,jdbcType=INTEGER},
+      </if>
+      <if test="routingModelStatus != null" >
+        routing_model_status = #{routingModelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="timeZones != null" >
+        time_zones = #{timeZones,jdbcType=VARCHAR},
+      </if>
+      <if test="allCount != null" >
+        all_count = #{allCount,jdbcType=INTEGER},
+      </if>
+      <if test="routeType != null" >
+        route_type = #{routeType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where routing_model_no = #{routingModelNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejobim.opplat.domain.TbRoutingModel" >
+    update tb_routing_model
+    set routing_model_name = #{routingModelName,jdbcType=VARCHAR},
+      routing_model_level = #{routingModelLevel,jdbcType=INTEGER},
+      routing_model_status = #{routingModelStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      factory_no = #{factoryNo,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      time_zones = #{timeZones,jdbcType=VARCHAR},
+      all_count = #{allCount,jdbcType=INTEGER},
+      route_type = #{routeType,jdbcType=INTEGER}
+    where routing_model_no = #{routingModelNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
